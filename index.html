@@ -122,7 +122,7 @@
             left: 0;
             height: 100%;
             overflow-y: auto;
-            z-index: 40;
+            z-index: 60;
             transition: transform 0.3s ease;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
             padding: 20px;
@@ -671,14 +671,14 @@
     </nav>
 
     <!-- Sidebar (Site Navigation) -->
-    <div id="sidebar" class="hidden md:block">
-        <a href="https://exesbi.netlify.app" class="nav-link">Home</a>
-        <a href="https://exesbi.netlify.app/services.html" class="nav-link">Services</a>
-        <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link">Projects</a>
-        <a href="https://exesbi.netlify.app/contact.html" class="nav-link">Contact</a>
+    <div id="sidebar" class="md:block" style="z-index:60;">
+        <a href="https://exesbi.netlify.app" class="nav-link" data-sidebar="home">Home</a>
+        <a href="https://exesbi.netlify.app/services.html" class="nav-link" data-sidebar="services">Services</a>
+        <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link" data-sidebar="projects">Projects</a>
+        <a href="https://exesbi.netlify.app/contact.html" class="nav-link" data-sidebar="contact">Contact</a>
         <!--<a href="https://tujengane.netlify.app" class="nav-link">Tujengane</a>-->
-        <a href="https://exesbi.netlify.app/about.html" class="nav-link">About Us</a>
-        <a href="https://exesbi.netlify.app/terms.html" class="nav-link">Terms & Conditions</a>
+        <a href="https://exesbi.netlify.app/about.html" class="nav-link" data-sidebar="about">About Us</a>
+        <a href="https://exesbi.netlify.app/terms.html" class="nav-link" data-sidebar="terms">Terms & Conditions</a>
     </div>
 
     <!-- Slide Navigation Panel -->
@@ -1328,10 +1328,12 @@
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
         sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
             sidebar.classList.toggle('active');
             sidebarToggle.innerHTML = sidebar.classList.contains('active') ? '×' : '☰';
         });
+
+        // Highlight active sidebar item (optional, if you want to show which page is active)
+        // You can add logic here if needed
 
         // Modal Controls
         function openModal(id) {
@@ -1398,4 +1400,52 @@
         const totalSlides = slides.length;
         const progressFill = document.getElementById('progress-fill');
         const dropdown = document.querySelector('.dropdown');
-        const slideNavLinks = document.querySelectorAll
+        const slideNavLinks = document.querySelectorAll('#slide-nav-panel a');
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+            document.getElementById('current-slide').textContent = index + 1;
+            progressFill.style.width = ((index + 1) / totalSlides * 100) + '%';
+            // Highlight nav panel link
+            slideNavLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+            // Set dropdown value
+            if (dropdown) dropdown.value = index;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        function goToSlide(index) {
+            showSlide(Number(index));
+        }
+
+        // Dropdown navigation
+        if (dropdown) {
+            dropdown.addEventListener('change', function() {
+                goToSlide(this.value);
+            });
+        }
+
+        // Slide nav panel links
+        slideNavLinks.forEach((link, i) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToSlide(i);
+            });
+        });
+
+        // Show initial slide
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
