@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tujengane Digital Basics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slide.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        h1 {
+            font-size: clamp(2.5em, 5vw, 3.5em);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.8em, 4vw, 2.5em);
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: clamp(1.4em, 3vw, 1.8em);
+            margin-bottom: 15px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: clamp(1.1em, 2.5vw, 1.3em);
+            line-height: 1.6;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2em, 2.5vw, 1.5em);
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: clamp(1.2em, 2.5vw, 1.4em);
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin: 20px 0;
+            position: relative;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3em;
+            color: rgba(102, 126, 234, 0.3);
+            position: absolute;
+            top: -5px;
+            left: 10px;
+        }
+
+        .highlight-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .highlight-list li {
+            font-size: clamp(1em, 2vw, 1.2em);
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4a5568;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .highlight-list li:hover {
+            transform: translateX(10px);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .highlight-list li.clicked {
+            animation: pulse 0.3s ease;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .rule-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .rule-card.clicked {
+            transform: scale(1.05);
+        }
+
+        .rule-card .tooltip {
+            display: none;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .rule-card.clicked .tooltip {
+            display: block;
+        }
+
+        .rule-number {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.6s ease;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #667eea;
+            z-index: 100;
+        }
+
+        .demo-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-table th, .demo-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .demo-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .messy-data, .clean-data {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .messy-data {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .clean-data {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button.clicked {
+            transform: scale(1.1);
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+
+        .quiz-container {
+            margin: 20px 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .quiz-option:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.3);
+            border: 2px solid #059669;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(220, 38, 38, 0.3);
+            border: 2px solid #dc2626;
+        }
+
+        .quiz-feedback {
+            display: none;
+            font-size: 0.9em;
+            color: #2d3748;
+            margin-top: 5px;
+        }
+
+        .quiz-option.correct .quiz-feedback.correct,
+        .quiz-option.wrong .quiz-feedback.wrong {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">21</span>
+        </div>
+
+        <!-- Slide 1: Welcome -->
+        <div class="slide active">
+            <h1>🌟 Tujengane Digital Basics</h1>
+            <div class="subtitle animate-fade-in">One-Day Free Session</div>
+            <p class="animate-fade-in" style="font-size: 1.4em; margin: 20px 0;">Presented by <strong>Deric Marangu</strong>, Founder of EXES BI</p>
+            <div class="quote animate-fade-in">
+                Today is not about learning computers. It's about learning how to capture data correctly—so your business can grow with clarity.
+            </div>
+        </div>
+
+        <!-- Slide 2: Meet Your Instructor -->
+        <div class="slide">
+            <h2>Meet Your Instructor</h2>
+            <h3 class="animate-fade-in">Deric Marangu</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Founder of <strong>EXES BI</strong>, a data analytics gateway for hustlers and SMEs</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Bachelor of Business Information Technology – Kirinyaga University</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Self-taught in SQL, Excel, Python, Power BI</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                I teach because I've seen how messy data slows down impact. I want to fix that.
+            </div>
+        </div>
+
+        <!-- Slide 3: The Real Problem -->
+        <div class="slide">
+            <h2>⚠️ The Real Problem</h2>
+            <h3 class="animate-fade-in">Messy Data Is Costing You Time and Clarity</h3>
+            <p class="animate-fade-in" style="animation-delay: 0.2s;">Hustlers and SMEs already collect data—but it's often:</p>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Incomplete</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Inconsistent</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Full of blanks or wrong formats</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                I spend hours cleaning data before I can even analyze it. That's not sustainable.
+            </div>
+        </div>
+
+        <!-- Slide 4: What Is Clean Data -->
+        <div class="slide">
+            <h2>✨ What Is Clean Data?</h2>
+            <h3 class="animate-fade-in">Clean Data = Fast Decisions + Accurate Insights</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📋</div>
+                    <h4>Consistent Naming</h4>
+                    <div class="tooltip">Use the same name for the same item every time.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📝</div>
+                    <h4>No Blanks</h4>
+                    <div class="tooltip">Ensure every field has valid data.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📊</div>
+                    <h4>Correct Formats</h4>
+                    <div class="tooltip">Use proper formats like dates or numbers.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.8s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📅</div>
+                    <h4>Daily Logging</h4>
+                    <div class="tooltip">Record data consistently every day.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                Clean data doesn't just look good—it saves time and builds trust.
+            </div>
+        </div>
+
+        <!-- Slide 5: Why Hustlers Struggle -->
+        <div class="slide">
+            <h2>🤔 Why Hustlers Struggle</h2>
+            <h3 class="animate-fade-in">They Record, But They Don't Organize</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Structure</h4>
+                    <div class="tooltip">Data lacks a clear format or system.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Habits</h4>
+                    <div class="tooltip">Inconsistent recording practices.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Systems</h4>
+                    <div class="tooltip">No tools or processes in place.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                You're already generating data. You just need to capture it well.
+            </div>
+        </div>
+
+        <!-- Slide 6: Data Is Everywhere -->
+        <div class="slide">
+            <h2>📍 Data Is Everywhere</h2>
+            <h3 class="animate-fade-in">Every Sale, Expense, and Customer Is Data</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">What you sell</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Who buys</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">When they buy</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">How much they spend</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                You don't need new tools. You need new habits.
+            </div>
+        </div>
+
+        <!-- Slide 7: 3 Rules of Clean Data -->
+        <div class="slide">
+            <h2>🎯 The 3 Rules of Clean Data</h2>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">1</div>
+                    <h4>Consistency</h4>
+                    <p>Same format every time</p>
+                    <div class="tooltip">Always use the same naming and structure.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">2</div>
+                    <h4>Completeness</h4>
+                    <p>No missing information</p>
+                    <div class="tooltip">Every field must be filled accurately.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">3</div>
+                    <h4>Correct Format</h4>
+                    <p>Right data types</p>
+                    <div class="tooltip">Use dates, numbers, or text appropriately.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                If you follow these three rules, your data becomes usable instantly.
+            </div>
+        </div>
+
+        <!-- Slide 8: Common Mistakes -->
+        <div class="slide">
+            <h2>❌ Common Mistakes</h2>
+            <h3 class="animate-fade-in">What Dirty Data Looks Like</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">"Tea Leaves" vs. "tea"</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Skipped entries</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Wrong dates</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Mixed categories</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                These small errors create big confusion.
+            </div>
+        </div>
+
+        <!-- Slide 9: Time Waste -->
+        <div class="slide">
+            <h2>⏰ How Dirty Data Wastes Time</h2>
+            <h3 class="animate-fade-in">Cleaning vs. Analyzing</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Time lost fixing blanks and errors</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Delayed decisions</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Frustration for analysts</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                I want to spend time generating insights—not fixing mistakes.
+            </div>
+        </div>
+
+        <!-- Slide 10: Cost of Inaccuracy -->
+        <div class="slide">
+            <h2>💸 The Cost of Inaccuracy</h2>
+            <h3 class="animate-fade-in">Bad Data = Bad Decisions</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Wrong totals</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Missed trends</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Misguided strategies</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                You can't grow what you can't measure.
+            </div>
+        </div>
+
+        <!-- Slide 11: Recording Daily Transactions -->
+        <div class="slide">
+            <h2>📝 Recording Daily Transactions</h2>
+            <h3 class="animate-fade-in">Start Simple. Stay Consistent.</h3>
+            <table class="demo-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <td>2025-08-29</td>
+                        <td>Tea Leaves</td>
+                        <td>500</td>
+                        <td>Inventory</td>
+                    </tr>
+                    <tr class="animate-fade-in" style="animation-delay: 0.4s;">
+                        <td>2025-08-29</td>
+                        <td>Sugar</td>
+                        <td>200</td>
+                        <td>Inventory</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Even a notebook can be powerful—if it's structured.
+            </div>
+        </div>
+
+        <!-- Slide 12: Using Tables -->
+        <div class="slide">
+            <h2>📊 Using Tables Effectively</h2>
+            <h3 class="animate-fade-in">Structure Is the First Step to Clarity</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📄</div>
+                    <h4>Rows = Records</h4>
+                    <div class="tooltip">Each row is a single transaction.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📋</div>
+                    <h4>Columns = Categories</h4>
+                    <div class="tooltip">Each column defines a data type.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">🔢</div>
+                    <h4>Totals = Insights</h4>
+                    <div class="tooltip">Sum columns for quick insights.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Tables turn chaos into clarity.
+            </div>
+        </div>
+
+        <!-- Slide 13: Naming Convention -->
+        <div class="slide">
+            <h2>🏷️ Naming Files & Entries</h2>
+            <h3 class="animate-fade-in">Be Consistent. Be Clear.</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Use full names</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Avoid abbreviations</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Stick to one format</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Your future self will thank you.
+            </div>
+        </div>
+
+        <!-- Slide 14: Avoiding Blanks -->
+        <div class="slide">
+            <h2>🚫 Avoiding Blanks & Guesswork</h2>
+            <h3 class="animate-fade-in">Don't Fill Gaps with Zeros or Averages</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">It looks complete but loses accuracy</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Leads to false conclusions</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Incomplete data is incomplete truth.
+            </div>
+        </div>
+
+        <!-- Slide 15: Demo -->
+        <div class="slide">
+            <h2>🎯 Demo – Clean vs. Messy Sheet</h2>
+            <h3 class="animate-fade-in">Live Walkthrough</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                <div class="messy-data animate-fade-in" style="animation-delay: 0.2s;">
+                    <h4 style="color: #dc2626; margin-bottom: 8px;">❌ Messy Data</h4>
+                    <p style="font-size: 0.9em;">tea, Tea Leaves, TEA<br>0, ???<br>2025/8/29, Aug 29, 29-8-25</p>
+                </div>
+                <div class="clean-data animate-fade-in" style="animation-delay: 0.4s;">
+                    <h4 style="color: #059669; margin-bottom: 8px;">✅ Clean Data</h4>
+                    <p style="font-size: 0.9em;">Tea Leaves, Tea Leaves, Tea Leaves<br>Complete entries only<br>2025-08-29, 2025-08-29, 2025-08-29</p>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                This is the difference between confusion and clarity.
+            </div>
+        </div>
+
+        <!-- Slide 16: Hustler Audit -->
+        <div class="slide">
+            <h2>🔍 Hustler Audit Challenge</h2>
+            <h3 class="animate-fade-in">Match Your Hustle to a Data Habit</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">List 3 daily business tasks</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Choose how you'll record them</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Let's build your first clean data habit today.
+            </div>
+        </div>
+
+        <!-- Slide 17: Interactive Quiz -->
+        <div class="slide">
+            <h2>🧠 Data Quiz Time!</h2>
+            <h3 class="animate-fade-in">Test Your Knowledge</h3>
+            <p class="animate-fade-in" style="animation-delay: 0.2s;">What’s the biggest cause of messy data?</p>
+            <div class="quiz-container">
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.4s;" onclick="checkAnswer(this, false)">
+                    Using too many tools
+                    <div class="quiz-feedback wrong">Too many tools can complicate things, but inconsistency is the real culprit.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.6s;" onclick="checkAnswer(this, false)">
+                    Not enough data
+                    <div class="quiz-feedback wrong">More data isn't the issue—it's about how you record it.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.8s;" onclick="checkAnswer(this, true)">
+                    Inconsistent recording
+                    <div class="quiz-feedback correct">Correct! Inconsistent recording creates messy data.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 1s;" onclick="checkAnswer(this, false)">
+                    Too many employees
+                    <div class="quiz-feedback wrong">Employees aren't the problem—it's inconsistent data practices.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 1.2s;">
+                Get it right, and feel the data power! 💪
+            </div>
+        </div>
+
+        <!-- Slide 18: Case Study -->
+        <div class="slide">
+            <h2>📈 Real-Life Case Study</h2>
+            <h3 class="animate-fade-in">Jane's Boutique – What Clean Data Revealed</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Her best-seller wasn't what she thought</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Her peak sales time was misjudged</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Her repeat customers came from an untargeted area</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Data doesn't lie. It reveals.
+            </div>
+        </div>
+
+        <!-- Slide 19: Power 12 Curriculum -->
+        <div class="slide">
+            <h2>🎓 What You'll Learn in Power 12</h2>
+            <h3 class="animate-fade-in">The Full Curriculum</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Typing & navigation</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Excel for business</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Data cleaning & formatting</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Visualization & analytics</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                From confusion to clarity—in 12 weeks.
+            </div>
+        </div>
+
+        <!-- Slide 20: Certificate -->
+        <div class="slide">
+            <h2>🏆 Certificate & Data Partner Path</h2>
+            <h3 class="animate-fade-in">Join the EXES BI Network</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Earn a branded certificate</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Become a trusted data partner</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Get early access to dashboards and pilot tools</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                We're building a community of clarity-makers.
+            </div>
+        </div>
+
+        <!-- Slide 21: Call to Action -->
+        <div class="slide">
+            <h2>🚀 Ready to Level Up?</h2>
+            <h3 class="animate-fade-in">Join Power 12</h3>
+            <button class="cta-button animate-fade-in" style="animation-delay: 0.2s;" onclick="ctaClick(this)">DM "POWER 12" TO ENROLL</button>
+            <p class="animate-fade-in" style="margin: 15px 0; color: #dc2626; font-weight: 600; animation-delay: 0.4s;">Limited slots available</p>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                If today opened your eyes, imagine what 12 weeks can do.
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressFill = document.getElementById('progress-fill');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        function playSound(type) {
+            const audio = new Audio();
+            audio.src = type === 'click' ? 'https://www.soundjay.com/buttons/beep-01a.mp3' : 'https://www.soundjay.com/buttons/beep-02.mp3';
+            audio.play().catch(() => {});
+        }
+
+        function highlightClick(element) {
+            element.classList.add('clicked');
+            playSound('click');
+            setTimeout(() => element.classList.remove('clicked'), 300);
+        }
+
+        function ruleCardClick(element) {
+            element.classList.add('clicked');
+            playSound('click');
+            setTimeout(() => element.classList.remove('clicked'), 1000);
+        }
+
+        function ctaClick(element) {
+            element.classList.add('clicked');
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            playSound('click');
+            setTimeout(() => element.classList.remove('clicked'), 300);
+        }
+
+        function checkAnswer(element, isCorrect) {
+            element.classList.add(isCorrect ? 'correct' : 'wrong');
+            playSound(isCorrect ? 'click' : 'error');
+            setTimeout(() => {
+                nextSlide();
+            }, 1500);
+        }
+
+        function showSlide(n) {
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+            
+            if (n >= totalSlides) currentSlide = 0;
+            if (n < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            if (currentSlide > 0) slides[currentSlide - 1].classList.add('prev');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+            playSound('click');
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Initialize progress bar
+        updateProgress();
+    </script>
+</body>
+</html>
