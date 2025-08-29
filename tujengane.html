@@ -3,31 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tujengane Digital Basics</title>
+    <title>Tujengane Digital Basics – EXES BI</title>
+    <script src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js"></script>
+    <script>
+        window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+        window.amplitude.init('5a4bb01b3841a994768853dd53f10382', {"fetchRemoteConfig":true,"autocapture":true});
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJM885LMLJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZJM885LMLJ');
+    </script>
+    <meta name="description" content="Tujengane Digital Basics by EXES BI – Learn to capture clean data for business growth. Free one-day session by Deric Marangu. Join Power 12 for advanced analytics skills.">
+    <meta name="keywords" content="Tujengane Digital Basics, EXES BI, Data Analytics Kenya, Deric Marangu, Clean Data, Business Intelligence Kenya, Power 12, Data Training Nairobi">
+    <meta name="author" content="Deric Marangu">
+    <meta name="email" content="dericmarangu@gmail.com">
+    <meta name="telephone" content="+254791360805">
+    <meta property="og:see_also" content="https://linkedin.com/in/deric-marangu-134340297">
+    <meta property="og:see_also" content="https://x.com/Dericmwiti">
+    <meta property="og:see_also" content="https://web.facebook.com/deric.aldertrax">
+    <meta property="og:see_also" content="https://www.facebook.com/exes.125107">
+    <meta property="og:see_also" content="https://wa.me/254791360805">
+    <meta property="og:title" content="Tujengane Digital Basics – EXES BI">
+    <meta property="og:description" content="Learn clean data practices with Tujengane Digital Basics by EXES BI. Free session by Deric Marangu. Join Power 12 to transform your business with EXES BI!">
+    <meta property="og:image" content="https://exesbi.netlify.app/assets/img/logo.png">
+    <meta property="og:url" content="https://exesbi.netlify.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EXES BI">
+    <meta property="og:locale" content="en_KE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tujengane Digital Basics – EXES BI">
+    <meta name="twitter:description" content="Free one-day session on clean data practices by Deric Marangu. Join Power 12 to transform your business with EXES BI!">
+    <meta name="twitter:image" content="https://exesbi.netlify.app/assets/img/logo.png">
+    <meta name="twitter:creator" content="@Dericmwiti">
+    <meta name="twitter:site" content="@Dericmwiti">
+    <meta name="google-site-verification" content="atXrWwnfuGsW-bG32kFaaYl_7cX59LFFuawPIoGcPYk">
+    <meta name="google-site-verification" content="Jy01n_QNsBr6VEkwL0RMSE-ya0yPNywvSnNEdO6_TcE">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://exesbi.netlify.app/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://exesbi.netlify.app/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://exesbi.netlify.app/icon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://exesbi.netlify.app/icon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://exesbi.netlify.app/icon/android-chrome-512x512.png">
+    <link rel="shortcut icon" href="https://exesbi.netlify.app/icon/favicon.ico">
+    <link rel="manifest" href="https://exesbi.netlify.app/icon/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+    <script data-goatcounter="https://deric-exes-analytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(to-br, #f0fdfa, #d9f99d);
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-slide {
+            animation: slide 20s linear infinite;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar-slogan {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #facc15;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        .sidebar-nav li {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar-nav li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #facc15;
+        }
+
+        .sidebar-nav li.active {
+            background: #facc15;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 1.8em;
+            color: #49A078;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1100;
+            display: none;
         }
 
         .presentation-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
+            margin-left: 250px;
+            width: calc(100vw - 250px);
+            min-height: calc(100vh - 200px);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            flex: 1;
         }
 
         .slide {
             width: 90%;
             max-width: 1000px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: linear-gradient(to-br, #f0fdfa, #d9f99d);
             border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             padding: 40px;
@@ -54,6 +194,7 @@
             margin-bottom: 20px;
             background: linear-gradient(135deg, #49A078, #3e8865);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
             line-height: 1.2;
@@ -97,7 +238,6 @@
             border-left: 5px solid #49A078;
             margin: 20px 0;
             position: relative;
-            animation: fadeIn 0.8s ease-in-out;
         }
 
         .quote::before {
@@ -225,7 +365,7 @@
         .progress-bar {
             position: fixed;
             top: 10px;
-            left: 10px;
+            left: 260px;
             right: 10px;
             height: 5px;
             background: rgba(255, 255, 255, 0.3);
@@ -323,7 +463,7 @@
         }
 
         .cta-button.clicked {
-            transform: scale(1.1);
+            animation: pulse 0.3s ease;
         }
 
         .emoji {
@@ -376,13 +516,70 @@
             display: block;
         }
 
+        .voice-note-btn {
+            background: #49A078;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .voice-note-btn:hover {
+            background: #3e8865;
+            transform: translateY(-2px);
+        }
+
+        .footer-link {
+            color: inherit;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
         @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.hidden {
+                transform: translateX(0);
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .presentation-container {
+                margin-left: 0;
+                width: 100vw;
+            }
+
+            .progress-bar {
+                left: 10px;
+            }
+
             .slide {
                 padding: 20px;
             }
+
             .rules-grid {
                 grid-template-columns: 1fr;
             }
+
             .nav-btn {
                 padding: 10px 15px;
                 font-size: 0.9em;
@@ -391,6 +588,74 @@
     </style>
 </head>
 <body>
+    <!-- Navbar from Mother Site -->
+    <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md">
+        <div class="container mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 shrink-0">
+                <img src="assets/img/logo.png" alt="EXES BI Logo" class="h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-bold text-2xl leading-none">EXES</span>
+                <div class="flex gap-3 ml-4 md:hidden">
+                    <a href="https://exesbi.netlify.app" class="nav-link text-xs tracking-wide">Home</a>
+                    <a href="https://exesbi.netlify.app/services.html" class="nav-link text-xs tracking-wide">Services</a>
+                    <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link text-xs tracking-wide">Projects</a>
+                </div>
+            </div>
+            <div class="hidden md:flex flex-1 justify-center overflow-hidden relative h-10 px-6">
+                <div class="whitespace-nowrap animate-slide text-lg font-semibold text-[#facc15] tracking-wide flex items-center">
+                    • We Analyze, You Decide • We Analyze, You Decide • We Analyze, You Decide • We Analyze, You Decide •
+                </div>
+            </div>
+            <ul class="hidden md:flex gap-6 text-sm font-medium items-center shrink-0">
+                <li><a href="https://exesbi.netlify.app" class="nav-link relative">Home
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#facc15] rounded"></span>
+                </a></li>
+                <li><a href="https://exesbi.netlify.app/services.html" class="nav-link">Services</a></li>
+                <li><a href="https://exesbi.netlify.app/My-projects.html" class="nav-link">Projects</a></li>
+                <li><a href="https://exesbi.netlify.app/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none ml-3">☰</button>
+        </div>
+        <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out flex-col bg-[#3e8865] px-4">
+            <a href="https://exesbi.netlify.app" class="nav-link block py-3 border-b border-green-300">Home</a>
+            <a href="https://exesbi.netlify.app/services.html" class="nav-link block py-3 border-b border-green-300">Services</a>
+            <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link block py-3 border-b border-green-300">Projects</a>
+            <a href="https://exesbi.netlify.app/contact.html" class="nav-link block py-3 border-b border-green-300">Contact</a>
+            <a href="https://exesbi.netlify.app/about.html" class="nav-link block py-3 border-b border-green-300">About Us</a>
+            <a href="https://exesbi.netlify.app/terms.html" class="nav-link block py-3">Terms & Conditions</a>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="hamburger" onclick="toggleSidebar()">☰</div>
+    <div class="sidebar hidden" id="sidebar">
+        <img src="assets/img/logo.png" alt="EXES BI Logo" class="sidebar-logo">
+        <div class="sidebar-slogan">Tujengane na <a href="https://exesbi.netlify.app" target="_blank" class="text-[#facc15] hover:text-white">EXES BI</a></div>
+        <ul class="sidebar-nav">
+            <li class="active" onclick="goToSlide(0)">Welcome</li>
+            <li onclick="goToSlide(1)">Meet Your Instructor</li>
+            <li onclick="goToSlide(2)">The Real Problem</li>
+            <li onclick="goToSlide(3)">What Is Clean Data?</li>
+            <li onclick="goToSlide(4)">Why Hustlers Struggle</li>
+            <li onclick="goToSlide(5)">Data Is Everywhere</li>
+            <li onclick="goToSlide(6)">3 Rules of Clean Data</li>
+            <li onclick="goToSlide(7)">Common Mistakes</li>
+            <li onclick="goToSlide(8)">How Dirty Data Wastes Time</li>
+            <li onclick="goToSlide(9)">The Cost of Inaccuracy</li>
+            <li onclick="goToSlide(10)">Recording Daily Transactions</li>
+            <li onclick="goToSlide(11)">Using Tables Effectively</li>
+            <li onclick="goToSlide(12)">Naming Files & Entries</li>
+            <li onclick="goToSlide(13)">Avoiding Blanks & Guesswork</li>
+            <li onclick="goToSlide(14)">Demo – Clean vs. Messy Sheet</li>
+            <li onclick="goToSlide(15)">Hustler Audit Challenge</li>
+            <li onclick="goToSlide(16)">Data Quiz Time!</li>
+            <li onclick="goToSlide(17)">Real-Life Case Study</li>
+            <li onclick="goToSlide(18)">Power 12 Curriculum</li>
+            <li onclick="goToSlide(19)">Certificate & Data Partner Path</li>
+            <li onclick="goToSlide(20)">Ready to Level Up?</li>
+        </ul>
+    </div>
+
+    <!-- Presentation Content -->
     <div class="presentation-container">
         <div class="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
@@ -407,6 +672,10 @@
             <div class="quote animate-fade-in">
                 Today is not about learning computers. It's about learning how to capture data correctly—so your business can grow with clarity.
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.2s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Listen to Introduction
+                <audio src="path/to/introduction.mp3"></audio>
+            </button>
         </div>
 
         <!-- Slide 2: Meet Your Instructor -->
@@ -467,6 +736,10 @@
             <div class="quote animate-fade-in" style="animation-delay: 1s;">
                 Clean data doesn't just look good—it saves time and builds trust.
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.2s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Learn About Clean Data
+                <audio src="path/to/clean-data.mp3"></audio>
+            </button>
         </div>
 
         <!-- Slide 5: Why Hustlers Struggle -->
@@ -536,6 +809,10 @@
             <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
                 If you follow these three rules, your data becomes usable instantly.
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Understand the 3 Rules
+                <audio src="path/to/3-rules.mp3"></audio>
+            </button>
         </div>
 
         <!-- Slide 8: Common Mistakes -->
@@ -674,16 +951,70 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
                 <div class="messy-data animate-fade-in" style="animation-delay: 0.2s;">
                     <h4 style="color: #dc2626; margin-bottom: 8px;">❌ Messy Data</h4>
-                    <p style="font-size: 0.9em;">tea, Tea Leaves, TEA<br>0, ???<br>2025/8/29, Aug 29, 29-8-25</p>
+                    <table class="demo-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025/8/29</td>
+                                <td>tea</td>
+                                <td>5oo</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 29</td>
+                                <td>Tea Leaves</td>
+                                <td>2O0</td>
+                            </tr>
+                            <tr>
+                                <td>29-8-25</td>
+                                <td>TEA</td>
+                                <td>3O0</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="clean-data animate-fade-in" style="animation-delay: 0.4s;">
                     <h4 style="color: #059669; margin-bottom: 8px;">✅ Clean Data</h4>
-                    <p style="font-size: 0.9em;">Tea Leaves, Tea Leaves, Tea Leaves<br>Complete entries only<br>2025-08-29, 2025-08-29, 2025-08-29</p>
+                    <table class="demo-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>300</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
                 This is the difference between confusion and clarity.
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Demo Explanation
+                <audio src="path/to/demo-explanation.mp3"></audio>
+            </button>
         </div>
 
         <!-- Slide 16: Hustler Audit -->
@@ -725,6 +1056,10 @@
             <div class="quote animate-fade-in" style="animation-delay: 1.2s;">
                 Get it right, and feel the data power! 💪
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.4s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Quiz Explanation
+                <audio src="path/to/quiz-explanation.mp3"></audio>
+            </button>
         </div>
 
         <!-- Slide 18: Case Study -->
@@ -779,6 +1114,10 @@
             <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
                 If today opened your eyes, imagine what 12 weeks can do.
             </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Final Motivation
+                <audio src="path/to/final-motivation.mp3"></audio>
+            </button>
         </div>
     </div>
 
@@ -787,12 +1126,206 @@
         <button class="nav-btn" onclick="nextSlide()">Next →</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Footer from Mother Site -->
+    <footer class="bg-[#DFF3EA] py-4 px-4 text-sm text-gray-600 mt-auto border-t border-green-300">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="assets/img/logo.png" alt="EXES BI Logo" class="h-12 w-12 rounded-full object-cover shadow-md border-2 border-white">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-extrabold text-xl text-gray-800 tracking-wide">
+                        E<span class="text-[22px] text-green-600 drop-shadow font-black">X</span>ES
+                    </span>
+                    <span class="text-xs italic text-gray-500 -mt-1">We analyze. You decide.</span>
+                </div>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <div class="text-xs sm:text-sm text-gray-500">
+                    &copy; 2025 EXES – Built by 
+                    <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link">Deric Marangu</a>. All rights reserved.
+                </div>
+                <div class="flex gap-4 mt-1">
+                    <a href="https://exesbi.netlify.app/about.html" class="footer-link">About Us</a>
+                    <a href="https://exesbi.netlify.app/terms.html" class="footer-link">Terms & Conditions</a>
+                    <a href="https://exes-ebi.streamlit.app/" target="_blank" class="footer-link font-bold text-[#49A078]">Try Yourself</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex flex-col items-end text-right">
+                    <div class="flex items-center gap-2">
+                        <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link font-semibold text-sm">Deric Marangu</a>
+                        <div class="flex gap-2">
+                            <a href="https://wa.me/254791360805" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i></a>
+                            <a href="mailto:dericmarangu@gmail.com" class="footer-link" title="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="https://web.facebook.com/deric.aldertrax" target="_blank" class="footer-link"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/exes.125107/" target="_blank" class="footer-link" title="EXES Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/deric-marangu-134340297/" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://x.com/Dericmwiti" target="_blank" class="footer-link"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/dericmarangu/" target="_blank" class="footer-link"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <p class="text-xs italic text-gray-600">
+                        CEO and Founder of 
+                        <a href="https://exesbi.netlify.app" target="_blank" class="footer-link font-semibold">
+                            E<span class="text-green-600 text-[15px] font-bold drop-shadow">X</span>ES
+                        </a>
+                    </p>
+                </div>
+                <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link rounded-full">
+                    <img src="assets/img/deric.png" alt="Deric's Photo" class="h-12 w-12 rounded-full object-cover shadow-md">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget from Mother Site -->
+    <div id="chatButton" onclick="toggleChat()" 
+        class="fixed bottom-6 right-6 bg-[#49A078] text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-[#3e8865] transition-all z-50 pulse-animation">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chatWidget" class="hidden fixed bottom-20 right-6 bg-white border border-gray-200 rounded-lg shadow-xl w-80 max-w-sm z-50">
+        <div class="bg-[#49A078] text-white p-3 rounded-t-lg">
+            <h4 class="font-semibold text-sm">💬 Quick Chat with EXES BI</h4>
+        </div>
+        <div class="p-4 space-y-3">
+            <div class="bg-gray-100 p-2 rounded text-sm">
+                <strong>EXES BI Bot:</strong> Hi! How can we help with your data needs today?
+            </div>
+            <div class="space-y-2">
+                <a href="https://wa.me/254791360805?text=Hi%20EXES%20BI,%20I%20need%20help%20with%20data%20analysis" 
+                    target="_blank" class="block bg-green-500 text-white p-2 rounded text-center text-xs hover:bg-green-600 transition">
+                    <i class="fab fa-whatsapp mr-1"></i>WhatsApp (Fastest Response)
+                </a>
+                <a href="mailto:dericmarangu@gmail.com?subject=Data%20Analysis%20Inquiry" 
+                    class="block bg-blue-500 text-white p-2 rounded text-center text-xs hover:bg-blue-600 transition">
+                    <i class="fas fa-envelope mr-1"></i>Email Us
+                </a>
+                <button onclick="openModal('projectModal')" 
+                    class="w-full bg-[#49A078] text-white p-2 rounded text-xs hover:bg-[#3e8865] transition">
+                    <i class="fas fa-rocket mr-1"></i>Start Project Now
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 text-center">
+                <i class="fas fa-clock mr-1"></i>Usually respond within 1 hour
+            </p>
+        </div>
+    </div>
+
+    <!-- Project Modal from Mother Site -->
+    <div id="projectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <button onclick="closeModal('projectModal')" 
+                class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+            <h2 class="text-lg font-bold mb-4 text-center text-[#49A078]">Choose Your Path</h2>
+            <p class="text-gray-600 text-center mb-6">Pick the option that suits your business best:</p>
+            <div class="flex flex-col gap-4">
+                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank"
+                    class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                    ✅ I Have Data (Upload Files)
+                </a>
+                <a href="https://forms.gle/Uzq3L9wtm5yM6KEX7" target="_blank"
+                    class="block bg-[#2563EB] hover:bg-[#1e40af] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                    🚀 No Data, start here
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal from Mother Site -->
+    <div id="downloadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <button onclick="closeModal('downloadModal')" 
+                class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+            <h2 class="text-lg font-semibold mb-4 text-center">Enter File Name to Download</h2>
+            <p class="text-xs text-center text-red-600 mb-3">Never share your file name with anyone!</p>
+            <input id="fileNameInput" type="text" placeholder="e.g. report.xlsx" 
+                class="w-full border border-gray-300 rounded px-4 py-2 mb-4">
+            <button onclick="downloadFile()" 
+                class="bg-[#2563EB] hover:bg-[#1e40af] text-white px-4 py-2 rounded w-full font-semibold">Download</button>
+            <p id="errorMessage" class="text-red-600 text-sm mt-3 hidden">File not found. Please ensure the name is correct or contact <strong>+254791360805</strong>.</p>
+        </div>
+    </div>
+
     <script>
+        // Navbar Mobile Menu Toggle
+        const toggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        toggleBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('max-h-0');
+            mobileMenu.classList.toggle('max-h-screen');
+        });
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Download File Logic
+        function downloadFile() {
+            const input = document.getElementById('fileNameInput');
+            const fileName = input.value.trim();
+            const error = document.getElementById('errorMessage');
+
+            if (!fileName) {
+                error.textContent = 'Please enter a file name.';
+                error.classList.remove('hidden');
+                return;
+            }
+
+            fetch(`downloads/${fileName}`)
+                .then(res => {
+                    if (!res.ok) throw new Error();
+                    return res.blob();
+                })
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    closeModal('downloadModal');
+                    error.classList.add('hidden');
+                    input.value = '';
+                })
+                .catch(() => {
+                    error.textContent = 'File not found. Please ensure the name is correct or contact +254791360805.';
+                    error.classList.remove('hidden');
+                });
+        }
+
+        // Chat Widget Toggle
+        let chatOpen = false;
+        function toggleChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            const chatButton = document.getElementById('chatButton');
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatWidget.classList.remove('hidden');
+                chatButton.innerHTML = '<i class="fas fa-times"></i>';
+                chatButton.style.backgroundColor = '#ef4444';
+            } else {
+                chatWidget.classList.add('hidden');
+                chatButton.innerHTML = '<i class="fas fa-comments"></i>';
+                chatButton.style.backgroundColor = '#49A078';
+            }
+        }
+
+        // Sidebar Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        // Presentation Logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         const progressFill = document.getElementById('progress-fill');
+        const sidebarNavItems = document.querySelectorAll('.sidebar-nav li');
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -801,66 +1334,57 @@
             progressFill.style.width = `${progress}%`;
         }
 
-        function playSound(type) {
-            const audio = new Audio();
-            audio.src = type === 'click' ? 'https://www.soundjay.com/buttons/beep-01a.mp3' : 'https://www.soundjay.com/buttons/beep-02.mp3';
-            audio.play().catch(() => {});
-        }
-
         function highlightClick(element) {
             element.classList.add('clicked');
-            playSound('click');
             setTimeout(() => element.classList.remove('clicked'), 300);
         }
 
         function ruleCardClick(element) {
             element.classList.add('clicked');
-            playSound('click');
             setTimeout(() => element.classList.remove('clicked'), 1000);
         }
 
         function ctaClick(element) {
             element.classList.add('clicked');
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-            playSound('click');
+            const audio = new Audio('path/to/cheering.mp3');
+            audio.play().catch(() => {});
             setTimeout(() => element.classList.remove('clicked'), 300);
         }
 
         function checkAnswer(element, isCorrect) {
             element.classList.add(isCorrect ? 'correct' : 'wrong');
-            playSound(isCorrect ? 'click' : 'error');
-            setTimeout(() => {
-                nextSlide();
-            }, 1500);
         }
 
-        function showSlide(n) {
+        function playVoiceNote(button) {
+            const audio = button.querySelector('audio');
+            if (audio) audio.play();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
             slides.forEach(slide => {
                 slide.classList.remove('active', 'prev');
             });
-            
+            sidebarNavItems.forEach(item => item.classList.remove('active'));
+
             if (n >= totalSlides) currentSlide = 0;
             if (n < 0) currentSlide = totalSlides - 1;
-            
+
             slides[currentSlide].classList.add('active');
+            sidebarNavItems[currentSlide].classList.add('active');
             if (currentSlide > 0) slides[currentSlide - 1].classList.add('prev');
             document.getElementById('current-slide').textContent = currentSlide + 1;
             updateProgress();
-            playSound('click');
         }
 
         function nextSlide() {
             currentSlide++;
-            showSlide(currentSlide);
+            goToSlide(currentSlide);
         }
 
         function prevSlide() {
             currentSlide--;
-            showSlide(currentSlide);
+            goToSlide(currentSlide);
         }
 
         // Keyboard navigation
