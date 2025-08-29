@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tujengane Digital Basics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(to-br, #f0fdfa, #d9f99d);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -57,7 +52,7 @@
         h1 {
             font-size: clamp(2.5em, 5vw, 3.5em);
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #49A078, #3e8865);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
@@ -87,7 +82,7 @@
 
         .subtitle {
             font-size: clamp(1.2em, 2.5vw, 1.5em);
-            color: #667eea;
+            color: #49A078;
             font-weight: 600;
             margin-bottom: 20px;
         }
@@ -95,11 +90,11 @@
         .quote {
             font-style: italic;
             font-size: clamp(1.2em, 2.5vw, 1.4em);
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
+            color: #49A078;
+            background: rgba(73, 160, 120, 0.1);
             padding: 20px;
             border-radius: 15px;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #49A078;
             margin: 20px 0;
             position: relative;
             animation: fadeIn 0.8s ease-in-out;
@@ -108,7 +103,7 @@
         .quote::before {
             content: '"';
             font-size: 3em;
-            color: rgba(102, 126, 234, 0.3);
+            color: rgba(73, 160, 120, 0.3);
             position: absolute;
             top: -5px;
             left: 10px;
@@ -132,11 +127,20 @@
 
         .highlight-list li:hover {
             transform: translateX(10px);
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(73, 160, 120, 0.1);
         }
 
         .highlight-list li.clicked {
             animation: pulse 0.3s ease;
+        }
+
+        .highlight-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #49A078;
+            font-weight: bold;
+            font-size: 1.2em;
         }
 
         .rules-grid {
@@ -147,10 +151,10 @@
         }
 
         .rule-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            background: linear-gradient(135deg, rgba(73, 160, 120, 0.1), rgba(62, 136, 101, 0.1));
             padding: 20px;
             border-radius: 15px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(73, 160, 120, 0.2);
             cursor: pointer;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -187,7 +191,7 @@
         .rule-number {
             font-size: 1.8em;
             font-weight: 800;
-            color: #667eea;
+            color: #49A078;
             margin-bottom: 8px;
         }
 
@@ -213,7 +217,7 @@
         }
 
         .nav-btn:hover {
-            background: #667eea;
+            background: #49A078;
             color: white;
             transform: translateY(-2px);
         }
@@ -231,7 +235,7 @@
 
         .progress-fill {
             height: 100%;
-            background: #667eea;
+            background: #49A078;
             transition: width 0.6s ease;
         }
 
@@ -243,7 +247,7 @@
             padding: 8px 16px;
             border-radius: 25px;
             font-weight: 600;
-            color: #667eea;
+            color: #49A078;
             z-index: 100;
         }
 
@@ -265,7 +269,7 @@
         }
 
         .demo-table th {
-            background: #667eea;
+            background: #49A078;
             color: white;
             font-weight: 600;
         }
@@ -300,7 +304,7 @@
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #49A078, #3e8865);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -310,12 +314,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 15px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(73, 160, 120, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 40px rgba(73, 160, 120, 0.4);
         }
 
         .cta-button.clicked {
@@ -346,7 +350,7 @@
         }
 
         .quiz-option:hover {
-            background: rgba(102, 126, 234, 0.2);
+            background: rgba(73, 160, 120, 0.2);
             transform: translateX(5px);
         }
 
@@ -399,7 +403,7 @@
         <div class="slide active">
             <h1>🌟 Tujengane Digital Basics</h1>
             <div class="subtitle animate-fade-in">One-Day Free Session</div>
-            <p class="animate-fade-in" style="font-size: 1.4em; margin: 20px 0;">Presented by <strong>Deric Marangu</strong>, Founder of EXES BI</p>
+            <p class="animate-fade-in" style="font-size: 1.4em; margin: 20px 0;">Presented by <strong>Deric Marangu</strong>, Founder of <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a></p>
             <div class="quote animate-fade-in">
                 Today is not about learning computers. It's about learning how to capture data correctly—so your business can grow with clarity.
             </div>
@@ -410,7 +414,7 @@
             <h2>Meet Your Instructor</h2>
             <h3 class="animate-fade-in">Deric Marangu</h3>
             <ul class="highlight-list">
-                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Founder of <strong>EXES BI</strong>, a data analytics gateway for hustlers and SMEs</li>
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Founder of <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a>, a data analytics gateway for hustlers and SMEs</li>
                 <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Bachelor of Business Information Technology – Kirinyaga University</li>
                 <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Self-taught in SQL, Excel, Python, Power BI</li>
             </ul>
@@ -755,7 +759,7 @@
         <!-- Slide 20: Certificate -->
         <div class="slide">
             <h2>🏆 Certificate & Data Partner Path</h2>
-            <h3 class="animate-fade-in">Join the EXES BI Network</h3>
+            <h3 class="animate-fade-in">Join the <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a> Network</h3>
             <ul class="highlight-list">
                 <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Earn a branded certificate</li>
                 <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Become a trusted data partner</li>
