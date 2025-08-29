@@ -29,7 +29,7 @@
     <meta property="og:title" content="Tujengane Digital Basics – EXES BI">
     <meta property="og:description" content="Learn clean data practices with Tujengane Digital Basics by EXES BI. Free session by Deric Marangu. Join Power 12 to transform your business with EXES BI!">
     <meta property="og:image" content="https://exesbi.netlify.app/assets/img/logo.png">
-    <meta property="og:url" content="https://exesbi.netlify.app">
+    <meta property="og:url" content="https://exesbi.netlify.app/tujengane.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="EXES BI">
     <meta property="og:locale" content="en_KE">
@@ -79,114 +79,55 @@
             animation: slide 20s linear infinite;
         }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100vh;
-            background: linear-gradient(to-br, #49A078, #3e8865);
-            color: white;
-            padding: 20px;
-            overflow-y: auto;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar.hidden {
-            transform: translateX(-100%);
-        }
-
-        .sidebar-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid white;
-            margin: 0 auto 10px;
-        }
-
-        .sidebar-slogan {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #facc15;
-            margin-bottom: 20px;
+        .dropdown-container {
+            max-width: 1000px;
+            margin: 20px auto;
             text-align: center;
         }
 
-        .sidebar a:hover {
-            color: #facc15;
-            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
-        }
-
-        .sidebar-nav li {
+        .dropdown {
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            color: white;
             padding: 10px;
-            cursor: pointer;
-            font-size: 0.9em;
             border-radius: 8px;
-            margin-bottom: 5px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .sidebar-nav li:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #facc15;
-        }
-
-        .sidebar-nav li.active {
-            background: #facc15;
-            color: #2d3748;
+            font-size: 1em;
             font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
-        .hamburger {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            font-size: 1.8em;
-            color: #49A078;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1100;
-            display: none;
+        .dropdown option {
+            background: #2d3748;
+            color: white;
         }
 
         .presentation-container {
-            margin-left: 250px;
-            width: calc(100vw - 250px);
-            min-height: calc(100vh - 200px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .slide {
-            width: 90%;
+            width: 100%;
             max-width: 1000px;
             background: linear-gradient(to-br, #f0fdfa, #d9f99d);
             border-radius: 20px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             padding: 40px;
             text-align: center;
-            transform: translateX(100%);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            position: absolute;
+            display: none;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .slide.active {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .slide.prev {
-            transform: translateX(-100%);
-            opacity: 0;
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         h1 {
@@ -194,7 +135,6 @@
             margin-bottom: 20px;
             background: linear-gradient(135deg, #49A078, #3e8865);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
             line-height: 1.2;
@@ -336,13 +276,10 @@
         }
 
         .navigation {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 100;
+            justify-content: center;
+            margin: 20px 0;
         }
 
         .nav-btn {
@@ -363,10 +300,9 @@
         }
 
         .progress-bar {
-            position: fixed;
-            top: 10px;
-            left: 260px;
-            right: 10px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 10px auto;
             height: 5px;
             background: rgba(255, 255, 255, 0.3);
             border-radius: 5px;
@@ -380,15 +316,12 @@
         }
 
         .slide-counter {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             background: rgba(255, 255, 255, 0.9);
             padding: 8px 16px;
             border-radius: 25px;
             font-weight: 600;
             color: #49A078;
-            z-index: 100;
+            margin: 10px 0;
         }
 
         .demo-table {
@@ -551,27 +484,6 @@
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.hidden {
-                transform: translateX(0);
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .presentation-container {
-                margin-left: 0;
-                width: 100vw;
-            }
-
-            .progress-bar {
-                left: 10px;
-            }
-
             .slide {
                 padding: 20px;
             }
@@ -584,15 +496,19 @@
                 padding: 10px 15px;
                 font-size: 0.9em;
             }
+
+            .dropdown {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar from Mother Site -->
+    <!-- Navbar -->
     <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md">
         <div class="container mx-auto flex items-center justify-between gap-4">
             <div class="flex items-center gap-3 shrink-0">
-                <img src="assets/img/logo.png" alt="EXES BI Logo" class="h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover shadow-md border-2 border-white">
+                <img src="https://exesbi.netlify.app/assets/img/logo.png" alt="EXES BI Logo" class="h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover shadow-md border-2 border-white">
                 <span class="font-bold text-2xl leading-none">EXES</span>
                 <div class="flex gap-3 ml-4 md:hidden">
                     <a href="https://exesbi.netlify.app" class="nav-link text-xs tracking-wide">Home</a>
@@ -612,6 +528,7 @@
                 <li><a href="https://exesbi.netlify.app/services.html" class="nav-link">Services</a></li>
                 <li><a href="https://exesbi.netlify.app/My-projects.html" class="nav-link">Projects</a></li>
                 <li><a href="https://exesbi.netlify.app/contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/tujengane.html" class="nav-link">Tujengane</a></li>
             </ul>
             <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none ml-3">☰</button>
         </div>
@@ -620,43 +537,39 @@
             <a href="https://exesbi.netlify.app/services.html" class="nav-link block py-3 border-b border-green-300">Services</a>
             <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link block py-3 border-b border-green-300">Projects</a>
             <a href="https://exesbi.netlify.app/contact.html" class="nav-link block py-3 border-b border-green-300">Contact</a>
+            <a href="/tujengane.html" class="nav-link block py-3 border-b border-green-300">Tujengane</a>
             <a href="https://exesbi.netlify.app/about.html" class="nav-link block py-3 border-b border-green-300">About Us</a>
             <a href="https://exesbi.netlify.app/terms.html" class="nav-link block py-3">Terms & Conditions</a>
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <div class="hamburger" onclick="toggleSidebar()">☰</div>
-    <div class="sidebar hidden" id="sidebar">
-        <img src="assets/img/logo.png" alt="EXES BI Logo" class="sidebar-logo">
-        <div class="sidebar-slogan">Tujengane na <a href="https://exesbi.netlify.app" target="_blank" class="text-[#facc15] hover:text-white">EXES BI</a></div>
-        <ul class="sidebar-nav">
-            <li class="active" onclick="goToSlide(0)">Welcome</li>
-            <li onclick="goToSlide(1)">Meet Your Instructor</li>
-            <li onclick="goToSlide(2)">The Real Problem</li>
-            <li onclick="goToSlide(3)">What Is Clean Data?</li>
-            <li onclick="goToSlide(4)">Why Hustlers Struggle</li>
-            <li onclick="goToSlide(5)">Data Is Everywhere</li>
-            <li onclick="goToSlide(6)">3 Rules of Clean Data</li>
-            <li onclick="goToSlide(7)">Common Mistakes</li>
-            <li onclick="goToSlide(8)">How Dirty Data Wastes Time</li>
-            <li onclick="goToSlide(9)">The Cost of Inaccuracy</li>
-            <li onclick="goToSlide(10)">Recording Daily Transactions</li>
-            <li onclick="goToSlide(11)">Using Tables Effectively</li>
-            <li onclick="goToSlide(12)">Naming Files & Entries</li>
-            <li onclick="goToSlide(13)">Avoiding Blanks & Guesswork</li>
-            <li onclick="goToSlide(14)">Demo – Clean vs. Messy Sheet</li>
-            <li onclick="goToSlide(15)">Hustler Audit Challenge</li>
-            <li onclick="goToSlide(16)">Data Quiz Time!</li>
-            <li onclick="goToSlide(17)">Real-Life Case Study</li>
-            <li onclick="goToSlide(18)">Power 12 Curriculum</li>
-            <li onclick="goToSlide(19)">Certificate & Data Partner Path</li>
-            <li onclick="goToSlide(20)">Ready to Level Up?</li>
-        </ul>
-    </div>
-
     <!-- Presentation Content -->
     <div class="presentation-container">
+        <div class="dropdown-container">
+            <select class="dropdown" onchange="goToSlide(this.value)">
+                <option value="0">Welcome</option>
+                <option value="1">Meet Your Instructor</option>
+                <option value="2">The Real Problem</option>
+                <option value="3">What Is Clean Data?</option>
+                <option value="4">Why Hustlers Struggle</option>
+                <option value="5">Data Is Everywhere</option>
+                <option value="6">3 Rules of Clean Data</option>
+                <option value="7">Common Mistakes</option>
+                <option value="8">How Dirty Data Wastes Time</option>
+                <option value="9">The Cost of Inaccuracy</option>
+                <option value="10">Recording Daily Transactions</option>
+                <option value="11">Using Tables Effectively</option>
+                <option value="12">Naming Files & Entries</option>
+                <option value="13">Avoiding Blanks & Guesswork</option>
+                <option value="14">Demo – Clean vs. Messy Sheet</option>
+                <option value="15">Hustler Audit Challenge</option>
+                <option value="16">Data Quiz Time!</option>
+                <option value="17">Real-Life Case Study</option>
+                <option value="18">Power 12 Curriculum</option>
+                <option value="19">Certificate & Data Partner Path</option>
+                <option value="20">Ready to Level Up?</option>
+            </select>
+        </div>
         <div class="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
         </div>
@@ -674,13 +587,14 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.2s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Listen to Introduction
-                <audio src="path/to/introduction.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/introduction.mp3"></audio>
             </button>
         </div>
 
         <!-- Slide 2: Meet Your Instructor -->
         <div class="slide">
             <h2>Meet Your Instructor</h2>
+            <img src="https://exesbi.netlify.app/assets/img/deric.png" alt="Deric Marangu" class="h-24 w-24 rounded-full object-cover shadow-md border-2 border-white mx-auto mb-4 animate-fade-in">
             <h3 class="animate-fade-in">Deric Marangu</h3>
             <ul class="highlight-list">
                 <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Founder of <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a>, a data analytics gateway for hustlers and SMEs</li>
@@ -738,7 +652,7 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.2s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Learn About Clean Data
-                <audio src="path/to/clean-data.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/clean-data.mp3"></audio>
             </button>
         </div>
 
@@ -811,7 +725,7 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 1s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Understand the 3 Rules
-                <audio src="path/to/3-rules.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/3-rules.mp3"></audio>
             </button>
         </div>
 
@@ -1013,7 +927,7 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Demo Explanation
-                <audio src="path/to/demo-explanation.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/demo-explanation.mp3"></audio>
             </button>
         </div>
 
@@ -1058,7 +972,7 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.4s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Quiz Explanation
-                <audio src="path/to/quiz-explanation.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/quiz-explanation.mp3"></audio>
             </button>
         </div>
 
@@ -1116,21 +1030,21 @@
             </div>
             <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
                 <i class="fas fa-play"></i> Final Motivation
-                <audio src="path/to/final-motivation.mp3"></audio>
+                <audio src="https://exesbi.netlify.app/assets/audio/final-motivation.mp3"></audio>
             </button>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
         </div>
     </div>
 
-    <div class="navigation">
-        <button class="nav-btn" onclick="prevSlide()">← Previous</button>
-        <button class="nav-btn" onclick="nextSlide()">Next →</button>
-    </div>
-
-    <!-- Footer from Mother Site -->
+    <!-- Footer -->
     <footer class="bg-[#DFF3EA] py-4 px-4 text-sm text-gray-600 mt-auto border-t border-green-300">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <img src="assets/img/logo.png" alt="EXES BI Logo" class="h-12 w-12 rounded-full object-cover shadow-md border-2 border-white">
+                <img src="https://exesbi.netlify.app/assets/img/logo.png" alt="EXES BI Logo" class="h-12 w-12 rounded-full object-cover shadow-md border-2 border-white">
                 <div class="flex flex-col leading-tight">
                     <span class="font-extrabold text-xl text-gray-800 tracking-wide">
                         E<span class="text-[22px] text-green-600 drop-shadow font-black">X</span>ES
@@ -1171,13 +1085,13 @@
                     </p>
                 </div>
                 <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link rounded-full">
-                    <img src="assets/img/deric.png" alt="Deric's Photo" class="h-12 w-12 rounded-full object-cover shadow-md">
+                    <img src="https://exesbi.netlify.app/assets/img/deric.png" alt="Deric's Photo" class="h-12 w-12 rounded-full object-cover shadow-md">
                 </a>
             </div>
         </div>
     </footer>
 
-    <!-- Live Chat Widget from Mother Site -->
+    <!-- Live Chat Widget -->
     <div id="chatButton" onclick="toggleChat()" 
         class="fixed bottom-6 right-6 bg-[#49A078] text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-[#3e8865] transition-all z-50 pulse-animation">
         <i class="fas fa-comments"></i>
@@ -1211,7 +1125,7 @@
         </div>
     </div>
 
-    <!-- Project Modal from Mother Site -->
+    <!-- Project Modal -->
     <div id="projectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
             <button onclick="closeModal('projectModal')" 
@@ -1231,7 +1145,7 @@
         </div>
     </div>
 
-    <!-- Download Modal from Mother Site -->
+    <!-- Download Modal -->
     <div id="downloadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
             <button onclick="closeModal('downloadModal')" 
@@ -1275,7 +1189,7 @@
                 return;
             }
 
-            fetch(`downloads/${fileName}`)
+            fetch(`https://exesbi.netlify.app/downloads/${fileName}`)
                 .then(res => {
                     if (!res.ok) throw new Error();
                     return res.blob();
@@ -1314,18 +1228,12 @@
             }
         }
 
-        // Sidebar Toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('hidden');
-        }
-
         // Presentation Logic
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
         const progressFill = document.getElementById('progress-fill');
-        const sidebarNavItems = document.querySelectorAll('.sidebar-nav li');
+        const dropdown = document.querySelector('.dropdown');
 
         document.getElementById('total-slides').textContent = totalSlides;
 
@@ -1346,7 +1254,7 @@
 
         function ctaClick(element) {
             element.classList.add('clicked');
-            const audio = new Audio('path/to/cheering.mp3');
+            const audio = new Audio('https://exesbi.netlify.app/assets/audio/cheering.mp3');
             audio.play().catch(() => {});
             setTimeout(() => element.classList.remove('clicked'), 300);
         }
@@ -1357,33 +1265,28 @@
 
         function playVoiceNote(button) {
             const audio = button.querySelector('audio');
-            if (audio) audio.play();
+            if (audio) audio.play().catch(() => {});
         }
 
         function goToSlide(n) {
-            currentSlide = n;
-            slides.forEach(slide => {
-                slide.classList.remove('active', 'prev');
-            });
-            sidebarNavItems.forEach(item => item.classList.remove('active'));
-
-            if (n >= totalSlides) currentSlide = 0;
-            if (n < 0) currentSlide = totalSlides - 1;
-
+            currentSlide = parseInt(n);
+            slides.forEach(slide => slide.classList.remove('active'));
             slides[currentSlide].classList.add('active');
-            sidebarNavItems[currentSlide].classList.add('active');
-            if (currentSlide > 0) slides[currentSlide - 1].classList.add('prev');
+            dropdown.value = currentSlide;
             document.getElementById('current-slide').textContent = currentSlide + 1;
             updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function nextSlide() {
             currentSlide++;
+            if (currentSlide >= totalSlides) currentSlide = 0;
             goToSlide(currentSlide);
         }
 
         function prevSlide() {
             currentSlide--;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
             goToSlide(currentSlide);
         }
 
