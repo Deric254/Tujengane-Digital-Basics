@@ -59,6 +59,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .nav-link {
@@ -115,17 +116,17 @@
 
         /* Sidebar (Site Navigation) */
         #sidebar {
-            background: linear-gradient(to-br, #49A078, #3e8865);
-            width: 250px;
             position: fixed;
-            top: 70px; /* Below navbar */
-            bottom: 70px; /* Above footer */
-            height: auto;
+            top: 70px; /* below header */
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 70px - 70px); /* exclude header/footer */
             overflow-y: auto;
             z-index: 60;
-            transition: transform 0.3s ease;
+            background: linear-gradient(to-br, #49A078, #3e8865);
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
+            padding: 20px 0;
+            margin: 0;
         }
 
         #sidebar.hidden {
@@ -162,17 +163,17 @@
 
         /* Slide Navigation Panel */
         #slide-nav-panel {
-            background: linear-gradient(to-br, #49A078, #3e8865);
-            width: 260px;
             position: fixed;
-            top: 70px; /* Just below navbar */
+            top: 70px; /* below header */
             right: 0;
-            bottom: 70px; /* Above footer */
-            height: auto;
+            width: 260px;
+            height: calc(100vh - 70px - 70px); /* exclude header/footer */
             overflow-y: auto;
             z-index: 30;
+            background: linear-gradient(to-br, #49A078, #3e8865);
             box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px 0 20px 0;
+            padding: 20px 0;
+            margin: 0;
             display: none;
         }
 
@@ -210,8 +211,8 @@
                 display: none;
             }
             .presentation-container {
-                margin-right: 280px; /* Leave space for right panel */
-                margin-left: 270px;
+                margin-left: 270px; /* leave space for left sidebar */
+                margin-right: 280px; /* leave space for right panel */
             }
         }
 
