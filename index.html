@@ -113,16 +113,148 @@
             align-items: center;
         }
 
+        /* Sidebar (Site Navigation) */
+        #sidebar {
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 40;
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        #sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        #sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: white;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        #sidebar a:hover {
+            background: #3e8865;
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* Slide Navigation Panel */
+        #slide-nav-panel {
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            width: 300px;
+            position: fixed;
+            top: 80px; /* Below navbar */
+            right: 0;
+            height: calc(100vh - 160px); /* Avoid footer */
+            overflow-y: auto;
+            z-index: 30;
+            transition: transform 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: none;
+        }
+
+        #slide-nav-panel a {
+            display: block;
+            padding: 10px 15px;
+            color: white;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease, color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        #slide-nav-panel a:hover {
+            background: #3e8865;
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        #slide-nav-panel a.active {
+            background: #3e8865;
+            color: #facc15;
+            font-weight: 600;
+        }
+
+        @media (min-width: 1024px), (orientation: landscape) and (max-height: 500px) {
+            #slide-nav-panel {
+                display: block;
+            }
+            .dropdown-container {
+                display: none;
+            }
+            .presentation-container {
+                margin-right: 320px;
+                margin-left: 270px;
+            }
+        }
+
+        @media (max-width: 1023px) and (orientation: portrait) {
+            #slide-nav-panel {
+                display: none;
+            }
+            .dropdown-container {
+                display: block;
+            }
+            .presentation-container {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            #sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 50;
+                background: #49A078;
+                color: white;
+                padding: 10px;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            .presentation-container {
+                margin-left: 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .presentation-container {
+                margin-left: 270px;
+            }
+        }
+
         .slide {
             width: 100%;
             max-width: 1000px;
-            background: linear-gradient(to-br, #f0fdfa, #d9f99d);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            background: white; /* Matches exesbi.netlify.app */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 40px;
             text-align: center;
             display: none;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid #e5e7eb;
         }
 
         .slide.active {
@@ -501,20 +633,24 @@
                 max-width: 100%;
             }
         }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            #slide-nav-panel {
+                width: 200px;
+            }
+            .presentation-container {
+                margin-right: 220px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md">
+    <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto flex items-center justify-between gap-4">
             <div class="flex items-center gap-3 shrink-0">
                 <img src="https://exesbi.netlify.app/assets/img/logo.png" alt="EXES BI Logo" class="h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover shadow-md border-2 border-white">
                 <span class="font-bold text-2xl leading-none">EXES</span>
-                <div class="flex gap-3 ml-4 md:hidden">
-                    <a href="https://exesbi.netlify.app" class="nav-link text-xs tracking-wide">Home</a>
-                    <a href="https://exesbi.netlify.app/services.html" class="nav-link text-xs tracking-wide">Services</a>
-                    <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link text-xs tracking-wide">Projects</a>
-                </div>
             </div>
             <div class="hidden md:flex flex-1 justify-center overflow-hidden relative h-10 px-6">
                 <div class="whitespace-nowrap animate-slide text-lg font-semibold text-[#facc15] tracking-wide flex items-center">
@@ -530,17 +666,45 @@
                 <li><a href="https://exesbi.netlify.app/contact.html" class="nav-link">Contact</a></li>
                 <li><a href="https://tujengane.netlify.app" class="nav-link">Tujengane</a></li>
             </ul>
-            <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none ml-3">☰</button>
-        </div>
-        <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out flex-col bg-[#3e8865] px-4">
-            <a href="https://exesbi.netlify.app" class="nav-link block py-3 border-b border-green-300">Home</a>
-            <a href="https://exesbi.netlify.app/services.html" class="nav-link block py-3 border-b border-green-300">Services</a>
-            <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link block py-3 border-b border-green-300">Projects</a>
-            <a href="https://exesbi.netlify.app/contact.html" class="nav-link block py-3 border-b border-green-300">Contact</a>
-            <a href="https://exesbi.netlify.app/about.html" class="nav-link block py-3 border-b border-green-300">About Us</a>
-            <a href="https://exesbi.netlify.app/terms.html" class="nav-link block py-3">Terms & Conditions</a>
+            <button id="sidebar-toggle" class="text-3xl focus:outline-none">☰</button>
         </div>
     </nav>
+
+    <!-- Sidebar (Site Navigation) -->
+    <div id="sidebar" class="hidden md:block">
+        <a href="https://exesbi.netlify.app" class="nav-link">Home</a>
+        <a href="https://exesbi.netlify.app/services.html" class="nav-link">Services</a>
+        <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link">Projects</a>
+        <a href="https://exesbi.netlify.app/contact.html" class="nav-link">Contact</a>
+        <a href="https://tujengane.netlify.app" class="nav-link">Tujengane</a>
+        <a href="https://exesbi.netlify.app/about.html" class="nav-link">About Us</a>
+        <a href="https://exesbi.netlify.app/terms.html" class="nav-link">Terms & Conditions</a>
+    </div>
+
+    <!-- Slide Navigation Panel -->
+    <div id="slide-nav-panel">
+        <a href="#" onclick="goToSlide(0)" data-slide="0">Welcome</a>
+        <a href="#" onclick="goToSlide(1)" data-slide="1">Meet Your Instructor</a>
+        <a href="#" onclick="goToSlide(2)" data-slide="2">The Real Problem</a>
+        <a href="#" onclick="goToSlide(3)" data-slide="3">What Is Clean Data?</a>
+        <a href="#" onclick="goToSlide(4)" data-slide="4">Why Hustlers Struggle</a>
+        <a href="#" onclick="goToSlide(5)" data-slide="5">Data Is Everywhere</a>
+        <a href="#" onclick="goToSlide(6)" data-slide="6">3 Rules of Clean Data</a>
+        <a href="#" onclick="goToSlide(7)" data-slide="7">Common Mistakes</a>
+        <a href="#" onclick="goToSlide(8)" data-slide="8">How Dirty Data Wastes Time</a>
+        <a href="#" onclick="goToSlide(9)" data-slide="9">The Cost of Inaccuracy</a>
+        <a href="#" onclick="goToSlide(10)" data-slide="10">Recording Daily Transactions</a>
+        <a href="#" onclick="goToSlide(11)" data-slide="11">Using Tables Effectively</a>
+        <a href="#" onclick="goToSlide(12)" data-slide="12">Naming Files & Entries</a>
+        <a href="#" onclick="goToSlide(13)" data-slide="13">Avoiding Blanks & Guesswork</a>
+        <a href="#" onclick="goToSlide(14)" data-slide="14">Demo – Clean vs. Messy Sheet</a>
+        <a href="#" onclick="goToSlide(15)" data-slide="15">Hustler Audit Challenge</a>
+        <a href="#" onclick="goToSlide(16)" data-slide="16">Data Quiz Time!</a>
+        <a href="#" onclick="goToSlide(17)" data-slide="17">Real-Life Case Study</a>
+        <a href="#" onclick="goToSlide(18)" data-slide="18">Power 12 Curriculum</a>
+        <a href="#" onclick="goToSlide(19)" data-slide="19">Certificate & Data Partner Path</a>
+        <a href="#" onclick="goToSlide(20)" data-slide="20">Ready to Level Up?</a>
+    </div>
 
     <!-- Presentation Content -->
     <div class="presentation-container">
@@ -1160,12 +1324,13 @@
     </div>
 
     <script>
-        // Navbar Mobile Menu Toggle
-        const toggleBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        toggleBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('max-h-0');
-            mobileMenu.classList.toggle('max-h-screen');
+        // Sidebar Toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('active');
+            sidebarToggle.innerHTML = sidebar.classList.contains('active') ? '×' : '☰';
         });
 
         // Modal Controls
@@ -1233,76 +1398,4 @@
         const totalSlides = slides.length;
         const progressFill = document.getElementById('progress-fill');
         const dropdown = document.querySelector('.dropdown');
-
-        document.getElementById('total-slides').textContent = totalSlides;
-
-        function updateProgress() {
-            const progress = ((currentSlide + 1) / totalSlides) * 100;
-            progressFill.style.width = `${progress}%`;
-        }
-
-        function highlightClick(element) {
-            element.classList.add('clicked');
-            setTimeout(() => element.classList.remove('clicked'), 300);
-        }
-
-        function ruleCardClick(element) {
-            element.classList.add('clicked');
-            setTimeout(() => element.classList.remove('clicked'), 1000);
-        }
-
-        function ctaClick(element) {
-            element.classList.add('clicked');
-            const audio = new Audio('https://exesbi.netlify.app/assets/audio/cheering.mp3');
-            audio.play().catch(() => {});
-            setTimeout(() => element.classList.remove('clicked'), 300);
-        }
-
-        function checkAnswer(element, isCorrect) {
-            element.classList.add(isCorrect ? 'correct' : 'wrong');
-        }
-
-        function playVoiceNote(button) {
-            const audio = button.querySelector('audio');
-            if (audio) audio.play().catch(() => {});
-        }
-
-        function goToSlide(n) {
-            currentSlide = parseInt(n);
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[currentSlide].classList.add('active');
-            dropdown.value = currentSlide;
-            document.getElementById('current-slide').textContent = currentSlide + 1;
-            updateProgress();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function nextSlide() {
-            currentSlide++;
-            if (currentSlide >= totalSlides) currentSlide = 0;
-            goToSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide--;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            goToSlide(currentSlide);
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                e.preventDefault();
-                nextSlide();
-            }
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-            }
-        });
-
-        // Initialize progress bar
-        updateProgress();
-    </script>
-</body>
-</html>
+        const slideNavLinks = document.querySelectorAll
