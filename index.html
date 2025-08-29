@@ -118,9 +118,9 @@
             background: linear-gradient(to-br, #49A078, #3e8865);
             width: 250px;
             position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
+            top: 70px; /* Below navbar */
+            bottom: 70px; /* Above footer */
+            height: auto;
             overflow-y: auto;
             z-index: 60;
             transition: transform 0.3s ease;
@@ -138,12 +138,21 @@
             color: white;
             font-weight: 500;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: #388e6d; /* Always visible, readable background */
             transition: background 0.3s ease, color 0.3s ease;
         }
 
+        #sidebar a.active {
+            background: #facc15; /* Strong highlight for active */
+            color: #256d4f;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.15);
+            text-shadow: 0 0 6px rgba(250,204,21,0.3);
+        }
+
         #sidebar a:hover {
-            background: #3e8865;
-            color: #facc15;
+            background: #49A078;
+            color: #fffbe6;
             text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
         }
 
@@ -154,39 +163,43 @@
         /* Slide Navigation Panel */
         #slide-nav-panel {
             background: linear-gradient(to-br, #49A078, #3e8865);
-            width: 300px;
+            width: 260px;
             position: fixed;
-            top: 80px; /* Below navbar */
+            top: 70px; /* Just below navbar */
             right: 0;
-            height: calc(100vh - 160px); /* Avoid footer */
+            bottom: 70px; /* Above footer */
+            height: auto;
             overflow-y: auto;
             z-index: 30;
-            transition: transform 0.3s ease;
             box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
+            padding: 20px 0 20px 0;
             display: none;
         }
 
         #slide-nav-panel a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 20px;
             color: white;
             font-weight: 500;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: background 0.3s ease, color 0.3s ease;
-            font-size: 0.9em;
-        }
-
-        #slide-nav-panel a:hover {
-            background: #3e8865;
-            color: #facc15;
-            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            background: #388e6d; /* Always visible */
+            transition: background 0.3s, color 0.3s;
+            font-size: 1em;
+            margin: 0;
         }
 
         #slide-nav-panel a.active {
-            background: #3e8865;
-            color: #facc15;
-            font-weight: 600;
+            background: #facc15;
+            color: #256d4f;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.15);
+            text-shadow: 0 0 6px rgba(250,204,21,0.3);
+        }
+
+        #slide-nav-panel a:hover {
+            background: #49A078;
+            color: #fffbe6;
+            text-shadow: 0 0 4px rgba(250,204,21,0.4);
         }
 
         @media (min-width: 1024px), (orientation: landscape) and (max-height: 500px) {
@@ -197,7 +210,7 @@
                 display: none;
             }
             .presentation-container {
-                margin-right: 320px;
+                margin-right: 280px; /* Leave space for right panel */
                 margin-left: 270px;
             }
         }
@@ -1444,8 +1457,24 @@
             });
         });
 
+        // Sidebar item highlighting for current slide
+        const sidebarLinks = document.querySelectorAll('#sidebar a');
+        function highlightSidebar(index) {
+            sidebarLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+        }
+
+        // Highlight slide nav panel item for current slide
+        function highlightSlideNav(index) {
+            slideNavLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+        }
+
         // Show initial slide
         showSlide(currentSlide);
+   
     </script>
 </body>
 </html>
