@@ -180,21 +180,27 @@
             display: flex;
             align-items: center;
         }
-        .slogan-marquee {
+        .slogan-marquee-track {
+            display: flex;
+            width: max-content;
             position: absolute;
             right: 0;
             top: 0;
+            height: 100%;
+            animation: marquee-loop 12s linear infinite;
+            will-change: transform;
+        }
+        .slogan-marquee {
             white-space: nowrap;
             color: #facc15;
             font-weight: bold;
             font-size: 1rem;
-            animation: marquee-right-to-left 12s linear infinite;
-            will-change: transform;
-            padding-left: 100%; /* ensures it starts off-screen right */
+            display: inline-block;
+            padding-right: 3rem; /* space between repeats */
         }
-        @keyframes marquee-right-to-left {
+        @keyframes marquee-loop {
             0%   { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); }
         }
         .footer {
             background: #DFF3EA;
@@ -290,7 +296,10 @@
                 <span class="font-bold text-xl tracking-tight">Tujengane Digital Skills</span>
             </div>
             <div class="slogan-container">
-                <div class="slogan-marquee">Empowering Your Future with Essential Digital Skills – Join Us Today!</div>
+                <div class="slogan-marquee-track">
+                    <div class="slogan-marquee">Empowering Your Future with Essential Digital Skills – Join Us Today!</div>
+                    <div class="slogan-marquee">Empowering Your Future with Essential Digital Skills – Join Us Today!</div>
+                </div>
             </div>
             <div class="flex items-center gap-4">
                 <button class="hamburger" id="hamburger-btn"><i class="fas fa-bars"></i></button>
