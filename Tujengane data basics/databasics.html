@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tujengane Digital Basics – EXES BI</title>
+    <script src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js"></script>
+    <script>
+        window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+        window.amplitude.init('5a4bb01b3841a994768853dd53f10382', {"fetchRemoteConfig":true,"autocapture":true});
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJM885LMLJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZJM885LMLJ');
+    </script>
+    <meta name="description" content="Tujengane Digital Basics by EXES BI – Learn to capture clean data for business growth. Free one-day session by Deric Marangu. Join Power 12 for advanced analytics skills.">
+    <meta name="keywords" content="Tujengane Digital Basics, EXES BI, Data Analytics Kenya, Deric Marangu, Clean Data, Business Intelligence Kenya, Power 12, Data Training Nairobi">
+    <meta name="author" content="Deric Marangu">
+    <meta name="email" content="dericmarangu@gmail.com">
+    <meta name="telephone" content="+254791360805">
+    <meta property="og:see_also" content="https://linkedin.com/in/deric-marangu-134340297">
+    <meta property="og:see_also" content="https://x.com/Dericmwiti">
+    <meta property="og:see_also" content="https://web.facebook.com/deric.aldertrax">
+    <meta property="og:see_also" content="https://www.facebook.com/exes.125107">
+    <meta property="og:see_also" content="https://wa.me/254791360805">
+    <meta property="og:title" content="Tujengane Digital Basics – EXES BI">
+    <meta property="og:description" content="Learn clean data practices with Tujengane Digital Basics by EXES BI. Free session by Deric Marangu. Join Power 12 to transform your business with EXES BI!">
+    <meta property="og:image" content="https://exesbi.netlify.app/assets/img/logo.png">
+    <meta property="og:url" content="https://tujengane.netlify.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="EXES BI">
+    <meta property="og:locale" content="en_KE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tujengane Digital Basics – EXES BI">
+    <meta name="twitter:description" content="Free one-day session on clean data practices by Deric Marangu. Join Power 12 to transform your business with EXES BI!">
+    <meta name="twitter:image" content="https://exesbi.netlify.app/assets/img/logo.png">
+    <meta name="twitter:creator" content="@Dericmwiti">
+    <meta name="twitter:site" content="@Dericmwiti">
+    <meta name="google-site-verification" content="atXrWwnfuGsW-bG32kFaaYl_7cX59LFFuawPIoGcPYk">
+    <meta name="google-site-verification" content="Jy01n_QNsBr6VEkwL0RMSE-ya0yPNywvSnNEdO6_TcE">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://exesbi.netlify.app/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://exesbi.netlify.app/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://exesbi.netlify.app/icon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://exesbi.netlify.app/icon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://exesbi.netlify.app/icon/android-chrome-512x512.png">
+    <link rel="shortcut icon" href="https://exesbi.netlify.app/icon/favicon.ico">
+    <link rel="manifest" href="https://exesbi.netlify.app/icon/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+    <script data-goatcounter="https://deric-exes-analytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to-br, #f0fdfa, #d9f99d);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-slide {
+            animation: slide 20s linear infinite;
+        }
+
+        .dropdown-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .dropdown {
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .dropdown option {
+            background: #2d3748;
+            color: white;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Sidebar (Site Navigation) */
+        #sidebar {
+            position: fixed;
+            top: 70px; /* below header */
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 70px - 70px); /* exclude header/footer */
+            overflow-y: auto;
+            z-index: 60;
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        #sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        #sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: white;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: #388e6d; /* Always visible, readable background */
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        #sidebar a.active {
+            background: #facc15; /* Strong highlight for active */
+            color: #256d4f;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.15);
+            text-shadow: 0 0 6px rgba(250,204,21,0.3);
+        }
+
+        #sidebar a:hover {
+            background: #49A078;
+            color: #fffbe6;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.4);
+        }
+
+        #sidebar-toggle {
+            display: none;
+        }
+
+        /* Slide Navigation Panel */
+        #slide-nav-panel {
+            position: fixed;
+            top: 70px; /* below header */
+            right: 0;
+            width: 260px;
+            height: calc(100vh - 70px - 70px); /* exclude header/footer */
+            overflow-y: auto;
+            z-index: 30;
+            background: linear-gradient(to-br, #49A078, #3e8865);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin: 0;
+            display: none;
+        }
+
+        #slide-nav-panel a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            background: #388e6d; /* Always visible */
+            transition: background 0.3s, color 0.3s;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        #slide-nav-panel a.active {
+            background: #facc15;
+            color: #256d4f;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.15);
+            text-shadow: 0 0 6px rgba(250,204,21,0.3);
+        }
+
+        #slide-nav-panel a:hover {
+            background: #49A078;
+            color: #fffbe6;
+            text-shadow: 0 0 4px rgba(250,204,21,0.4);
+        }
+
+        @media (min-width: 1024px), (orientation: landscape) and (max-height: 500px) {
+            #slide-nav-panel {
+                display: block;
+            }
+            .dropdown-container {
+                display: none;
+            }
+            .presentation-container {
+                margin-left: 270px; /* leave space for left sidebar */
+                margin-right: 280px; /* leave space for right panel */
+            }
+        }
+
+        @media (max-width: 1023px) and (orientation: portrait) {
+            #slide-nav-panel {
+                display: none;
+            }
+            .dropdown-container {
+                display: block;
+            }
+            .presentation-container {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+            #sidebar.active {
+                transform: translateX(0);
+            }
+            #sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 50;
+                background: #49A078;
+                color: white;
+                padding: 10px;
+                border-radius: 50%;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            .presentation-container {
+                margin-left: 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .presentation-container {
+                margin-left: 270px;
+            }
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1000px;
+            background: white; /* Matches exesbi.netlify.app */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            display: none;
+            border: 1px solid #e5e7eb;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h1 {
+            font-size: clamp(2.5em, 5vw, 3.5em);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #49A078, #3e8865);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.8em, 4vw, 2.5em);
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: clamp(1.4em, 3vw, 1.8em);
+            margin-bottom: 15px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: clamp(1.1em, 2.5vw, 1.3em);
+            line-height: 1.6;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2em, 2.5vw, 1.5em);
+            color: #49A078;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: clamp(1.2em, 2.5vw, 1.4em);
+            color: #49A078;
+            background: rgba(73, 160, 120, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #49A078;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3em;
+            color: rgba(73, 160, 120, 0.3);
+            position: absolute;
+            top: -5px;
+            left: 10px;
+        }
+
+        .highlight-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .highlight-list li {
+            font-size: clamp(1em, 2vw, 1.2em);
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4a5568;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .highlight-list li:hover {
+            transform: translateX(10px);
+            background: rgba(73, 160, 120, 0.1);
+        }
+
+        .highlight-list li.clicked {
+            animation: pulse 0.3s ease;
+        }
+
+        .highlight-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #49A078;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .rule-card {
+            background: linear-gradient(135deg, rgba(73, 160, 120, 0.1), rgba(62, 136, 101, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(73, 160, 120, 0.2);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .rule-card.clicked {
+            transform: scale(1.05);
+        }
+
+        .rule-card .tooltip {
+            display: none;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .rule-card.clicked .tooltip {
+            display: block;
+        }
+
+        .rule-number {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #49A078;
+            margin-bottom: 8px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: #49A078;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            max-width: 1000px;
+            margin: 10px auto;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #49A078;
+            transition: width 0.6s ease;
+        }
+
+        .slide-counter {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #49A078;
+            margin: 10px 0;
+        }
+
+        .demo-table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-table th, .demo-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .demo-table th {
+            background: #49A078;
+            color: white;
+            font-weight: 600;
+        }
+
+        .messy-data, .clean-data {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .messy-data {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .clean-data {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #49A078, #3e8865);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px;
+            box-shadow: 0 10px 30px rgba(73, 160, 120, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(73, 160, 120, 0.4);
+        }
+
+        .cta-button.clicked {
+            animation: pulse 0.3s ease;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+
+        .quiz-container {
+            margin: 20px 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .quiz-option:hover {
+            background: rgba(73, 160, 120, 0.2);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.3);
+            border: 2px solid #059669;
+        }
+
+        .quiz-option.wrong {
+            background: rgba(220, 38, 38, 0.3);
+            border: 2px solid #dc2626;
+        }
+
+        .quiz-feedback {
+            display: none;
+            font-size: 0.9em;
+            color: #2d3748;
+            margin-top: 5px;
+        }
+
+        .quiz-option.correct .quiz-feedback.correct,
+        .quiz-option.wrong .quiz-feedback.wrong {
+            display: block;
+        }
+
+        .voice-note-btn {
+            background: #49A078;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .voice-note-btn:hover {
+            background: #3e8865;
+            transform: translateY(-2px);
+        }
+
+        .footer-link {
+            color: inherit;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #facc15;
+            text-shadow: 0 0 4px rgba(250, 204, 21, 0.5);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .dropdown {
+                max-width: 100%;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            #slide-nav-panel {
+                width: 200px;
+            }
+            .presentation-container {
+                margin-right: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 shrink-0">
+                <img src="../logo.png" alt="Tujengane Digital Skills Logo" class="h-14 w-14 sm:h-16 sm:w-16 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-bold text-2xl leading-none">Tujengane Digital Skills</span>
+            </div>
+            <ul class="flex gap-6 text-sm font-medium items-center shrink-0">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="https://exesbi.netlify.app" class="nav-link" target="_blank">EXES BI</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar (Site Navigation) -->
+    <div id="sidebar" class="md:block" style="z-index:60;">
+        <a href="https://exesbi.netlify.app" class="nav-link" data-sidebar="home">Home</a>
+        <a href="https://exesbi.netlify.app/services.html" class="nav-link" data-sidebar="services">Services</a>
+        <a href="https://exesbi.netlify.app/My-projects.html" class="nav-link" data-sidebar="projects">Projects</a>
+        <a href="https://exesbi.netlify.app/contact.html" class="nav-link" data-sidebar="contact">Contact</a>
+        <!--<a href="https://tujengane.netlify.app" class="nav-link">Tujengane</a>-->
+        <a href="https://exesbi.netlify.app/about.html" class="nav-link" data-sidebar="about">About Us</a>
+        <a href="https://exesbi.netlify.app/terms.html" class="nav-link" data-sidebar="terms">Terms & Conditions</a>
+    </div>
+
+    <!-- Slide Navigation Panel -->
+    <div id="slide-nav-panel">
+        <a href="#" onclick="goToSlide(0)" data-slide="0">Welcome</a>
+        <a href="#" onclick="goToSlide(1)" data-slide="1">Meet Your Instructor</a>
+        <a href="#" onclick="goToSlide(2)" data-slide="2">The Real Problem</a>
+        <a href="#" onclick="goToSlide(3)" data-slide="3">What Is Clean Data?</a>
+        <a href="#" onclick="goToSlide(4)" data-slide="4">Why Hustlers Struggle</a>
+        <a href="#" onclick="goToSlide(5)" data-slide="5">Data Is Everywhere</a>
+        <a href="#" onclick="goToSlide(6)" data-slide="6">3 Rules of Clean Data</a>
+        <a href="#" onclick="goToSlide(7)" data-slide="7">Common Mistakes</a>
+        <a href="#" onclick="goToSlide(8)" data-slide="8">How Dirty Data Wastes Time</a>
+        <a href="#" onclick="goToSlide(9)" data-slide="9">The Cost of Inaccuracy</a>
+        <a href="#" onclick="goToSlide(10)" data-slide="10">Recording Daily Transactions</a>
+        <a href="#" onclick="goToSlide(11)" data-slide="11">Using Tables Effectively</a>
+        <a href="#" onclick="goToSlide(12)" data-slide="12">Naming Files & Entries</a>
+        <a href="#" onclick="goToSlide(13)" data-slide="13">Avoiding Blanks & Guesswork</a>
+        <a href="#" onclick="goToSlide(14)" data-slide="14">Demo – Clean vs. Messy Sheet</a>
+        <a href="#" onclick="goToSlide(15)" data-slide="15">Hustler Audit Challenge</a>
+        <a href="#" onclick="goToSlide(16)" data-slide="16">Data Quiz Time!</a>
+        <a href="#" onclick="goToSlide(17)" data-slide="17">Real-Life Case Study</a>
+        <a href="#" onclick="goToSlide(18)" data-slide="18">Power 12 Curriculum</a>
+        <a href="#" onclick="goToSlide(19)" data-slide="19">Certificate & Data Partner Path</a>
+        <a href="#" onclick="goToSlide(20)" data-slide="20">Ready to Level Up?</a>
+    </div>
+
+    <!-- Presentation Content -->
+    <div class="presentation-container">
+        <div class="dropdown-container">
+            <select class="dropdown" onchange="goToSlide(this.value)">
+                <option value="0">Welcome</option>
+                <option value="1">Meet Your Instructor</option>
+                <option value="2">The Real Problem</option>
+                <option value="3">What Is Clean Data?</option>
+                <option value="4">Why Hustlers Struggle</option>
+                <option value="5">Data Is Everywhere</option>
+                <option value="6">3 Rules of Clean Data</option>
+                <option value="7">Common Mistakes</option>
+                <option value="8">How Dirty Data Wastes Time</option>
+                <option value="9">The Cost of Inaccuracy</option>
+                <option value="10">Recording Daily Transactions</option>
+                <option value="11">Using Tables Effectively</option>
+                <option value="12">Naming Files & Entries</option>
+                <option value="13">Avoiding Blanks & Guesswork</option>
+                <option value="14">Demo – Clean vs. Messy Sheet</option>
+                <option value="15">Hustler Audit Challenge</option>
+                <option value="16">Data Quiz Time!</option>
+                <option value="17">Real-Life Case Study</option>
+                <option value="18">Power 12 Curriculum</option>
+                <option value="19">Certificate & Data Partner Path</option>
+                <option value="20">Ready to Level Up?</option>
+            </select>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">21</span>
+        </div>
+
+        <!-- Slide 1: Welcome -->
+        <div class="slide active">
+            <h1>🌟 Tujengane Digital Basics</h1>
+            <div class="subtitle animate-fade-in">One-Day Free Session</div>
+            <p class="animate-fade-in" style="font-size: 1.4em; margin: 20px 0;">Presented by <strong>Deric Marangu</strong>, Founder of <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a></p>
+            <div class="quote animate-fade-in">
+                Today is not about learning computers. It's about learning how to capture data correctly—so your business can grow with clarity.
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.2s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Listen to Introduction
+                <audio src="https://exesbi.netlify.app/assets/audio/introduction.mp3"></audio>
+            </button>
+        </div>
+
+        <!-- Slide 2: Meet Your Instructor -->
+        <div class="slide">
+            <h2>Meet Your Instructor</h2>
+            <img src="https://exesbi.netlify.app/assets/img/deric.png" alt="Deric Marangu" class="h-24 w-24 rounded-full object-cover shadow-md border-2 border-white mx-auto mb-4 animate-fade-in">
+            <h3 class="animate-fade-in">Deric Marangu</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Founder of <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a>, a data analytics gateway for hustlers and SMEs</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Bachelor of Business Information Technology – Kirinyaga University</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Self-taught in SQL, Excel, Python, Power BI</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                I teach because I've seen how messy data slows down impact. I want to fix that.
+            </div>
+        </div>
+
+        <!-- Slide 3: The Real Problem -->
+        <div class="slide">
+            <h2>⚠️ The Real Problem</h2>
+            <h3 class="animate-fade-in">Messy Data Is Costing You Time and Clarity</h3>
+            <p class="animate-fade-in" style="animation-delay: 0.2s;">Hustlers and SMEs already collect data—but it's often:</p>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Incomplete</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Inconsistent</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Full of blanks or wrong formats</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                I spend hours cleaning data before I can even analyze it. That's not sustainable.
+            </div>
+        </div>
+
+        <!-- Slide 4: What Is Clean Data -->
+        <div class="slide">
+            <h2>✨ What Is Clean Data?</h2>
+            <h3 class="animate-fade-in">Clean Data = Fast Decisions + Accurate Insights</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📋</div>
+                    <h4>Consistent Naming</h4>
+                    <div class="tooltip">Use the same name for the same item every time.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📝</div>
+                    <h4>No Blanks</h4>
+                    <div class="tooltip">Ensure every field has valid data.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📊</div>
+                    <h4>Correct Formats</h4>
+                    <div class="tooltip">Use proper formats like dates or numbers.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.8s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📅</div>
+                    <h4>Daily Logging</h4>
+                    <div class="tooltip">Record data consistently every day.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                Clean data doesn't just look good—it saves time and builds trust.
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.2s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Learn About Clean Data
+                <audio src="https://exesbi.netlify.app/assets/audio/clean-data.mp3"></audio>
+            </button>
+        </div>
+
+        <!-- Slide 5: Why Hustlers Struggle -->
+        <div class="slide">
+            <h2>🤔 Why Hustlers Struggle</h2>
+            <h3 class="animate-fade-in">They Record, But They Don't Organize</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Structure</h4>
+                    <div class="tooltip">Data lacks a clear format or system.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Habits</h4>
+                    <div class="tooltip">Inconsistent recording practices.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">❌</div>
+                    <h4>No Systems</h4>
+                    <div class="tooltip">No tools or processes in place.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                You're already generating data. You just need to capture it well.
+            </div>
+        </div>
+
+        <!-- Slide 6: Data Is Everywhere -->
+        <div class="slide">
+            <h2>📍 Data Is Everywhere</h2>
+            <h3 class="animate-fade-in">Every Sale, Expense, and Customer Is Data</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">What you sell</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Who buys</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">When they buy</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">How much they spend</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                You don't need new tools. You need new habits.
+            </div>
+        </div>
+
+        <!-- Slide 7: 3 Rules of Clean Data -->
+        <div class="slide">
+            <h2>🎯 The 3 Rules of Clean Data</h2>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">1</div>
+                    <h4>Consistency</h4>
+                    <p>Same format every time</p>
+                    <div class="tooltip">Always use the same naming and structure.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">2</div>
+                    <h4>Completeness</h4>
+                    <p>No missing information</p>
+                    <div class="tooltip">Every field must be filled accurately.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">3</div>
+                    <h4>Correct Format</h4>
+                    <p>Right data types</p>
+                    <div class="tooltip">Use dates, numbers, or text appropriately.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                If you follow these three rules, your data becomes usable instantly.
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Understand the 3 Rules
+                <audio src="https://exesbi.netlify.app/assets/audio/3-rules.mp3"></audio>
+            </button>
+        </div>
+
+        <!-- Slide 8: Common Mistakes -->
+        <div class="slide">
+            <h2>❌ Common Mistakes</h2>
+            <h3 class="animate-fade-in">What Dirty Data Looks Like</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">"Tea Leaves" vs. "tea"</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Skipped entries</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Wrong dates</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Mixed categories</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                These small errors create big confusion.
+            </div>
+        </div>
+
+        <!-- Slide 9: Time Waste -->
+        <div class="slide">
+            <h2>⏰ How Dirty Data Wastes Time</h2>
+            <h3 class="animate-fade-in">Cleaning vs. Analyzing</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Time lost fixing blanks and errors</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Delayed decisions</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Frustration for analysts</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                I want to spend time generating insights—not fixing mistakes.
+            </div>
+        </div>
+
+        <!-- Slide 10: Cost of Inaccuracy -->
+        <div class="slide">
+            <h2>💸 The Cost of Inaccuracy</h2>
+            <h3 class="animate-fade-in">Bad Data = Bad Decisions</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Wrong totals</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Missed trends</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Misguided strategies</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                You can't grow what you can't measure.
+            </div>
+        </div>
+
+        <!-- Slide 11: Recording Daily Transactions -->
+        <div class="slide">
+            <h2>📝 Recording Daily Transactions</h2>
+            <h3 class="animate-fade-in">Start Simple. Stay Consistent.</h3>
+            <table class="demo-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="animate-fade-in" style="animation-delay: 0.2s;">
+                        <td>2025-08-29</td>
+                        <td>Tea Leaves</td>
+                        <td>500</td>
+                        <td>Inventory</td>
+                    </tr>
+                    <tr class="animate-fade-in" style="animation-delay: 0.4s;">
+                        <td>2025-08-29</td>
+                        <td>Sugar</td>
+                        <td>200</td>
+                        <td>Inventory</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Even a notebook can be powerful—if it's structured.
+            </div>
+        </div>
+
+        <!-- Slide 12: Using Tables -->
+        <div class="slide">
+            <h2>📊 Using Tables Effectively</h2>
+            <h3 class="animate-fade-in">Structure Is the First Step to Clarity</h3>
+            <div class="rules-grid">
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.2s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📄</div>
+                    <h4>Rows = Records</h4>
+                    <div class="tooltip">Each row is a single transaction.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.4s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">📋</div>
+                    <h4>Columns = Categories</h4>
+                    <div class="tooltip">Each column defines a data type.</div>
+                </div>
+                <div class="rule-card animate-fade-in" style="animation-delay: 0.6s;" onclick="ruleCardClick(this)">
+                    <div class="rule-number">🔢</div>
+                    <h4>Totals = Insights</h4>
+                    <div class="tooltip">Sum columns for quick insights.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Tables turn chaos into clarity.
+            </div>
+        </div>
+
+        <!-- Slide 13: Naming Convention -->
+        <div class="slide">
+            <h2>🏷️ Naming Files & Entries</h2>
+            <h3 class="animate-fade-in">Be Consistent. Be Clear.</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Use full names</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Avoid abbreviations</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Stick to one format</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Your future self will thank you.
+            </div>
+        </div>
+
+        <!-- Slide 14: Avoiding Blanks -->
+        <div class="slide">
+            <h2>🚫 Avoiding Blanks & Guesswork</h2>
+            <h3 class="animate-fade-in">Don't Fill Gaps with Zeros or Averages</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">It looks complete but loses accuracy</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Leads to false conclusions</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Incomplete data is incomplete truth.
+            </div>
+        </div>
+
+        <!-- Slide 15: Demo -->
+        <div class="slide">
+            <h2>🎯 Demo – Clean vs. Messy Sheet</h2>
+            <h3 class="animate-fade-in">Live Walkthrough</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+                <div class="messy-data animate-fade-in" style="animation-delay: 0.2s;">
+                    <h4 style="color: #dc2626; margin-bottom: 8px;">❌ Messy Data</h4>
+                    <table class="demo-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025/8/29</td>
+                                <td>tea</td>
+                                <td>5oo</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 29</td>
+                                <td>Tea Leaves</td>
+                                <td>2O0</td>
+                            </tr>
+                            <tr>
+                                <td>29-8-25</td>
+                                <td>TEA</td>
+                                <td>3O0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clean-data animate-fade-in" style="animation-delay: 0.4s;">
+                    <h4 style="color: #059669; margin-bottom: 8px;">✅ Clean Data</h4>
+                    <table class="demo-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>2025-08-29</td>
+                                <td>Tea Leaves</td>
+                                <td>300</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                This is the difference between confusion and clarity.
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Demo Explanation
+                <audio src="https://exesbi.netlify.app/assets/audio/demo-explanation.mp3"></audio>
+            </button>
+        </div>
+
+        <!-- Slide 16: Hustler Audit -->
+        <div class="slide">
+            <h2>🔍 Hustler Audit Challenge</h2>
+            <h3 class="animate-fade-in">Match Your Hustle to a Data Habit</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">List 3 daily business tasks</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Choose how you'll record them</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                Let's build your first clean data habit today.
+            </div>
+        </div>
+
+        <!-- Slide 17: Interactive Quiz -->
+        <div class="slide">
+            <h2>🧠 Data Quiz Time!</h2>
+            <h3 class="animate-fade-in">Test Your Knowledge</h3>
+            <p class="animate-fade-in" style="animation-delay: 0.2s;">What’s the biggest cause of messy data?</p>
+            <div class="quiz-container">
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.4s;" onclick="checkAnswer(this, false)">
+                    Using too many tools
+                    <div class="quiz-feedback wrong">Too many tools can complicate things, but inconsistency is the real culprit.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.6s;" onclick="checkAnswer(this, false)">
+                    Not enough data
+                    <div class="quiz-feedback wrong">More data isn't the issue—it's about how you record it.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 0.8s;" onclick="checkAnswer(this, true)">
+                    Inconsistent recording
+                    <div class="quiz-feedback correct">Correct! Inconsistent recording creates messy data.</div>
+                </div>
+                <div class="quiz-option animate-fade-in" style="animation-delay: 1s;" onclick="checkAnswer(this, false)">
+                    Too many employees
+                    <div class="quiz-feedback wrong">Employees aren't the problem—it's inconsistent data practices.</div>
+                </div>
+            </div>
+            <div class="quote animate-fade-in" style="animation-delay: 1.2s;">
+                Get it right, and feel the data power! 💪
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 1.4s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Quiz Explanation
+                <audio src="https://exesbi.netlify.app/assets/audio/quiz-explanation.mp3"></audio>
+            </button>
+        </div>
+
+        <!-- Slide 18: Case Study -->
+        <div class="slide">
+            <h2>📈 Real-Life Case Study</h2>
+            <h3 class="animate-fade-in">Jane's Boutique – What Clean Data Revealed</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Her best-seller wasn't what she thought</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Her peak sales time was misjudged</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Her repeat customers came from an untargeted area</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                Data doesn't lie. It reveals.
+            </div>
+        </div>
+
+        <!-- Slide 19: Power 12 Curriculum -->
+        <div class="slide">
+            <h2>🎓 What You'll Learn in Power 12</h2>
+            <h3 class="animate-fade-in">The Full Curriculum</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Typing & navigation</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Excel for business</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Data cleaning & formatting</li>
+                <li class="animate-fade-in" style="animation-delay: 0.8s;" onclick="highlightClick(this)">Visualization & analytics</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 1s;">
+                From confusion to clarity—in 12 weeks.
+            </div>
+        </div>
+
+        <!-- Slide 20: Certificate -->
+        <div class="slide">
+            <h2>🏆 Certificate & Data Partner Path</h2>
+            <h3 class="animate-fade-in">Join the <a href="https://exesbi.netlify.app" target="_blank" class="text-[#49A078] hover:text-[#facc15]">EXES BI</a> Network</h3>
+            <ul class="highlight-list">
+                <li class="animate-fade-in" style="animation-delay: 0.2s;" onclick="highlightClick(this)">Earn a branded certificate</li>
+                <li class="animate-fade-in" style="animation-delay: 0.4s;" onclick="highlightClick(this)">Become a trusted data partner</li>
+                <li class="animate-fade-in" style="animation-delay: 0.6s;" onclick="highlightClick(this)">Get early access to dashboards and pilot tools</li>
+            </ul>
+            <div class="quote animate-fade-in" style="animation-delay: 0.8s;">
+                We're building a community of clarity-makers.
+            </div>
+        </div>
+
+        <!-- Slide 21: Call to Action -->
+        <div class="slide">
+            <h2>🚀 Ready to Level Up?</h2>
+            <h3 class="animate-fade-in">Join Power 12</h3>
+            <button class="cta-button animate-fade-in" style="animation-delay: 0.2s;" onclick="ctaClick(this)">DM "POWER 12" TO ENROLL</button>
+            <p class="animate-fade-in" style="margin: 15px 0; color: #dc2626; font-weight: 600; animation-delay: 0.4s;">Limited slots available</p>
+            <div class="quote animate-fade-in" style="animation-delay: 0.6s;">
+                If today opened your eyes, imagine what 12 weeks can do.
+            </div>
+            <button class="voice-note-btn animate-fade-in" style="animation-delay: 0.8s;" onclick="playVoiceNote(this)">
+                <i class="fas fa-play"></i> Final Motivation
+                <audio src="https://exesbi.netlify.app/assets/audio/final-motivation.mp3"></audio>
+            </button>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+            <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#DFF3EA] py-4 px-4 text-sm text-gray-600 mt-auto border-t border-green-300">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Tujengane Digital Skills Logo" class="h-12 w-12 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Digital Skills</span>
+            </div>
+            <div class="text-xs text-gray-500 text-center">
+                &copy; 2025 Tujengane Digital Skills – Built by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link">Deric Marangu</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div id="chatButton" onclick="toggleChat()" 
+        class="fixed bottom-6 right-6 bg-[#49A078] text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-[#3e8865] transition-all z-50 pulse-animation">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chatWidget" class="hidden fixed bottom-20 right-6 bg-white border border-gray-200 rounded-lg shadow-xl w-80 max-w-sm z-50">
+        <div class="bg-[#49A078] text-white p-3 rounded-t-lg">
+            <h4 class="font-semibold text-sm">💬 Quick Chat with EXES BI</h4>
+        </div>
+        <div class="p-4 space-y-3">
+            <div class="bg-gray-100 p-2 rounded text-sm">
+                <strong>EXES BI Bot:</strong> Hi! How can we help with your data needs today?
+            </div>
+            <div class="space-y-2">
+                <a href="https://wa.me/254791360805?text=Hi%20EXES%20BI,%20I%20need%20help%20with%20data%20analysis" 
+                    target="_blank" class="block bg-green-500 text-white p-2 rounded text-center text-xs hover:bg-green-600 transition">
+                    <i class="fab fa-whatsapp mr-1"></i>WhatsApp (Fastest Response)
+                </a>
+                <a href="mailto:dericmarangu@gmail.com?subject=Data%20Analysis%20Inquiry" 
+                    class="block bg-blue-500 text-white p-2 rounded text-center text-xs hover:bg-blue-600 transition">
+                    <i class="fas fa-envelope mr-1"></i>Email Us
+                </a>
+                <button onclick="openModal('projectModal')" 
+                    class="w-full bg-[#49A078] text-white p-2 rounded text-xs hover:bg-[#3e8865] transition">
+                    <i class="fas fa-rocket mr-1"></i>Start Project Now
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 text-center">
+                <i class="fas fa-clock mr-1"></i>Usually respond within 1 hour
+            </p>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <button onclick="closeModal('projectModal')" 
+                class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+            <h2 class="text-lg font-bold mb-4 text-center text-[#49A078]">Choose Your Path</h2>
+            <p class="text-gray-600 text-center mb-6">Pick the option that suits your business best:</p>
+            <div class="flex flex-col gap-4">
+                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank"
+                    class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                    ✅ I Have Data (Upload Files)
+                </a>
+                <a href="https://forms.gle/Uzq3L9wtm5yM6KEX7" target="_blank"
+                    class="block bg-[#2563EB] hover:bg-[#1e40af] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                    🚀 No Data, start here
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div id="downloadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+            <button onclick="closeModal('downloadModal')" 
+                class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+            <h2 class="text-lg font-semibold mb-4 text-center">Enter File Name to Download</h2>
+            <p class="text-xs text-center text-red-600 mb-3">Never share your file name with anyone!</p>
+            <input id="fileNameInput" type="text" placeholder="e.g. report.xlsx" 
+                class="w-full border border-gray-300 rounded px-4 py-2 mb-4">
+            <button onclick="downloadFile()" 
+                class="bg-[#2563EB] hover:bg-[#1e40af] text-white px-4 py-2 rounded w-full font-semibold">Download</button>
+            <p id="errorMessage" class="text-red-600 text-sm mt-3 hidden">File not found. Please ensure the name is correct or contact <strong>+254791360805</strong>.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar Toggle
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            sidebarToggle.innerHTML = sidebar.classList.contains('active') ? '×' : '☰';
+        });
+
+        // Highlight active sidebar item (optional, if you want to show which page is active)
+        // You can add logic here if needed
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Download File Logic
+        function downloadFile() {
+            const input = document.getElementById('fileNameInput');
+            const fileName = input.value.trim();
+            const error = document.getElementById('errorMessage');
+
+            if (!fileName) {
+                error.textContent = 'Please enter a file name.';
+                error.classList.remove('hidden');
+                return;
+            }
+
+            fetch(`https://exesbi.netlify.app/downloads/${fileName}`)
+                .then(res => {
+                    if (!res.ok) throw new Error();
+                    return res.blob();
+                })
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    closeModal('downloadModal');
+                    error.classList.add('hidden');
+                    input.value = '';
+                })
+                .catch(() => {
+                    error.textContent = 'File not found. Please ensure the name is correct or contact +254791360805.';
+                    error.classList.remove('hidden');
+                });
+        }
+
+        // Chat Widget Toggle
+        let chatOpen = false;
+        function toggleChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            const chatButton = document.getElementById('chatButton');
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatWidget.classList.remove('hidden');
+                chatButton.innerHTML = '<i class="fas fa-times"></i>';
+                chatButton.style.backgroundColor = '#ef4444';
+            } else {
+                chatWidget.classList.add('hidden');
+                chatButton.innerHTML = '<i class="fas fa-comments"></i>';
+                chatButton.style.backgroundColor = '#49A078';
+            }
+        }
+
+        // Presentation Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressFill = document.getElementById('progress-fill');
+        const dropdown = document.querySelector('.dropdown');
+        const slideNavLinks = document.querySelectorAll('#slide-nav-panel a');
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+            document.getElementById('current-slide').textContent = index + 1;
+            progressFill.style.width = ((index + 1) / totalSlides * 100) + '%';
+            // Highlight nav panel link
+            slideNavLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+            // Set dropdown value
+            if (dropdown) dropdown.value = index;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        function goToSlide(index) {
+            showSlide(Number(index));
+        }
+
+        // Dropdown navigation
+        if (dropdown) {
+            dropdown.addEventListener('change', function() {
+                goToSlide(this.value);
+            });
+        }
+
+        // Slide nav panel links
+        slideNavLinks.forEach((link, i) => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToSlide(i);
+            });
+        });
+
+        // Sidebar item highlighting for current slide
+        const sidebarLinks = document.querySelectorAll('#sidebar a');
+        function highlightSidebar(index) {
+            sidebarLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+        }
+
+        // Highlight slide nav panel item for current slide
+        function highlightSlideNav(index) {
+            slideNavLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === index);
+            });
+        }
+
+        // Show initial slide
+        showSlide(currentSlide);
+   
+    </script>
+</body>
+</html>
