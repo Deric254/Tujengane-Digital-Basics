@@ -306,22 +306,19 @@
     <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
     <script src="./js/scripts.js"></script>
     <script>
-        // Make sidebar scrollable and clickable for direct navigation
+        // Ensure sidebar links are always clickable for navigation
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.sidebar-link').forEach(link => {
-                link.addEventListener('click', function(e) {
+            document.querySelectorAll('.sidebar-link').forEach(function(link) {
+                link.onclick = function(e) {
                     e.preventDefault();
-                    const slideIndex = parseInt(this.dataset.slide);
+                    var slideIndex = parseInt(this.getAttribute('data-slide'));
                     if (!isNaN(slideIndex)) {
-                        goToSlide(slideIndex);
+                        if (typeof goToSlide === 'function') {
+                            goToSlide(slideIndex);
+                        }
                     }
-                });
+                };
             });
-            // Ensure sidebar scrolls to active item
-            const activeSidebarItem = document.querySelector('.sidebar-item.active');
-            if (activeSidebarItem) {
-                activeSidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
         });
     </script>
 </body>

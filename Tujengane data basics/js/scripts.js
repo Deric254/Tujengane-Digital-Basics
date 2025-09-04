@@ -160,10 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('active');
         });
     });
+    // Sidebar navigation: click to go to slide
     document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            goToSlide(parseInt(link.dataset.slide));
+            const slideIndex = parseInt(this.getAttribute('data-slide'));
+            if (!isNaN(slideIndex)) {
+                goToSlide(slideIndex);
+            }
         });
     });
 });
