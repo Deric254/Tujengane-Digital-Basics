@@ -305,5 +305,24 @@
     </div>
     <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
     <script src="./js/scripts.js"></script>
+    <script>
+        // Make sidebar scrollable and clickable for direct navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const slideIndex = parseInt(this.dataset.slide);
+                    if (!isNaN(slideIndex)) {
+                        goToSlide(slideIndex);
+                    }
+                });
+            });
+            // Ensure sidebar scrolls to active item
+            const activeSidebarItem = document.querySelector('.sidebar-item.active');
+            if (activeSidebarItem) {
+                activeSidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    </script>
 </body>
 </html>
