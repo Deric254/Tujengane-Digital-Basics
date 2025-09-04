@@ -13,29 +13,31 @@ function loadSlide(index) {
     if (index < 0 || index >= slides.length) return;
     const slideContainer = document.getElementById('slide-container');
     const currentSlideDisplay = document.getElementById('current-slide');
-    slideContainer.innerHTML = '';
-    slideContainer.classList.remove('active');
-    fetch(slides[index])
-        .then(response => {
-            if (!response.ok) throw new Error('Slide not found');
-            return response.text();
-        })
-        .then(data => {
-            slideContainer.innerHTML = data;
-            slideContainer.classList.add('active');
-            document.querySelectorAll('.sidebar-item').forEach(item => {
-                const link = item.querySelector('.sidebar-link');
-                const isActive = parseInt(link.dataset.slide) === index;
-                link.classList.toggle('active', isActive);
-                item.classList.toggle('active', isActive);
-            });
-            currentSlideDisplay.textContent = index + 1;
-            updateNavigation();
-            initializeSlideContent();
-            const activeItem = document.querySelector('.sidebar-item.active');
-            if (activeItem) activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        })
-        .catch(error => console.error('Error loading slide:', error));
+    slideContainer.style.opacity = '0';
+    setTimeout(() => {
+        fetch(slides[index])
+            .then(response => {
+                if (!response.ok) throw new Error('Slide not found');
+                return response.text();
+            })
+            .then(data => {
+                slideContainer.innerHTML = data;
+                slideContainer.style.opacity = '1';
+                slideContainer.classList.add('active');
+                document.querySelectorAll('.sidebar-item').forEach(item => {
+                    const link = item.querySelector('.sidebar-link');
+                    const isActive = parseInt(link.dataset.slide) === index;
+                    link.classList.toggle('active', isActive);
+                    item.classList.toggle('active', isActive);
+                });
+                currentSlideDisplay.textContent = index + 1;
+                updateNavigation();
+                initializeSlideContent();
+                const activeItem = document.querySelector('.sidebar-item.active');
+                if (activeItem) activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            })
+            .catch(error => console.error('Error loading slide:', error));
+    }, 400); // Match CSS transition duration
 }
 
 function updateNavigation() {
@@ -72,13 +74,14 @@ function initializeSlideContent() {
         elem.addEventListener('click', () => {
             interactiveElements.forEach(other => other.classList.remove('clicked'));
             elem.classList.add('clicked');
-            setTimeout(() => elem.classList.remove('clicked'), 3000); // Hide tooltip after 3s
+            setTimeout(() => elem.classList.remove('clicked'), 3000);
         });
     });
     if (document.querySelector('.quiz-container')) {
         initializeQuiz();
     }
     if (currentSlide === slides.length - 1) {
+        initializeCertificateRequest();
         triggerConfetti();
         playCheer();
     }
@@ -103,6 +106,17 @@ function initializeQuiz() {
             }
         });
     });
+}
+
+function initializeCertificateRequest() {
+    const nameInput = document.getElementById('full-name-input');
+    const certLink = document.getElementById('certificate-link');
+    if (nameInput && certLink) {
+        nameInput.addEventListener('input', () => {
+            const fullName = encodeURIComponent(nameInput.value.trim());
+            certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20TDB&name=${fullName}`;
+        });
+    }
 }
 
 function triggerConfetti() {
