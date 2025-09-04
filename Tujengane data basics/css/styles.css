@@ -623,6 +623,9 @@ nav .container {
         flex-direction: column;
         justify-content: stretch;
         align-items: stretch;
+        /* Ensure main content fills available space minus header/footer */
+        min-height: calc(100vh - 110px);
+        height: calc(100vh - 110px);
     }
     .max-w-5xl, .max-w-4xl {
         padding: 0.25rem;
@@ -633,7 +636,7 @@ nav .container {
         flex-direction: column;
         justify-content: stretch;
         align-items: stretch;
-        height: calc(100vh - 110px);
+        height: 100%;
     }
     .slide-container-wrapper {
         flex-direction: column;
@@ -674,6 +677,10 @@ nav .container {
         flex: 6 0 0;
         align-items: center;
         justify-content: center;
+        /* Ensure slide fills available space minus navigation and slide number */
+        height: 60%;
+        min-height: 40vh;
+        max-height: 60vh;
     }
     .slide-content {
         padding: 0.1rem;
@@ -709,8 +716,17 @@ nav .container {
         margin: 0 !important;
         box-sizing: border-box !important;
     }
+    .footer {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+        height: 50px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+    }
 }
-
 @media (max-width: 480px) {
     .sidebar, .main-content, .max-w-5xl, .max-w-4xl, .slide-container-wrapper, .slide, .slide-content {
         padding: 0.05rem;
@@ -723,8 +739,16 @@ nav .container {
         font-size: 0.85rem;
         padding: 0.1rem 0.2rem;
     }
+    .slide {
+        height: 60%;
+        min-height: 35vh;
+        max-height: 60vh;
+    }
     .navigation {
         gap: 0.3rem !important;
+        height: 20%;
+        flex: 2 0 0;
+        align-items: center;
     }
     .nav-btn {
         width: 48vw !important;
@@ -735,5 +759,15 @@ nav .container {
         border-radius: 0.5rem !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+    }
+    .footer {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+        height: 50px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
     }
 }
