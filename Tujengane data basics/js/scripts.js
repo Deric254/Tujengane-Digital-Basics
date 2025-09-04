@@ -5,7 +5,7 @@ const slides = [
     'slides/slide9.html', 'slides/slide10.html', 'slides/slide11.html', 'slides/slide12.html',
     'slides/slide13.html', 'slides/slide14.html', 'slides/slide15.html', 'slides/slide16.html',
     'slides/slide17.html', 'slides/slide18.html', 'slides/slide19.html', 'slides/slide20.html',
-    'slides/slide21.html'
+    'slides/slide21.html', 'slides/slide22.html' // Added slide22
 ];
 let currentSlide = 0;
 
@@ -67,6 +67,7 @@ function goToSlide(index) {
         loadSlide(currentSlide);
     }
 }
+window.goToSlide = goToSlide;
 
 function initializeSlideContent() {
     const interactiveElements = document.querySelectorAll('.highlight-list li, .rule-card, .cta-button, .finalize-btn');
@@ -166,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const slideIndex = parseInt(this.getAttribute('data-slide'));
             if (!isNaN(slideIndex)) {
-                goToSlide(slideIndex);
+                window.goToSlide(slideIndex);
             }
         });
     });

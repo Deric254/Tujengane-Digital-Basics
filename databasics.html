@@ -305,21 +305,5 @@
     </div>
     <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
     <script src="./js/scripts.js"></script>
-    <script>
-        // Ensure sidebar links are always clickable for navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.sidebar-link').forEach(function(link) {
-                link.onclick = function(e) {
-                    e.preventDefault();
-                    var slideIndex = parseInt(this.getAttribute('data-slide'));
-                    if (!isNaN(slideIndex)) {
-                        if (typeof goToSlide === 'function') {
-                            goToSlide(slideIndex);
-                        }
-                    }
-                };
-            });
-        });
-    </script>
 </body>
 </html>

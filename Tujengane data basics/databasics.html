@@ -141,7 +141,10 @@
                     <a href="#" onclick="goToSlide(19)" data-slide="19" class="sidebar-link"><span class="slide-number">20.</span> Certificate & Data Partner Path</a>
                 </div>
                 <div class="sidebar-item" data-slide="20">
-                    <a href="#" onclick="goToSlide(20)" data-slide="20" class="sidebar-link"><span class="slide-number">21.</span> Ready to Level Up?</a>
+                    <a href="#" onclick="goToSlide(20)" data-slide="20" class="sidebar-link"><span class="slide-number">21.</span> Computer Literacy Module</a>
+                </div>
+                <div class="sidebar-item" data-slide="21">
+                    <a href="#" onclick="goToSlide(21)" data-slide="21" class="sidebar-link"><span class="slide-number">22.</span> Ready to Level Up?</a>
                 </div>
             </div>
             <div class="sidebar-footer">
@@ -157,7 +160,7 @@
         </aside>
         <main class="main-content">
             <div class="max-w-5xl w-full mx-auto relative z-10">
-                <div class="slide-number-display">Slide <span id="current-slide">1</span> of 21</div>
+                <div class="slide-number-display">Slide <span id="current-slide">1</span> of 22</div>
                 <div class="slide-container-wrapper">
                     <div id="slide-container" class="slide active"></div>
                     <div class="navigation">
@@ -191,7 +194,7 @@
     <div id="chatButton" onclick="toggleChat()" class="fixed bottom-60 right-6 bg-[#49A078] text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-[#3e8865] transition-all z-50">
         <i class="fas fa-comments"></i>
     </div>
-    <div id="chatWidget" class="hidden fixed bottom-80 right-6 bg-white border border-gray-200 rounded-lg shadow-xl w-80 max-w-sm z-50">
+    <div id="chatWidget" class="hidden fixed bottom-[120px] right-6 bg-white border border-gray-200 rounded-lg shadow-xl w-80 max-w-sm z-50">
         <div class="bg-[#49A078] text-white p-3 rounded-t-lg">
             <h4 class="font-semibold text-sm">💬 Quick Chat with EXES BI</h4>
         </div>
@@ -215,6 +218,7 @@
             </p>
         </div>
     </div>
+    <div id="chatOverlay" class="hidden fixed inset-0 z-40" style="background: transparent;"></div>
     <div id="projectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
             <button onclick="closeModal('projectModal')" class="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl">&times;</button>
@@ -238,5 +242,24 @@
     </div>
     <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
     <script src="./js/scripts.js"></script>
+    <script>
+        // ...existing code...
+        function toggleChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            const chatOverlay = document.getElementById('chatOverlay');
+            if (chatWidget.classList.contains('hidden')) {
+                chatWidget.classList.remove('hidden');
+                chatOverlay.classList.remove('hidden');
+            } else {
+                chatWidget.classList.add('hidden');
+                chatOverlay.classList.add('hidden');
+            }
+        }
+        document.getElementById('chatOverlay').addEventListener('click', function() {
+            document.getElementById('chatWidget').classList.add('hidden');
+            this.classList.add('hidden');
+        });
+        // ...existing code...
+    </script>
 </body>
 </html>

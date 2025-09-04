@@ -552,6 +552,18 @@ nav .container {
         min-height: calc(100vh - 110px);
         height: auto;
     }
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        position: static;
+        height: auto;
+        max-height: none;
+        margin: 0 0 1rem 0;
+        border-radius: 0.5rem;
+        box-shadow: none;
+        padding: 0.5rem;
+    }
     .main-content {
         padding: 0.5rem;
         min-height: calc(100vh - 110px);
@@ -566,8 +578,8 @@ nav .container {
         flex: 1 1 0;
         width: 100%;
         max-width: 100%;
-        padding: 1.5rem;
-        min-height: 250px;
+        padding: 1rem;
+        min-height: 200px;
         max-height: calc(100vh - 180px);
     }
     .navigation {
@@ -575,77 +587,80 @@ nav .container {
         flex-direction: row;
         margin-top: 1rem;
         gap: 0.5rem;
+        width: 100%;
+        padding-right: 0;
     }
     .nav-btn {
         width: 100px;
         padding: 0.5rem;
+        font-size: 1rem;
     }
-    .tooltip {
-        left: 50%;
-        top: 100%;
-        transform: translateX(-50%) translateY(15px);
+    .slide-content {
+        padding: 0.5rem;
+        max-width: 100vw;
     }
-    .tooltip::after {
-        right: unset;
-        top: unset;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-right-color: transparent;
-        border-bottom-color: #256d4f;
+    .slide-number-display {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem;
     }
-    .highlight-list li.clicked .tooltip,
-    .rule-card.clicked .tooltip,
-    .cta-button.clicked .tooltip,
-    .finalize-btn.clicked .tooltip {
-        transform: translateX(-50%) translateY(10px);
+    .sidebar-content {
+        gap: 0.25rem;
+    }
+    .sidebar-item {
+        padding: 0.5rem 0.75rem;
+    }
+    .sidebar-footer {
+        font-size: 0.85rem;
+        padding-top: 0.5rem;
+    }
+    .footer {
+        padding: 0.75rem;
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-    .nav-links {
-        display: none;
-    }
-    .nav-links.mobile-active {
-        display: flex;
-        flex-direction: column;
-        background: #49A078;
-        position: absolute;
-        top: 3.5rem;
-        right: 1rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        z-index: 100;
-    }
-    .nav-links.mobile-active a {
-        padding: 0.75rem 1.5rem;
-        color: white;
-        font-size: 0.9rem;
-    }
     .sidebar {
-        position: fixed;
-        top: 60px;
-        left: 0;
+        position: static;
         width: 100%;
-        height: 200px;
-        z-index: 40;
-        max-height: 200px;
-        margin: 0;
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+        max-height: none;
+        margin: 0 0 1rem 0;
+        border-radius: 0.5rem;
+        box-shadow: none;
+        padding: 0.25rem;
+    }
+    .main-content {
+        padding: 0.25rem;
     }
     .slide {
-        padding: 1rem;
-        min-height: 200px;
+        padding: 0.5rem;
+        min-height: 120px;
         max-height: calc(100vh - 180px);
     }
-    .slogan-container {
-        display: none;
+    .slide-content {
+        padding: 0.25rem;
+        max-width: 100vw;
+    }
+    .slide-number-display {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+    }
+    .nav-btn {
+        width: 80px;
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+    .footer {
+        padding: 0.5rem;
+        font-size: 0.9rem;
     }
     .footer-socials {
         gap: 0.5rem;
         margin: 0.25rem 0;
+        flex-wrap: wrap;
     }
     .footer-logo {
         flex-direction: column;
@@ -657,24 +672,33 @@ nav .container {
 }
 
 @media (max-width: 480px) {
+    .sidebar {
+        padding: 0.1rem;
+    }
+    .main-content {
+        padding: 0.1rem;
+    }
     .slide {
-        padding: 0.75rem;
-        min-height: 120px;
+        padding: 0.25rem;
+        min-height: 80px;
         max-height: calc(100vh - 180px);
     }
+    .slide-content {
+        padding: 0.1rem;
+        max-width: 100vw;
+        font-size: 0.95rem;
+    }
     .slide-number-display {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        padding: 0.2rem 0.4rem;
     }
     .nav-btn {
-        width: 80px;
-        padding: 0.4rem;
-        font-size: 0.9rem;
+        width: 60px;
+        padding: 0.2rem;
+        font-size: 0.8rem;
     }
     .footer {
-        padding: 0.75rem;
-    }
-    .footer-socials {
-        flex-wrap: wrap;
+        padding: 0.3rem;
+        font-size: 0.85rem;
     }
 }
