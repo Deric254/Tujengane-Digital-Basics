@@ -620,85 +620,150 @@ nav .container {
 }
 
 @media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+    .layout {
+        flex-direction: column;
+        padding: 0.25rem;
+        gap: 0.5rem;
+        min-height: 0;
+    }
     .sidebar {
-        position: static;
-        width: 100%;
-        max-width: 100%;
+        width: 100vw;
+        max-width: 100vw;
         min-width: 0;
+        position: static;
         height: auto;
         max-height: none;
-        margin: 0 0 1rem 0;
+        margin: 0 0 0.5rem 0;
         border-radius: 0.5rem;
         box-shadow: none;
         padding: 0.25rem;
+        font-size: 0.95rem;
+    }
+    .sidebar-content {
+        gap: 0.15rem;
+    }
+    .sidebar-item {
+        padding: 0.5rem 0.5rem;
     }
     .main-content {
         padding: 0.25rem;
+        min-height: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .max-w-5xl, .max-w-4xl {
+        padding: 0.25rem;
+        min-height: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .slide-container-wrapper {
+        flex-direction: column;
+        align-items: center;
+        min-height: 0;
+        width: 100vw;
+        max-width: 100vw;
     }
     .slide {
-        padding: 0.5rem;
+        padding: 0.25rem;
         min-height: 120px;
-        max-height: calc(100vh - 180px);
+        max-height: none;
+        width: 100vw;
+        max-width: 100vw;
+        font-size: 0.98rem;
     }
     .slide-content {
-        padding: 0.25rem;
+        padding: 0.1rem;
         max-width: 100vw;
+        font-size: 0.98rem;
     }
     .slide-number-display {
         font-size: 0.9rem;
-        padding: 0.3rem 0.6rem;
+        padding: 0.2rem 0.4rem;
+        margin-bottom: 0.2rem;
+    }
+    .navigation {
+        position: static;
+        flex-direction: row;
+        margin-top: 0.5rem;
+        gap: 0.25rem;
+        width: 100vw;
+        padding-right: 0;
     }
     .nav-btn {
-        width: 80px;
-        padding: 0.4rem;
-        font-size: 0.9rem;
+        width: 70px;
+        padding: 0.3rem;
+        font-size: 0.85rem;
     }
     .footer {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
-    .footer-socials {
-        gap: 0.5rem;
-        margin: 0.25rem 0;
-        flex-wrap: wrap;
+        padding: 0.3rem;
+        font-size: 0.85rem;
+        height: auto;
     }
     .footer-logo {
         flex-direction: column;
         align-items: center;
     }
+    .footer-socials {
+        gap: 0.3rem;
+        margin: 0.15rem 0;
+        flex-wrap: wrap;
+    }
     .footer-copyright {
         text-align: center;
+    }
+    #chatButton {
+        bottom: 60px;
+        right: 10px;
+        padding: 0.7rem;
+        font-size: 1.2rem;
+    }
+    #chatWidget {
+        bottom: 120px;
+        right: 10px;
+        width: 95vw;
+        max-width: 95vw;
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 480px) {
-    .sidebar {
-        padding: 0.1rem;
-    }
-    .main-content {
-        padding: 0.1rem;
-    }
-    .slide {
-        padding: 0.25rem;
-        min-height: 80px;
-        max-height: calc(100vh - 180px);
-    }
-    .slide-content {
-        padding: 0.1rem;
+    .sidebar, .main-content, .max-w-5xl, .max-w-4xl, .slide-container-wrapper, .slide, .slide-content {
+        padding: 0.05rem;
+        min-height: 0;
+        width: 100vw;
         max-width: 100vw;
         font-size: 0.95rem;
     }
     .slide-number-display {
         font-size: 0.85rem;
-        padding: 0.2rem 0.4rem;
+        padding: 0.1rem 0.2rem;
     }
     .nav-btn {
-        width: 60px;
-        padding: 0.2rem;
-        font-size: 0.8rem;
+        width: 50px;
+        padding: 0.1rem;
+        font-size: 0.75rem;
     }
     .footer {
-        padding: 0.3rem;
-        font-size: 0.85rem;
+        padding: 0.15rem;
+        font-size: 0.8rem;
+        height: auto;
+    }
+    #chatButton {
+        bottom: 50px;
+        right: 6px;
+        padding: 0.6rem;
+        font-size: 1rem;
+    }
+    #chatWidget {
+        bottom: 100px;
+        right: 6px;
+        width: 98vw;
+        max-width: 98vw;
+        font-size: 0.9rem;
     }
 }
