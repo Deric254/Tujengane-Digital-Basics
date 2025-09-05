@@ -256,7 +256,7 @@ body {
 .nav-btn:hover {
     background: #facc15;
     color: #256d4f;
-    transform: scale(1.05);
+    /* No transform or movement on hover for stability */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
