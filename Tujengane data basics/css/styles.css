@@ -251,6 +251,12 @@ body {
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     position: relative;
+    outline: none;
+}
+
+.nav-btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .nav-btn:hover {

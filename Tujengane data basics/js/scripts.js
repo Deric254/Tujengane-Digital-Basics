@@ -171,4 +171,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Prevent page jump on prev/next button click (especially prev)
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (prevBtn) {
+        prevBtn.addEventListener('mousedown', e => e.preventDefault());
+        prevBtn.addEventListener('click', e => {
+            e.preventDefault();
+            prevSlide();
+            // Remove focus after click to prevent outline or jump
+            prevBtn.blur();
+        });
+        prevBtn.addEventListener('focus', e => {
+            // Remove focus immediately if somehow focused
+            prevBtn.blur();
+        });
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('mousedown', e => e.preventDefault());
+        nextBtn.addEventListener('click', e => {
+            e.preventDefault();
+            nextSlide();
+            nextBtn.blur();
+        });
+        nextBtn.addEventListener('focus', e => {
+            nextBtn.blur();
+        });
+    }
+
+    // Tooltip auto-hide on small screens for nav-btns
+    function isSmallScreen() {
+        return window.innerWidth <= 768;
+    }
+    let tooltipTimeout;
+    document.querySelectorAll('.nav-btn[data-tip]').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (isSmallScreen()) {
+                clearTimeout(tooltipTimeout);
+                const self = this;
+                tooltipTimeout = setTimeout(() => {
+                    // Remove tooltip by blurring or triggering mouseleave
+                    self.dispatchEvent(new Event('mouseleave'));
+                }, 2000); // Show for 2 seconds
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            clearTimeout(tooltipTimeout);
+        });
+    });
 });
