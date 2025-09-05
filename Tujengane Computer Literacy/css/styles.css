@@ -1,0 +1,95 @@
+/* Styles for Tujengane Computer Literacy, matching the taste of Data Basics */
+.sidebar {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(73,160,120,0.15);
+  padding: 24px 0 0 0;
+  width: 320px;
+  min-width: 220px;
+  max-width: 340px;
+  margin: 32px 0 32px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.sidebar-content {
+  flex: 1 1 auto;
+  overflow: visible;
+}
+.sidebar-item {
+  margin-bottom: 0.5rem;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.08em;
+  color: #256d4f;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+.sidebar-link.active, .sidebar-link:hover {
+  background: #facc15;
+  color: #256d4f;
+  font-weight: 700;
+}
+.module-toggle {
+  cursor: pointer;
+  font-weight: 700;
+  color: #49A078;
+  background: #f0fdfa;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin-bottom: 0.25em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1em;
+}
+.module-toggle .fa-chevron-down {
+  transition: transform 0.2s;
+}
+.module-toggle.collapsed .fa-chevron-down {
+  transform: rotate(-90deg);
+}
+.module-slides {
+  margin-left: 1.5em;
+  margin-bottom: 0.5em;
+  display: none;
+}
+.module-slides.open {
+  display: block;
+}
+.slide-number {
+  color: #facc15;
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+.sidebar-footer {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1.5em;
+  padding: 1em 1.5em 0.5em 1.5em;
+  font-size: 0.95em;
+  color: #256d4f;
+  background: #f0fdfa;
+  border-radius: 0 0 18px 18px;
+}
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0.5em 0 0 0;
+  }
+  .sidebar-footer {
+    border-radius: 0 0 12px 12px;
+    padding: 0.5em 1em 0.5em 1em;
+  }
+}

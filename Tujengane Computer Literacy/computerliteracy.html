@@ -2,59 +2,282 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Computer Literacy – Tujengane Digital Skills</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Computer Literacy curriculum: Essential computer skills for everyone.">
-    <link rel="icon" type="image/png" href="https://exesbi.netlify.app/icon/favicon-32x32.png">
+    <title>Tujengane Computer Literacy – EXES BI</title>
+    <meta name="description" content="Tujengane Computer Literacy by EXES BI – 12-week digital skills curriculum. Free, practical, and beginner-friendly.">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicons/android-chrome-512x512.png">
+    <link rel="shortcut icon" href="../assets/favicons/favicon.ico">
+    <link rel="manifest" href="../assets/favicons/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to-br, #f0fdfa, #d9f99d); min-height: 100vh; }
-        .curriculum-section { background: white; border-radius: 18px; box-shadow: 0 10px 30px rgba(73,160,120,0.15); padding: 32px 24px; margin: 32px auto; max-width: 700px; }
-        h1 { font-size: 2.5em; background: linear-gradient(135deg, #49A078, #3e8865); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; text-align: center; margin-bottom: 18px; }
-        .subtitle { font-size: 1.2em; color: #49A078; font-weight: 600; text-align: center; margin-bottom: 18px; }
-        ul { margin: 18px 0; }
-        li { font-size: 1.1em; margin-bottom: 10px; color: #256d4f; }
-        .cta-btn { background: linear-gradient(135deg, #49A078, #3e8865); color: white; font-weight: 700; padding: 12px 28px; border-radius: 50px; text-decoration: none; transition: background 0.3s, color 0.3s; box-shadow: 0 4px 16px rgba(73,160,120,0.18); display: block; margin: 24px auto 0; text-align: center; }
-        .cta-btn:hover { background: #facc15; color: #256d4f; }
-    </style>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/scripts.js" defer></script>
 </head>
 <body>
-    <nav class="bg-[#49A078] text-white px-4 py-3 shadow-md">
-        <div class="container mx-auto flex items-center gap-3 justify-between">
+    <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <img src="../logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
-                <span class="font-bold text-xl leading-none">Computer Literacy</span>
+                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-bold text-xl tracking-tight">Tujengane Digital Skills</span>
             </div>
-            <ul class="flex gap-6 text-sm font-medium items-center shrink-0">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="https://exesbi.netlify.app" class="nav-link" target="_blank">EXES BI</a></li>
-            </ul>
+            <div class="flex items-center gap-4">
+                <ul class="nav-links flex gap-4 text-sm font-medium items-center shrink-0" id="nav-links">
+                    <li><a href="../index.html" class="nav-link hover:text-[#facc15] transition-colors">Home</a></li>
+                    <li><a href="https://exesbi.netlify.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank">EXES BI</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <main>
-        <div class="curriculum-section">
-            <h1><i class="fas fa-laptop"></i> Computer Literacy Curriculum</h1>
-            <div class="subtitle">Essential Computer Skills for All</div>
-            <ul>
-                <li>Typing & navigation</li>
-                <li>Internet basics & safety</li>
-                <li>Email & communication tools</li>
-                <li>Basic applications: Word, Excel, PowerPoint</li>
-                <li>File management & organization</li>
-                <li>Practical assignments</li>
-            </ul>
-            <a href="https://wa.me/254791360805?text=I%20want%20to%20join%20Computer%20Literacy" target="_blank" class="cta-btn">Enroll Now</a>
-        </div>
-    </main>
-    <footer class="bg-[#DFF3EA] py-4 px-4 text-sm text-gray-600 mt-auto border-t border-green-300">
+    <div class="layout">
+        <aside class="sidebar" id="slide-nav-panel" data-scrollable="true">
+            <div class="sidebar-content">
+                <!-- Modules and slides foldable navigation: ALL 12 modules, all slides, fully numbered and styled -->
+                <!-- Module 1 -->
+                <div class="module-toggle" tabindex="0"><span>Module 1: Computer Basics and File Management</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides open">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(0)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Digital Literacy!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(1)" class="sidebar-link"><span class="slide-number">2.</span> What Is a Computer?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(2)" class="sidebar-link"><span class="slide-number">3.</span> Parts of a Computer</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(3)" class="sidebar-link"><span class="slide-number">4.</span> Turning On/Off a Computer</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(4)" class="sidebar-link"><span class="slide-number">5.</span> Using the Mouse</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(5)" class="sidebar-link"><span class="slide-number">6.</span> Exploring the Desktop</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(6)" class="sidebar-link"><span class="slide-number">7.</span> Opening File Explorer</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(7)" class="sidebar-link"><span class="slide-number">8.</span> Creating a Folder</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(8)" class="sidebar-link"><span class="slide-number">9.</span> Saving a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(9)" class="sidebar-link"><span class="slide-number">10.</span> Using the Calculator App</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(10)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(11)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(12)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 2 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 2: Typing and Document Creation</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(13)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 2!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(14)" class="sidebar-link"><span class="slide-number">2.</span> What Is Microsoft Word?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(15)" class="sidebar-link"><span class="slide-number">3.</span> Opening Microsoft Word</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(16)" class="sidebar-link"><span class="slide-number">4.</span> Understanding the Keyboard</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(17)" class="sidebar-link"><span class="slide-number">5.</span> Typing Your First Words</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(18)" class="sidebar-link"><span class="slide-number">6.</span> Saving Your Document</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(19)" class="sidebar-link"><span class="slide-number">7.</span> Formatting Text</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(20)" class="sidebar-link"><span class="slide-number">8.</span> Creating a Letter</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(21)" class="sidebar-link"><span class="slide-number">9.</span> Using Bullets for Lists</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(22)" class="sidebar-link"><span class="slide-number">10.</span> Saving and Closing</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(23)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(24)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(25)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 3 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 3: Introduction to Spreadsheets</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(26)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 3!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(27)" class="sidebar-link"><span class="slide-number">2.</span> What Is Microsoft Excel?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(28)" class="sidebar-link"><span class="slide-number">3.</span> Opening Microsoft Excel</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(29)" class="sidebar-link"><span class="slide-number">4.</span> Understanding Spreadsheets</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(30)" class="sidebar-link"><span class="slide-number">5.</span> Entering Data</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(31)" class="sidebar-link"><span class="slide-number">6.</span> Saving Your Spreadsheet</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(32)" class="sidebar-link"><span class="slide-number">7.</span> Basic Formatting</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(33)" class="sidebar-link"><span class="slide-number">8.</span> Simple Calculations (SUM)</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(34)" class="sidebar-link"><span class="slide-number">9.</span> Creating an Expense Tracker</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(35)" class="sidebar-link"><span class="slide-number">10.</span> Checking Your Work</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(36)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(37)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(38)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 4 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 4: Email Setup and Communication</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(39)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 4!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(40)" class="sidebar-link"><span class="slide-number">2.</span> What Is Email?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(41)" class="sidebar-link"><span class="slide-number">3.</span> Opening Gmail</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(42)" class="sidebar-link"><span class="slide-number">4.</span> Creating a Gmail Account</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(43)" class="sidebar-link"><span class="slide-number">5.</span> Understanding the Gmail Inbox</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(44)" class="sidebar-link"><span class="slide-number">6.</span> Writing an Email</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(45)" class="sidebar-link"><span class="slide-number">7.</span> Attaching a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(46)" class="sidebar-link"><span class="slide-number">8.</span> Replying to an Email</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(47)" class="sidebar-link"><span class="slide-number">9.</span> Organizing Your Inbox</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(48)" class="sidebar-link"><span class="slide-number">10.</span> Checking Your Work</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(49)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(50)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(51)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 5 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 5: Internet and Online Safety</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(52)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 5!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(53)" class="sidebar-link"><span class="slide-number">2.</span> What Is the Internet?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(54)" class="sidebar-link"><span class="slide-number">3.</span> Opening Google Chrome</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(55)" class="sidebar-link"><span class="slide-number">4.</span> Understanding a Web Browser</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(56)" class="sidebar-link"><span class="slide-number">5.</span> Searching the Internet</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(57)" class="sidebar-link"><span class="slide-number">6.</span> Saving Favorite Websites</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(58)" class="sidebar-link"><span class="slide-number">7.</span> Staying Safe Online</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(59)" class="sidebar-link"><span class="slide-number">8.</span> Recognizing Phishing Emails</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(60)" class="sidebar-link"><span class="slide-number">9.</span> Safe Browsing Habits</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(61)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(62)" class="sidebar-link"><span class="slide-number">11.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(63)" class="sidebar-link"><span class="slide-number">12.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 6 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 6: Advanced Spreadsheets</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(64)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 6!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(65)" class="sidebar-link"><span class="slide-number">2.</span> Why Advanced Spreadsheets?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(66)" class="sidebar-link"><span class="slide-number">3.</span> Reviewing Excel Basics</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(67)" class="sidebar-link"><span class="slide-number">4.</span> Using the IF Formula</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(68)" class="sidebar-link"><span class="slide-number">5.</span> Using VLOOKUP</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(69)" class="sidebar-link"><span class="slide-number">6.</span> Creating a Chart</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(70)" class="sidebar-link"><span class="slide-number">7.</span> Sorting Data</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(71)" class="sidebar-link"><span class="slide-number">8.</span> Filtering Data</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(72)" class="sidebar-link"><span class="slide-number">9.</span> Creating a Payment Schedule</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(73)" class="sidebar-link"><span class="slide-number">10.</span> Saving and Reviewing</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(74)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(75)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(76)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 7 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 7: Creating Presentations</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(77)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 7!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(78)" class="sidebar-link"><span class="slide-number">2.</span> What Is Microsoft PowerPoint?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(79)" class="sidebar-link"><span class="slide-number">3.</span> Opening Microsoft PowerPoint</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(80)" class="sidebar-link"><span class="slide-number">4.</span> Understanding PowerPoint</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(81)" class="sidebar-link"><span class="slide-number">5.</span> Creating a New Slide</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(82)" class="sidebar-link"><span class="slide-number">6.</span> Adding Text to a Slide</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(83)" class="sidebar-link"><span class="slide-number">7.</span> Inserting an Image</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(84)" class="sidebar-link"><span class="slide-number">8.</span> Using Templates</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(85)" class="sidebar-link"><span class="slide-number">9.</span> Creating a 3-Slide Presentation</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(86)" class="sidebar-link"><span class="slide-number">10.</span> Saving and Presenting</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(87)" class="sidebar-link"><span class="slide-number">11.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(88)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(89)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 8 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 8: Virtual Meetings</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(90)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 8!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(91)" class="sidebar-link"><span class="slide-number">2.</span> What Is Zoom?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(92)" class="sidebar-link"><span class="slide-number">3.</span> Opening Zoom</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(93)" class="sidebar-link"><span class="slide-number">4.</span> Joining a Zoom Meeting</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(94)" class="sidebar-link"><span class="slide-number">5.</span> Using Zoom Controls</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(95)" class="sidebar-link"><span class="slide-number">6.</span> Sharing Your Screen</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(96)" class="sidebar-link"><span class="slide-number">7.</span> Scheduling a Meeting</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(97)" class="sidebar-link"><span class="slide-number">8.</span> Testing Your Audio and Video</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(98)" class="sidebar-link"><span class="slide-number">9.</span> Etiquette for Zoom Meetings</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(99)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(100)" class="sidebar-link"><span class="slide-number">11.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(101)" class="sidebar-link"><span class="slide-number">12.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 9 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 9: Cloud Storage and Collaboration</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(102)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 9!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(103)" class="sidebar-link"><span class="slide-number">2.</span> What Is Google Drive?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(104)" class="sidebar-link"><span class="slide-number">3.</span> Accessing Google Drive</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(105)" class="sidebar-link"><span class="slide-number">4.</span> Understanding Google Drive</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(106)" class="sidebar-link"><span class="slide-number">5.</span> Uploading a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(107)" class="sidebar-link"><span class="slide-number">6.</span> Creating a Folder</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(108)" class="sidebar-link"><span class="slide-number">7.</span> Sharing a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(109)" class="sidebar-link"><span class="slide-number">8.</span> Collaborating on a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(110)" class="sidebar-link"><span class="slide-number">9.</span> Downloading a File</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(111)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(112)" class="sidebar-link"><span class="slide-number">11.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(113)" class="sidebar-link"><span class="slide-number">12.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 10 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 10: Working with PDFs</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(114)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 10!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(115)" class="sidebar-link"><span class="slide-number">2.</span> What Is a PDF?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(116)" class="sidebar-link"><span class="slide-number">3.</span> Opening Adobe Acrobat Reader</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(117)" class="sidebar-link"><span class="slide-number">4.</span> Opening a PDF</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(118)" class="sidebar-link"><span class="slide-number">5.</span> Navigating a PDF</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(119)" class="sidebar-link"><span class="slide-number">6.</span> Highlighting Text</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(120)" class="sidebar-link"><span class="slide-number">7.</span> Adding Comments</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(121)" class="sidebar-link"><span class="slide-number">8.</span> Saving an Edited PDF</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(122)" class="sidebar-link"><span class="slide-number">9.</span> Emailing a PDF</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(123)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(124)" class="sidebar-link"><span class="slide-number">11.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(125)" class="sidebar-link"><span class="slide-number">12.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 11 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 11: Document and Spreadsheet Integration</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(126)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 11!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(127)" class="sidebar-link"><span class="slide-number">2.</span> Why Combine Tools?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(128)" class="sidebar-link"><span class="slide-number">3.</span> Reviewing Word and Excel</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(129)" class="sidebar-link"><span class="slide-number">4.</span> Creating a Data Table in Excel</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(130)" class="sidebar-link"><span class="slide-number">5.</span> Creating a Chart in Excel</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(131)" class="sidebar-link"><span class="slide-number">6.</span> Copying a Chart to Word</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(132)" class="sidebar-link"><span class="slide-number">7.</span> Writing a Report in Word</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(133)" class="sidebar-link"><span class="slide-number">8.</span> Saving Your Report</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(134)" class="sidebar-link"><span class="slide-number">9.</span> Uploading to Google Drive</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(135)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(136)" class="sidebar-link"><span class="slide-number">11.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(137)" class="sidebar-link"><span class="slide-number">12.</span> Q&A and Homework</a></div>
+                </div>
+                <!-- Module 12 -->
+                <div class="module-toggle collapsed" tabindex="0"><span>Module 12: Capstone Project and Review</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="module-slides">
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(138)" class="sidebar-link"><span class="slide-number">1.</span> Welcome to Week 12!</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(139)" class="sidebar-link"><span class="slide-number">2.</span> What Is the Capstone Project?</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(140)" class="sidebar-link"><span class="slide-number">3.</span> Step 1 – Create an Excel Table</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(141)" class="sidebar-link"><span class="slide-number">4.</span> Step 2 – Write a Report in Word</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(142)" class="sidebar-link"><span class="slide-number">5.</span> Step 3 – Save as PDF</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(143)" class="sidebar-link"><span class="slide-number">6.</span> Step 4 – Create a Presentation</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(144)" class="sidebar-link"><span class="slide-number">7.</span> Step 5 – Upload to Google Drive</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(145)" class="sidebar-link"><span class="slide-number">8.</span> Step 6 – Share via Email</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(146)" class="sidebar-link"><span class="slide-number">9.</span> Step 7 – Present in Zoom</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(147)" class="sidebar-link"><span class="slide-number">10.</span> Practical Activity</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(148)" class="sidebar-link"><span class="slide-number">11.</span> Review of Skills</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(149)" class="sidebar-link"><span class="slide-number">12.</span> Why This Matters</a></div>
+                    <div class="sidebar-item"><a href="#" onclick="goToSlide(150)" class="sidebar-link"><span class="slide-number">13.</span> Q&A and Next Steps</a></div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2">
+                    <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-8 w-8 rounded-full object-cover border-2 border-white">
+                    <span class="font-bold">Tujengane Digital Skills</span>
+                </div>
+                <div class="mt-2">
+                    &copy; 2025 TDS powered by EXES BI<br>
+                    Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#facc15] hover:underline">Deric Marangu</a>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="max-w-5xl w-full mx-auto relative z-10">
+                <div class="slide-number-display">Slide <span id="current-slide">1</span> of 156</div>
+                <div class="slide-container-wrapper">
+                    <div id="slide-container" class="slide active"></div>
+                    <div class="navigation">
+                        <button class="nav-btn" id="prevBtn" onclick="prevSlide()" data-tip="Go to previous slide">← Previous</button>
+                        <button class="nav-btn" id="nextBtn" onclick="nextSlide()" data-tip="Go to next slide">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <img src="../logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
+            <div class="flex items-center gap-3 footer-logo">
+                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
                 <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Digital Skills</span>
             </div>
-            <div class="text-xs text-gray-500 text-center">
-                &copy; 2025 Tujengane Digital Skills – Built by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="footer-link">Deric Marangu</a>
+            <div class="footer-socials">
+                <a href="https://wa.me/254791360805" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:dericmarangu@gmail.com" class="footer-link" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://web.facebook.com/deric.aldertrax" target="_blank" class="footer-link"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/exes.125107/" target="_blank" class="footer-link" title="EXES Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/deric-marangu-134340297/" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/Dericmwiti" target="_blank" class="footer-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/dericmarangu/" target="_blank" class="footer-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="text-xs text-gray-500 footer-copyright">
+                &copy; 2025 TDS powered by EXES BI – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#49A078] hover:underline">Deric Marangu</a>
             </div>
         </div>
     </footer>
