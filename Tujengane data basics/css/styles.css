@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevent full-page scrolling */
 }
 
 .layout {
@@ -18,8 +18,8 @@ body {
     margin-top: 60px;
     margin-bottom: 50px;
     min-height: calc(100vh - 110px);
-    height: auto;
-    overflow: visible;
+    height: calc(100vh - 110px); /* Match viewport height minus header and footer */
+    overflow: hidden;
 }
 
 /* Sidebar */
@@ -31,7 +31,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0.125rem 0;
-    height: calc(100% - 0.25rem);
+    height: 100%; /* Full height of layout */
     max-height: calc(100vh - 110px - 0.25rem);
     overflow-y: auto;
     scrollbar-width: thin;
@@ -157,6 +157,7 @@ body {
     justify-content: center;
     flex: 1;
     position: relative;
+    overflow-y: auto; /* Allow internal scrolling if needed */
 }
 
 .slide {
