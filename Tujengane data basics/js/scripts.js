@@ -8,9 +8,12 @@ const slides = [
     'slides/slide21.html', 'slides/slide22.html' // Added slide22
 ];
 let currentSlide = 0;
+let isNavigating = false;
 
 function loadSlide(index) {
+    if (isNavigating) return;
     if (index < 0 || index >= slides.length) return;
+    isNavigating = true;
     const slideContainer = document.getElementById('slide-container');
     const currentSlideDisplay = document.getElementById('current-slide');
     slideContainer.style.opacity = '0';
@@ -36,7 +39,8 @@ function loadSlide(index) {
                 const activeItem = document.querySelector('.sidebar-item.active');
                 if (activeItem) activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             })
-            .catch(error => console.error('Error loading slide:', error));
+            .catch(error => console.error('Error loading slide:', error))
+            .finally(() => { isNavigating = false; });
     }, 400); // Match CSS transition duration
 }
 
@@ -48,6 +52,7 @@ function updateNavigation() {
 }
 
 function prevSlide() {
+    if (isNavigating) return;
     if (currentSlide > 0) {
         currentSlide--;
         loadSlide(currentSlide);
@@ -55,6 +60,7 @@ function prevSlide() {
 }
 
 function nextSlide() {
+    if (isNavigating) return;
     if (currentSlide < slides.length - 1) {
         currentSlide++;
         loadSlide(currentSlide);
@@ -62,6 +68,7 @@ function nextSlide() {
 }
 
 function goToSlide(index) {
+    if (isNavigating) return;
     if (index >= 0 && index < slides.length) {
         currentSlide = index;
         loadSlide(currentSlide);
