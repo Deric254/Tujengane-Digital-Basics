@@ -48,15 +48,22 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .sidebar-item a {
-            color: #fffbe6;
-            font-weight: 600;
+            color: #b45309;
+            background: #fffbe6;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: color 0.3s, transform 0.2s;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            transition: background 0.3s, color 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.08);
         }
-        .sidebar-item a:hover {
-            color: #facc15;
+        .sidebar-item a:hover, .sidebar-item a:focus {
+            color: #256d4f;
+            background: #facc15;
+            text-decoration: none;
+            outline: none;
             transform: translateX(5px);
         }
         .sidebar-item p {
@@ -149,17 +156,28 @@
         }
         .curriculum-link {
             display: inline-block;
-            background: #49A078;
-            color: white;
+            background: #fffbe6;
+            color: #b45309;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s ease, transform 0.2s ease;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.08);
+            transition: background 0.3s, color 0.2s, transform 0.2s;
         }
-        .curriculum-link:hover {
-            background: #3e8865;
+        .curriculum-link:hover, .curriculum-link:focus {
+            background: #facc15;
+            color: #256d4f;
+            text-decoration: none;
+            outline: none;
             transform: scale(1.05);
+        }
+        /* Responsive tweaks for yellow links */
+        @media (max-width: 768px) {
+            .sidebar-item a, .curriculum-link {
+                font-size: 0.95rem;
+                padding: 0.5rem 0.5rem;
+            }
         }
         .hamburger {
             display: none;
@@ -333,15 +351,9 @@
                     <a href="https://wa.me/254791360805" target="_blank"><i class="fab fa-whatsapp"></i> Contact Us via WhatsApp</a>
                     <p>Reach out for inquiries or support via WhatsApp.</p>
                 </div>
-            </div>
-            <div class="sidebar-footer">
-                <div class="flex items-center gap-2">
-                    <img src="assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-8 w-8 rounded-full object-cover border-2 border-white">
-                    <span class="font-bold">Tujengane Digital Skills</span>
-                </div>
-                <div class="mt-2">
-                    &copy; 2025 TDS powered by EXES BI<br>
-                    Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#facc15] hover:underline">Deric Marangu</a>
+                <div class="sidebar-item" style="margin-top:0.5rem;">
+                    <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank"><i class="fas fa-user"></i> About the Author</a>
+                    <p>Learn more about Deric Marangu, the Founder  of ExesBI and Tujengane Digital Skills.</p>
                 </div>
             </div>
         </aside>
