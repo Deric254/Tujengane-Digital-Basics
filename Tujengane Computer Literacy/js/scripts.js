@@ -2,7 +2,7 @@ const modules = [
     {
         title: "Module 1: Computer Basics and File Management",
         slides: [
-            { title: "Welcome to Digital Literacy!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 1 (Computer Basics and File Management)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to use computers for daily tasks.</li>
                 <li><strong>Today:</strong> Understand computers and organize files.</li>
                 <li><strong>Why It Matters:</strong> Save time writing, budgeting, and more!</li>
@@ -81,7 +81,7 @@ const modules = [
     {
         title: "Module 2: Typing and Document Creation",
         slides: [
-            { title: "Welcome to Week 2!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 2 (Typing and Document Creation)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to type and make documents.</li>
                 <li><strong>Today:</strong> Use Microsoft Word to write and save letters.</li>
                 <li><strong>Why It Matters:</strong> Create letters, lists, or notes easily!</li>
@@ -163,7 +163,7 @@ const modules = [
     {
         title: "Module 3: Introduction to Spreadsheets",
         slides: [
-            { title: "Welcome to Week 3!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 3 (Introduction to Spreadsheets)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to organize numbers and lists.</li>
                 <li><strong>Today:</strong> Use Excel to track expenses and calculate totals.</li>
                 <li><strong>Why It Matters:</strong> Manage budgets or plans easily!</li>
@@ -245,7 +245,7 @@ const modules = [
     {
         title: "Module 4: Email Setup and Communication",
         slides: [
-            { title: "Welcome to Week 4!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 4 (Email Setup and Communication)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to use email for communication.</li>
                 <li><strong>Today:</strong> Set up Gmail and send messages.</li>
                 <li><strong>Why It Matters:</strong> Stay in touch with friends or family!</li>
@@ -327,7 +327,7 @@ const modules = [
     {
         title: "Module 5: Internet and Online Safety",
         slides: [
-            { title: "Welcome to Week 5!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 5 (Internet and Online Safety)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to use the internet and stay safe.</li>
                 <li><strong>Today:</strong> Browse with Google Chrome and avoid scams.</li>
                 <li><strong>Why It Matters:</strong> Find information and protect yourself!</li>
@@ -407,7 +407,7 @@ const modules = [
     {
         title: "Module 6: Advanced Spreadsheets",
         slides: [
-            { title: "Welcome to Week 6!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 6 (Advanced Spreadsheets)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn advanced spreadsheet skills.</li>
                 <li><strong>Today:</strong> Use formulas and charts in Excel.</li>
                 <li><strong>Why It Matters:</strong> Analyze budgets or plans easily!</li>
@@ -489,7 +489,7 @@ const modules = [
     {
         title: "Module 7: Creating Presentations",
         slides: [
-            { title: "Welcome to Week 7!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 7 (Creating Presentations)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to make and share slide presentations.</li>
                 <li><strong>Today:</strong> Use PowerPoint to create slides.</li>
                 <li><strong>Why It Matters:</strong> Share ideas clearly (e.g., plans, hobbies)!</li>
@@ -566,7 +566,7 @@ const modules = [
     {
         title: "Module 8: Virtual Meetings",
         slides: [
-            { title: "Welcome to Week 8!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 8 (Virtual Meetings)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to use Zoom for online meetings.</li>
                 <li><strong>Today:</strong> Join, manage, and share in Zoom meetings.</li>
                 <li><strong>Why It Matters:</strong> Connect with friends or groups remotely!</li>
@@ -643,7 +643,7 @@ const modules = [
     {
         title: "Module 9: Cloud Storage and Collaboration",
         slides: [
-            { title: "Welcome to Week 9!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 9 (Cloud Storage and Collaboration)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to save and share files online.</li>
                 <li><strong>Today:</strong> Use Google Drive to store and collaborate.</li>
                 <li><strong>Why It Matters:</strong> Access files anywhere, share safely!</li>
@@ -716,7 +716,7 @@ const modules = [
     {
         title: "Module 10: Working with PDFs",
         slides: [
-            { title: "Welcome to Week 10!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 10 (Working with PDFs)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Learn to view and annotate PDFs.</li>
                 <li><strong>Today:</strong> Use Adobe Acrobat Reader to manage documents.</li>
                 <li><strong>Why It Matters:</strong> Read and mark up files like forms or recipes!</li>
@@ -788,7 +788,7 @@ const modules = [
     {
         title: "Module 11: Document and Spreadsheet Integration",
         slides: [
-            { title: "Welcome to Week 11!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 11 (Document and Spreadsheet Integration)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Create reports with text and data.</li>
                 <li><strong>Today:</strong> Use Word, Excel, and Google Drive together.</li>
                 <li><strong>Why It Matters:</strong> Make clear reports (e.g., budgets, plans)!</li>
@@ -862,7 +862,7 @@ const modules = [
     {
         title: "Module 12: Capstone Project and Review",
         slides: [
-            { title: "Welcome to Week 12!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+            { title: "Welcome to Module 12 (Capstone Project and Review)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Objective:</strong> Combine all skills for a final project.</li>
                 <li><strong>Today:</strong> Create, present, and share a report.</li>
                 <li><strong>Why It Matters:</strong> Use all tools in real life!</li>
