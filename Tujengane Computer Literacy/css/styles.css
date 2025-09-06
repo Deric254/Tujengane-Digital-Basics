@@ -375,6 +375,40 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.ai-slide-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ai-action-box {
+    background: #fffbe6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
+.ai-action-box:hover {
+    background: #facc15;
+    color: #256d4f;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.good-prompt {
+    color: #059669;
+    font-weight: 600;
+}
+
+.bad-prompt {
+    color: #dc2626;
+    font-weight: 600;
+}
+
 nav {
     background: #49A078;
     color: white;
@@ -751,6 +785,10 @@ nav .container {
         font-weight: 600;
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
+    .ai-action-box {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -783,6 +821,10 @@ nav .container {
     .nav-btn {
         width: 100px;
         padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+    .ai-action-box {
+        padding: 0.5rem;
         font-size: 0.8rem;
     }
 }
