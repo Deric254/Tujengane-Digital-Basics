@@ -245,106 +245,472 @@ const modules = [
     {
         title: "Module 4: Email Setup and Communication",
         slides: [
-            { title: "Welcome to Week 4!", content: "<div class='highlight-list'><li>This week, we'll set up and use email for communication.</li></div>" },
-            { title: "What Is Email?", content: "<div class='highlight-list'><li>Email is a digital way to send and receive messages.</li></div>" },
-            { title: "Opening Gmail", content: "<div class='highlight-list'><li>Access Gmail through a web browser.</li></div>" },
-            { title: "Creating a Gmail Account", content: "<div class='highlight-list'><li>Sign up for a free Gmail account with a username and password.</li></div>" },
-            { title: "Understanding the Gmail Inbox", content: "<div class='highlight-list'><li>Learn to navigate the Gmail interface and read emails.</li></div>" },
-            { title: "Writing an Email", content: "<div class='highlight-list'><li>Compose and send a professional email with a subject and body.</li></div>" },
-            { title: "Attaching a File", content: "<div class='highlight-list'><li>Attach a document or image to an email.</li></div>" },
-            { title: "Replying to an Email", content: "<div class='highlight-list'><li>Reply to an email you receive.</li></div>" },
-            { title: "Organizing Your Inbox", content: "<div class='highlight-list'><li>Use labels and folders to keep your emails organized.</li></div>" },
-            { title: "Checking Your Work", content: "<div class='highlight-list'><li>Ensure your emails are clear and correctly sent.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Send an email with an attachment to a friend.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Email is a key tool for professional and personal communication.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice sending emails.</li></div>" }
+            { title: "Welcome to Week 4!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to use email for communication.</li>
+                <li><strong>Today:</strong> Set up Gmail and send messages.</li>
+                <li><strong>Why It Matters:</strong> Stay in touch with friends or family!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> Who would you like to email? (e.g., a family member)</div></div>` },
+            { title: "What Is Email?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A way to send and receive messages online.</li>
+                <li>Examples: Send a thank-you note, share a document.</li>
+                <li>We’ll use Gmail, a free email service.</li>
+            </ol><div class="ai-action-box">📧 <strong>Explain:</strong> Email is like a digital letter; show Gmail on a projector.</div></div>` },
+            { title: "Opening Gmail", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Google Chrome (browser).</li>
+                <li>Step 2: Type “gmail.com” in the address bar.</li>
+                <li>Step 3: Press Enter to go to Gmail.</li>
+            </ol><div class="ai-action-box">🌐 <strong>Demo:</strong> Show how to open Gmail; help learners as needed.</div></div>` },
+            { title: "Creating a Gmail Account", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click “Create account” on Gmail.</li>
+                <li>Step 2: Enter your name, birthday, and password.</li>
+                <li>Step 3: Choose an email address (e.g., yourname@gmail.com).</li>
+                <li>Step 4: Sign in with your email and password.</li>
+            </ol><div class="ai-action-box">📝 <strong>Help:</strong> Assist learners to create accounts; write down passwords securely.</div></div>` },
+            { title: "Understanding the Gmail Inbox", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Inbox:</strong> Shows received emails.</li>
+                <li><strong>Compose:</strong> Button to write a new email.</li>
+                <li><strong>Sent:</strong> Shows emails you’ve sent.</li>
+            </ol><div class="ai-action-box">📥 <strong>Show:</strong> Point to key areas in a real Gmail inbox.</div></div>` },
+            { title: "Writing an Email", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click “Compose” in Gmail.</li>
+                <li>Step 2: Type recipient’s email in “To” field.</li>
+                <li>Step 3: Add a subject (e.g., “Hello”).</li>
+                <li>Step 4: Type a message (e.g., “Hi, hope you’re well!”).</li>
+                <li>Step 5: Click “Send.”</li>
+            </ol><div class="ai-action-box">✉️ <strong>Practice:</strong> Send an email to the instructor or a classmate.</div></div>` },
+            { title: "Attaching a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click “Compose” and write an email.</li>
+                <li>Step 2: Click the paperclip icon (“Attach files”).</li>
+                <li>Step 3: Choose a file from “My Files 2025” (e.g., “My Letter”).</li>
+                <li>Step 4: Click “Send.”</li>
+            </ol><div class="ai-action-box">📎 <strong>Practice:</strong> Attach a Week 2 document to an email.</div></div>` },
+            { title: "Replying to an Email", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open an email in your inbox.</li>
+                <li>Step 2: Click “Reply” at the bottom.</li>
+                <li>Step 3: Type your response (e.g., “Thanks for your message!”).</li>
+                <li>Step 4: Click “Send.”</li>
+            </ol><div class="ai-action-box">🔁 <strong>Practice:</strong> Reply to a sample email from the instructor.</div></div>` },
+            { title: "Organizing Your Inbox", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Delete:</strong> Remove unwanted emails (click trash icon).</li>
+                <li><strong>Archive:</strong> Hide emails without deleting (click archive icon).</li>
+                <li><strong>Folders/Labels:</strong> Group emails (e.g., “Family” or “Work”).</li>
+            </ol><div class="ai-action-box">🗂️ <strong>Show:</strong> Demonstrate deleting a test email.</div></div>` },
+            { title: "Checking Your Work", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Check:</strong> Did your email send? Check “Sent” folder.</li>
+                <li><strong>Sign Out:</strong> Click your profile picture → “Sign out.”</li>
+                <li><strong>Sign In:</strong> Reopen Gmail, enter email and password.</li>
+            </ol><div class="ai-action-box">🔒 <strong>Practice:</strong> Sign in and out of Gmail.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create a Gmail account (or sign in).</li>
+                <li>Task 2: Send an email with a subject and 2 sentences.</li>
+                <li>Task 3: Attach a file (e.g., “My Letter” from Week 2).</li>
+                <li>Task 4: Reply to an email from the instructor.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Send messages to friends or family.</li>
+                <li>Share documents (e.g., letters, lists).</li>
+                <li>Prepare for internet safety next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Email is useful in daily life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Gmail?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Send an email to a friend or family member.</li>
+                        <li>Attach a file to an email.</li>
+                        <li>Reply to an email or check your inbox.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Using the internet safely!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 5: Internet and Online Safety",
         slides: [
-            { title: "Welcome to Week 5!", content: "<div class='highlight-list'><li>This week, we'll learn to use the internet safely.</li></div>" },
-            { title: "What Is the Internet?", content: "<div class='highlight-list'><li>The internet is a global network connecting computers.</li></div>" },
-            { title: "Opening Google Chrome", content: "<div class='highlight-list'><li>Open the Google Chrome browser from the Start menu.</li></div>" },
-            { title: "Understanding a Web Browser", content: "<div class='highlight-list'><li>Learn how browsers help you access websites.</li></div>" },
-            { title: "Searching the Internet", content: "<div class='highlight-list'><li>Use Google to search for information online.</li></div>" },
-            { title: "Saving Favorite Websites", content: "<div class='highlight-list'><li>Bookmark websites for quick access later.</li></div>" },
-            { title: "Staying Safe Online", content: "<div class='highlight-list'><li>Learn tips to protect your personal information.</li></div>" },
-            { title: "Recognizing Phishing Emails", content: "<div class='highlight-list'><li>Identify suspicious emails that may harm your computer.</li></div>" },
-            { title: "Safe Browsing Habits", content: "<div class='highlight-list'><li>Avoid risky websites and keep your data secure.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Search for a topic and bookmark a useful website.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Safe internet use protects you and your information.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice safe browsing.</li></div>" }
+            { title: "Welcome to Week 5!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to use the internet and stay safe.</li>
+                <li><strong>Today:</strong> Browse with Google Chrome and avoid scams.</li>
+                <li><strong>Why It Matters:</strong> Find information and protect yourself!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What do you want to find online? (e.g., a recipe)</div></div>` },
+            { title: "What Is the Internet?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A global network to find information and connect.</li>
+                <li>Examples: Search for news, recipes, or weather.</li>
+                <li>We’ll use Google Chrome, a web browser.</li>
+            </ol><div class="ai-action-box">🌐 <strong>Explain:</strong> The internet is a digital library; show Chrome.</div></div>` },
+            { title: "Opening Google Chrome", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “Chrome” in the search bar.</li>
+                <li>Step 3: Click Google Chrome to open.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Chrome; help learners as needed.</div></div>` },
+            { title: "Understanding a Web Browser", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Address Bar:</strong> Type website names (e.g., www.google.com).</li>
+                <li><strong>Tabs:</strong> Open multiple websites at once.</li>
+                <li><strong>Back/Forward Buttons:</strong> Navigate between pages.</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Point to address bar and tabs in a real browser.</div></div>` },
+            { title: "Searching the Internet", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Chrome and go to www.google.com.</li>
+                <li>Step 2: Type a question (e.g., “easy dinner recipes”).</li>
+                <li>Step 3: Press Enter to see results.</li>
+                <li>Step 4: Click a link to visit a website.</li>
+            </ol><div class="ai-action-box">🔎 <strong>Practice:</strong> Search for a topic of interest.</div></div>` },
+            { title: "Saving Favorite Websites", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Visit a website (e.g., www.bbc.com).</li>
+                <li>Step 2: Click the star icon in the address bar.</li>
+                <li>Step 3: Name the bookmark (e.g., “News”).</li>
+                <li>Step 4: Click Bookmarks menu to reopen.</li>
+            </ol><div class="ai-action-box">⭐ <strong>Practice:</strong> Bookmark a favorite site.</div></div>` },
+            { title: "Staying Safe Online", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>HTTPS:</strong> Look for “https://” in website addresses (secure).</li>
+                <li><strong>Avoid Suspicious Links:</strong> Don’t click unknown links.</li>
+                <li><strong>Strong Passwords:</strong> Use letters, numbers, symbols (e.g., Sunny2025!).</li>
+            </ol><div class="ai-action-box">🔒 <strong>Discuss:</strong> Safe vs. unsafe websites.</div></div>` },
+            { title: "Recognizing Phishing Emails", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Phishing:</strong> Fake emails asking for personal info.</li>
+                <li><strong>Red Flags:</strong>
+                    <ol>
+                        <li>Unknown sender (e.g., random123@email.com).</li>
+                        <li>Urgent demands (e.g., “Send money now!”).</li>
+                        <li>Strange links or attachments.</li>
+                    </ol>
+                </li>
+                <li><strong>Action:</strong> Delete or report as spam.</li>
+            </ol><div class="ai-action-box">🚩 <strong>Show:</strong> Example of a fake email; discuss dangers.</div></div>` },
+            { title: "Safe Browsing Habits", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Check for “https://” before entering info.</li>
+                <li>Step 2: Don’t share personal details (e.g., bank info).</li>
+                <li>Step 3: Log out of websites (e.g., Gmail) when done.</li>
+            </ol><div class="ai-action-box">🔑 <strong>Demo:</strong> Show how to sign out of Gmail.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Open Chrome and search for “weather forecast.”</li>
+                <li>Task 2: Bookmark a favorite website (e.g., a news site).</li>
+                <li>Task 3: Review a sample email and identify if it’s phishing.</li>
+                <li>Task 4: Sign out of Gmail and sign back in.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Find recipes, news, or tips online.</li>
+                <li>Stay safe from scams and phishing.</li>
+                <li>Prepare for advanced spreadsheets next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Internet skills help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about browsing or safety?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Search for a topic (e.g., “gardening tips”).</li>
+                        <li>Bookmark a website you like.</li>
+                        <li>Check your Gmail for suspicious emails.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Advanced spreadsheets!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 6: Advanced Spreadsheets",
         slides: [
-            { title: "Welcome to Week 6!", content: "<div class='highlight-list'><li>This week, we'll dive deeper into Excel with advanced features.</li></div>" },
-            { title: "Why Advanced Spreadsheets?", content: "<div class='highlight-list'><li>Advanced Excel skills help with complex data tasks.</li></div>" },
-            { title: "Reviewing Excel Basics", content: "<div class='highlight-list'><li>Refresh your knowledge of cells, rows, and basic functions.</li></div>" },
-            { title: "Using the IF Formula", content: "<div class='highlight-list'><li>Use IF to make decisions based on data conditions.</li></div>" },
-            { title: "Using VLOOKUP", content: "<div class='highlight-list'><li>Search for data in a table with VLOOKUP.</li></div>" },
-            { title: "Creating a Chart", content: "<div class='highlight-list'><li>Visualize data with a simple chart in Excel.</li></div>" },
-            { title: "Sorting Data", content: "<div class='highlight-list'><li>Organize data alphabetically or numerically.</li></div>" },
-            { title: "Filtering Data", content: "<div class='highlight-list'><li>Filter data to focus on specific information.</li></div>" },
-            { title: "Creating a Payment Schedule", content: "<div class='highlight-list'><li>Build a payment schedule using Excel formulas.</li></div>" },
-            { title: "Saving and Reviewing", content: "<div class='highlight-list'><li>Save and check your spreadsheet for accuracy.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Create a payment schedule with charts and formulas.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Advanced Excel skills are valuable in business and finance.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice advanced Excel tasks.</li></div>" }
+            { title: "Welcome to Week 6!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn advanced spreadsheet skills.</li>
+                <li><strong>Today:</strong> Use formulas and charts in Excel.</li>
+                <li><strong>Why It Matters:</strong> Analyze budgets or plans easily!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What numbers do you want to analyze? (e.g., monthly expenses)</div></div>` },
+            { title: "Why Advanced Spreadsheets?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use formulas to calculate automatically.</li>
+                <li>Create charts to visualize data.</li>
+                <li>Examples: Track payments, show spending trends.</li>
+            </ol><div class="ai-action-box">📊 <strong>Recap:</strong> Review Week 3 basics (cells, SUM); show Excel.</div></div>` },
+            { title: "Reviewing Excel Basics", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Cells:</strong> Boxes for data (e.g., A1).</li>
+                <li><strong>Rows/Columns:</strong> Horizontal/vertical lines.</li>
+                <li><strong>SUM:</strong> Adds numbers (e.g., =SUM(B1:B3)).</li>
+                <li><strong>Open Excel:</strong> Start → Type “Excel” → Click.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Open Excel and review Week 3 tracker.</div></div>` },
+            { title: "Using the IF Formula", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>IF Formula:</strong> Checks conditions (e.g., “Is budget over $100?”).</li>
+                <li>Step 1: Type expenses in B1:B3 (e.g., $50, $120, $80).</li>
+                <li>Step 2: In C1, type =IF(B1>100,"High","Low").</li>
+                <li>Step 3: Press Enter; copy to C2:C3.</li>
+            </ol><div class="ai-action-box">🔢 <strong>Show:</strong> How IF labels expenses as “High” or “Low.”</div></div>` },
+            { title: "Using VLOOKUP", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>VLOOKUP:</strong> Finds data in a table (e.g., item prices).</li>
+                <li>Step 1: Create a price list (e.g., A1:A2 = “Milk,” “Bread”; B1:B2 = $2, $3).</li>
+                <li>Step 2: In D1, type =VLOOKUP("Milk",A1:B2,2,FALSE).</li>
+                <li>Step 3: Press Enter (shows $2).</li>
+            </ol><div class="ai-action-box">🔍 <strong>Demo:</strong> Show how VLOOKUP finds specific data.</div></div>` },
+            { title: "Creating a Chart", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Enter data (e.g., months in A1:A3, expenses in B1:B3).</li>
+                <li>Step 2: Highlight data (A1:B3).</li>
+                <li>Step 3: Click Insert → Column Chart.</li>
+                <li>Step 4: Add title (e.g., “Monthly Expenses”).</li>
+            </ol><div class="ai-action-box">📈 <strong>Practice:</strong> Create a chart; let learners try.</div></div>` },
+            { title: "Sorting Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Enter items and prices (e.g., A1:A3, B1:B3).</li>
+                <li>Step 2: Highlight data (A1:B3).</li>
+                <li>Step 3: Click Data → Sort → Sort by Price (High to Low).</li>
+            </ol><div class="ai-action-box">🔃 <strong>Demo:</strong> Sort a list in Excel.</div></div>` },
+            { title: "Filtering Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Add headers (e.g., “Item,” “Price”).</li>
+                <li>Step 2: Click Data → Filter.</li>
+                <li>Step 3: Click dropdown in Price; select “Greater than $10.”</li>
+            </ol><div class="ai-action-box">🔎 <strong>Show:</strong> How filters hide irrelevant data.</div></div>` },
+            { title: "Creating a Payment Schedule", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Label A1:B1 as “Month,” “Payment.”</li>
+                <li>Step 2: Enter months (e.g., Jan, Feb in A2:A4).</li>
+                <li>Step 3: Enter payments (e.g., $50, $60, $70 in B2:B4).</li>
+                <li>Step 4: Use SUM in B5; create a chart.</li>
+            </ol><div class="ai-action-box">📅 <strong>Guide:</strong> Build a payment schedule together.</div></div>` },
+            { title: "Saving and Reviewing", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Save:</strong> Click File → Save As → “My Files 2025” → “My Schedule.”</li>
+                <li><strong>Check:</strong> Review formulas and chart for errors.</li>
+                <li><strong>Reopen:</strong> Open File Explorer, double-click file.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create a payment schedule (3 months, payments).</li>
+                <li>Task 2: Use SUM to calculate total.</li>
+                <li>Task 3: Create a column chart.</li>
+                <li>Task 4: Save as “My Schedule” in “My Files 2025.”</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Analyze budgets or schedules.</li>
+                <li>Visualize data with charts.</li>
+                <li>Prepare for presentations next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Advanced spreadsheets help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Excel?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Create a payment schedule with 4 entries.</li>
+                        <li>Add a SUM formula and a chart.</li>
+                        <li>Save and reopen the file.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Creating presentations!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 7: Creating Presentations",
         slides: [
-            { title: "Welcome to Week 7!", content: "<div class='highlight-list'><li>This week, we'll create presentations using PowerPoint.</li></div>" },
-            { title: "What Is Microsoft PowerPoint?", content: "<div class='highlight-list'><li>PowerPoint is a tool for creating visual presentations.</li></div>" },
-            { title: "Opening Microsoft PowerPoint", content: "<div class='highlight-list'><li>Find and open PowerPoint from the Start menu.</li></div>" },
-            { title: "Understanding PowerPoint", content: "<div class='highlight-list'><li>Learn about slides, layouts, and the PowerPoint interface.</li></div>" },
-            { title: "Creating a New Slide", content: "<div class='highlight-list'><li>Add a new slide with a chosen layout.</li></div>" },
-            { title: "Adding Text to a Slide", content: "<div class='highlight-list'><li>Insert text boxes and format text on slides.</li></div>" },
-            { title: "Inserting an Image", content: "<div class='highlight-list'><li>Add images to make your slides engaging.</li></div>" },
-            { title: "Using Templates", content: "<div class='highlight-list'><li>Apply a template for a professional look.</li></div>" },
-            { title: "Creating a 3-Slide Presentation", content: "<div class='highlight-list'><li>Build a short presentation with text and images.</li></div>" },
-            { title: "Saving and Presenting", content: "<div class='highlight-list'><li>Save your presentation and practice presenting.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Create and present a 3-slide presentation.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Presentations are key for sharing ideas effectively.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and create a short presentation.</li></div>" }
+            { title: "Welcome to Week 7!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to make and share slide presentations.</li>
+                <li><strong>Today:</strong> Use PowerPoint to create slides.</li>
+                <li><strong>Why It Matters:</strong> Share ideas clearly (e.g., plans, hobbies)!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What would you like to present? (e.g., a trip plan)</div></div>` },
+            { title: "What Is Microsoft PowerPoint?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A program to create slides for presentations.</li>
+                <li>Examples: Share a travel plan, show a budget.</li>
+                <li>Alternative: Google Slides (works in a browser).</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display PowerPoint on a projector; mention Google Slides as free.</div></div>` },
+            { title: "Opening Microsoft PowerPoint", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “PowerPoint” in the search bar.</li>
+                <li>Step 3: Click Microsoft PowerPoint to open.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open PowerPoint; help learners as needed.</div></div>` },
+            { title: "Understanding PowerPoint", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Slides:</strong> Pages in your presentation.</li>
+                <li><strong>Slide Pane:</strong> Left side shows all slides.</li>
+                <li><strong>Toolbar:</strong> Top has tools (e.g., text, images).</li>
+            </ol><div class="ai-action-box">📊 <strong>Show:</strong> Point to slide pane and toolbar in a real PowerPoint window.</div></div>` },
+            { title: "Creating a New Slide", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open PowerPoint (blank presentation).</li>
+                <li>Step 2: Click Home → New Slide.</li>
+                <li>Step 3: Choose a layout (e.g., Title and Content).</li>
+            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Add a slide; let learners try.</div></div>` },
+            { title: "Adding Text to a Slide", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click in the title box; type (e.g., “My Travel Plan”).</li>
+                <li>Step 2: Click in the content box; type (e.g., “Visit Paris”).</li>
+                <li>Step 3: Format text (e.g., Bold, 20pt font).</li>
+            </ol><div class="ai-action-box">✏️ <strong>Practice:</strong> Type a title and text on a slide.</div></div>` },
+            { title: "Inserting an Image", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Insert → Pictures.</li>
+                <li>Step 2: Choose an image from “My Files 2025” (e.g., a photo).</li>
+                <li>Step 3: Resize by dragging corners.</li>
+            </ol><div class="ai-action-box">🖼️ <strong>Practice:</strong> Insert and resize a sample image.</div></div>` },
+            { title: "Using Templates", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Design → Themes.</li>
+                <li>Step 2: Choose a theme (e.g., colorful background).</li>
+                <li>Step 3: Apply to all slides for consistency.</li>
+            </ol><div class="ai-action-box">🎨 <strong>Show:</strong> Apply a theme in class.</div></div>` },
+            { title: "Creating a 3-Slide Presentation", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Slide 1: Title (e.g., “My Summer Plan”).</li>
+                <li>Slide 2: List 3 items (e.g., places to visit).</li>
+                <li>Slide 3: Add an image and a sentence.</li>
+            </ol><div class="ai-action-box">🗂️ <strong>Guide:</strong> Build a short presentation together.</div></div>` },
+            { title: "Saving and Presenting", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Save:</strong> Click File → Save As → “My Files 2025” → “My Presentation.”</li>
+                <li><strong>Present:</strong> Click Slide Show → From Beginning.</li>
+                <li><strong>Navigate:</strong> Click or press arrow keys to move slides.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and present your slides.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create a 3-slide presentation.</li>
+                <li>Task 2: Add a title, text, and an image.</li>
+                <li>Task 3: Apply a theme.</li>
+                <li>Task 4: Save as “My Presentation” and present it.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Share ideas (e.g., travel plans, hobbies).</li>
+                <li>Present information clearly.</li>
+                <li>Prepare for virtual meetings next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Presentations help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about PowerPoint?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Create a 3-slide presentation about a hobby.</li>
+                        <li>Add text, an image, and a theme.</li>
+                        <li>Save and practice presenting.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Virtual meetings with Zoom!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 8: Virtual Meetings",
         slides: [
-            { title: "Welcome to Week 8!", content: "<div class='highlight-list'><li>This week, we'll learn to use Zoom for virtual meetings.</li></div>" },
-            { title: "What Is Zoom?", content: "<div class='highlight-list'><li>Zoom is a platform for video and audio meetings online.</li></div>" },
-            { title: "Opening Zoom", content: "<div class='highlight-list'><li>Open Zoom from your computer or browser.</li></div>" },
-            { title: "Joining a Zoom Meeting", content: "<div class='highlight-list'><li>Enter a meeting ID to join a Zoom call.</li></div>" },
-            { title: "Using Zoom Controls", content: "<div class='highlight-list'><li>Learn to mute, unmute, and turn video on/off.</li></div>" },
-            { title: "Sharing Your Screen", content: "<div class='highlight-list'><li>Share your screen to show documents or slides.</li></div>" },
-            { title: "Scheduling a Meeting", content: "<div class='highlight-list'><li>Set up your own Zoom meeting with a link.</li></div>" },
-            { title: "Testing Your Audio and Video", content: "<div class='highlight-list'><li>Check your microphone and camera before joining.</li></div>" },
-            { title: "Etiquette for Zoom Meetings", content: "<div class='highlight-list'><li>Learn best practices for professional meetings.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Join a test Zoom meeting and share your screen.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Virtual meetings are essential for remote work.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice setting up a Zoom call.</li></div>" }
+            { title: "Welcome to Week 8!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to use Zoom for online meetings.</li>
+                <li><strong>Today:</strong> Join, manage, and share in Zoom meetings.</li>
+                <li><strong>Why It Matters:</strong> Connect with friends or groups remotely!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> Who would you like to meet online? (e.g., family)</div></div>` },
+            { title: "What Is Zoom?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A program for video calls and meetings.</li>
+                <li>Examples: Chat with family, discuss plans.</li>
+                <li>Free to use for basic features.</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display Zoom on a projector; explain as a video phone.</div></div>` },
+            { title: "Opening Zoom", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “Zoom” in the search bar.</li>
+                <li>Step 3: Click Zoom to open.</li>
+                <li>Alternative: Open Chrome, go to zoom.us, click “Join a Meeting.”</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Zoom; help learners as needed.</div></div>` },
+            { title: "Joining a Zoom Meeting", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Get a meeting ID (e.g., from an email).</li>
+                <li>Step 2: Open Zoom, click “Join.”</li>
+                <li>Step 3: Enter meeting ID and your name.</li>
+                <li>Step 4: Click “Join Meeting.”</li>
+            </ol><div class="ai-action-box">🔗 <strong>Practice:</strong> Join a test meeting with a sample ID.</div></div>` },
+            { title: "Using Zoom Controls", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Mute/Unmute:</strong> Turn microphone off/on.</li>
+                <li><strong>Video On/Off:</strong> Show/hide your camera.</li>
+                <li><strong>Participants:</strong> See who’s in the meeting.</li>
+                <li><strong>Leave:</strong> Click to exit the meeting.</li>
+            </ol><div class="ai-action-box">🎛️ <strong>Show:</strong> Controls in a real Zoom meeting.</div></div>` },
+            { title: "Sharing Your Screen", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Join a Zoom meeting.</li>
+                <li>Step 2: Click “Share Screen.”</li>
+                <li>Step 3: Choose a window (e.g., PowerPoint from Week 7).</li>
+                <li>Step 4: Click “Share.”</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Practice:</strong> Share a Week 7 presentation.</div></div>` },
+            { title: "Scheduling a Meeting", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Zoom, click “Schedule.”</li>
+                <li>Step 2: Set date, time, and topic (e.g., “Family Chat”).</li>
+                <li>Step 3: Copy meeting ID and link.</li>
+                <li>Step 4: Email the link (use Gmail from Week 4).</li>
+            </ol><div class="ai-action-box">📅 <strong>Show:</strong> Schedule a meeting and copy the link.</div></div>` },
+            { title: "Testing Your Audio and Video", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Join a test meeting (e.g., zoom.us/test).</li>
+                <li>Step 2: Test microphone (speak, check sound bars).</li>
+                <li>Step 3: Test video (turn on camera, check image).</li>
+            </ol><div class="ai-action-box">🎤 <strong>Practice:</strong> Run a test meeting in class.</div></div>` },
+            { title: "Etiquette for Zoom Meetings", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Mute:</strong> Turn off microphone when not speaking.</li>
+                <li><strong>Background:</strong> Choose a tidy or virtual background.</li>
+                <li><strong>Focus:</strong> Avoid distractions during meetings.</li>
+            </ol><div class="ai-action-box">🤝 <strong>Discuss:</strong> Polite Zoom behavior.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Join a test Zoom meeting.</li>
+                <li>Task 2: Practice mute/unmute and video on/off.</li>
+                <li>Task 3: Share a PowerPoint slide from Week 7.</li>
+                <li>Task 4: Schedule a meeting and copy the link.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Connect with friends or family online.</li>
+                <li>Share ideas in meetings.</li>
+                <li>Prepare for cloud storage next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Virtual meetings help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Zoom?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Join a test Zoom meeting (use zoom.us/test).</li>
+                        <li>Share a file or slide in a meeting.</li>
+                        <li>Schedule a meeting and email the link.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Cloud storage with Google Drive!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 9: Cloud Storage and Collaboration",
         slides: [
-            { title: "Welcome to Week 9!", content: "<div class='highlight-list'><li>This week, we'll explore Google Drive for storage and collaboration.</li></div>" },
-            { title: "What Is Google Drive?", content: "<div class='highlight-list'><li>Google Drive is a cloud storage service for files.</li></div>" },
-            { title: "Accessing Google Drive", content: "<div class='highlight-list'><li>Log in to Google Drive with your Gmail account.</li></div>" },
-            { title: "Understanding Google Drive", content: "<div class='highlight-list'><li>Learn to navigate folders and files in Google Drive.</li></div>" },
-            { title: "Uploading a File", content: "<div class='highlight-list'><li>Upload a document or image to Google Drive.</li></div>" },
-            { title: "Creating a Folder", content: "<div class='highlight-list'><li>Organize files by creating folders in Google Drive.</li></div>" },
-            { title: "Sharing a File", content: "<div class='highlight-list'><li>Share files with others via a link or email.</li></div>" },
-            { title: "Collaborating on a File", content: "<div class='highlight-list'><li>Work with others on a document in real-time.</li></div>" },
-            { title: "Downloading a File", content: "<div class='highlight-list'><li>Download files from Google Drive to your computer.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Upload, share, and collaborate on a file.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Cloud storage enables easy access and teamwork.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice using Google Drive.</li></div>" }
+            { title: "Welcome to Week 9!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to save and share files online.</li>
+                <li><strong>Today:</strong> Use Google Drive to store and collaborate.</li>
+                <li><strong>Why It Matters:</strong> Access files anywhere, share safely!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What files would you like to store? (e.g., photos)</div></div>` },
+            { title: "What Is Google Drive?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A free online storage service for files.</li>
+                <li>Examples: Save photos, documents, or presentations.</li>
+                <li>Access from any computer or phone with internet.</li>
+            </ol><div class="ai-action-box">🗄️ <strong>Explain:</strong> Drive is a digital filing cabinet; show Drive.</div></div>` },
+            { title: "Accessing Google Drive", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Google Chrome.</li>
+                <li>Step 2: Go to drive.google.com.</li>
+                <li>Step 3: Sign in with your Gmail account (from Week 4).</li>
+            </ol><div class="ai-action-box">🌐 <strong>Demo:</strong> Show how to open Drive; help learners as needed.</div></div>` },
+            { title: "Understanding Google Drive", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>My Drive:</strong> Where your files are stored.</li>
+                <li><strong>New Button:</strong> Add files or folders.</li>
+                <li><strong>Shared with Me:</strong> Files others share with you.</li>
+            </ol><div class="ai-action-box">📁 <strong>Show:</strong> Point to key areas in a real Drive interface.</div></div>` },
+            { title: "Uploading a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click “New” → “File upload.”</li>
+                <li>Step 2: Choose a file from “My Files 2025” (e.g., “My Presentation”).</li>
+                <li>Step 3: Click “Open” to upload.</li>
+            </ol><div class="ai-action-box">⬆️ <strong>Practice:</strong> Upload a Week 7 presentation.</div></div>` },
+            { title: "Creating a Folder", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click “New” → “Folder.”</li>
+                <li>Step 2: Name it (e.g., “Photos 2025”).</li>
+                <li>Step 3: Upload files into the folder.</li>
+            </ol><div class="ai-action-box">🗂️ <strong>Practice:</strong> Create a folder and organize files.</div></div>` },
+            { title: "Sharing a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Right-click a file (e.g., “My Presentation”).</li>
+                <li>Step 2: Click “Share” → Add email address.</li>
+                <li>Step 3: Choose “View only” or “Can edit.”</li>
+                <li>Step 4: Click “Send” to share via Gmail.</li>
+            </ol><div class="ai-action-box">🔗 <strong>Practice:</strong> Share a file with view-only access.</div></div>` },
+            { title: "Collaborating on a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Share a file with “Can edit” access.</li>
+                <li>Step 2: Open file (e.g., Google Docs in Drive).</li>
+                <li>Step 3: Edit together in real-time.</li>
+            </ol><div class="ai-action-box">👥 <strong>Demo:</strong> Real-time editing with a test file.</div></div>` },
+            { title: "Downloading a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Right-click a file in Google Drive.</li>
+                <li>Step 2: Click “Download.”</li>
+                <li>Step 3: Save to “My Files 2025” folder.</li>
+            </ol><div class="ai-action-box">⬇️ <strong>Practice:</strong> Download a file from Drive.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Upload a file to Google Drive (e.g., “My Presentation”).</li>
+                <li>Task 2: Create a folder “Photos 2025” and move a file into it.</li>
+                <li>Task 3: Share a file with view-only access.</li>
+                <li>Task 4: Download a file to “My Files 2025.”</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Store photos, documents safely.</li>
+                <li>Share files with friends or family.</li>
+                <li>Prepare for PDFs next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Cloud storage helps in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Google Drive?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Upload 2 files to Google Drive.</li>
+                        <li>Create a folder and move a file into it.</li>
+                        <li>Share a file with someone via email.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Working with PDFs!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
