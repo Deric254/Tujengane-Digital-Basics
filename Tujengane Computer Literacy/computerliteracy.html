@@ -290,19 +290,15 @@
         </aside>
         <main class="main-content">
             <div class="max-w-5xl w-full mx-auto relative z-10">
-                <div class="slide-number-display">Slide <span id="current-slide">0</span> of <span id="total-slides">0</span></div>
-                <div class="slide-container-wrapper">
-                    <div id="slide-container" class="slide active">
-                        <div class="slide-content">
-                            <h2>Welcome to Tujengane Computer Literacy</h2>
-                            <p>Welcome to our 12-week digital skills course by EXES BI! To get started, click on a module in the sidebar to explore its lessons. Use the navigation buttons below to move through slides.</p>
-                        </div>
-                    </div>
-                    <div class="navigation">
-                        <button class="nav-btn" id="prevBtn" disabled data-tip="Go to previous slide">← Previous</button>
-                        <button class="nav-btn" id="nextBtn" disabled data-tip="Go to next slide">Next →</button>
-                    </div>
-                </div>
+                                <div class="slide-number-display" id="slide-number-display">Slide <span id="current-slide">0</span> of <span id="total-slides">0</span></div>
+                                <div class="slide-container-wrapper">
+                                        <div id="slide-container" class="slide active"></div>
+                                        <div class="navigation" id="slide-navigation">
+                                                <button class="nav-btn" id="prevBtn" disabled data-tip="Go to previous slide">← Previous</button>
+                                                <button class="nav-btn" id="nextBtn" disabled data-tip="Go to next slide">Next →</button>
+                                        </div>
+                                </div>
+                                                                <!-- Slide number and navigation always visible everywhere -->
             </div>
         </main>
     </div>
@@ -339,6 +335,18 @@
             </div>
             <div class="space-y-2">
                 <a href="https://wa.me/254791360805?text=Hi%20EXES%20BI,%20I%20need%20help%20with%20computer%20literacy" target="_blank" class="block bg-green-500 text-white p-2 rounded text-center text-xs hover:bg-green-600 transition">
+    <script>
+    // Close chat widget when clicking outside
+    document.addEventListener('mousedown', function(event) {
+        const chatWidget = document.getElementById('chatWidget');
+        const chatButton = document.getElementById('chatButton');
+        if (!chatWidget.classList.contains('hidden')) {
+            if (!chatWidget.contains(event.target) && !chatButton.contains(event.target)) {
+                chatWidget.classList.add('hidden');
+            }
+        }
+    });
+    </script>
                     <i class="fab fa-whatsapp mr-1"></i>WhatsApp (Fastest Response)
                 </a>
                 <a href="mailto:dericmarangu@gmail.com?subject=Computer%20Literacy%20Inquiry" class="block bg-blue-500 text-white p-2 rounded text-center text-xs hover:bg-blue-600 transition">
