@@ -716,53 +716,229 @@ const modules = [
     {
         title: "Module 10: Working with PDFs",
         slides: [
-            { title: "Welcome to Week 10!", content: "<div class='highlight-list'><li>This week, we'll learn to work with PDF files.</li></div>" },
-            { title: "What Is a PDF?", content: "<div class='highlight-list'><li>A PDF is a portable document format for sharing files.</li></div>" },
-            { title: "Opening Adobe Acrobat Reader", content: "<div class='highlight-list'><li>Open Adobe Acrobat Reader to view PDFs.</li></div>" },
-            { title: "Opening a PDF", content: "<div class='highlight-list'><li>Learn to open a PDF file in Acrobat Reader.</li></div>" },
-            { title: "Navigating a PDF", content: "<div class='highlight-list'><li>Use tools to zoom and scroll through a PDF.</li></div>" },
-            { title: "Highlighting Text", content: "<div class='highlight-list'><li>Highlight important text in a PDF.</li></div>" },
-            { title: "Adding Comments", content: "<div class='highlight-list'><li>Add notes or comments to a PDF file.</li></div>" },
-            { title: "Saving an Edited PDF", content: "<div class='highlight-list'><li>Save your changes to a PDF file.</li></div>" },
-            { title: "Emailing a PDF", content: "<div class='highlight-list'><li>Attach a PDF to an email for sharing.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Open, edit, and email a PDF file.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>PDFs are widely used for professional documents.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice editing a PDF.</li></div>" }
+            { title: "Welcome to Week 10!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to view and annotate PDFs.</li>
+                <li><strong>Today:</strong> Use Adobe Acrobat Reader to manage documents.</li>
+                <li><strong>Why It Matters:</strong> Read and mark up files like forms or recipes!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What PDFs have you seen? (e.g., a bill or form)</div></div>` },
+            { title: "What Is a PDF?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A file format for documents that look the same everywhere.</li>
+                <li>Examples: Recipes, forms, manuals.</li>
+                <li>Use Adobe Acrobat Reader (free) to open and edit.</li>
+            </ol><div class="ai-action-box">📄 <strong>Explain:</strong> PDFs are “fixed” documents; show Acrobat Reader.</div></div>` },
+            { title: "Opening Adobe Acrobat Reader", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “Adobe Acrobat” in the search bar.</li>
+                <li>Step 3: Click Adobe Acrobat Reader to open.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Acrobat; ensure it’s installed.</div></div>` },
+            { title: "Opening a PDF", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open File Explorer, go to “My Files 2025.”</li>
+                <li>Step 2: Double-click a PDF file (e.g., “Recipe.pdf”).</li>
+                <li>Alternative: In Acrobat, click File → Open, select file.</li>
+            </ol><div class="ai-action-box">📂 <strong>Practice:</strong> Open a sample PDF for practice.</div></div>` },
+            { title: "Navigating a PDF", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Scroll:</strong> Use mouse wheel or sidebar to move up/down.</li>
+                <li><strong>Zoom:</strong> Click View → Zoom In/Out.</li>
+                <li><strong>Page Navigation:</strong> Use arrows to change pages.</li>
+            </ol><div class="ai-action-box">🧭 <strong>Show:</strong> Navigation in a multi-page PDF.</div></div>` },
+            { title: "Highlighting Text", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open a PDF in Acrobat Reader.</li>
+                <li>Step 2: Click the Highlight tool (marker icon).</li>
+                <li>Step 3: Drag over text to highlight (e.g., a recipe step).</li>
+            </ol><div class="ai-action-box">🖍️ <strong>Practice:</strong> Highlight a sample PDF.</div></div>` },
+            { title: "Adding Comments", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click the Comment tool (speech bubble icon).</li>
+                <li>Step 2: Click where you want to add a note.</li>
+                <li>Step 3: Type your comment (e.g., “Try this recipe!”).</li>
+            </ol><div class="ai-action-box">💬 <strong>Demo:</strong> Add a comment to a PDF.</div></div>` },
+            { title: "Saving an Edited PDF", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click File → Save As.</li>
+                <li>Step 2: Choose “My Files 2025” folder.</li>
+                <li>Step 3: Name file (e.g., “Recipe_Edited.pdf”).</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save an edited PDF.</div></div>` },
+            { title: "Emailing a PDF", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Gmail (from Week 4).</li>
+                <li>Step 2: Click Compose, attach PDF from “My Files 2025.”</li>
+                <li>Step 3: Add recipient and subject, click Send.</li>
+            </ol><div class="ai-action-box">📧 <strong>Practice:</strong> Email a PDF file.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Open a sample PDF in Acrobat Reader.</li>
+                <li>Task 2: Highlight a sentence and add a comment.</li>
+                <li>Task 3: Save as “Edited_PDF” in “My Files 2025.”</li>
+                <li>Task 4: Email the PDF to the instructor.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>View forms, recipes, or manuals.</li>
+                <li>Add notes to important documents.</li>
+                <li>Prepare for combining documents next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> PDF skills help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about PDFs?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Open and highlight a PDF.</li>
+                        <li>Add a comment and save the file.</li>
+                        <li>Email the edited PDF to a friend.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Combining documents and spreadsheets!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 11: Document and Spreadsheet Integration",
         slides: [
-            { title: "Welcome to Week 11!", content: "<div class='highlight-list'><li>This week, we'll combine Word and Excel skills.</li></div>" },
-            { title: "Why Combine Tools?", content: "<div class='highlight-list'><li>Using Word and Excel together enhances productivity.</li></div>" },
-            { title: "Reviewing Word and Excel", content: "<div class='highlight-list'><li>Refresh your skills in both programs.</li></div>" },
-            { title: "Creating a Data Table in Excel", content: "<div class='highlight-list'><li>Build a table with data in Excel.</li></div>" },
-            { title: "Creating a Chart in Excel", content: "<div class='highlight-list'><li>Create a chart to visualize your data.</li></div>" },
-            { title: "Copying a Chart to Word", content: "<div class='highlight-list'><li>Paste an Excel chart into a Word document.</li></div>" },
-            { title: "Writing a Report in Word", content: "<div class='highlight-list'><li>Write a report incorporating your chart.</li></div>" },
-            { title: "Saving Your Report", content: "<div class='highlight-list'><li>Save your integrated report in Word.</li></div>" },
-            { title: "Uploading to Google Drive", content: "<div class='highlight-list'><li>Upload your report to Google Drive.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Create a report with an Excel chart and upload it.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Integration skills are key for professional reports.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice creating a report.</li></div>" }
+            { title: "Welcome to Week 11!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Create reports with text and data.</li>
+                <li><strong>Today:</strong> Use Word, Excel, and Google Drive together.</li>
+                <li><strong>Why It Matters:</strong> Make clear reports (e.g., budgets, plans)!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What kind of report would you make? (e.g., a budget)</div></div>` },
+            { title: "Why Combine Tools?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Word:</strong> Write professional reports or letters.</li>
+                <li><strong>Excel:</strong> Organize and visualize data (e.g., charts).</li>
+                <li><strong>Google Drive:</strong> Store and share your work.</li>
+            </ol><div class="ai-action-box">🗂️ <strong>Recap:</strong> Week 2 (Word), Week 6 (Excel), Week 9 (Drive).</div></div>` },
+            { title: "Reviewing Word and Excel", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Word:</strong> Type and format text (Week 2).</li>
+                <li><strong>Excel:</strong> Use formulas and charts (Weeks 3, 6).</li>
+                <li><strong>Open:</strong> Start → Type “Word” or “Excel” → Click.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Open both programs and review basics.</div></div>` },
+            { title: "Creating a Data Table in Excel", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Excel, label A1:B1 as “Item,” “Cost.”</li>
+                <li>Step 2: Enter data (e.g., “Food,” $50; “Travel,” $30).</li>
+                <li>Step 3: Use SUM for total (e.g., B3: =SUM(B1:B2)).</li>
+            </ol><div class="ai-action-box">📊 <strong>Practice:</strong> Create a table in Excel.</div></div>` },
+            { title: "Creating a Chart in Excel", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Highlight table (e.g., A1:B2).</li>
+                <li>Step 2: Click Insert → Column Chart.</li>
+                <li>Step 3: Add title (e.g., “Monthly Budget”).</li>
+            </ol><div class="ai-action-box">📈 <strong>Practice:</strong> Create a chart in Excel.</div></div>` },
+            { title: "Copying a Chart to Word", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: In Excel, right-click chart → Copy.</li>
+                <li>Step 2: Open Word, click where you want the chart.</li>
+                <li>Step 3: Press Ctrl+V to paste.</li>
+            </ol><div class="ai-action-box">📋 <strong>Demo:</strong> Copy and paste a chart into Word.</div></div>` },
+            { title: "Writing a Report in Word", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Word, type a title (e.g., “Budget Report”).</li>
+                <li>Step 2: Add text (e.g., “This shows my expenses.”).</li>
+                <li>Step 3: Paste Excel chart below text.</li>
+                <li>Step 4: Format (Bold title, 16pt).</li>
+            </ol><div class="ai-action-box">📝 <strong>Guide:</strong> Write a short report in Word.</div></div>` },
+            { title: "Saving Your Report", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: In Word, click File → Save As.</li>
+                <li>Step 2: Choose “My Files 2025” folder.</li>
+                <li>Step 3: Name file (e.g., “My Report”).</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save your report in Word.</div></div>` },
+            { title: "Uploading to Google Drive", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Google Drive (drive.google.com).</li>
+                <li>Step 2: Click “New” → “File upload.”</li>
+                <li>Step 3: Select “My Report” from “My Files 2025.”</li>
+                <li>Step 4: Share with view-only access (Week 9).</li>
+            </ol><div class="ai-action-box">🌐 <strong>Practice:</strong> Upload and share your report.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create an Excel table with 3 items and costs.</li>
+                <li>Task 2: Add a SUM formula and a column chart.</li>
+                <li>Task 3: Create a Word report with text and pasted chart.</li>
+                <li>Task 4: Save and upload to Google Drive.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Create clear reports with data.</li>
+                <li>Share plans or budgets easily.</li>
+                <li>Prepare for the capstone project next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Integration skills help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Word, Excel, or Drive?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Create a report with an Excel chart.</li>
+                        <li>Save and upload to Google Drive.</li>
+                        <li>Share with a friend via email.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Capstone project!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 12: Capstone Project and Review",
         slides: [
-            { title: "Welcome to Week 12!", content: "<div class='highlight-list'><li>This week, we'll complete a capstone project.</li></div>" },
-            { title: "What Is the Capstone Project?", content: "<div class='highlight-list'><li>Combine all skills in a final project.</li></div>" },
-            { title: "Step 1 – Create an Excel Table", content: "<div class='highlight-list'><li>Build a data table in Excel.</li></div>" },
-            { title: "Step 2 – Write a Report in Word", content: "<div class='highlight-list'><li>Write a report using your Excel data.</li></div>" },
-            { title: "Step 3 – Save as PDF", content: "<div class='highlight-list'><li>Convert your report to a PDF.</li></div>" },
-            { title: "Step 4 – Create a Presentation", content: "<div class='highlight-list'><li>Make a PowerPoint to present your report.</li></div>" },
-            { title: "Step 5 – Upload to Google Drive", content: "<div class='highlight-list'><li>Upload your files to Google Drive.</li></div>" },
-            { title: "Step 6 – Share via Email", content: "<div class='highlight-list'><li>Email your project files.</li></div>" },
-            { title: "Step 7 – Present in Zoom", content: "<div class='highlight-list'><li>Present your project in a Zoom meeting.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Complete and present your capstone project.</li></div>" },
-            { title: "Review of Skills", content: "<div class='highlight-list'><li>Review all skills learned in the course.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>These skills prepare you for real-world tasks.</li></div>" },
-            { title: "Q&A and Next Steps", content: "<div class='highlight-list'><li>Ask questions and plan your next learning steps.</li></div>" }
+            { title: "Welcome to Week 12!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Combine all skills for a final project.</li>
+                <li><strong>Today:</strong> Create, present, and share a report.</li>
+                <li><strong>Why It Matters:</strong> Use all tools in real life!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What project would you like to create? (e.g., a budget)</div></div>` },
+            { title: "What Is the Capstone Project?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Create a budget report (Word, Excel).</li>
+                <li>Present it (PowerPoint, Zoom).</li>
+                <li>Share it (Google Drive, Gmail, PDF).</li>
+                <li>Use all tools from Weeks 1-11.</li>
+            </ol><div class="ai-action-box">🛠️ <strong>Explain:</strong> The project is a real-world task.</div></div>` },
+            { title: "Step 1 – Create an Excel Table", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Excel (Week 3, 6).</li>
+                <li>Step 2: Label A1:B1 as “Item,” “Cost” (e.g., “Rent,” $500).</li>
+                <li>Step 3: Enter 4 items; use SUM for total.</li>
+                <li>Step 4: Create a column chart (Week 6).</li>
+            </ol><div class="ai-action-box">📊 <strong>Practice:</strong> Create a budget table in Excel.</div></div>` },
+            { title: "Step 2 – Write a Report in Word", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Word (Week 2).</li>
+                <li>Step 2: Type title (e.g., “My Budget Report”).</li>
+                <li>Step 3: Add text (e.g., “This shows my expenses.”).</li>
+                <li>Step 4: Copy-paste Excel chart (Week 11).</li>
+            </ol><div class="ai-action-box">📝 <strong>Guide:</strong> Write a report in Word.</div></div>` },
+            { title: "Step 3 – Save as PDF", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: In Word, click File → Save As.</li>
+                <li>Step 2: Choose “PDF” format, save in “My Files 2025.”</li>
+                <li>Step 3: Open in Acrobat Reader to check (Week 10).</li>
+            </ol><div class="ai-action-box">📄 <strong>Practice:</strong> Save as PDF and check in Acrobat.</div></div>` },
+            { title: "Step 4 – Create a Presentation", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open PowerPoint (Week 7).</li>
+                <li>Step 2: Create 3 slides (title, text, chart).</li>
+                <li>Step 3: Apply a theme; add an image.</li>
+                <li>Step 4: Save as “My Project” in “My Files 2025.”</li>
+            </ol><div class="ai-action-box">📽️ <strong>Practice:</strong> Create slides for your project.</div></div>` },
+            { title: "Step 5 – Upload to Google Drive", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Google Drive (Week 9).</li>
+                <li>Step 2: Upload Word, PDF, and PowerPoint files.</li>
+                <li>Step 3: Create a folder “My Project 2025.”</li>
+            </ol><div class="ai-action-box">☁️ <strong>Practice:</strong> Upload files to Drive.</div></div>` },
+            { title: "Step 6 – Share via Email", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Gmail (Week 4).</li>
+                <li>Step 2: Compose email, attach PDF.</li>
+                <li>Step 3: Share Google Drive link (view-only).</li>
+            </ol><div class="ai-action-box">📧 <strong>Practice:</strong> Email your project files.</div></div>` },
+            { title: "Step 7 – Present in Zoom", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Join a Zoom meeting (Week 8).</li>
+                <li>Step 2: Share PowerPoint via Screen Share.</li>
+                <li>Step 3: Present slides, explain report.</li>
+            </ol><div class="ai-action-box">🎤 <strong>Practice:</strong> Present your project in Zoom.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create Excel table and chart (4 items).</li>
+                <li>Task 2: Write Word report with chart; save as PDF.</li>
+                <li>Task 3: Create 3-slide PowerPoint.</li>
+                <li>Task 4: Upload to Google Drive, share via Gmail, present in Zoom.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Review of Skills", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Week 1-2: Files, typing.</li>
+                <li>Week 3-6: Spreadsheets, internet.</li>
+                <li>Week 7-11: Presentations, Zoom, Drive, PDFs.</li>
+                <li>Today: Combine all for real-world tasks!</li>
+            </ol><div class="ai-action-box">🎉 <strong>Celebrate:</strong> Review all skills learned.</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Create reports, budgets, or plans.</li>
+                <li>Share and present ideas confidently.</li>
+                <li>Use computers for daily life!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Capstone skills help in real life.</div></div>` },
+            { title: "Q&A and Next Steps", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about the project?</li>
+                <li><strong>Next Steps:</strong>
+                    <ol>
+                        <li>Keep practicing all tools.</li>
+                        <li>Explore more features (e.g., Google Docs).</li>
+                        <li>Share your skills with others!</li>
+                    </ol>
+                </li>
+                <li><strong>Certificate:</strong> Celebrate your completion!</li>
+            </ol><div class="ai-action-box">🎓 <strong>Encourage:</strong> Ask questions and distribute certificates.</div></div>` }
         ]
     },
     {
