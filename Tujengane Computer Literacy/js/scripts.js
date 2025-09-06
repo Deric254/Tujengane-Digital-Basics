@@ -380,4 +380,7 @@ function closeModal(modalId) {
     document.getElementById('chatOverlay').classList.add('hidden');
 }
 
-updateSlide(null, 0);
+// Show welcome only if no module is open at start
+if (currentModule === null && currentSlide === 0) {
+    updateSlide(null, 0);
+}
