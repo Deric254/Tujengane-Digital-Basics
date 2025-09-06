@@ -7,65 +7,77 @@ const modules = [
                 <li><strong>Today:</strong> Understand computers and organize files.</li>
                 <li><strong>Why It Matters:</strong> Save time writing, budgeting, and more!</li>
                 <li>What do you want to do with a computer? (e.g., write a letter)</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Share one thing you want to do with a computer.</div>
             </ol></div>` },
             { title: "What Is a Computer?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A tool to create, store, and share information.</li>
                 <li>Examples: Write letters, track expenses, browse the internet.</li>
                 <li>Types: Desktop, laptop, tablet.</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Point out a real computer and its parts.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Find and name the parts of a real computer.</div>
+            </ol></div>` },
             { title: "Parts of a Computer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Monitor:</strong> Shows your work (like a TV).</li>
                 <li><strong>Keyboard:</strong> Type letters and numbers.</li>
                 <li><strong>Mouse:</strong> Click and move on the screen.</li>
                 <li><strong>CPU:</strong> The computer’s “brain.”</li>
-            </ol><div class="ai-action-box">⌨️ <strong>Try:</strong> Let learners touch a keyboard and mouse.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Touch and use a keyboard and mouse.</div>
+            </ol></div>` },
             { title: "Turning On/Off a Computer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Turn On:</strong> Press power button (icon: ⏻).</li>
                 <li><strong>Turn Off:</strong> Click “Start” → “Shut Down” (Windows).</li>
                 <li>Wait until screen is off before leaving.</li>
-            </ol><div class="ai-action-box">🔌 <strong>Demo:</strong> Show how to turn on/off and emphasize waiting for shutdown.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Turn a computer on and off. Wait for it to shut down completely.</div>
+            </ol></div>` },
             { title: "Using the Mouse", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Left Click:</strong> Select items (e.g., open a folder).</li>
                 <li><strong>Right Click:</strong> Open options menu.</li>
                 <li><strong>Scroll:</strong> Move up/down a page.</li>
                 <li><strong>Drag:</strong> Move items by holding left click.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Practice:</strong> Try clicking and dragging; play a simple game like Solitaire.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Click and drag with the mouse. Play a simple game like Solitaire.</div>
+            </ol></div>` },
             { title: "Exploring the Desktop", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Desktop:</strong> Main screen with icons.</li>
                 <li><strong>Icons:</strong> Shortcuts to programs/files (e.g., File Explorer).</li>
                 <li><strong>Taskbar:</strong> Bottom bar to switch programs.</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Let learners click an icon on a real desktop.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Click an icon on a real desktop.</div>
+            </ol></div>` },
             { title: "Opening File Explorer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>File Explorer:</strong> Organizes documents, photos, etc.</li>
                 <li><strong>Open:</strong> Click File Explorer icon or search “File Explorer.”</li>
                 <li>Shows folders like “Documents,” “Downloads.”</li>
-            </ol><div class="ai-action-box">📂 <strong>Demo:</strong> Open File Explorer and show folders.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Open File Explorer and look at folders.</div>
+            </ol></div>` },
             { title: "Creating a Folder", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open File Explorer.</li>
                 <li>Step 2: Right-click → New → Folder.</li>
                 <li>Step 3: Name it “My Files 2025.”</li>
                 <li><strong>Why?</strong> Keep letters, budgets organized.</li>
-            </ol><div class="ai-action-box">🗂️ <strong>Activity:</strong> Learners create a folder themselves.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Create a folder named “My Files 2025.”</div>
+            </ol></div>` },
             { title: "Saving a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open a document (e.g., text file).</li>
                 <li>Step 2: Click File → Save As.</li>
                 <li>Step 3: Choose “My Files 2025” folder; name file (e.g., “Notes”).</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save a text file in the new folder.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Save a text file in your new folder.</div>
+            </ol></div>` },
             { title: "Using the Calculator App", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Open:</strong> Search “Calculator” in taskbar.</li>
                 <li>Use for budgets, expenses.</li>
                 <li>Example: $100 budget ÷ 5 items = $20/item.</li>
-            </ol><div class="ai-action-box">🧮 <strong>Try:</strong> Calculate a sample expense (e.g., $50 ÷ 4).</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Calculate a sample expense (e.g., $50 ÷ 4).</div>
+            </ol></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Create a “My Files 2025” folder.</li>
                 <li>Task 2: Save a text file (“Notes”) in the folder.</li>
                 <li>Task 3: Calculate $60 ÷ 3 items.</li>
-            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> Complete each task and celebrate your progress!</div>
+            </ol></div>` },
             { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Organize personal documents.</li>
                 <li>Calculate expenses quickly.</li>
                 <li>Prepare for typing next week!</li>
-            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> These skills save time and reduce stress.</div></div>` },
+                <hr><div class="activity-block"><strong>Activity:</strong> List one way these skills will help you in daily life.</div>
+            </ol></div>` },
             { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Ask:</strong> Any questions about today?</li>
                 <li><strong>Homework:</strong>
@@ -76,7 +88,8 @@ const modules = [
                     </ol>
                 </li>
                 <li><strong>Next Week:</strong> Typing and creating documents!</li>
-            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
+                <hr><div class="activity-block"><strong>Activity:</strong> Choose one homework task and do it before the next class.</div>
+            </ol></div>` }
         ]
     },
     {
@@ -92,36 +105,36 @@ const modules = [
                 <li>A program to type and format documents.</li>
                 <li>Examples: Letters, to-do lists, invitations.</li>
                 <li>Alternative: Google Docs (works in a browser).</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display Word on a projector; mention Google Docs as a free option.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Word or Google Docs on your computer.</div></div>` },
             { title: "Opening Microsoft Word", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click Start (Windows icon, bottom-left).</li>
                 <li>Step 2: Type “Word” in the search bar.</li>
                 <li>Step 3: Click Microsoft Word to open.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Word; help learners as needed.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Word on your own computer.</div></div>` },
             { title: "Understanding the Keyboard", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Letters:</strong> Type words (e.g., A, B, C).</li>
                 <li><strong>Numbers:</strong> At the top or number pad.</li>
                 <li><strong>Spacebar:</strong> Add spaces between words.</li>
                 <li><strong>Enter:</strong> Start a new line.</li>
                 <li><strong>Backspace:</strong> Delete mistakes.</li>
-            </ol><div class="ai-action-box">⌨️ <strong>Try:</strong> Let learners touch keys; show a real keyboard.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Touch the keys on a real keyboard.</div></div>` },
             { title: "Typing Your First Words", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open Word (blank document).</li>
                 <li>Step 2: Click in the white area.</li>
                 <li>Step 3: Type a sentence (e.g., “Hello, my name is [Your Name]”).</li>
                 <li>Use Backspace to fix mistakes.</li>
-            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Type your name; walk around to help.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Type your name.</div></div>` },
             { title: "Saving Your Document", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click File → Save As.</li>
                 <li>Step 2: Choose “My Files 2025” folder (from Week 1).</li>
                 <li>Step 3: Name file (e.g., “My Letter”).</li>
                 <li>Step 4: Click Save.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save your document in the Week 1 folder.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save your document in the Module 1 folder.</div></div>` },
             { title: "Formatting Text", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Bold:</strong> Highlight text, click Bold (B icon).</li>
                 <li><strong>Font Size:</strong> Change size (e.g., 14pt for body, 16pt for titles).</li>
                 <li><strong>Alignment:</strong> Center text (e.g., for a title).</li>
-            </ol><div class="ai-action-box">🖋️ <strong>Show:</strong> Demonstrate formatting toolbar and each option.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Use the formatting toolbar to change text style and color.</div></div>` },
             { title: "Creating a Letter", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Type a title (e.g., “Dear Friend”).</li>
                 <li>Step 2: Press Enter for a new line.</li>
@@ -137,7 +150,7 @@ const modules = [
                 <li><strong>Save:</strong> Click File → Save (or Ctrl+S) to update.</li>
                 <li><strong>Close:</strong> Click File → Close or the red X (top-right).</li>
                 <li><strong>Reopen:</strong> Open File Explorer, find “My Files 2025,” double-click file.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save and reopen your file.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Open Word and type a short letter (3 sentences).</li>
                 <li>Task 2: Format the title (Bold, Center, 16pt).</li>
@@ -175,41 +188,41 @@ const modules = [
                 <li>A program to organize numbers and lists in tables.</li>
                 <li>Examples: Budgets, event plans, shopping lists.</li>
                 <li>Alternative: Google Sheets (works in a browser).</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display Excel on a projector; mention Google Sheets as free.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Excel or Google Sheets on your computer.</div></div>` },
             { title: "Opening Microsoft Excel", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click Start (Windows icon, bottom-left).</li>
                 <li>Step 2: Type “Excel” in the search bar.</li>
                 <li>Step 3: Click Microsoft Excel to open.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Excel; help learners as needed.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Excel on your own computer.</div></div>` },
             { title: "Understanding Spreadsheets", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Cells:</strong> Boxes where you type data (e.g., A1, B2).</li>
                 <li><strong>Rows:</strong> Horizontal lines (numbered 1, 2, 3...).</li>
                 <li><strong>Columns:</strong> Vertical lines (lettered A, B, C...).</li>
                 <li><strong>Example:</strong> Type “Groceries” in cell A1.</li>
-            </ol><div class="ai-action-box">📊 <strong>Show:</strong> Point to cells, rows, and columns in a real spreadsheet.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Find and name cells, rows, and columns in a spreadsheet.</div></div>` },
             { title: "Entering Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click a cell (e.g., A1).</li>
                 <li>Step 2: Type data (e.g., “Milk” or “$5”).</li>
                 <li>Step 3: Press Enter to move to the next cell.</li>
                 <li><strong>Tip:</strong> Use arrow keys to move between cells.</li>
-            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Type a simple list in Excel.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Type a simple list in Excel.</div></div>` },
             { title: "Saving Your Spreadsheet", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click File → Save As.</li>
                 <li>Step 2: Choose “My Files 2025” folder (from Week 1).</li>
                 <li>Step 3: Name file (e.g., “My Budget”).</li>
                 <li>Step 4: Click Save.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save your spreadsheet in the Week 1 folder.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save your spreadsheet in the Module 3 folder.</div></div>` },
             { title: "Basic Formatting", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Bold:</strong> Highlight cell, click Bold (B icon).</li>
                 <li><strong>Borders:</strong> Add lines around cells (Border icon).</li>
                 <li><strong>Column Width:</strong> Drag column edges to fit text.</li>
-            </ol><div class="ai-action-box">🖋️ <strong>Show:</strong> Demonstrate formatting and adjusting columns.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Format and adjust columns in your spreadsheet.</div></div>` },
             { title: "Simple Calculations (SUM)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Type numbers (e.g., $5, $10, $15 in B1:B3).</li>
                 <li>Step 2: Click a cell for the total (e.g., B4).</li>
                 <li>Step 3: Type =SUM(B1:B3) and press Enter.</li>
                 <li><strong>Example:</strong> $5 + $10 + $15 = $30.</li>
-            </ol><div class="ai-action-box">🧮 <strong>Try:</strong> Calculate a total using SUM.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Calculate a total using the SUM formula.</div></div>` },
             { title: "Creating an Expense Tracker", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Label A1: “Item,” B1: “Cost.”</li>
                 <li>Step 2: Enter items (e.g., “Milk,” “Bread” in A2:A3).</li>
@@ -220,7 +233,7 @@ const modules = [
                 <li><strong>Check:</strong> Are numbers correct? Is text clear?</li>
                 <li><strong>Save:</strong> Click File → Save (or Ctrl+S).</li>
                 <li><strong>Reopen:</strong> Open File Explorer, find “My Files 2025,” double-click file.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save and reopen your file.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Open Excel and create an expense tracker.</li>
                 <li>Task 2: Enter 3 items and costs (e.g., “Milk,” $2).</li>
@@ -263,7 +276,7 @@ const modules = [
                 <li>Step 1: Open Google Chrome (browser).</li>
                 <li>Step 2: Type “gmail.com” in the address bar.</li>
                 <li>Step 3: Press Enter to go to Gmail.</li>
-            </ol><div class="ai-action-box">🌐 <strong>Demo:</strong> Show how to open Gmail; help learners as needed.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Gmail on your own computer.</div></div>` },
             { title: "Creating a Gmail Account", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click “Create account” on Gmail.</li>
                 <li>Step 2: Enter your name, birthday, and password.</li>
@@ -274,36 +287,36 @@ const modules = [
                 <li><strong>Inbox:</strong> Shows received emails.</li>
                 <li><strong>Compose:</strong> Button to write a new email.</li>
                 <li><strong>Sent:</strong> Shows emails you’ve sent.</li>
-            </ol><div class="ai-action-box">📥 <strong>Show:</strong> Point to key areas in a real Gmail inbox.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Find and name the key areas in your Gmail inbox.</div></div>` },
             { title: "Writing an Email", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click “Compose” in Gmail.</li>
                 <li>Step 2: Type recipient’s email in “To” field.</li>
                 <li>Step 3: Add a subject (e.g., “Hello”).</li>
                 <li>Step 4: Type a message (e.g., “Hi, hope you’re well!”).</li>
                 <li>Step 5: Click “Send.”</li>
-            </ol><div class="ai-action-box">✉️ <strong>Practice:</strong> Send an email to the instructor or a classmate.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Send an email to a classmate.</div></div>` },
             { title: "Attaching a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click “Compose” and write an email.</li>
                 <li>Step 2: Click the paperclip icon (“Attach files”).</li>
                 <li>Step 3: Choose a file from “My Files 2025” (e.g., “My Letter”).</li>
                 <li>Step 4: Click “Send.”</li>
-            </ol><div class="ai-action-box">📎 <strong>Practice:</strong> Attach a Week 2 document to an email.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Attach a document to an email.</div></div>` },
             { title: "Replying to an Email", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open an email in your inbox.</li>
                 <li>Step 2: Click “Reply” at the bottom.</li>
                 <li>Step 3: Type your response (e.g., “Thanks for your message!”).</li>
                 <li>Step 4: Click “Send.”</li>
-            </ol><div class="ai-action-box">🔁 <strong>Practice:</strong> Reply to a sample email from the instructor.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Reply to an email you receive.</div></div>` },
             { title: "Organizing Your Inbox", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Delete:</strong> Remove unwanted emails (click trash icon).</li>
                 <li><strong>Archive:</strong> Hide emails without deleting (click archive icon).</li>
                 <li><strong>Folders/Labels:</strong> Group emails (e.g., “Family” or “Work”).</li>
-            </ol><div class="ai-action-box">🗂️ <strong>Show:</strong> Demonstrate deleting a test email.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Delete an email from your inbox.</div></div>` },
             { title: "Checking Your Work", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Check:</strong> Did your email send? Check “Sent” folder.</li>
                 <li><strong>Sign Out:</strong> Click your profile picture → “Sign out.”</li>
                 <li><strong>Sign In:</strong> Reopen Gmail, enter email and password.</li>
-            </ol><div class="ai-action-box">🔒 <strong>Practice:</strong> Sign in and out of Gmail.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Sign in and out of Gmail.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Create a Gmail account (or sign in).</li>
                 <li>Task 2: Send an email with a subject and 2 sentences.</li>
@@ -346,24 +359,24 @@ const modules = [
                 <li>Step 1: Click Start (Windows icon, bottom-left).</li>
                 <li>Step 2: Type “Chrome” in the search bar.</li>
                 <li>Step 3: Click Google Chrome to open.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Chrome; help learners as needed.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Chrome on your own computer.</div></div>` },
             { title: "Understanding a Web Browser", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Address Bar:</strong> Type website names (e.g., www.google.com).</li>
                 <li><strong>Tabs:</strong> Open multiple websites at once.</li>
                 <li><strong>Back/Forward Buttons:</strong> Navigate between pages.</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Point to address bar and tabs in a real browser.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Find and name the address bar and tabs in your browser.</div></div>` },
             { title: "Searching the Internet", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open Chrome and go to www.google.com.</li>
                 <li>Step 2: Type a question (e.g., “easy dinner recipes”).</li>
                 <li>Step 3: Press Enter to see results.</li>
                 <li>Step 4: Click a link to visit a website.</li>
-            </ol><div class="ai-action-box">🔎 <strong>Practice:</strong> Search for a topic of interest.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Search for a topic of interest online.</div></div>` },
             { title: "Saving Favorite Websites", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Visit a website (e.g., www.bbc.com).</li>
                 <li>Step 2: Click the star icon in the address bar.</li>
                 <li>Step 3: Name the bookmark (e.g., “News”).</li>
                 <li>Step 4: Click Bookmarks menu to reopen.</li>
-            </ol><div class="ai-action-box">⭐ <strong>Practice:</strong> Bookmark a favorite site.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Bookmark a favorite site.</div></div>` },
             { title: "Staying Safe Online", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>HTTPS:</strong> Look for “https://” in website addresses (secure).</li>
                 <li><strong>Avoid Suspicious Links:</strong> Don’t click unknown links.</li>
@@ -379,12 +392,12 @@ const modules = [
                     </ol>
                 </li>
                 <li><strong>Action:</strong> Delete or report as spam.</li>
-            </ol><div class="ai-action-box">🚩 <strong>Show:</strong> Example of a fake email; discuss dangers.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Look at an example of a fake email and discuss why it is dangerous.</div></div>` },
             { title: "Safe Browsing Habits", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Check for “https://” before entering info.</li>
                 <li>Step 2: Don’t share personal details (e.g., bank info).</li>
                 <li>Step 3: Log out of websites (e.g., Gmail) when done.</li>
-            </ol><div class="ai-action-box">🔑 <strong>Demo:</strong> Show how to sign out of Gmail.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Sign out of Gmail.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Open Chrome and search for “weather forecast.”</li>
                 <li>Task 2: Bookmark a favorite website (e.g., a news site).</li>
@@ -428,35 +441,35 @@ const modules = [
                 <li><strong>Rows/Columns:</strong> Horizontal/vertical lines.</li>
                 <li><strong>SUM:</strong> Adds numbers (e.g., =SUM(B1:B3)).</li>
                 <li><strong>Open Excel:</strong> Start → Type “Excel” → Click.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Open Excel and review Week 3 tracker.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open Excel and review your tracker file.</div></div>` },
             { title: "Using the IF Formula", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>IF Formula:</strong> Checks conditions (e.g., “Is budget over $100?”).</li>
                 <li>Step 1: Type expenses in B1:B3 (e.g., $50, $120, $80).</li>
                 <li>Step 2: In C1, type =IF(B1>100,"High","Low").</li>
                 <li>Step 3: Press Enter; copy to C2:C3.</li>
-            </ol><div class="ai-action-box">🔢 <strong>Show:</strong> How IF labels expenses as “High” or “Low.”</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Use the IF formula to label expenses as “High” or “Low.”</div></div>` },
             { title: "Using VLOOKUP", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>VLOOKUP:</strong> Finds data in a table (e.g., item prices).</li>
                 <li>Step 1: Create a price list (e.g., A1:A2 = “Milk,” “Bread”; B1:B2 = $2, $3).</li>
                 <li>Step 2: In D1, type =VLOOKUP("Milk",A1:B2,2,FALSE).</li>
                 <li>Step 3: Press Enter (shows $2).</li>
-            </ol><div class="ai-action-box">🔍 <strong>Demo:</strong> Show how VLOOKUP finds specific data.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Use VLOOKUP to find specific data in your spreadsheet.</div></div>` },
             { title: "Creating a Chart", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Enter data (e.g., months in A1:A3, expenses in B1:B3).</li>
                 <li>Step 2: Highlight data (A1:B3).</li>
                 <li>Step 3: Click Insert → Column Chart.</li>
                 <li>Step 4: Add title (e.g., “Monthly Expenses”).</li>
-            </ol><div class="ai-action-box">📈 <strong>Practice:</strong> Create a chart; let learners try.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Create a chart in Excel.</div></div>` },
             { title: "Sorting Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Enter items and prices (e.g., A1:A3, B1:B3).</li>
                 <li>Step 2: Highlight data (A1:B3).</li>
                 <li>Step 3: Click Data → Sort → Sort by Price (High to Low).</li>
-            </ol><div class="ai-action-box">🔃 <strong>Demo:</strong> Sort a list in Excel.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Sort a list in Excel.</div></div>` },
             { title: "Filtering Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Add headers (e.g., “Item,” “Price”).</li>
                 <li>Step 2: Click Data → Filter.</li>
                 <li>Step 3: Click dropdown in Price; select “Greater than $10.”</li>
-            </ol><div class="ai-action-box">🔎 <strong>Show:</strong> How filters hide irrelevant data.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Use filters to hide irrelevant data in your spreadsheet.</div></div>` },
             { title: "Creating a Payment Schedule", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Label A1:B1 as “Month,” “Payment.”</li>
                 <li>Step 2: Enter months (e.g., Jan, Feb in A2:A4).</li>
@@ -467,7 +480,7 @@ const modules = [
                 <li><strong>Save:</strong> Click File → Save As → “My Files 2025” → “My Schedule.”</li>
                 <li><strong>Check:</strong> Review formulas and chart for errors.</li>
                 <li><strong>Reopen:</strong> Open File Explorer, double-click file.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save and reopen your file.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Create a payment schedule (3 months, payments).</li>
                 <li>Task 2: Use SUM to calculate total.</li>
@@ -505,37 +518,37 @@ const modules = [
                 <li>A program to create slides for presentations.</li>
                 <li>Examples: Share a travel plan, show a budget.</li>
                 <li>Alternative: Google Slides (works in a browser).</li>
-            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display PowerPoint on a projector; mention Google Slides as free.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open PowerPoint or Google Slides on your computer.</div></div>` },
             { title: "Opening Microsoft PowerPoint", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click Start (Windows icon, bottom-left).</li>
                 <li>Step 2: Type “PowerPoint” in the search bar.</li>
                 <li>Step 3: Click Microsoft PowerPoint to open.</li>
-            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open PowerPoint; help learners as needed.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Open PowerPoint on your own computer.</div></div>` },
             { title: "Understanding PowerPoint", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Slides:</strong> Pages in your presentation.</li>
                 <li><strong>Slide Pane:</strong> Left side shows all slides.</li>
                 <li><strong>Toolbar:</strong> Top has tools (e.g., text, images).</li>
-            </ol><div class="ai-action-box">📊 <strong>Show:</strong> Point to slide pane and toolbar in a real PowerPoint window.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Find and name the slide pane and toolbar in PowerPoint.</div></div>` },
             { title: "Creating a New Slide", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Open PowerPoint (blank presentation).</li>
                 <li>Step 2: Click Home → New Slide.</li>
                 <li>Step 3: Choose a layout (e.g., Title and Content).</li>
-            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Add a slide; let learners try.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Add a slide to your presentation.</div></div>` },
             { title: "Adding Text to a Slide", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click in the title box; type (e.g., “My Travel Plan”).</li>
                 <li>Step 2: Click in the content box; type (e.g., “Visit Paris”).</li>
                 <li>Step 3: Format text (e.g., Bold, 20pt font).</li>
-            </ol><div class="ai-action-box">✏️ <strong>Practice:</strong> Type a title and text on a slide.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Type a title and text on a slide.</div></div>` },
             { title: "Inserting an Image", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click Insert → Pictures.</li>
                 <li>Step 2: Choose an image from “My Files 2025” (e.g., a photo).</li>
                 <li>Step 3: Resize by dragging corners.</li>
-            </ol><div class="ai-action-box">🖼️ <strong>Practice:</strong> Insert and resize a sample image.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Insert and resize an image in your slide.</div></div>` },
             { title: "Using Templates", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Step 1: Click Design → Themes.</li>
                 <li>Step 2: Choose a theme (e.g., colorful background).</li>
                 <li>Step 3: Apply to all slides for consistency.</li>
-            </ol><div class="ai-action-box">🎨 <strong>Show:</strong> Apply a theme in class.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Apply a theme to your presentation.</div></div>` },
             { title: "Creating a 3-Slide Presentation", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Slide 1: Title (e.g., “My Summer Plan”).</li>
                 <li>Slide 2: List 3 items (e.g., places to visit).</li>
@@ -545,7 +558,7 @@ const modules = [
                 <li><strong>Save:</strong> Click File → Save As → “My Files 2025” → “My Presentation.”</li>
                 <li><strong>Present:</strong> Click Slide Show → From Beginning.</li>
                 <li><strong>Navigate:</strong> Click or press arrow keys to move slides.</li>
-            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and present your slides.</div></div>` },
+            </ol><div class="activity-block">⭐ <strong>Activity:</strong> Save and present your slides.</div></div>` },
             { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Task 1: Create a 3-slide presentation.</li>
                 <li>Task 2: Add a title, text, and an image.</li>
