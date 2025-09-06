@@ -6,7 +6,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to use computers for daily tasks.</li>
                 <li><strong>Today:</strong> Understand computers and organize files.</li>
                 <li><strong>Why It Matters:</strong> Save time writing, budgeting, and more!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What do you want to do with a computer? (e.g., write a letter)</div></div>` },
+                <li>What do you want to do with a computer? (e.g., write a letter)</li>
+            </ol></div>` },
             { title: "What Is a Computer?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A tool to create, store, and share information.</li>
                 <li>Examples: Write letters, track expenses, browse the internet.</li>
@@ -85,7 +86,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to type and make documents.</li>
                 <li><strong>Today:</strong> Use Microsoft Word to write and save letters.</li>
                 <li><strong>Why It Matters:</strong> Create letters, lists, or notes easily!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What kind of document would you like to write? (e.g., a letter to a friend)</div></div>` },
+                <li>What kind of document would you like to write? (e.g., a letter to a friend)</li>
+            </ol></div>` },
             { title: "What Is Microsoft Word?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A program to type and format documents.</li>
                 <li>Examples: Letters, to-do lists, invitations.</li>
@@ -167,7 +169,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to organize numbers and lists.</li>
                 <li><strong>Today:</strong> Use Excel to track expenses and calculate totals.</li>
                 <li><strong>Why It Matters:</strong> Manage budgets or plans easily!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What would you like to track? (e.g., grocery expenses)</div></div>` },
+                <li>What would you like to track? (e.g., grocery expenses)</li>
+            </ol></div>` },
             { title: "What Is Microsoft Excel?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A program to organize numbers and lists in tables.</li>
                 <li>Examples: Budgets, event plans, shopping lists.</li>
@@ -249,7 +252,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to use email for communication.</li>
                 <li><strong>Today:</strong> Set up Gmail and send messages.</li>
                 <li><strong>Why It Matters:</strong> Stay in touch with friends or family!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> Who would you like to email? (e.g., a family member)</div></div>` },
+                <li>Who would you like to email? (e.g., a family member)</li>
+            </ol></div>` },
             { title: "What Is Email?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A way to send and receive messages online.</li>
                 <li>Examples: Send a thank-you note, share a document.</li>
@@ -331,7 +335,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to use the internet and stay safe.</li>
                 <li><strong>Today:</strong> Browse with Google Chrome and avoid scams.</li>
                 <li><strong>Why It Matters:</strong> Find information and protect yourself!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What do you want to find online? (e.g., a recipe)</div></div>` },
+                <li>What do you want to find online? (e.g., a recipe)</li>
+            </ol></div>` },
             { title: "What Is the Internet?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A global network to find information and connect.</li>
                 <li>Examples: Search for news, recipes, or weather.</li>
@@ -411,7 +416,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn advanced spreadsheet skills.</li>
                 <li><strong>Today:</strong> Use formulas and charts in Excel.</li>
                 <li><strong>Why It Matters:</strong> Analyze budgets or plans easily!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What numbers do you want to analyze? (e.g., monthly expenses)</div></div>` },
+                <li>What numbers do you want to analyze? (e.g., monthly expenses)</li>
+            </ol></div>` },
             { title: "Why Advanced Spreadsheets?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Use formulas to calculate automatically.</li>
                 <li>Create charts to visualize data.</li>
@@ -493,7 +499,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to make and share slide presentations.</li>
                 <li><strong>Today:</strong> Use PowerPoint to create slides.</li>
                 <li><strong>Why It Matters:</strong> Share ideas clearly (e.g., plans, hobbies)!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What would you like to present? (e.g., a trip plan)</div></div>` },
+                <li>What would you like to present? (e.g., a trip plan)</li>
+            </ol></div>` },
             { title: "What Is Microsoft PowerPoint?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A program to create slides for presentations.</li>
                 <li>Examples: Share a travel plan, show a budget.</li>
@@ -570,7 +577,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to use Zoom for online meetings.</li>
                 <li><strong>Today:</strong> Join, manage, and share in Zoom meetings.</li>
                 <li><strong>Why It Matters:</strong> Connect with friends or groups remotely!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> Who would you like to meet online? (e.g., family)</div></div>` },
+                <li>Who would you like to meet online? (e.g., family)</li>
+            </ol></div>` },
             { title: "What Is Zoom?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A program for video calls and meetings.</li>
                 <li>Examples: Chat with family, discuss plans.</li>
@@ -647,7 +655,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to save and share files online.</li>
                 <li><strong>Today:</strong> Use Google Drive to store and collaborate.</li>
                 <li><strong>Why It Matters:</strong> Access files anywhere, share safely!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What files would you like to store? (e.g., photos)</div></div>` },
+                <li>What files would you like to store? (e.g., photos)</li>
+            </ol></div>` },
             { title: "What Is Google Drive?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A free online storage service for files.</li>
                 <li>Examples: Save photos, documents, or presentations.</li>
@@ -720,7 +729,8 @@ const modules = [
                 <li><strong>Objective:</strong> Learn to view and annotate PDFs.</li>
                 <li><strong>Today:</strong> Use Adobe Acrobat Reader to manage documents.</li>
                 <li><strong>Why It Matters:</strong> Read and mark up files like forms or recipes!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What PDFs have you seen? (e.g., a bill or form)</div></div>` },
+                <li>What PDFs have you seen? (e.g., a bill or form)</li>
+            </ol></div>` },
             { title: "What Is a PDF?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>A file format for documents that look the same everywhere.</li>
                 <li>Examples: Recipes, forms, manuals.</li>
@@ -792,7 +802,8 @@ const modules = [
                 <li><strong>Objective:</strong> Create reports with text and data.</li>
                 <li><strong>Today:</strong> Use Word, Excel, and Google Drive together.</li>
                 <li><strong>Why It Matters:</strong> Make clear reports (e.g., budgets, plans)!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What kind of report would you make? (e.g., a budget)</div></div>` },
+                <li>What kind of report would you make? (e.g., a budget)</li>
+            </ol></div>` },
             { title: "Why Combine Tools?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Word:</strong> Write professional reports or letters.</li>
                 <li><strong>Excel:</strong> Organize and visualize data (e.g., charts).</li>
@@ -866,7 +877,8 @@ const modules = [
                 <li><strong>Objective:</strong> Combine all skills for a final project.</li>
                 <li><strong>Today:</strong> Create, present, and share a report.</li>
                 <li><strong>Why It Matters:</strong> Use all tools in real life!</li>
-            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What project would you like to create? (e.g., a budget)</div></div>` },
+                <li>What project would you like to create? (e.g., a budget)</li>
+            </ol></div>` },
             { title: "What Is the Capstone Project?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li>Create a budget report (Word, Excel).</li>
                 <li>Present it (PowerPoint, Zoom).</li>
