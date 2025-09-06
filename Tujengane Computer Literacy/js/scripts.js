@@ -281,19 +281,46 @@ function toggleModule(moduleIndex) {
     const moduleSlides = document.querySelectorAll('.module-slides');
 
     moduleToggles.forEach((toggle, index) => {
-        const isOpen = index === moduleIndex && toggle.classList.contains('collapsed');
-        toggle.classList.toggle('collapsed', index !== moduleIndex || !isOpen);
-        moduleSlides[index].classList.toggle('open', index === moduleIndex && isOpen);
+        if (index === moduleIndex) {
+            toggle.classList.toggle('collapsed');
+            moduleSlides[index].classList.toggle('open', !toggle.classList.contains('collapsed'));
+            toggle.classList.remove('hidden');
+        } else {
+            toggle.classList.add('hidden');
+            moduleSlides[index].classList.remove('open');
+        }
     });
 
     if (moduleIndex !== null && moduleToggles[moduleIndex].classList.contains('collapsed')) {
         currentModule = null;
         currentSlide = 0;
         updateSlide(null, 0);
+        moduleToggles.forEach(toggle => toggle.classList.remove('hidden'));
     } else if (moduleIndex !== null) {
         currentModule = moduleIndex;
         currentSlide = 0;
         updateSlide(moduleIndex, 0);
+    }
+}
+
+function handlePrev() {
+    if (currentModule !== null && currentSlide > 0) {
+        currentSlide--;
+        updateSlide(currentModule, currentSlide);
+    }
+}
+
+function handleNext() {
+    if (currentModule !== null) {
+        if (currentSlide < modules[currentModule].slides.length - 1) {
+            currentSlide++;
+            updateSlide(currentModule, currentSlide);
+        } else if (currentModule < modules.length - 1) {
+            currentModule++;
+            currentSlide = 0;
+            toggleModule(currentModule);
+            updateSlide(currentModule, 0);
+        }
     }
 }
 
@@ -319,26 +346,8 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
     });
 });
 
-prevBtn.addEventListener('click', () => {
-    if (currentModule !== null && currentSlide > 0) {
-        currentSlide--;
-        updateSlide(currentModule, currentSlide);
-    }
-});
-
-nextBtn.addEventListener('click', () => {
-    if (currentModule !== null) {
-        if (currentSlide < modules[currentModule].slides.length - 1) {
-            currentSlide++;
-            updateSlide(currentModule, currentSlide);
-        } else if (currentModule < modules.length - 1) {
-            currentModule++;
-            currentSlide = 0;
-            toggleModule(currentModule);
-            updateSlide(currentModule, 0);
-        }
-    }
-});
+prevBtn.addEventListener('click', handlePrev);
+nextBtn.addEventListener('click', handleNext);
 
 hamburgerBtn.addEventListener('click', () => {
     isSidebarOpen = !isSidebarOpen;
