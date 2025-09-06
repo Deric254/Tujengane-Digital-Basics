@@ -1,9 +1,9 @@
-/* Styles for Tujengane Computer Literacy, matching the taste of Data Basics */
+/* Styles for Tujengane Computer Literacy */
 .sidebar {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(73,160,120,0.15);
-  padding: 24px 0 0 0;
+  padding: 24px 0 24px 0;
   width: 320px;
   min-width: 220px;
   max-width: 340px;
@@ -15,7 +15,7 @@
 }
 .sidebar-content {
   flex: 1 1 auto;
-  overflow: visible;
+  overflow: auto;
 }
 .sidebar-item {
   margin-bottom: 0.5rem;
@@ -69,14 +69,17 @@
   font-weight: 700;
   margin-right: 0.5em;
 }
-.sidebar-footer {
-  border-top: 1px solid #e5e7eb;
-  margin-top: 1.5em;
-  padding: 1em 1.5em 0.5em 1.5em;
-  font-size: 0.95em;
-  color: #256d4f;
-  background: #f0fdfa;
-  border-radius: 0 0 18px 18px;
+.marquee-container {
+  max-width: 500px;
+  white-space: nowrap;
+}
+.marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 @media (max-width: 900px) {
   .sidebar {
@@ -86,10 +89,9 @@
     margin: 0;
     border-radius: 0;
     box-shadow: none;
-    padding: 0.5em 0 0 0;
+    padding: 0.5em 0 0.5em 0;
   }
-  .sidebar-footer {
-    border-radius: 0 0 12px 12px;
-    padding: 0.5em 1em 0.5em 1em;
+  .marquee-container {
+    display: none;
   }
 }
