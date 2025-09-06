@@ -2,55 +2,244 @@ const modules = [
     {
         title: "Module 1: Computer Basics and File Management",
         slides: [
-            { title: "Welcome to Digital Literacy!", content: "<div class='highlight-list'><li>Get ready to embark on a 12-week journey to master essential digital skills with Tujengane Computer Literacy by EXES BI.</li></div>" },
-            { title: "What Is a Computer?", content: "<div class='highlight-list'><li>A computer is an electronic device that processes data to perform tasks, such as calculations, communication, and data storage.</li></div>" },
-            { title: "Parts of a Computer", content: "<div class='highlight-list'><li>Learn about the monitor, keyboard, mouse, CPU, and storage devices that make up a computer system.</li></div>" },
-            { title: "Turning On/Off a Computer", content: "<div class='highlight-list'><li>Press the power button to turn on; use the Start menu to shut down properly.</li></div>" },
-            { title: "Using the Mouse", content: "<div class='highlight-list'><li>Practice clicking, double-clicking, and dragging with the mouse to navigate.</li></div>" },
-            { title: "Exploring the Desktop", content: "<div class='highlight-list'><li>The desktop is your main workspace with icons for apps and files.</li></div>" },
-            { title: "Opening File Explorer", content: "<div class='highlight-list'><li>Use File Explorer to browse files and folders on your computer.</li></div>" },
-            { title: "Creating a Folder", content: "<div class='highlight-list'><li>Right-click on the desktop, select 'New,' then 'Folder' to create and name a folder.</li></div>" },
-            { title: "Saving a File", content: "<div class='highlight-list'><li>Learn to save files in specific folders using the 'Save As' option.</li></div>" },
-            { title: "Using the Calculator App", content: "<div class='highlight-list'><li>Open the Calculator app to perform basic math operations.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Create a folder, save a text file, and perform a calculation using the Calculator app.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Basic computer skills are essential for education, work, and daily tasks in a digital world.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice creating folders and saving files at home.</li></div>" }
+            { title: "Welcome to Digital Literacy!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to use computers for daily tasks.</li>
+                <li><strong>Today:</strong> Understand computers and organize files.</li>
+                <li><strong>Why It Matters:</strong> Save time writing, budgeting, and more!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What do you want to do with a computer? (e.g., write a letter)</div></div>` },
+            { title: "What Is a Computer?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A tool to create, store, and share information.</li>
+                <li>Examples: Write letters, track expenses, browse the internet.</li>
+                <li>Types: Desktop, laptop, tablet.</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Point out a real computer and its parts.</div></div>` },
+            { title: "Parts of a Computer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Monitor:</strong> Shows your work (like a TV).</li>
+                <li><strong>Keyboard:</strong> Type letters and numbers.</li>
+                <li><strong>Mouse:</strong> Click and move on the screen.</li>
+                <li><strong>CPU:</strong> The computer’s “brain.”</li>
+            </ol><div class="ai-action-box">⌨️ <strong>Try:</strong> Let learners touch a keyboard and mouse.</div></div>` },
+            { title: "Turning On/Off a Computer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Turn On:</strong> Press power button (icon: ⏻).</li>
+                <li><strong>Turn Off:</strong> Click “Start” → “Shut Down” (Windows).</li>
+                <li>Wait until screen is off before leaving.</li>
+            </ol><div class="ai-action-box">🔌 <strong>Demo:</strong> Show how to turn on/off and emphasize waiting for shutdown.</div></div>` },
+            { title: "Using the Mouse", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Left Click:</strong> Select items (e.g., open a folder).</li>
+                <li><strong>Right Click:</strong> Open options menu.</li>
+                <li><strong>Scroll:</strong> Move up/down a page.</li>
+                <li><strong>Drag:</strong> Move items by holding left click.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Practice:</strong> Try clicking and dragging; play a simple game like Solitaire.</div></div>` },
+            { title: "Exploring the Desktop", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Desktop:</strong> Main screen with icons.</li>
+                <li><strong>Icons:</strong> Shortcuts to programs/files (e.g., File Explorer).</li>
+                <li><strong>Taskbar:</strong> Bottom bar to switch programs.</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Let learners click an icon on a real desktop.</div></div>` },
+            { title: "Opening File Explorer", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>File Explorer:</strong> Organizes documents, photos, etc.</li>
+                <li><strong>Open:</strong> Click File Explorer icon or search “File Explorer.”</li>
+                <li>Shows folders like “Documents,” “Downloads.”</li>
+            </ol><div class="ai-action-box">📂 <strong>Demo:</strong> Open File Explorer and show folders.</div></div>` },
+            { title: "Creating a Folder", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open File Explorer.</li>
+                <li>Step 2: Right-click → New → Folder.</li>
+                <li>Step 3: Name it “My Files 2025.”</li>
+                <li><strong>Why?</strong> Keep letters, budgets organized.</li>
+            </ol><div class="ai-action-box">🗂️ <strong>Activity:</strong> Learners create a folder themselves.</div></div>` },
+            { title: "Saving a File", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open a document (e.g., text file).</li>
+                <li>Step 2: Click File → Save As.</li>
+                <li>Step 3: Choose “My Files 2025” folder; name file (e.g., “Notes”).</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save a text file in the new folder.</div></div>` },
+            { title: "Using the Calculator App", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Open:</strong> Search “Calculator” in taskbar.</li>
+                <li>Use for budgets, expenses.</li>
+                <li>Example: $100 budget ÷ 5 items = $20/item.</li>
+            </ol><div class="ai-action-box">🧮 <strong>Try:</strong> Calculate a sample expense (e.g., $50 ÷ 4).</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Create a “My Files 2025” folder.</li>
+                <li>Task 2: Save a text file (“Notes”) in the folder.</li>
+                <li>Task 3: Calculate $60 ÷ 3 items.</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Organize personal documents.</li>
+                <li>Calculate expenses quickly.</li>
+                <li>Prepare for typing next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> These skills save time and reduce stress.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about today?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Turn on/off computer 3 times.</li>
+                        <li>Create a folder and save a file.</li>
+                        <li>Calculate a simple expense.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Typing and creating documents!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 2: Typing and Document Creation",
         slides: [
-            { title: "Welcome to Week 2!", content: "<div class='highlight-list'><li>This week, we'll learn typing basics and how to create documents using Microsoft Word.</li></div>" },
-            { title: "What Is Microsoft Word?", content: "<div class='highlight-list'><li>Microsoft Word is a word processing program for creating and editing documents.</li></div>" },
-            { title: "Opening Microsoft Word", content: "<div class='highlight-list'><li>Find and open Microsoft Word from the Start menu or desktop icon.</li></div>" },
-            { title: "Understanding the Keyboard", content: "<div class='highlight-list'><li>Learn the layout of the keyboard, including letters, numbers, and special keys.</li></div>" },
-            { title: "Typing Your First Words", content: "<div class='highlight-list'><li>Practice typing a simple sentence in Microsoft Word.</li></div>" },
-            { title: "Saving Your Document", content: "<div class='highlight-list'><li>Use 'Save As' to save your document in a chosen folder.</li></div>" },
-            { title: "Formatting Text", content: "<div class='highlight-list'><li>Change font size, style, and alignment to make your document look professional.</li></div>" },
-            { title: "Creating a Letter", content: "<div class='highlight-list'><li>Write a formal letter with a greeting, body, and closing.</li></div>" },
-            { title: "Using Bullets for Lists", content: "<div class='highlight-list'><li>Create bulleted lists to organize information clearly.</li></div>" },
-            { title: "Saving and Closing", content: "<div class='highlight-list'><li>Save your work and close Microsoft Word properly.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Type a letter, format it, and save it in a folder.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Typing and document creation are key skills for school and work.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and practice typing a short letter at home.</li></div>" }
+            { title: "Welcome to Week 2!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to type and make documents.</li>
+                <li><strong>Today:</strong> Use Microsoft Word to write and save letters.</li>
+                <li><strong>Why It Matters:</strong> Create letters, lists, or notes easily!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What kind of document would you like to write? (e.g., a letter to a friend)</div></div>` },
+            { title: "What Is Microsoft Word?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A program to type and format documents.</li>
+                <li>Examples: Letters, to-do lists, invitations.</li>
+                <li>Alternative: Google Docs (works in a browser).</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display Word on a projector; mention Google Docs as a free option.</div></div>` },
+            { title: "Opening Microsoft Word", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “Word” in the search bar.</li>
+                <li>Step 3: Click Microsoft Word to open.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Word; help learners as needed.</div></div>` },
+            { title: "Understanding the Keyboard", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Letters:</strong> Type words (e.g., A, B, C).</li>
+                <li><strong>Numbers:</strong> At the top or number pad.</li>
+                <li><strong>Spacebar:</strong> Add spaces between words.</li>
+                <li><strong>Enter:</strong> Start a new line.</li>
+                <li><strong>Backspace:</strong> Delete mistakes.</li>
+            </ol><div class="ai-action-box">⌨️ <strong>Try:</strong> Let learners touch keys; show a real keyboard.</div></div>` },
+            { title: "Typing Your First Words", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Open Word (blank document).</li>
+                <li>Step 2: Click in the white area.</li>
+                <li>Step 3: Type a sentence (e.g., “Hello, my name is [Your Name]”).</li>
+                <li>Use Backspace to fix mistakes.</li>
+            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Type your name; walk around to help.</div></div>` },
+            { title: "Saving Your Document", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click File → Save As.</li>
+                <li>Step 2: Choose “My Files 2025” folder (from Week 1).</li>
+                <li>Step 3: Name file (e.g., “My Letter”).</li>
+                <li>Step 4: Click Save.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save your document in the Week 1 folder.</div></div>` },
+            { title: "Formatting Text", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Bold:</strong> Highlight text, click Bold (B icon).</li>
+                <li><strong>Font Size:</strong> Change size (e.g., 14pt for body, 16pt for titles).</li>
+                <li><strong>Alignment:</strong> Center text (e.g., for a title).</li>
+            </ol><div class="ai-action-box">🖋️ <strong>Show:</strong> Demonstrate formatting toolbar and each option.</div></div>` },
+            { title: "Creating a Letter", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Type a title (e.g., “Dear Friend”).</li>
+                <li>Step 2: Press Enter for a new line.</li>
+                <li>Step 3: Type 2-3 sentences (e.g., “I hope you’re well. Let’s meet soon.”).</li>
+                <li>Step 4: Format title (Bold, Center, 16pt).</li>
+            </ol><div class="ai-action-box">✉️ <strong>Guide:</strong> Help learners type and format a short letter.</div></div>` },
+            { title: "Using Bullets for Lists", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click the Bullets icon in Word.</li>
+                <li>Step 2: Type items (e.g., “Buy groceries,” “Call friend”).</li>
+                <li>Step 3: Press Enter to add more items.</li>
+            </ol><div class="ai-action-box">📝 <strong>Activity:</strong> Learners create a to-do list.</div></div>` },
+            { title: "Saving and Closing", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Save:</strong> Click File → Save (or Ctrl+S) to update.</li>
+                <li><strong>Close:</strong> Click File → Close or the red X (top-right).</li>
+                <li><strong>Reopen:</strong> Open File Explorer, find “My Files 2025,” double-click file.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Open Word and type a short letter (3 sentences).</li>
+                <li>Task 2: Format the title (Bold, Center, 16pt).</li>
+                <li>Task 3: Save the letter as “My Letter” in “My Files 2025.”</li>
+                <li>Task 4: Create a bulleted to-do list (3 items).</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Write letters to friends or family.</li>
+                <li>Create lists for planning or tasks.</li>
+                <li>Prepare for spreadsheets next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> These skills help in daily life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about typing or Word?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Type a 3-sentence letter and save it.</li>
+                        <li>Create a bulleted list of 3 tasks.</li>
+                        <li>Reopen your saved letter.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Spreadsheets for organizing numbers!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
         title: "Module 3: Introduction to Spreadsheets",
         slides: [
-            { title: "Welcome to Week 3!", content: "<div class='highlight-list'><li>This week, we'll explore Microsoft Excel and learn how to use spreadsheets.</li></div>" },
-            { title: "What Is Microsoft Excel?", content: "<div class='highlight-list'><li>Excel is a spreadsheet program for organizing and analyzing data.</li></div>" },
-            { title: "Opening Microsoft Excel", content: "<div class='highlight-list'><li>Locate and open Excel from the Start menu or desktop.</li></div>" },
-            { title: "Understanding Spreadsheets", content: "<div class='highlight-list'><li>Learn about rows, columns, and cells in Excel.</li></div>" },
-            { title: "Entering Data", content: "<div class='highlight-list'><li>Type data into cells to create a simple table.</li></div>" },
-            { title: "Saving Your Spreadsheet", content: "<div class='highlight-list'><li>Save your Excel file in a specific folder.</li></div>" },
-            { title: "Basic Formatting", content: "<div class='highlight-list'><li>Adjust cell sizes and apply basic formatting like bold or colors.</li></div>" },
-            { title: "Simple Calculations (SUM)", content: "<div class='highlight-list'><li>Use the SUM function to add numbers in a column.</li></div>" },
-            { title: "Creating an Expense Tracker", content: "<div class='highlight-list'><li>Build a basic expense tracker with categories and totals.</li></div>" },
-            { title: "Checking Your Work", content: "<div class='highlight-list'><li>Review your spreadsheet for accuracy.</li></div>" },
-            { title: "Practical Activity", content: "<div class='highlight-list'><li>Create an expense tracker and calculate totals.</li></div>" },
-            { title: "Why This Matters", content: "<div class='highlight-list'><li>Spreadsheets help you manage budgets and data efficiently.</li></div>" },
-            { title: "Q&A and Homework", content: "<div class='highlight-list'><li>Ask questions and create a simple budget at home.</li></div>" }
+            { title: "Welcome to Week 3!", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Objective:</strong> Learn to organize numbers and lists.</li>
+                <li><strong>Today:</strong> Use Excel to track expenses and calculate totals.</li>
+                <li><strong>Why It Matters:</strong> Manage budgets or plans easily!</li>
+            </ol><div class="ai-action-box">💬 <strong>Ask:</strong> What would you like to track? (e.g., grocery expenses)</div></div>` },
+            { title: "What Is Microsoft Excel?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A program to organize numbers and lists in tables.</li>
+                <li>Examples: Budgets, event plans, shopping lists.</li>
+                <li>Alternative: Google Sheets (works in a browser).</li>
+            </ol><div class="ai-action-box">🖥️ <strong>Show:</strong> Display Excel on a projector; mention Google Sheets as free.</div></div>` },
+            { title: "Opening Microsoft Excel", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click Start (Windows icon, bottom-left).</li>
+                <li>Step 2: Type “Excel” in the search bar.</li>
+                <li>Step 3: Click Microsoft Excel to open.</li>
+            </ol><div class="ai-action-box">🖱️ <strong>Demo:</strong> Show how to open Excel; help learners as needed.</div></div>` },
+            { title: "Understanding Spreadsheets", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Cells:</strong> Boxes where you type data (e.g., A1, B2).</li>
+                <li><strong>Rows:</strong> Horizontal lines (numbered 1, 2, 3...).</li>
+                <li><strong>Columns:</strong> Vertical lines (lettered A, B, C...).</li>
+                <li><strong>Example:</strong> Type “Groceries” in cell A1.</li>
+            </ol><div class="ai-action-box">📊 <strong>Show:</strong> Point to cells, rows, and columns in a real spreadsheet.</div></div>` },
+            { title: "Entering Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click a cell (e.g., A1).</li>
+                <li>Step 2: Type data (e.g., “Milk” or “$5”).</li>
+                <li>Step 3: Press Enter to move to the next cell.</li>
+                <li><strong>Tip:</strong> Use arrow keys to move between cells.</li>
+            </ol><div class="ai-action-box">📝 <strong>Practice:</strong> Type a simple list in Excel.</div></div>` },
+            { title: "Saving Your Spreadsheet", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Click File → Save As.</li>
+                <li>Step 2: Choose “My Files 2025” folder (from Week 1).</li>
+                <li>Step 3: Name file (e.g., “My Budget”).</li>
+                <li>Step 4: Click Save.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save your spreadsheet in the Week 1 folder.</div></div>` },
+            { title: "Basic Formatting", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Bold:</strong> Highlight cell, click Bold (B icon).</li>
+                <li><strong>Borders:</strong> Add lines around cells (Border icon).</li>
+                <li><strong>Column Width:</strong> Drag column edges to fit text.</li>
+            </ol><div class="ai-action-box">🖋️ <strong>Show:</strong> Demonstrate formatting and adjusting columns.</div></div>` },
+            { title: "Simple Calculations (SUM)", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Type numbers (e.g., $5, $10, $15 in B1:B3).</li>
+                <li>Step 2: Click a cell for the total (e.g., B4).</li>
+                <li>Step 3: Type =SUM(B1:B3) and press Enter.</li>
+                <li><strong>Example:</strong> $5 + $10 + $15 = $30.</li>
+            </ol><div class="ai-action-box">🧮 <strong>Try:</strong> Calculate a total using SUM.</div></div>` },
+            { title: "Creating an Expense Tracker", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Label A1: “Item,” B1: “Cost.”</li>
+                <li>Step 2: Enter items (e.g., “Milk,” “Bread” in A2:A3).</li>
+                <li>Step 3: Enter costs (e.g., $2, $3 in B2:B3).</li>
+                <li>Step 4: Use SUM in B4 to calculate total.</li>
+            </ol><div class="ai-action-box">📋 <strong>Guide:</strong> Help learners build a tracker.</div></div>` },
+            { title: "Checking Your Work", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Check:</strong> Are numbers correct? Is text clear?</li>
+                <li><strong>Save:</strong> Click File → Save (or Ctrl+S).</li>
+                <li><strong>Reopen:</strong> Open File Explorer, find “My Files 2025,” double-click file.</li>
+            </ol><div class="ai-action-box">💾 <strong>Practice:</strong> Save and reopen your file.</div></div>` },
+            { title: "Practical Activity", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Task 1: Open Excel and create an expense tracker.</li>
+                <li>Task 2: Enter 3 items and costs (e.g., “Milk,” $2).</li>
+                <li>Task 3: Use SUM to calculate total cost.</li>
+                <li>Task 4: Save as “My Budget” in “My Files 2025.”</li>
+            </ol><div class="ai-action-box">✅ <strong>Checklist:</strong> Complete each task and celebrate progress!</div></div>` },
+            { title: "Why This Matters", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Track expenses (e.g., groceries, bills).</li>
+                <li>Organize lists (e.g., events, tasks).</li>
+                <li>Prepare for email next week!</li>
+            </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Spreadsheets help in real life.</div></div>` },
+            { title: "Q&A and Homework", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Ask:</strong> Any questions about Excel?</li>
+                <li><strong>Homework:</strong>
+                    <ol>
+                        <li>Create an expense tracker with 5 items.</li>
+                        <li>Calculate the total using SUM.</li>
+                        <li>Save and reopen the file.</li>
+                    </ol>
+                </li>
+                <li><strong>Next Week:</strong> Sending emails!</li>
+            </ol><div class="ai-action-box">❓ <strong>Encourage:</strong> Ask questions and use handouts for practice.</div></div>` }
         ]
     },
     {
