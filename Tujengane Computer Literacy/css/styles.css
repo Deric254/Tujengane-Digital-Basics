@@ -656,141 +656,142 @@ nav .container {
 
 @media (max-width: 768px) {
     .sidebar {
-        display: none;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 110px);
-        z-index: 100;
-        transform: translateX(-100%);
+        display: none !important;
     }
-    .sidebar.active {
-        display: block;
-        transform: translateX(0);
-    }
-    .hamburger {
-        display: block;
-    }
-    .nav-links {
-        display: none;
-    }
-    .nav-links.mobile-active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #49A078;
-        padding: 1rem;
-        z-index: 100;
-    }
-    .main-content, .max-w-5xl, .slide-container-wrapper {
-        width: 100vw;
-        max-width: 100vw;
-        padding: 0;
-        min-height: 0;
-        height: calc(100vh - 110px);
-        display: flex;
-        flex-direction: column;
-        justify-content: stretch;
-        align-items: stretch;
+    .main-content, .max-w-5xl, .max-w-4xl, .slide-container-wrapper {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 0 !important;
+        min-height: 0 !important;
+        height: calc(100vh - 110px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: stretch !important;
+        align-items: stretch !important;
     }
     .slide-number-display {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        width: 100vw;
-        max-width: 100vw;
-        height: 10vh;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        background: #fffbe6;
-        border-radius: 0;
-        box-shadow: none;
-        z-index: 2;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 10vh !important;
+        min-height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.1rem !important;
+        background: #fffbe6 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        z-index: 2 !important;
     }
     .slide {
-        position: relative;
-        top: 0;
-        bottom: 0;
-        width: 100vw;
-        max-width: 100vw;
-        padding: 1.2rem 0.5rem;
-        min-height: calc(100vh - 150px);
-        max-height: calc(100vh - 150px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 1 1 auto;
-        background: linear-gradient(135deg, #ffffff, #e6fffa);
-        border-radius: 0;
-        box-shadow: none;
-        overflow-y: auto;
-        margin: 0;
+        position: relative !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 1 1 auto !important;
+        background: linear-gradient(135deg, #ffffff, #e6fffa) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
     }
     .slide-content {
-        padding: 0.5rem;
-        max-width: 98vw;
-        width: 100vw;
-        min-height: 0;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-        gap: 1rem;
-        word-break: break-word;
+        padding: 0.5rem !important;
+        max-width: 98vw !important;
+        width: 100vw !important;
+        min-height: 0 !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: center !important;
+        gap: 1rem !important;
+        word-break: break-word !important;
     }
     .slide-content h2 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
+        font-size: 1.3rem !important;
+        margin-bottom: 0.5rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
     }
     .slide-content p {
-        font-size: 1rem;
-        line-height: 1.5;
-        margin-bottom: 0.5rem;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 0.5rem !important;
     }
     .navigation {
-        position: relative;
-        bottom: 0;
-        left: 0;
-        transform: none;
-        flex-direction: row;
-        gap: 1rem;
-        width: 100vw;
-        padding: 0.5rem 0;
-        justify-content: center;
-        align-items: center;
-        background: transparent;
-        box-shadow: none;
-        z-index: 2;
+        position: relative !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        flex-direction: row !important;
+        gap: 1rem !important;
+        width: 100vw !important;
+        padding: 0.5rem 0 !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        z-index: 2 !important;
     }
     .nav-btn {
-        width: 44vw;
-        min-width: 100px;
-        max-width: 180px;
-        padding: 0.7rem;
-        font-size: 1.1rem;
-        border-radius: 0.5rem;
-        margin: 0;
-        box-sizing: border-box;
-        background: #49A078;
-        color: white;
-        font-weight: 600;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        width: 44vw !important;
+        min-width: 100px !important;
+        max-width: 180px !important;
+        padding: 0.7rem !important;
+        font-size: 1.1rem !important;
+        border-radius: 0.5rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        background: #49A078 !important;
+        color: white !important;
+        font-weight: 600 !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
     }
-    .ai-action-box {
-        padding: 0.75rem;
-        font-size: 0.9rem;
+    .footer {
+        height: 50px !important;
+        width: 100vw !important;
+        padding: 0.5rem !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 100 !important;
+        background: #DFF3EA !important;
+        border-top: 1px solid rgba(0,0,0,0.1) !important;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.05) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .footer .container {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
+    }
+    .footer-logo, .footer-socials, .footer-copyright {
+        flex: 1 1 auto !important;
+        text-align: center !important;
+    }
+    #chatButton {
+        bottom: 60px !important;
+    }
+    #chatWidget {
+        bottom: 80px !important;
     }
 }
 
@@ -800,9 +801,10 @@ nav .container {
         padding: 0.25rem 0.5rem;
     }
     .slide {
+        top: 70px;
+        bottom: 70px;
         width: 95vw;
         padding: 0.25rem;
-        min-height: calc(100vh - 120px);
         max-height: calc(100vh - 120px);
     }
     .slide-content {
@@ -819,6 +821,7 @@ nav .container {
         margin-bottom: 0.5rem;
     }
     .navigation {
+        bottom: 70px;
         gap: 0.75rem;
     }
     .nav-btn {
@@ -826,8 +829,18 @@ nav .container {
         padding: 0.4rem;
         font-size: 0.8rem;
     }
-    .ai-action-box {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+    .footer {
+        padding: 0.3rem;
+        font-size: 0.7rem;
+    }
+    .footer .container {
+        gap: 0.3rem;
+    }
+    .main-content, .max-w-5xl, .slide-container-wrapper, .slide, .slide-content {
+        padding: 0.05rem;
+        min-height: 0;
+        width: 100vw;
+        max-width: 100vw;
+        font-size: 0.9rem;
     }
 }
