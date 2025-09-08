@@ -878,3 +878,7 @@ nav .container {
 .nav-btn[data-tip]:hover::before {
     display: none;
 }
+
+.navigation.hidden {
+    display: none;
+}

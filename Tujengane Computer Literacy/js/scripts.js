@@ -1049,11 +1049,13 @@ function updateSlide(moduleIndex, slideIndex) {
         totalSlidesDisplay.textContent = modules[moduleIndex].slides.length;
         prevBtn.disabled = slideIndex === 0;
         nextBtn.disabled = slideIndex === modules[moduleIndex].slides.length - 1 && moduleIndex === modules.length - 1;
+        document.querySelector('.navigation').classList.remove('hidden');
     } else {
         currentSlideDisplay.textContent = 0;
         totalSlidesDisplay.textContent = 0;
         prevBtn.disabled = true;
         nextBtn.disabled = true;
+        document.querySelector('.navigation').classList.add('hidden');
     }
 
     document.querySelectorAll('.sidebar-link').forEach(link => {
