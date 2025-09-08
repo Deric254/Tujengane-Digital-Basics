@@ -31,7 +31,10 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0.125rem 0;
-    height: 100%;
+       #chatButton {
+        bottom: 55px !important;
+        right: 6px !important;
+    }ight: 100%;
     max-height: calc(100vh - 110px - 0.25rem);
     overflow-y: auto;
     scrollbar-width: thin;
@@ -747,7 +750,7 @@ nav .container {
     .navigation {
         position: fixed !important;
         bottom: 55px !important;
-        right: 6px !important;
+        right: 80px !important;
         left: auto !important;
         width: auto !important;
         padding: 0 !important;
@@ -837,7 +840,7 @@ nav .container {
     .navigation {
         bottom: 55px;
         gap: 0.5rem;
-        right: 6px;
+        right: 80px;
         left: auto;
         width: auto;
         padding: 0;
@@ -863,5 +866,9 @@ nav .container {
         width: 100vw;
         max-width: 100vw;
         font-size: 0.9rem;
+    }
+    #chatButton {
+        bottom: 55px !important;
+        right: 6px !important;
     }
 }
