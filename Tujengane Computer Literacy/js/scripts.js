@@ -993,7 +993,7 @@ const welcomeSlide = {
     content: `
     <div class="welcome-block" style="padding:1.2rem 0.5rem 1rem 0.5rem; text-align:center; max-width: 98vw; min-height: 0;">
         <div style="font-size:1rem; color:#333; margin-bottom:1rem;">
-            Welcome to our 12-week digital skills course by <strong>EXES BI</strong>!<br>
+            Welcome to our 13-week digital skills course by <strong>EXES BI</strong>!<br>
             <span style="color:#256d4f; font-weight:600;">Choose your next step below or use the sidebar to explore modules.</span>
         </div>
         <div class="welcome-links" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; margin-bottom:1.2rem;">
