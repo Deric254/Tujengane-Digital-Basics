@@ -241,29 +241,14 @@
             margin: 0.5rem 0;
         }
         @media (max-width: 1024px) {
-            .sidebar {
-                width: 100%;
-                border-radius: 0.75rem;
-                padding: 1rem;
-            }
-            .layout {
-                flex-direction: column;
-                padding: 1rem;
-            }
-            .main-content {
-                border-radius: 0.75rem;
-                padding: 1.5rem;
-            }
-            .slogan-container {
-                /* max-width: 300px; */ /* Remove this */
-                /* padding: 0 0.5rem; */ /* Remove this */
-            }
-            .slogan-marquee {
-                font-size: 0.9rem;
-            }
+            .sidebar { display: none !important; }
+            .layout { flex-direction: column; padding: 1rem; }
+            .main-content { border-radius: 0.75rem; padding: 1.5rem; }
+            .slogan-marquee { font-size: 0.9rem; }
         }
         @media (max-width: 768px) {
-            .sidebar { display: none; }
+            .sidebar { display: none !important; }
+            .hamburger { display: none !important; }
             .main-content { padding: 1rem; }
             .hero-section h1 { font-size: 1.75rem; }
             .hero-section p { font-size: 0.9rem; }
@@ -298,6 +283,9 @@
             .footer-logo { flex-direction: column; align-items: center; }
             .footer-copyright { text-align: center; }
         }
+        @media (max-width: 768px) and (orientation: landscape) {
+            /* Removed: redundant, handled by previous rule */
+        }
         @media (max-width: 480px) {
             .hero-section { padding: 1.5rem; }
             .curriculum-card { padding: 1rem; }
@@ -329,7 +317,7 @@
         </div>
     </nav>
     <div class="layout">
-        <aside class="sidebar">
+        <aside class="sidebar" id="mainSidebar">
             <div class="sidebar-content">
                 <div class="sidebar-item">
                     <a href="Tujengane data basics/databasics.html"><i class="fas fa-database"></i> Data Basics</a>
@@ -358,6 +346,19 @@
             </div>
         </aside>
         <main class="main-content">
+    <script>
+    // Fallback: forcibly hide sidebar on all small screens (portrait or landscape)
+    function forceHideSidebar() {
+        var sidebar = document.getElementById('mainSidebar');
+        if (sidebar && window.innerWidth <= 1024) {
+            sidebar.style.display = 'none';
+        } else if (sidebar) {
+            sidebar.style.display = '';
+        }
+    }
+    window.addEventListener('DOMContentLoaded', forceHideSidebar);
+    window.addEventListener('resize', forceHideSidebar);
+    </script>
             <div class="max-w-4xl w-full mx-auto relative z-10">
                 <div class="hero-section">
                     <h1>Welcome to Tujengane Digital Skills!</h1>
