@@ -187,14 +187,14 @@ body {
     font-weight: 600;
     color: #256d4f;
     background: #fffbe6;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     border-radius: 0.25rem;
     margin: 0;
     z-index: 10;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 90%;
-    max-width: 300px;
+    max-width: 500px;
 }
 
 .slide-container-wrapper {
@@ -699,6 +699,10 @@ nav .container {
         box-shadow: none !important;
         z-index: 2 !important;
     }
+
+    .slide-number-display.hidden {
+        display: none !important;
+    }
     .slide {
         width: 100vw !important;
         max-width: 100vw !important;
@@ -817,6 +821,10 @@ nav .container {
         font-size: 0.8rem;
         padding: 0.25rem 0.5rem;
     }
+
+    .slide-number-display.hidden {
+        display: none !important;
+    }
     .slide {
         width: 95vw;
         padding: 0.25rem;
@@ -880,5 +888,9 @@ nav .container {
 }
 
 .navigation.hidden {
+    display: none;
+}
+
+.slide-number-display.hidden {
     display: none;
 }

@@ -1050,12 +1050,15 @@ function updateSlide(moduleIndex, slideIndex) {
         prevBtn.disabled = slideIndex === 0;
         nextBtn.disabled = slideIndex === modules[moduleIndex].slides.length - 1 && moduleIndex === modules.length - 1;
         document.querySelector('.navigation').classList.remove('hidden');
+        document.getElementById('slide-number-display').classList.remove('hidden');
+        document.getElementById('slide-number-display').textContent = `${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
     } else {
         currentSlideDisplay.textContent = 0;
         totalSlidesDisplay.textContent = 0;
         prevBtn.disabled = true;
         nextBtn.disabled = true;
         document.querySelector('.navigation').classList.add('hidden');
+        document.getElementById('slide-number-display').classList.add('hidden');
     }
 
     document.querySelectorAll('.sidebar-link').forEach(link => {
