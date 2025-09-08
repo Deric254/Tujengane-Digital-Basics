@@ -1144,7 +1144,13 @@ nextBtn.addEventListener('click', handleNext);
 hamburgerBtn.addEventListener('click', () => {
     isSidebarOpen = !isSidebarOpen;
     sidebar.classList.toggle('active', isSidebarOpen);
-    navLinks.classList.toggle('mobile-active', isSidebarOpen);
+});
+
+document.addEventListener('click', (e) => {
+    if (isSidebarOpen && !sidebar.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        isSidebarOpen = false;
+        sidebar.classList.remove('active');
+    }
 });
 
 function toggleChat() {
