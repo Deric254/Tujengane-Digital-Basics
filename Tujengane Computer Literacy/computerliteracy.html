@@ -57,54 +57,31 @@
 </head>
 <body>
 <script>
-// Password protection with masked input (asterisks)
+// Simple password protection (client-side, not secure)
 document.addEventListener('DOMContentLoaded', function() {
-        var correctPassword = 'literacy2025';
-        var tries = 0;
-        // Create modal HTML
-        var modal = document.createElement('div');
-        modal.id = 'password-modal';
-        modal.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;z-index:9999;';
-        modal.innerHTML = `
-            <div style="background:#fff;padding:2em 2.5em 1.5em 2.5em;border-radius:1em;box-shadow:0 4px 24px rgba(0,0,0,0.18);display:flex;flex-direction:column;align-items:center;min-width:260px;">
-                <h2 style="color:#49A078;margin-bottom:1em;font-size:1.2em;">Protected Section</h2>
-                <p style="margin-bottom:1em;font-size:1em;">Please enter the password to access Computer Literacy:</p>
-                <input id="password-input" type="password" placeholder="Password" style="padding:0.7em 1em;font-size:1em;border:1px solid #ccc;border-radius:0.5em;width:100%;margin-bottom:1em;outline:none;" autofocus />
-                <button id="password-submit" style="background:#49A078;color:#fff;padding:0.6em 1.5em;border:none;border-radius:0.5em;font-size:1em;font-weight:600;cursor:pointer;">Enter</button>
-                <div id="password-error" style="color:#dc2626;margin-top:0.7em;display:none;font-size:0.95em;"></div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-        document.body.style.display = 'none';
-        function showError(msg) {
-            var err = document.getElementById('password-error');
-            err.textContent = msg;
-            err.style.display = 'block';
-        }
-        function handlePassword() {
-            var input = document.getElementById('password-input').value;
-            if (input === correctPassword) {
-                document.body.style.display = '';
-                modal.remove();
+    var correctPassword = 'literacy2025'; // Change this password as needed
+    var tries = 0;
+    function askPassword() {
+        var input = prompt('This section is for authorized users only. Please enter the password:');
+        if (input === correctPassword) {
+            document.body.style.display = '';
+        } else {
+            tries++;
+            if (tries >= 2) {
+                // Open WhatsApp chat with pre-filled message
+            var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hello! I am a new student and would like to access the Tujengane Computer Literacy section. Could you please help me get the login details or password? Thank you!');
+                window.location.href = waUrl;
+                // Fallback message in case redirect fails
+                setTimeout(function() {
+                    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;"><h2 style="color:#49A078;">Redirecting to WhatsApp...</h2><p style="margin:1em 0;">If WhatsApp does not open, <a href="'+waUrl+'" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p></div>';
+                }, 2000);
             } else {
-                tries++;
-                showError('Incorrect password. Please try again.');
-                if (tries >= 2) {
-                    var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hello! I am a new student and would like to access the Tujengane Computer Literacy section. Could you please help me get the login details or password? Thank you!');
-                    window.location.href = waUrl;
-                    setTimeout(function() {
-                        document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;"><h2 style="color:#49A078;">Redirecting to WhatsApp...</h2><p style="margin:1em 0;">If WhatsApp does not open, <a href="'+waUrl+'" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p></div>';
-                    }, 2000);
-                }
+                askPassword();
             }
         }
-        document.getElementById('password-submit').onclick = handlePassword;
-        document.getElementById('password-input').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') handlePassword();
-        });
-        setTimeout(function() {
-            document.getElementById('password-input').focus();
-        }, 100);
+    }
+    document.body.style.display = 'none';
+    askPassword();
 });
 </script>
     <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg">
