@@ -320,7 +320,32 @@
             <div class="text-xs text-gray-500 footer-copyright">
                 &copy; 2025 TDS powered by EXES BI – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#49A078] hover:underline">Deric Marangu</a>
             </div>
+            <a href="../index.html" class="footer-link footer-home-link">Home</a>
         </div>
+        <style>
+        @media (max-width: 768px) {
+            .footer .container { flex-wrap: wrap !important; }
+            .footer-home-link {
+                display: inline-block !important;
+                font-weight: 600;
+                color: #256d4f !important;
+                background: #fff;
+                border-radius: 6px;
+                padding: 0.3em 1.1em;
+                margin-left: auto;
+                margin-right: 0.1em;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+                border: 1px solid #49A078;
+                order: 99;
+                min-width: 60px;
+                text-align: center;
+            }
+            .footer-home-link:hover { background: #49A078; color: #fff !important; }
+        }
+        @media (min-width: 769px) {
+            .footer-home-link { display: none !important; }
+        }
+        </style>
     </footer>
     <div id="chatButton" onclick="toggleChat()" class="fixed bottom-60 right-6 bg-[#49A078] text-white p-3 rounded-full shadow-lg cursor-pointer hover:bg-[#3e8865] transition-all z-50">
         <i class="fas fa-comments"></i>
