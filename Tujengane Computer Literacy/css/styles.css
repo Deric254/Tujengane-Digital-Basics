@@ -700,17 +700,14 @@ nav .container {
         z-index: 2 !important;
     }
     .slide {
-        position: relative !important;
-        top: 0 !important;
-        bottom: 0 !important;
         width: 100vw !important;
         max-width: 100vw !important;
         padding: 1.2rem 0.5rem 1.2rem 0.5rem !important;
-        min-height: 0 !important;
-        max-height: none !important;
+        height: auto !important;
+        max-height: 100% !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         flex: 1 1 auto !important;
         background: linear-gradient(135deg, #ffffff, #e6fffa) !important;
         border-radius: 0 !important;
@@ -745,10 +742,10 @@ nav .container {
         margin-bottom: 0.5rem !important;
     }
     .navigation {
-        position: relative !important;
-        bottom: 0 !important;
+        position: fixed !important;
+        bottom: 50px !important;
         left: 0 !important;
-        transform: none !important;
+        right: 0 !important;
         flex-direction: row !important;
         gap: 1rem !important;
         width: 100vw !important;
@@ -757,7 +754,7 @@ nav .container {
         align-items: center !important;
         background: transparent !important;
         box-shadow: none !important;
-        z-index: 2 !important;
+        z-index: 10 !important;
     }
     .nav-btn {
         width: 44vw !important;
@@ -819,11 +816,12 @@ nav .container {
         padding: 0.25rem 0.5rem;
     }
     .slide {
-        top: 70px;
-        bottom: 70px;
         width: 95vw;
         padding: 0.25rem;
-        max-height: calc(100vh - 120px);
+        height: auto;
+        max-height: 100%;
+        justify-content: flex-start;
+        flex: 1 1 auto;
     }
     .slide-content {
         padding: 0.25rem;
@@ -839,8 +837,12 @@ nav .container {
         margin-bottom: 0.5rem;
     }
     .navigation {
-        bottom: 70px;
+        position: fixed;
+        bottom: 50px;
+        left: 0;
+        right: 0;
         gap: 0.75rem;
+        z-index: 10;
     }
     .nav-btn {
         width: 100px;
