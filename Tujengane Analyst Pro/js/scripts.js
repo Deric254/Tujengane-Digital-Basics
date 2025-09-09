@@ -544,58 +544,132 @@ const modules = [
                 <li>Check for and fix errors or issues.</li>
                 <hr><div class="activity-block"><strong>Tip:</strong> A safe database is a healthy database!</div>
             </ul></div>` },
-            { title: "Practical: Create and Manage a Database", content: `<ol><li>Create a simple database for a business scenario (e.g., a shop).</li><li>Define tables for products, customers, and sales.</li><li>Practice adding, updating, and querying data.</li></ol>` },
-            { title: "Q&A", content: `<ul><li>What was the most challenging part of creating your database?</li><li>Which SQL command did you find most useful?</li><li>How can databases be useful in your current or future job?</li></ul>` },
-            { title: "Key Takeaways", content: `<ul><li>Databases are crucial for storing and managing data.</li><li>Learn to use SQL for database manipulation and querying.</li><li>Practice designing and managing databases.</li></ul>` },
-            { title: "Challenge: Build Your Own Database", content: `<ol><li>Design a database for a personal project or interest.</li><li>Use MySQL to create the database and tables.</li><li>Populate with sample data and practice queries.</li><li>Be ready to demonstrate your database in the next session.</li></ol>` }
+            { title: "Practical: Create and Manage a Database", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Create a simple database for a business (e.g., shop).</li>
+                <li>Make tables for products, customers, and sales.</li>
+                <li>Practice adding and updating data.</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Show your database design to a friend or teacher.</div>
+            </ol></div>` },
+            { title: "Q&A", content: `<div class="ai-slide-block"><ul class='highlight-list'>
+                <li>What was the hardest part of making your database?</li>
+                <li>Which SQL command did you use most?</li>
+                <li>How can databases help you at work or home?</li>
+            </ul></div>` },
+            { title: "Key Takeaways", content: `<div class="ai-slide-block"><ul class='highlight-list'>
+                <li>Databases help you store and manage lots of data.</li>
+                <li>SQL is the main tool for working with databases.</li>
+                <li>Practice makes you better at design and management.</li>
+            </ul></div>` },
+            { title: "Challenge: Build Your Own Database", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Design a database for a project or hobby.</li>
+                <li>Create tables in MySQL and add sample data.</li>
+                <li>Practice running queries (add, update, find).</li>
+                <li>Be ready to show your database next time.</li>
+                <hr><div class="activity-block"><strong>Tip:</strong> Start simple and build as you learn!</div>
+            </ol></div>` }
         ]
     },
     {
         title: "SQL for Data Analysis",
         slides: [
-            { title: "What is SQL?", content: `<ul><li>SQL (Structured Query Language) is a language for managing and analyzing data in relational databases.</li><li>It’s used to perform tasks such as updating data, retrieving data, and creating reports.</li></ul>` },
-            { title: "Basic SQL Commands", content: `<ul><li><code>SELECT</code>: Retrieve data from a database.</li><li><code>INSERT</code>: Add new data to a table.</li><li><code>UPDATE</code>: Modify existing data.</li><li><code>DELETE</code>: Remove data from a table.</li></ul>` },
-            { title: "Filtering and Sorting Data", content: `<ul><li>Use <code>WHERE</code> to filter records (e.g., <code>SELECT * FROM sales WHERE amount > 100;</code>).</li><li>Use <code>ORDER BY</code> to sort records (e.g., <code>SELECT * FROM sales ORDER BY date DESC;</code>).</li></ul>` },
-            { title: "Aggregating Data", content: `<ul><li>Use <code>GROUP BY</code> to group records (e.g., total sales by product).</li><li>Use aggregate functions like <code>SUM</code>, <code>AVG</code>, <code>COUNT</code> (e.g., <code>SELECT product, SUM(amount) FROM sales GROUP BY product;</code>).</li></ul>` },
-            { title: "Joining Tables", content: `<ul><li>Use <code>JOIN</code> to combine rows from two or more tables based on a related column (e.g., customer ID).</li><li>Types of joins: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.</li></ul>` },
-            { title: "Subqueries and Nested Queries", content: `<ul><li>A subquery is a query within another query.</li><li>Used to perform operations that require multiple steps (e.g., finding top-selling products).</li></ul>` },
-            { title: "SQL for Data Analysis: Best Practices", content: `<ul><li>Always back up your data before running update or delete queries.</li><li>Use transactions to ensure data integrity.</li><li>Optimize queries for better performance (e.g., using indexes).</li></ul>` },
-            { title: "Practical: Analyze Data with SQL", content: `<ol><li>Given a dataset, write SQL queries to answer specific business questions.</li><li>Practice using SELECT, WHERE, JOIN, and aggregate functions.</li><li>Share your queries and results with a peer for review.</li></ol>` },
-            { title: "Q&A", content: `<ul><li>What SQL command did you find most useful for data analysis?</li><li>What challenges did you face while writing SQL queries?</li><li>How can SQL skills benefit your career?</li></ul>` },
-            { title: "Key Takeaways", content: `<ul><li>SQL is a powerful tool for data analysis in relational databases.</li><li>Practice writing and optimizing SQL queries.</li><li>Learn to use SQL in conjunction with other data tools.</li></ul>` },
-            { title: "Challenge: SQL Data Analysis", content: `<ol><li>Take a dataset and write SQL queries to extract meaningful insights.</li><li>Use at least three different SQL commands in your analysis.</li><li>Be prepared to explain your queries and findings in the next session.</li></ol>` }
+            { title: "What is SQL?", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>SQL stands for Structured Query Language.</li>
+                <li>It’s used to manage and analyze data in databases.</li>
+                <ul>
+                    <li>Update, find, and report on data easily.</li>
+                </ul>
+                <hr><div class="activity-block"><strong>Activity:</strong> Name one thing you’d like to find out from a database using SQL.</div>
+            </ol></div>` },
+            { title: "Basic SQL Commands", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><code>SELECT</code>: Get data from a table.</li>
+                <li><code>INSERT</code>: Add new data.</li>
+                <li><code>UPDATE</code>: Change existing data.</li>
+                <li><code>DELETE</code>: Remove data.</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Write a simple SELECT or INSERT command for practice.</div>
+            </ol></div>` },
+            { title: "Filtering and Sorting Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use <code>WHERE</code> to filter records (e.g., <code>SELECT * FROM sales WHERE amount &gt; 100;</code>).</li>
+                <li>Use <code>ORDER BY</code> to sort results (e.g., <code>SELECT * FROM sales ORDER BY date DESC;</code>).</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Write a query to get all sales above 100, sorted by date.</div>
+            </ol></div>` },
+            { title: "Aggregating Data", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use <code>GROUP BY</code> to group data (e.g., sales by product).</li>
+                <li>Use <code>SUM</code>, <code>AVG</code>, <code>COUNT</code> for totals and averages.</li>
+                <li>Example: <code>SELECT product, SUM(amount) FROM sales GROUP BY product;</code></li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Write a query to get total sales for each product.</div>
+            </ol></div>` },
+            { title: "Joining Tables", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use <code>JOIN</code> to combine data from two or more tables.</li>
+                <li>Common joins: INNER, LEFT, RIGHT, FULL.</li>
+                <li>Example: Join sales and customers by customer ID.</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Write a JOIN query to combine two tables.</div>
+            </ol></div>` },
+            { title: "Subqueries and Nested Queries", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A subquery is a query inside another query.</li>
+                <li>Use for multi-step operations (e.g., find top-selling products).</li>
+                <li>Example: <code>SELECT * FROM sales WHERE amount = (SELECT MAX(amount) FROM sales);</code></li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Write a subquery to find the highest sale.</div>
+            </ol></div>` },
+            { title: "SQL for Data Analysis: Best Practices", content: `<div class="ai-slide-block"><ul class='highlight-list'>
+                <li>Back up your data before updates or deletes.</li>
+                <li>Use transactions to keep data safe.</li>
+                <li>Optimize queries for speed (use indexes).</li>
+                <hr><div class="activity-block"><strong>Tip:</strong> Good habits prevent big mistakes!</div>
+            </ul></div>` },
+            { title: "Practical: Analyze Data with SQL", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Get a dataset and write SQL queries to answer questions.</li>
+                <li>Practice SELECT, WHERE, JOIN, and SUM/AVG/COUNT.</li>
+                <li>Share your queries and results with a friend.</li>
+                <hr><div class="activity-block"><strong>Activity:</strong> Try at least three different SQL commands.</div>
+            </ol></div>` },
+            { title: "Q&A", content: `<div class="ai-slide-block"><ul class='highlight-list'>
+                <li>What SQL command helped you most?</li>
+                <li>What was hardest about writing SQL queries?</li>
+                <li>How can SQL help your career or business?</li>
+            </ul></div>` },
+            { title: "Key Takeaways", content: `<div class="ai-slide-block"><ul class='highlight-list'>
+                <li>SQL is powerful for analyzing data in databases.</li>
+                <li>Practice writing and improving your queries.</li>
+                <li>Combine SQL with other tools for best results.</li>
+            </ul></div>` },
+            { title: "Challenge: SQL Data Analysis", content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Pick a dataset and write SQL queries to find insights.</li>
+                <li>Use at least three different SQL commands.</li>
+                <li>Be ready to explain your queries and results next time.</li>
+                <hr><div class="activity-block"><strong>Tip:</strong> Try SELECT, JOIN, and GROUP BY in your analysis!</div>
+            </ol></div>` }
         ]
     },
     {
         title: "Introduction to Python for Data Analysis",
         slides: [
-            { title: "Why Python for Data Analysis?", content: `<ul><li>Python is a powerful, flexible programming language.</li><li>It’s widely used for data analysis, machine learning, web development, and more.</li><li>Python has a simple syntax that’s easy to learn for beginners.</li></ul>` },
-            { title: "Setting Up Python", content: `<ol><li>Download and install Python from the official website.</li><li>Install a code editor or IDE (e.g., PyCharm, VSCode).</li><li>Install Jupyter Notebook for interactive coding and data visualization.</li></ol>` },
-            { title: "Python Basics: Data Types and Variables", content: `<ul><li>Common data types: integers, floats, strings, booleans.</li><li>Variables are used to store data values (e.g., <code>age = 30</code>).</li><li>Lists, tuples, and dictionaries are used to store collections of data.</li></ul>` },
-            { title: "Python Basics: Control Structures", content: `<ul><li>Use <code>if</code>, <code>elif</code>, and <code>else</code> to perform conditional logic.</li><li>Use <code>for</code> and <code>while</code> loops to iterate over data.</li><li>Use <code>break</code> and <code>continue</code> to control loop execution.</li></ul>` },
-            { title: "Introduction to Python Libraries for Data Analysis", content: `<ul><li>Pandas: Data manipulation and analysis.</li><li>NumPy: Numerical computing with Python.</li><li>Matplotlib and Seaborn: Data visualization libraries.</li><li>Scikit-learn: Machine learning library.</li></ul>` },
-            { title: "Getting Started with Pandas", content: `<ol><li>Import the pandas library: <code>import pandas as pd</code>.</li><li>Load data into a DataFrame: <code>df = pd.read_csv('file.csv')</code>.</li><li>View and explore your data: <code>df.head()</code>, <code>df.info()</code>.</li></ol>` },
-            { title: "Data Manipulation with Pandas", content: `<ol><li>Filter rows based on conditions: <code>df[df['column'] > value]</code>.</li><li>Select specific columns: <code>df[['column1', 'column2']]</code>.</li><li>Group data and calculate aggregates: <code>df.groupby('column').sum()</code>.</li></ol>` },
-            { title: "Data Visualization with Matplotlib and Seaborn", content: `<ol><li>Create line charts, bar charts, and scatter plots to visualize data.</li><li>Customize charts with titles, labels, and legends.</li><li>Show trends, patterns, and outliers in your data.</li></ol>` },
-            { title: "Practical: Analyze Data with Python", content: `<ol><li>Using a dataset, perform data cleaning, analysis, and visualization using Python.</li><li>Share your code and findings with a peer for review.</li></ol>` },
-            { title: "Q&A", content: `<ul><li>What Python feature or library do you find most interesting?</li><li>What challenges did you face while using Python for data analysis?</li><li>How can Python skills benefit your career?</li></ul>` },
-            { title: "Key Takeaways", content: `<ul><li>Python is a versatile language for data analysis and more.</li><li>Pandas and Matplotlib/Seaborn are essential libraries for data work.</li><li>Practice coding in Python regularly to improve your skills.</li></ul>` },
-            { title: "Challenge: Python Data Analysis", content: `<ol><li>Take a dataset and use Python to clean, analyze, and visualize the data.</li><li>Be prepared to present your analysis and visuals in the next session.</li></ol>` }
+            { title: "Why Python for Data Analysis?", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>Python is easy to learn and read, even for beginners.</li><li>It’s used by Kenyan businesses for data, finance, and automation.</li><li>Python helps you analyze, clean, and visualize data quickly.</li></ul></div>` },
+            { title: "Setting Up Python", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Download Python from python.org or use Anaconda.</li><li>Install a free code editor (VSCode is popular in Kenya).</li><li>Try Jupyter Notebook for step-by-step coding and charts.</li></ol></div>` },
+            { title: "Python Basics: Data Types and Variables", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>Numbers: for age, price, scores.</li><li>Text (strings): for names, locations.</li><li>Lists: store many items (e.g., sales per day).</li><li>Variables: give data a name, e.g., <code>income = 5000</code>.</li></ul></div>` },
+            { title: "Python Basics: Control Structures", content: `<div class="ai-slide-block"><ul class='highlight-list'><li><code>if</code> checks conditions (e.g., if sales > 1000).</li><li><code>for</code> loops repeat actions (e.g., for each customer).</li><li>Use <code>break</code> to stop, <code>continue</code> to skip.</li></ul></div>` },
+            { title: "Python Libraries for Data Analysis", content: `<div class="ai-slide-block"><ul class='highlight-list'><li><strong>Pandas:</strong> Clean and organize tables (like Excel, but faster).</li><li><strong>NumPy:</strong> Fast math for big data.</li><li><strong>Matplotlib/Seaborn:</strong> Draw charts and graphs.</li></ul></div>` },
+            { title: "Getting Started with Pandas", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Import pandas: <code>import pandas as pd</code></li><li>Read a CSV: <code>df = pd.read_csv('sales.csv')</code></li><li>See your data: <code>df.head()</code></li></ol></div>` },
+            { title: "Data Manipulation with Pandas", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Filter: <code>df[df['price'] > 100]</code> (see expensive items).</li><li>Pick columns: <code>df[['item', 'price']]</code></li><li>Group and sum: <code>df.groupby('category').sum()</code></li></ol></div>` },
+            { title: "Data Visualization with Matplotlib & Seaborn", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Draw a bar chart: <code>plt.bar()</code></li><li>Label axes and add a title.</li><li>Show trends (e.g., sales per month).</li></ol></div>` },
+            { title: "Practical: Analyze Data with Python", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Clean a real dataset (e.g., shop sales).</li><li>Draw a chart of your results.</li><li>Share your code with a classmate for feedback.</li></ol></div>` },
+            { title: "Q&A", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>What was easy or hard about using Python?</li><li>How could you use Python in your business or studies?</li></ul></div>` },
+            { title: "Key Takeaways", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>Python is practical for data work in Kenya.</li><li>Pandas and Matplotlib make analysis and charts simple.</li><li>Practice is the best way to learn coding.</li></ul></div>` },
+            { title: "Challenge: Python Data Analysis", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Pick a local dataset (e.g., M-Pesa transactions, shop sales).</li><li>Clean, analyze, and draw a chart using Python.</li><li>Present your findings to the group.</li></ol></div>` }
         ]
     },
     {
         title: "Introduction to Machine Learning",
         slides: [
-            { title: "What is Machine Learning?", content: `<ul><li>Machine learning is a type of artificial intelligence that allows software applications to become more accurate at predicting outcomes without being explicitly programmed.</li><li>It uses algorithms to find patterns and learn from data.</li></ul>` },
-            { title: "Why Machine Learning Matters", content: `<ul><li>It enables computers to learn on their own, improving efficiency and effectiveness.</li><li>Machine learning is used in many applications, from email filtering to self-driving cars.</li></ul>` },
-            { title: "Types of Machine Learning", content: `<ul><li>Supervised learning: The model is trained on labeled data (e.g., spam detection).</li><li>Unsupervised learning: The model finds patterns in unlabeled data (e.g., customer segmentation).</li><li>Reinforcement learning: The model learns by receiving rewards or penalties (e.g., game playing).</li></ul>` },
-            { title: "Machine Learning Process", content: `<ol><li>Define the problem: What do you want to predict or classify?</li><li>Prepare the data: Clean and organize your data for training.</li><li>Choose a model: Select the appropriate machine learning algorithm.</li><li>Train the model: Use your data to teach the model.</li><li>Evaluate the model: Test the model’s accuracy and adjust as needed.</li></ol>` },
-            { title: "Introduction to Python for Machine Learning", content: `<ul><li>Python is a popular language for machine learning due to its simplicity and powerful libraries.</li><li>Key libraries: Scikit-learn, TensorFlow, Keras, PyTorch.</li></ul>` },
-            { title: "Getting Started with Scikit-learn", content: `<ol><li>Import the library: <code>from sklearn.model_selection import train_test_split</code>.</li><li>Load your data and split it into training and test sets.</li><li>Choose and train a model (e.g., linear regression, decision tree).</li><li>Make predictions and evaluate the model’s performance.</li></ol>` },
-            { title: "Practical: Build a Machine Learning Model", content: `<ol><li>Using a dataset, build a simple machine learning model in Python.</li><li>Practice training, testing, and evaluating the model.</li><li>Share your code and results with a peer for review.</li></ol>` },
-            { title: "Q&A", content: `<ul><li>What machine learning concept or application interests you the most?</li><li>What challenges did you face while building your model?</li><li>How can machine learning skills benefit your career?</li></ul>` },
-            { title: "Key Takeaways", content: `<ul><li>Machine learning is a key technology in AI and data science.</li><li>Practice building and evaluating machine learning models.</li><li>Learn to use Python and its libraries for machine learning.</li></ul>` },
-            { title: "Challenge: Build Your Own Machine Learning Model", content: `<ol><li>Take a dataset and build a machine learning model to solve a specific problem.</li><li>Be prepared to present your model, findings, and code in the next session.</li></ol>` }
+            { title: "What is Machine Learning?", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>Machine learning (ML) means teaching computers to learn from data, not just rules.</li><li>ML is used in Kenya for mobile money fraud detection, crop prediction, and more.</li></ul></div>` },
+            { title: "Why Machine Learning Matters", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>ML helps automate tasks and make better predictions (e.g., who might default on a loan).</li><li>It’s used in apps you know: M-Pesa, Facebook, Google.</li></ul></div>` },
+            { title: "Types of Machine Learning", content: `<div class="ai-slide-block"><ul class='highlight-list'><li><strong>Supervised:</strong> Learn from examples (e.g., spam vs. not spam).</li><li><strong>Unsupervised:</strong> Find groups in data (e.g., customer segments).</li><li><strong>Reinforcement:</strong> Learn by trial and error (e.g., game playing).</li></ul></div>` },
+            { title: "Machine Learning Process", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Pick a problem (e.g., predict sales next month).</li><li>Collect and clean data.</li><li>Choose a model (e.g., decision tree).</li><li>Train the model with your data.</li><li>Test and improve the model.</li></ol></div>` },
+            { title: "Python for Machine Learning", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>Python is the top language for ML worldwide.</li><li>Key libraries: scikit-learn (easy models), TensorFlow (advanced), Keras (simple deep learning).</li></ul></div>` },
+            { title: "Getting Started with Scikit-learn", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Import: <code>from sklearn.model_selection import train_test_split</code></li><li>Split your data: training vs. testing.</li><li>Pick a model (e.g., <code>DecisionTreeClassifier</code>).</li><li>Train and test your model.</li></ol></div>` },
+            { title: "Practical: Build a Machine Learning Model", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Use a real dataset (e.g., local shop sales).</li><li>Build a simple model to predict something (e.g., busy days).</li><li>Share your results with a classmate.</li></ol></div>` },
+            { title: "Q&A", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>What ML example did you find most interesting?</li><li>What was challenging about building a model?</li></ul></div>` },
+            { title: "Key Takeaways", content: `<div class="ai-slide-block"><ul class='highlight-list'><li>ML is practical and used in Kenya today.</li><li>Python and scikit-learn make ML accessible for beginners.</li><li>Start simple, then try more complex models as you learn.</li></ul></div>` },
+            { title: "Challenge: Build Your Own Machine Learning Model", content: `<div class="ai-slide-block"><ol class='highlight-list'><li>Pick a local dataset (e.g., school grades, shop sales).</li><li>Build a model to predict or classify something useful.</li><li>Present your findings to the group.</li></ol></div>` }
         ]
     },
     {
