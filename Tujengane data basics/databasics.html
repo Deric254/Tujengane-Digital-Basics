@@ -56,6 +56,26 @@
     <link rel="stylesheet" href="./css/styles.css">
     <style>
         /* ...existing styles... */
+        /* Slide typography to match Computer Basicss module (no HTML changes) */
+        .slide-content h2 {
+            font-size: 2.25rem; /* similar to text-4xl */
+            font-weight: 800; /* font-extrabold */
+            color: #49A078; /* module green */
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+        .slide-content p,
+        .slide-content li,
+        .slide-content .text-lg {
+            color: #374151; /* gray-700 */
+            font-size: 1.125rem; /* similar to text-lg */
+        }
+        /* Make list highlights consistent */
+        .slide-content .highlight-list li {
+            background: #f3f4f6; /* light gray */
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
         @media (max-width: 768px) {
             .sidebar {
                 display: none !important;
