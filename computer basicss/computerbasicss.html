@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tujengane Computer Basicss – EXES BI</title>
+    <meta name="description" content="Tujengane Computer Basicss by EXES BI  Learn essential computer skills for work and study.">
+    <meta name="keywords" content="Tujengane Computer Basics, EXES BI, Computer Literacy, Digital Skills, Deric Marangu">
+    <meta name="author" content="Deric Marangu">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../assets/favicons/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        /* small override if needed */
+    </style>
+</head>
+<body>
+    <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-bold text-xl tracking-tight">Tujengane Computer Basicss</span>
+            </div>
+            <div class="slogan-container">
+                <div class="slogan-marquee-track">
+                    <div class="slogan-marquee">Empowering Your Future with Essential Digital Skills – Join Us Today!</div>
+                    <div class="slogan-marquee">Empowering Your Future with Essential Digital Skills – Join Us Today!</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="hamburger" id="hamburger-btn"><i class="fas fa-bars"></i></button>
+                <ul class="nav-links flex gap-4 text-sm font-medium items-center shrink-0" id="nav-links">
+                    <li><a href="../index.html" class="nav-link hover:text-[#facc15] transition-colors">Home</a></li>
+                    <li><a href="https://exesbi.netlify.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank">EXES BI</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="layout">
+        <aside class="sidebar" id="slide-nav-panel" data-scrollable="true">
+            <div class="sidebar-content">
+                <div class="sidebar-item" data-slide="0">
+                    <a href="#" onclick="goToSlide(0)" data-slide="0" class="sidebar-link active"><span class="slide-number">1.</span> Welcome</a>
+                </div>
+                <div class="sidebar-item" data-slide="1">
+                    <a href="#" onclick="goToSlide(1)" data-slide="1" class="sidebar-link"><span class="slide-number">2.</span> Module Overview</a>
+                </div>
+                <div class="sidebar-item" data-slide="2">
+                    <a href="#" onclick="goToSlide(2)" data-slide="2" class="sidebar-link"><span class="slide-number">3.</span> Getting Started</a>
+                </div>
+                <div class="sidebar-item" data-slide="3">
+                    <a href="#" onclick="goToSlide(3)" data-slide="3" class="sidebar-link"><span class="slide-number">4.</span> Basic Navigation</a>
+                </div>
+                <div class="sidebar-item" data-slide="4">
+                    <a href="#" onclick="goToSlide(4)" data-slide="4" class="sidebar-link"><span class="slide-number">5.</span> File Management</a>
+                </div>
+                <div class="sidebar-item" data-slide="5">
+                    <a href="#" onclick="goToSlide(5)" data-slide="5" class="sidebar-link"><span class="slide-number">6.</span> Typing & Shortcuts</a>
+                </div>
+                <div class="sidebar-item" data-slide="6">
+                    <a href="#" onclick="goToSlide(6)" data-slide="6" class="sidebar-link"><span class="slide-number">7.</span> Microsoft Word Basics</a>
+                </div>
+                <div class="sidebar-item" data-slide="7">
+                    <a href="#" onclick="goToSlide(7)" data-slide="7" class="sidebar-link"><span class="slide-number">8.</span> Excel Basics</a>
+                </div>
+                <div class="sidebar-item" data-slide="8">
+                    <a href="#" onclick="goToSlide(8)" data-slide="8" class="sidebar-link"><span class="slide-number">9.</span> PowerPoint Basics</a>
+                </div>
+                <div class="sidebar-item" data-slide="9">
+                    <a href="#" onclick="goToSlide(9)" data-slide="9" class="sidebar-link"><span class="slide-number">10.</span> Internet & Email</a>
+                </div>
+                <div class="sidebar-item" data-slide="10">
+                    <a href="#" onclick="goToSlide(10)" data-slide="10" class="sidebar-link"><span class="slide-number">11.</span> Online Safety</a>
+                </div>
+                <div class="sidebar-item" data-slide="11">
+                    <a href="#" onclick="goToSlide(11)" data-slide="11" class="sidebar-link"><span class="slide-number">12.</span> Cloud Storage</a>
+                </div>
+                <div class="sidebar-item" data-slide="12">
+                    <a href="#" onclick="goToSlide(12)" data-slide="12" class="sidebar-link"><span class="slide-number">13.</span> Useful Tools</a>
+                </div>
+                <div class="sidebar-item" data-slide="13">
+                    <a href="#" onclick="goToSlide(13)" data-slide="13" class="sidebar-link"><span class="slide-number">14.</span> Troubleshooting</a>
+                </div>
+                <div class="sidebar-item" data-slide="14">
+                    <a href="#" onclick="goToSlide(14)" data-slide="14" class="sidebar-link"><span class="slide-number">15.</span> Practice Exercises</a>
+                </div>
+                <div class="sidebar-item" data-slide="15">
+                    <a href="#" onclick="goToSlide(15)" data-slide="15" class="sidebar-link"><span class="slide-number">16.</span> Quiz</a>
+                </div>
+                <div class="sidebar-item" data-slide="16">
+                    <a href="#" onclick="goToSlide(16)" data-slide="16" class="sidebar-link"><span class="slide-number">17.</span> Case Study</a>
+                </div>
+                <div class="sidebar-item" data-slide="17">
+                    <a href="#" onclick="goToSlide(17)" data-slide="17" class="sidebar-link"><span class="slide-number">18.</span> Next Steps</a>
+                </div>
+                <div class="sidebar-item" data-slide="18">
+                    <a href="#" onclick="goToSlide(18)" data-slide="18" class="sidebar-link"><span class="slide-number">19.</span> Resources</a>
+                </div>
+                <div class="sidebar-item" data-slide="19">
+                    <a href="#" onclick="goToSlide(19)" data-slide="19" class="sidebar-link"><span class="slide-number">20.</span> Certificates</a>
+                </div>
+                <div class="sidebar-item" data-slide="20">
+                    <a href="#" onclick="goToSlide(20)" data-slide="20" class="sidebar-link"><span class="slide-number">21.</span> Feedback</a>
+                </div>
+                <div class="sidebar-item" data-slide="21">
+                    <a href="#" onclick="goToSlide(21)" data-slide="21" class="sidebar-link"><span class="slide-number">22.</span> Wrap Up</a>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="flex items-center gap-2">
+                    <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-8 w-8 rounded-full object-cover border-2 border-white">
+                    <span class="font-bold">Tujengane Computer Basicss</span>
+                </div>
+                <div class="mt-2">
+                    &copy; 2025 Tujengane Computer Basicss<br>
+                    Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#facc15] hover:underline">Deric Marangu</a>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="max-w-5xl w-full mx-auto relative z-10">
+                <div class="slide-number-display">Slide <span id="current-slide">1</span> of 22</div>
+                <div class="slide-container-wrapper">
+                    <div id="slide-container" class="slide active"></div>
+                    <div class="navigation">
+                        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Previous</button>
+                        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 footer-logo">
+                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white">
+                <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Computer Basicss</span>
+            </div>
+            <div class="footer-socials">
+                <a href="https://wa.me/254791360805" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:dericmarangu@gmail.com" class="footer-link" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://web.facebook.com/deric.aldertrax" target="_blank" class="footer-link"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/deric-marangu-134340297/" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i></a>
+            </div>
+                <div class="text-xs text-gray-500 footer-copyright">
+                &copy; 2025 Tujengane Computer Basicss – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#49A078] hover:underline">Deric Marangu</a>
+            </div>
+        </div>
+    </footer>
+    <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
+    <script src="./js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
