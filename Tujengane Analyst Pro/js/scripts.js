@@ -1204,1146 +1204,788 @@ const modules = [
         ]
     },
     
-    {
-        title: "Python for Data Analysis",
-        slides: [
-            { 
-                title: "Visualizing Data with Python", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>import matplotlib.pyplot as plt<br>import seaborn as sns<br>sns.barplot(x='Sales', y='Product', data=df)<br>plt.title('Sales by Product')<br>plt.show()</code></pre></li>
-                    <li>Use matplotlib for basic charts.</li>
-                    <li>Use seaborn for advanced, beautiful visuals.</li>
-                    <li>Create bar, line, scatter, and box plots.</li>
-                    <li>Customize titles, labels, and colors.</li>
-                    <li>Save charts with plt.savefig().</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Visuals in Python are your canvas—paint your insights with code.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Automating Analysis with Python", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>for col in df.columns:<br>    print(f"{col}: {df[col].isnull().sum()}")</code></pre></li>
-                    <li>Use loops to automate repetitive tasks.</li>
-                    <li>Create functions to reuse code.</li>
-                    <li>Automate cleaning, summaries, and visuals.</li>
-                    <li>Save time and reduce errors.</li>
-                    <li>Share scripts for collaboration.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Automation is freedom—let Python do the heavy lifting.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Combining Data Sources", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>df1 = pd.read_csv("sales.csv")<br>df2 = pd.read_csv("customers.csv")<br>merged = pd.merge(df1, df2, on='CustomerID')</code></pre></li>
-                    <li>Use pd.merge() to combine datasets.</li>
-                    <li>Use concat() to stack data vertically.</li>
-                    <li>Ensure keys match for clean merges.</li>
-                    <li>Check for duplicates after combining.</li>
-                    <li>Great for complex analysis across sources.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Merging data is like mixing ingredients—blend well for richer insights.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Exporting Results", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>df.to_csv("cleaned_data.csv", index=False)<br>df.to_excel("report.xlsx")</code></pre></li>
-                    <li>Export data to CSV, Excel, or JSON.</li>
-                    <li>Use index=False to avoid extra columns.</li>
-                    <li>Export visuals with plt.savefig().</li>
-                    <li>Share results with Power BI or reports.</li>
-                    <li>Always check format compatibility.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Exporting is sharing—package your insights for the world to see.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Python Analysis Project", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and load it with pandas.</li>
-                    <li>Clean it, explore it, and visualize it.</li>
-                    <li>Use groupby() and at least one chart.</li>
-                    <li>Export your results to CSV or an image.</li>
-                    <li>Write a short summary of your findings.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your Python project is your lab report—show your process, share your results.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if my code doesn’t work? → Check syntax and indentation.</li>
-                    <li>What if I don’t understand pandas? → Start with simple functions like head().</li>
-                    <li>What if my visuals look bad? → Adjust colors and sizes with code.</li>
-                    <li>What if Python is slow? → Optimize with smaller datasets or loops.</li>
-                    <li>What if I’m stuck? → Use online resources or ask for help.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python is a puzzle—every error is a clue to learn more.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Python is powerful for cleaning, analyzing, and visualizing data.</li>
-                    <li>Use pandas for data manipulation and matplotlib/seaborn for visuals.</li>
-                    <li>Automate tasks to save time and reduce errors.</li>
-                    <li>Combine and export data for collaboration.</li>
-                    <li>You’re now ready to tackle data with Python.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python is your data superpower—learn it, wield it, win with it.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Python Mini-Project", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and analyze it with pandas.</li>
-                    <li>Clean, explore, and create at least two visuals.</li>
-                    <li>Automate one task with a loop or function.</li>
-                    <li>Export your results and write a short summary.</li>
-                    <li>Share your notebook or save it for your portfolio.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your Python code is your signature—make it clean, clear, and clever.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "Statistics for Data Analytics",
-        slides: [
-            { 
-                title: "Why Statistics?", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Statistics helps you understand data patterns and variability.</li>
-                    <li>It’s the foundation of reliable insights and predictions.</li>
-                    <li>You don’t need to be a math expert—just know the basics.</li>
-                    <li>Statistics answers: How much? How likely? How different?</li>
-                    <li>It’s critical for decision-making and reporting.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Statistics is your data’s heartbeat—listen to it to understand what’s happening.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Descriptive Statistics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Measure: Mean</strong> - Average of all values</li>
-                    <li><strong>Measure: Median</strong> - Middle value when sorted</li>
-                    <li><strong>Measure: Mode</strong> - Most frequent value</li>
-                    <li><strong>Measure: Variance</strong> - How spread out data is</li>
-                    <li><strong>Measure: Standard Deviation</strong> - Square root of variance</li>
-                    <li>Use these to summarize and describe your data.</li>
-                    <li>In Excel: Use AVERAGE, MEDIAN, STDEV.P.</li>
-                    <li>In Python: Use df.describe().</li>
-                    <li>Great for quick insights and comparisons.</li>
-                    <li>Always interpret in context of your question.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Descriptive stats are your data’s selfie—capture the essence at a glance.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Probability Basics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Probability measures how likely something is (0 to 1).</li>
-                    <li>Example: 0.7 means 70% chance of rain.</li>
-                    <li>Use probability to assess risks and outcomes.</li>
-                    <li>Independent events don’t affect each other (e.g., coin flips).</li>
-                    <li>Dependent events do (e.g., sales depend on season).</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Probability is your weather forecast—use it to plan for what’s likely.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Distributions & Normal Curve", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data often follows patterns called distributions.</li>
-                    <li>Normal distribution: bell-shaped, symmetric, mean = median.</li>
-                    <li>Use histograms to check if data is normal.</li>
-                    <li>Normal curves help predict ranges and likelihoods.</li>
-                    <li>In Python: Use seaborn.histplot() to visualize.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Distributions are your data’s shape—know them to predict its behavior.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Correlation vs. Causation", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Correlation: Two things move together (e.g., ice cream sales and temperature).</li>
-                    <li>Causation: One thing causes another (e.g., marketing causes sales).</li>
-                    <li>In Excel: Use CORREL() for correlation.</li>
-                    <li>In Python: Use df.corr().</li>
-                    <li>Never assume correlation means causation.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Correlation is a hint, not a proof—dig deeper to find the truth.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Hypothesis Testing", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Test ideas with data (e.g., “Does training improve sales?”).</li>
-                    <li>Null hypothesis: No difference or effect.</li>
-                    <li>Alternative hypothesis: There is a difference.</li>
-                    <li>Use p-value to check significance (low p = reject null).</li>
-                    <li>In Python: Use scipy.stats for tests like t-test.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Hypothesis testing is your detective—prove or disprove with evidence.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Statistical Tools in Excel", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Use “Data Analysis Toolpak” for stats like t-tests and regression.</li>
-                    <li>Use AVERAGE, STDEV.P, CORREL for basics.</li>
-                    <li>Create histograms for distribution checks.</li>
-                    <li>Use Pivot Tables for group summaries.</li>
-                    <li>Excel is great for quick statistical analysis.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Excel’s stats tools are your calculator—fast, simple, and reliable.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Statistical Tools in Python", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>from scipy.stats import ttest_ind<br>stats, p = ttest_ind(df['Group1'], df['Group2'])<br>print(p)</code></pre></li>
-                    <li>Use scipy.stats for t-tests and other tests.</li>
-                    <li>Use numpy for calculations like mean and std.</li>
-                    <li>Use pandas for summaries and grouping.</li>
-                    <li>Python is ideal for advanced stats and large data.</li>
-                    <li>Visualize stats with seaborn or matplotlib.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python’s stats tools are your lab—test, analyze, and discover.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Interpreting Results", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Stats give numbers; you give meaning.</li>
-                    <li>Compare means to find differences.</li>
-                    <li>Use p-values to judge significance.</li>
-                    <li>Explain results in plain language for non-experts.</li>
-                    <li>Always tie stats to your original question.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Stats are facts—your job is to turn them into stories.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Statistical Analysis", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and calculate descriptive stats.</li>
-                    <li>Check for correlations and distributions.</li>
-                    <li>Run a simple hypothesis test (e.g., t-test).</li>
-                    <li>Use Excel or Python for analysis.</li>
-                    <li>Write a short summary of your findings.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Stats aren’t just numbers—they’re your data’s pulse. Check it carefully.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if I don’t understand stats? → Focus on basics like mean and median.</li>
-                    <li>What if my p-value is high? → Your hypothesis may not be supported.</li>
-                    <li>What if my data isn’t normal? → Use non-parametric tests or transform it.</li>
-                    <li>What if stats feel hard? → Practice with small datasets first.</li>
-                    <li>What if I’m stuck? → Ask for help or check online tutorials.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Stats are a language—learn a few words, and you’ll start to speak it.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Statistics help you summarize, compare, and predict.</li>
-                    <li>Use descriptive stats for quick insights.</li>
-                    <li>Understand probability, distributions, and correlations.</li>
-                    <li>Test hypotheses to confirm ideas.</li>
-                    <li>You’re now ready to add stats to your analysis.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Stats are your data’s truth serum—use them to reveal what’s real.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Statistics Mini-Project", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and calculate key stats (mean, median, std).</li>
-                    <li>Check for correlations or run a hypothesis test.</li>
-                    <li>Create visuals to show your findings.</li>
-                    <li>Write a short report summarizing your results.</li>
-                    <li>Save it for your portfolio or share with a peer.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your stats project is your proof—show the world what your data says.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "Storytelling with Data",
-        slides: [
-            { 
-                title: "What is Data Storytelling?", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data storytelling is using data and visuals to explain insights clearly.</li>
-                    <li>It combines numbers, visuals, and narrative.</li>
-                    <li>It’s about making your findings relatable and actionable.</li>
-                    <li>Great stories answer: What? Why? So what?</li>
-                    <li>It’s critical for analysts to influence decisions.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Data without a story is just numbers—tell it well, and it changes minds.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "The Storytelling Framework", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Step: Problem</strong> - What’s the issue or question?</li>
-                    <li><strong>Step: Data</strong> - What does the data show?</li>
-                    <li><strong>Step: Insight</strong> - What’s the key finding?</li>
-                    <li><strong>Step: Action</strong> - What should be done?</li>
-                    <li>Use this to structure every report or presentation.</li>
-                    <li>Keep your audience in mind—technical or non-technical.</li>
-                    <li>Simplify without losing truth.</li>
-                    <li>Use visuals to support your story.</li>
-                    <li>Practice explaining in plain language.</li>
-                    <li>End with a clear recommendation.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A good story is a bridge—connect your data to your audience’s needs.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Know Your Audience", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Understand who you’re presenting to: boss, client, team.</li>
-                    <li>Tailor technical details to their knowledge level.</li>
-                    <li>Focus on what they care about (e.g., profit, impact, efficiency).</li>
-                    <li>Use visuals for non-technical audiences.</li>
-                    <li>Be ready to answer their questions.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your audience is your guide—speak their language, solve their problems.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Crafting a Narrative", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Start with a hook: Why does this matter?</li>
-                    <li>Build with data: Show evidence step by step.</li>
-                    <li>Highlight insights: Point out what’s surprising or important.</li>
-                    <li>End with action: Suggest what to do next.</li>
-                    <li>Use visuals to reinforce the narrative.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A narrative is a journey—lead your audience from question to solution.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Using Visuals in Storytelling", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Choose visuals that match your message.</li>
-                    <li>Use annotations to highlight key points.</li>
-                    <li>Avoid clutter—focus on one insight per visual.</li>
-                    <li>Use consistent colors and fonts.</li>
-                    <li>Make sure visuals are easy to read.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Visuals are your story’s pictures—make them clear, vivid, and memorable.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Writing Clear Reports", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Start with an executive summary.</li>
-                    <li>Explain your question, data, and findings.</li>
-                    <li>Use visuals to support your points.</li>
-                    <li>Keep sentences short and jargon-free.</li>
-                    <li>Include recommendations and next steps.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A report is your data’s voice—write it clearly, and it will be heard.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Presenting to Stakeholders", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Practice your presentation to be clear and confident.</li>
-                    <li>Start with the big picture, then dive into details.</li>
-                    <li>Use dashboards or slides to show visuals.</li>
-                    <li>Anticipate questions and prepare answers.</li>
-                    <li>End with a call to action.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Presenting is performing—own the stage and inspire action.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Tools for Storytelling", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Power BI: Interactive dashboards for dynamic stories.</li>
-                    <li>Excel: Charts and tables for simple reports.</li>
-                    <li>Python: Custom visuals with matplotlib/seaborn.</li>
-                    <li>PowerPoint: Combine visuals and text for presentations.</li>
-                    <li>Word: Write detailed reports with embedded visuals.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Tools are your instruments—choose the ones that play your story best.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Common Storytelling Mistakes", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Too much technical jargon.</li>
-                    <li>Overloading with data or visuals.</li>
-                    <li>No clear action or recommendation.</li>
-                    <li>Ignoring the audience’s needs.</li>
-                    <li>Not practicing the delivery.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A bad story buries the data—a good story makes it soar.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Create a Data Story", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and define a clear question.</li>
-                    <li>Analyze and visualize your findings.</li>
-                    <li>Build a short presentation or dashboard.</li>
-                    <li>Tell a story with problem, data, insight, and action.</li>
-                    <li>Present to a peer or save for your portfolio.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your story is your data’s spotlight—shine it on what matters.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if my story isn’t clear? → Simplify and focus on one key insight.</li>
-                    <li>What if my audience doesn’t understand? → Use plain language and visuals.</li>
-                    <li>What if I don’t know what to recommend? → Suggest a next step or further analysis.</li>
-                    <li>What if I’m nervous presenting? → Practice and start small.</li>
-                    <li>What if I’m stuck? → Get feedback from a peer.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Every story starts rough—polish it until it shines.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Storytelling turns data into actionable insights.</li>
-                    <li>Use the framework: Problem, Data, Insight, Action.</li>
-                    <li>Know your audience and tailor your story.</li>
-                    <li>Use visuals and tools to enhance clarity.</li>
-                    <li>You’re now ready to present data that drives decisions.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your story is your impact—tell it well, and change the game.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Storytelling Project", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and create a 3–5 slide presentation.</li>
-                    <li>Follow the storytelling framework.</li>
-                    <li>Include at least 2 visuals and 1 recommendation.</li>
-                    <li>Present to a peer or save for your portfolio.</li>
-                    <li>Reflect on what you learned.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your story is your legacy—make it clear, compelling, and actionable.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "Data Ethics & Privacy",
-        slides: [
-            { 
-                title: "Why Ethics Matter", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data can impact people’s lives, so it must be handled responsibly.</li>
-                    <li>Ethics ensure trust, fairness, and legal compliance.</li>
-                    <li>Misusing data can harm individuals or groups.</li>
-                    <li>Analysts must protect privacy and avoid bias.</li>
-                    <li>Ethics build your reputation and credibility.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Data is power—use it to help, not harm.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Privacy Laws", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Kenya’s Data Protection Act (2019) protects personal data.</li>
-                    <li>GDPR (Europe) sets global standards for privacy.</li>
-                    <li>Rules include consent, transparency, and secure storage.</li>
-                    <li>Violations can lead to fines or loss of trust.</li>
-                    <li>Always know the laws in your region.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Privacy laws are your guardrails—follow them to stay safe and trusted.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Protecting Personal Data", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Anonymize data: Remove names, IDs, or sensitive info.</li>
-                    <li>Use secure storage: Encrypt files and databases.</li>
-                    <li>Limit access: Share only with those who need it.</li>
-                    <li>Avoid sharing raw personal data in reports.</li>
-                    <li>Check for accidental leaks in visuals or exports.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Personal data is someone’s story—protect it like it’s your own.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Avoiding Bias in Data", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Bias can come from incomplete or skewed data.</li>
-                    <li>Example: Surveying only urban areas ignores rural needs.</li>
-                    <li>Check for representation in your data.</li>
-                    <li>Use diverse sources to balance perspectives.</li>
-                    <li>Question your assumptions before analyzing.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Bias hides in the shadows—shine a light on it before you analyze.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Ethical Decision-Making", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Ask: Is this fair? Is it legal? Is it transparent?</li>
-                    <li>Consider the impact of your analysis on people.</li>
-                    <li>Be honest about data limitations and uncertainties.</li>
-                    <li>Communicate risks to stakeholders.</li>
-                    <li>Choose ethics over shortcuts or pressure.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Ethics is your compass—follow it to stay true to your data and yourself.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Security Practices", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Use strong passwords and two-factor authentication.</li>
-                    <li>Encrypt sensitive files and databases.</li>
-                    <li>Back up data to prevent loss.</li>
-                    <li>Avoid public Wi-Fi for sensitive tasks.</li>
-                    <li>Regularly update software for security patches.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Security is your shield—guard your data, guard your trust.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Transparency & Accountability", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Document your data sources and methods.</li>
-                    <li>Explain how you cleaned and analyzed data.</li>
-                    <li>Share limitations and assumptions.</li>
-                    <li>Be open to questions and feedback.</li>
-                    <li>Transparency builds trust in your work.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Transparency is your signature—sign your work with honesty.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Case Studies in Ethics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Case: Misleading Reports</strong> - Hiding data to favor a conclusion</li>
-                    <li><strong>Case: Privacy Breach</strong> - Sharing customer data without consent</li>
-                    <li><strong>Case: Biased Analysis</strong> - Using incomplete data to favor one group</li>
-                    <li>Learn from real-world mistakes.</li>
-                    <li>Always prioritize fairness and truth.</li>
-                    <li>Discuss ethical dilemmas with peers or mentors.</li>
-                    <li>Stay updated on ethical guidelines in your field.</li>
-                    <li>Ethics are as important as technical skills.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Ethics aren’t optional—they’re the foundation of good analysis.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Ethical Data Review", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset with personal or sensitive information.</li>
-                    <li>Check for privacy risks (e.g., names, IDs).</li>
-                    <li>Anonymize the data and document your steps.</li>
-                    <li>Check for bias in the data or analysis.</li>
-                    <li>Write a short report on your ethical decisions.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Ethics isn’t just rules—it’s respect for the people behind the data.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if I’m pressured to manipulate data? → Stand firm and explain ethics.</li>
-                    <li>What if my data isn’t private? → Still check for fairness and bias.</li>
-                    <li>What if I find bias? → Adjust your methods or report it.</li>
-                    <li>What if I don’t know the laws? → Research or ask an expert.</li>
-                    <li>What if I’m unsure? → Discuss with a mentor or peer.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Ethics is your North Star—follow it, and you’ll never lose your way.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Ethics and privacy are critical in data analysis.</li>
-                    <li>Protect personal data and comply with laws.</li>
-                    <li>Avoid bias and ensure transparency.</li>
-                    <li>Make decisions with fairness and accountability.</li>
-                    <li>You’re now ready to analyze data responsibly.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Good analysts don’t just crunch numbers—they protect trust and truth.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Ethics Mini-Project", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and analyze it for ethical risks.</li>
-                    <li>Anonymize sensitive data and check for bias.</li>
-                    <li>Write a 1-page report on your process and decisions.</li>
-                    <li>Share with a peer or save for your portfolio.</li>
-                    <li>Reflect on why ethics matter to you.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your ethical choices define your work—make them count.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "Big Data & Cloud Analytics",
-        slides: [
-            { 
-                title: "What is Big Data?", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Big data refers to massive datasets too large for traditional tools.</li>
-                    <li>It’s characterized by volume, velocity, and variety.</li>
-                    <li>Examples: Social media posts, transaction logs, IoT sensor data.</li>
-                    <li>Requires specialized tools like Hadoop, Spark, or cloud platforms.</li>
-                    <li>Analysts use samples or summaries for insights.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Big data is a big ocean—learn to navigate its waves for insights.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Cloud Analytics Overview", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Cloud analytics uses online platforms to process and store data.</li>
-                    <li>Platforms: AWS, Azure, Google Cloud, Snowflake.</li>
-                    <li>Benefits: Scalability, accessibility, and collaboration.</li>
-                    <li>No need for expensive local hardware.</li>
-                    <li>Great for real-time dashboards and big data.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The cloud is your data’s sky—vast, flexible, and always accessible.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Big Data Tools", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Hadoop: Processes large datasets across clusters.</li>
-                    <li>Spark: Fast processing for big data analytics.</li>
-                    <li>BigQuery: Google’s serverless data warehouse.</li>
-                    <li>Databricks: Combines Spark with cloud analytics.</li>
-                    <li>You’ll focus on cloud tools for simplicity.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Big data tools are your heavy machinery—use them to move data mountains.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Cloud Platforms for Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Platform: AWS</strong> - Redshift for data warehousing</li>
-                    <li><strong>Platform: Azure</strong> - Synapse Analytics for big data</li>
-                    <li><strong>Platform: Google Cloud</strong> - BigQuery for fast queries</li>
-                    <li>Sign up for free tiers to practice.</li>
-                    <li>Use Power BI or Python to connect to cloud data.</li>
-                    <li>Cloud platforms handle scale and speed.</li>
-                    <li>Learn the basics to stay competitive.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Cloud platforms are your rocket—launch your data to new heights.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Working with Big Data in Python", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>import pyspark.sql as ps<br>spark = ps.SparkSession.builder.appName('BigData').getOrCreate()<br>df = spark.read.csv("large_data.csv")</code></pre></li>
-                    <li>Use PySpark for big data processing.</li>
-                    <li>Load and query large datasets efficiently.</li>
-                    <li>Use sampling to work with manageable chunks.</li>
-                    <li>Connect to cloud platforms like BigQuery.</li>
-                    <li>Python scales with big data needs.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python with big data is like a big truck—carry heavy loads with ease.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Real-Time Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Real-time analytics processes data as it arrives.</li>
-                    <li>Examples: Live dashboards, fraud detection, stock tracking.</li>
-                    <li>Use cloud platforms for streaming data.</li>
-                    <li>Power BI supports real-time refreshes.</li>
-                    <li>Critical for fast-paced industries like finance.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Real-time data is your pulse—watch it to act in the moment.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Big Data in Kenya & Africa", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Mobile data drives big data growth (e.g., M-Pesa transactions).</li>
-                    <li>Health: Real-time disease tracking.</li>
-                    <li>Agriculture: Sensor data for crop monitoring.</li>
-                    <li>Challenges: Infrastructure and connectivity gaps.</li>
-                    <li>Opportunities: Cloud adoption and local innovation.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Africa’s big data is young and vibrant—tap into it to solve local problems.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Explore Cloud Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Sign up for a free cloud platform (e.g., Google BigQuery).</li>
-                    <li>Load a sample dataset and run a query.</li>
-                    <li>Use Power BI or Python to visualize results.</li>
-                    <li>Write a short summary of what you learned.</li>
-                    <li>Save your work for your portfolio.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The cloud is your playground—explore it to unlock big data’s potential.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if I can’t afford cloud services? → Use free tiers or local tools.</li>
-                    <li>What if big data feels overwhelming? → Start with small samples.</li>
-                    <li>What if I don’t have fast internet? → Use offline tools or smaller datasets.</li>
-                    <li>What if I don’t understand Spark? → Focus on Python or Power BI first.</li>
-                    <li>What if I’m stuck? → Check tutorials or ask for help.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Big data is a big step—take it one cloud at a time.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Big data handles massive, complex datasets.</li>
-                    <li>Cloud analytics offers scalability and speed.</li>
-                    <li>Use Python, Power BI, or cloud platforms for big data.</li>
-                    <li>Africa has unique big data opportunities.</li>
-                    <li>You’re now ready to explore big data tools.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Big data is your horizon—reach for it with the right tools.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Cloud Analytics Task", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a large dataset and load it into a cloud platform.</li>
-                    <li>Run a simple query or analysis.</li>
-                    <li>Create a visual using Power BI or Python.</li>
-                    <li>Write a short summary of your process.</li>
-                    <li>Save or share your work.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your cloud project is your first flight—launch it and see how far you go.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "AI & Data Analytics",
-        slides: [
-            { 
-                title: "What is AI in Analytics?", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>AI (Artificial Intelligence) uses algorithms to find patterns in data.</li>
-                    <li>It automates tasks like cleaning, prediction, and insights.</li>
-                    <li>Examples: Predictive sales, customer segmentation, fraud detection.</li>
-                    <li>AI doesn’t replace analysts—it enhances your work.</li>
-                    <li>You’ll use AI tools to boost your analysis.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is your assistant—smart, fast, but only as good as your questions.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI vs. Traditional Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Aspect: Speed</strong> - AI: Fast, automated | Traditional: Manual, slower</li>
-                    <li><strong>Aspect: Scale</strong> - AI: Handles big data | Traditional: Limited by tools</li>
-                    <li><strong>Aspect: Complexity</strong> - AI: Finds complex patterns | Traditional: Simple trends</li>
-                    <li><strong>Aspect: Human Role</strong> - AI: Supports decisions | Traditional: Drives decisions</li>
-                    <li>AI complements your skills, not replaces them.</li>
-                    <li>Use AI for speed, but verify with logic.</li>
-                    <li>Combine both for the best results.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is your engine, but you’re the driver—steer wisely.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI Tools for Analysts", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Power BI: AI visuals like Key Influencers and Q&A.</li>
-                    <li>Python: Libraries like scikit-learn for predictions.</li>
-                    <li>Excel: Forecast Sheet for simple predictions.</li>
-                    <li>ChatGPT: Summarize data or generate insights.</li>
-                    <li>Start with free or built-in tools.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI tools are your wings—use them to fly faster and farther.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Machine Learning Basics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Machine learning (ML) is a subset of AI for predictions.</li>
-                    <li>Supervised learning: Predict outcomes with labeled data.</li>
-                    <li>Unsupervised learning: Find patterns without labels.</li>
-                    <li>Example: Predict sales based on past trends.</li>
-                    <li>You’ll try simple ML in Python.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Machine learning is your crystal ball—use it to see patterns, not magic.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI for Data Cleaning", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>AI can detect missing values, outliers, and typos.</li>
-                    <li>In Python: Use libraries like pandas-ai or autoimpute.</li>
-                    <li>In Power BI: Use AI to suggest fixes in Power Query.</li>
-                    <li>Always review AI suggestions manually.</li>
-                    <li>AI saves time but doesn’t replace judgment.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI cleans fast, but you check the corners—precision matters.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI for Visualization", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Power BI’s AI visuals suggest insights automatically.</li>
-                    <li>Example: Key Influencers finds what drives sales.</li>
-                    <li>In Python: Use AutoViz for quick chart suggestions.</li>
-                    <li>Customize AI-generated visuals for clarity.</li>
-                    <li>AI helps you visualize faster, but you refine the story.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI draws the sketch—you add the color and meaning.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI for Predictions", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><pre><code>from sklearn.linear_model import LinearRegression<br>model = LinearRegression()<br>model.fit(X_train, y_train)<br>predictions = model.predict(X_test)</code></pre></li>
-                    <li>Use scikit-learn for simple predictions.</li>
-                    <li>Predict sales, customer churn, or trends.</li>
-                    <li>Split data into training and testing sets.</li>
-                    <li>Check accuracy with metrics like R-squared.</li>
-                    <li>Start with simple models like linear regression.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Predictions are guesses with math—AI makes them sharper, but you make them real.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Ethical AI Use", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>AI can amplify bias if data is skewed.</li>
-                    <li>Always check AI outputs for fairness.</li>
-                    <li>Protect privacy when using AI tools.</li>
-                    <li>Be transparent about AI’s role in your analysis.</li>
-                    <li>Combine AI with human judgment for trust.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is a tool, not a truth—use it responsibly to stay trusted.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI in Kenya & Africa", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>AI is growing in agriculture, health, and finance.</li>
-                    <li>Example: Predicting crop yields with satellite data.</li>
-                    <li>Challenges: Limited data and infrastructure.</li>
-                    <li>Opportunities: Mobile tech and local innovation.</li>
-                    <li>You can use AI to solve local problems.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI in Africa is a seedling—nurture it to grow solutions for tomorrow.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: AI-Enhanced Analysis", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and apply AI in one step (cleaning, analysis, or visualization).</li>
-                    <li>Use a tool like ChatGPT, Copilot, or Python’s AI libraries.</li>
-                    <li>Compare AI results with manual methods.</li>
-                    <li>Write a short summary of how AI helped or what you learned.</li>
-                    <li>Save your work for your portfolio or share with a peer.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is a spark—your curiosity turns it into a flame.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if AI gives wrong results? → Review and validate manually.</li>
-                    <li>What if I don’t have AI tools? → Use free versions or focus on traditional methods.</li>
-                    <li>What if AI confuses me? → Start with simple tasks and learn step by step.</li>
-                    <li>How do I stay ethical? → Check for bias and protect privacy.</li>
-                    <li>What if I’m unsure about predictions? → Combine AI with your own judgment.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is a tool—sharp, but not flawless. Use it, but trust yourself.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>AI enhances data analytics by automating tasks and uncovering patterns.</li>
-                    <li>Use AI tools for cleaning, visualization, and prediction.</li>
-                    <li>Ethics and human judgment are critical when using AI.</li>
-                    <li>AI works best with clean, reliable data.</li>
-                    <li>You’re ready to explore AI in your projects.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is your co-pilot—let it fly, but you steer the course.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "AI-Enhanced Analysis", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a dataset and apply AI in one step (cleaning, analysis, or visualization).</li>
-                    <li>Use a tool like ChatGPT, Copilot, or Python’s AI libraries.</li>
-                    <li>Compare AI results with manual methods.</li>
-                    <li>Write a short summary of how AI helped or what you learned.</li>
-                    <li>Save your work for your portfolio or share with a peer.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “AI is a spark—your curiosity turns it into a flame.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-        title: "Trends & The Future of Data Analytics",
-        slides: [
-            { 
-                title: "The Evolving Data Landscape", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data analytics is growing fast, driven by technology and need.</li>
-                    <li>Big data, AI, and cloud computing are reshaping the field.</li>
-                    <li>Demand for analysts is rising globally and in Africa.</li>
-                    <li>New tools and methods emerge every year.</li>
-                    <li>Staying current means lifelong learning.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The data world moves fast—run with it, and you’ll lead the way.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Big Data & Cloud Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Big data means massive, complex datasets.</li>
-                    <li>Cloud platforms like AWS, Azure, and Google Cloud handle big data.</li>
-                    <li>Cloud analytics allows real-time access and collaboration.</li>
-                    <li>Reduces need for expensive hardware.</li>
-                    <li>Analysts must learn cloud basics for modern workflows.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The cloud is your data’s new home—spacious, scalable, and always accessible.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Science vs. Data Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Aspect: Focus</strong> - Data Analytics: Insights from data | Data Science: Models and predictions</li>
-                    <li><strong>Aspect: Tools</strong> - Data Analytics: Excel, Power BI, SQL | Data Science: Python, R, TensorFlow</li>
-                    <li><strong>Aspect: Skills</strong> - Data Analytics: Visualization, reporting | Data Science: Machine learning, coding</li>
-                    <li><strong>Aspect: Output</strong> - Data Analytics: Dashboards, reports | Data Science: Algorithms, forecasts</li>
-                    <li>Analytics answers “what happened?”; science asks “what will happen?”</li>
-                    <li>Both need clean data and critical thinking.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Analytics tells the story—science writes the sequel.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Engineering Basics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data engineering builds pipelines to collect, store, and process data.</li>
-                    <li>Engineers ensure data is accessible and clean for analysts.</li>
-                    <li>Key tasks: ETL (Extract, Transform, Load), database design.</li>
-                    <li>Tools: Apache Spark, Airflow, SQL.</li>
-                    <li>Analysts and engineers work together for success.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Engineers build the roads—analysts drive the insights.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Analytics in Kenya & Africa", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Growing demand in finance, agriculture, health, and tech.</li>
-                    <li>Examples: M-Pesa analytics, agricultural yield tracking, health monitoring.</li>
-                    <li>Challenges: limited infrastructure, data literacy gaps.</li>
-                    <li>Opportunities: mobile data, open data, and local innovation.</li>
-                    <li>Africa’s data scene is young and full of potential.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Africa’s data revolution is yours to shape—start local, think global.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Industry Trends (Finance, Health, etc.)", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Industry: Finance</strong> - Real-time fraud detection</li>
-                    <li><strong>Industry: Healthcare</strong> - Predictive patient care</li>
-                    <li><strong>Industry: Agriculture</strong> - Precision farming with IoT</li>
-                    <li><strong>Industry: Retail</strong> - Personalized marketing</li>
-                    <li><strong>Industry: Education</strong> - Learning analytics for performance</li>
-                    <li>Data drives innovation across sectors.</li>
-                    <li>Analysts bridge data and industry needs.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Trends are your map—use them to navigate the data future.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Data Privacy & Security", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Protecting data is critical—laws like GDPR and Kenya’s Data Protection Act.</li>
-                    <li>Anonymize sensitive information before analysis.</li>
-                    <li>Use secure platforms and encryption.</li>
-                    <li>Breaches can damage trust and lead to fines.</li>
-                    <li>Analysts must prioritize ethics and compliance.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Data is power—handle it with care and responsibility.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Open Data & Collaboration", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Open data is freely available for anyone to use (e.g., Data.gov, Kaggle).</li>
-                    <li>Collaboration tools like GitHub and Power BI Service enable teamwork.</li>
-                    <li>Share datasets, code, and insights to learn and innovate.</li>
-                    <li>Africa has growing open data initiatives.</li>
-                    <li>Collaboration builds stronger solutions.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Open data is a shared garden—plant, grow, and harvest together.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Building a Career in Analytics", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Skills: Master Excel, Power BI, Python, SQL, and storytelling.</li>
-                    <li>Portfolio: Showcase projects on GitHub or LinkedIn.</li>
-                    <li>Network: Join data communities, attend meetups, engage online.</li>
-                    <li>Certifications: Google Data Analytics, Microsoft Power BI, etc.</li>
-                    <li>Keep learning to stay competitive.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your career is a dataset—collect skills, clean your path, and visualize success.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Practical: Research a Trend", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose a trend (e.g., big data, AI, cloud, privacy).</li>
-                    <li>Research its impact on analytics using online sources.</li>
-                    <li>Summarize findings in a 1-page report or 3 slides.</li>
-                    <li>Include examples from Kenya or Africa if possible.</li>
-                    <li>Share your work with a peer or mentor.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Trends are your compass—study them to find your direction.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Q&A", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>What if I don’t know where to start? → Pick one tool or trend and dive in.</li>
-                    <li>What if I don’t have experience? → Build projects and share them.</li>
-                    <li>How do I stay updated? → Follow blogs, X, and data communities.</li>
-                    <li>What if I’m not in tech? → Analytics applies to every industry.</li>
-                    <li>What if I’m overwhelmed? → Focus on one skill at a time.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The future is big—start small, grow steady.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Key Takeaways", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li>Data analytics is evolving with AI, big data, and cloud.</li>
-                    <li>Africa offers unique opportunities and challenges.</li>
-                    <li>Privacy, ethics, and collaboration are critical.</li>
-                    <li>Build your career with skills, projects, and networking.</li>
-                    <li>You’re ready to shape the future of analytics.</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “The data future is yours—learn, build, and lead with insight.”</div>
-                </ol></div>` 
-            },
-            { 
-                title: "Future-Proof Your Skills", 
-                content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                    <li><strong>Task:</strong></li>
-                    <li>Choose one trend or skill to explore further (e.g., cloud, AI, privacy).</li>
-                    <li>Create a small project or research summary.</li>
-                    <li>Add it to your portfolio or share it online.</li>
-                    <li>Reflect on how this skill could shape your career.</li>
-                    <li>Plan one action to stay updated (e.g., join a community).</li>
-                    <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your skills are your currency—invest in them to stay rich in opportunity.”</div>
-                </ol></div>` 
-            }
-        ]
-    },
-    {
-    title: "Capstone Project & Graduation",
+    
+{
+    title: "Python for Data Analysis",
     slides: [
         { 
-            title: "What is a Capstone Project?", 
+            title: "Why Python for Data?", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>A capstone project combines all your skills into one big project.</li>
-                <li>You’ll ask a question, collect data, clean, analyze, visualize, and present.</li>
-                <li>It showcases your ability as a data analyst.</li>
-                <li>Choose a topic that excites you or solves a real problem.</li>
-                <li>This is your chance to shine!</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your capstone is your masterpiece—build it with everything you’ve learned.”</div>
+                <li>Python is a flexible, beginner-friendly programming language.</li>
+                <li>It’s widely used in data science, machine learning, and automation.</li>
+                <li>Python handles large datasets better than Excel.</li>
+                <li>It has powerful libraries like pandas, matplotlib, and seaborn.</li>
+                <li>You’ll use Python for cleaning, analysis, and visualization.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python is your digital scalpel—precise, powerful, and ready to dissect data.”</div>
             </ol></div>` 
         },
         { 
-            title: "Choosing Your Dataset", 
+            title: "Setting Up Python & Jupyter", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Pick a dataset that’s relevant and interesting to you.</li>
-                <li>Sources: Kaggle, Data.gov, local data, or company data.</li>
-                <li>Ensure it has enough rows and columns for analysis.</li>
-                <li>Look for data with variety (numbers, text, dates).</li>
-                <li>A good dataset makes your project engaging.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your dataset is your canvas—choose one that inspires your creativity.”</div>
+                <li>Install Python from python.org or use Anaconda.</li>
+                <li>Use Jupyter Notebook for writing and running code interactively.</li>
+                <li>Install libraries using <code>pip install pandas matplotlib seaborn</code>.</li>
+                <li>Notebooks let you mix code, notes, and visuals.</li>
+                <li>Great for learning, experimenting, and sharing.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Jupyter is your lab—code, test, and learn in one place.”</div>
             </ol></div>` 
         },
         { 
-            title: "Defining Your Question", 
+            title: "Data Structures (lists, dicts, DataFrames)", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Ask a clear, specific question your data can answer.</li>
-                <li>Example: “What drives sales in Nairobi supermarkets?”</li>
-                <li>Break it into smaller questions for analysis.</li>
-                <li>Ensure the question aligns with your dataset.</li>
-                <li>A good question guides your entire project.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A question is your North Star—let it guide every step you take.”</div>
+                <li><strong>list:</strong> ordered collection of items.</li>
+                <li><strong>dict:</strong> key-value pairs for structured data.</li>
+                <li><strong>DataFrame:</strong> table-like structure from pandas.</li>
+                <li>Use <code>df.head()</code> to preview data.</li>
+                <li>DataFrames are the heart of Python data analysis.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “DataFrames are your spreadsheet in code—flexible, fast, and full of insight.”</div>
             </ol></div>` 
         },
         { 
-            title: "Planning Your Workflow", 
+            title: "Importing Data with pandas", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Follow the analytics cycle: Ask, Acquire, Clean, Explore, Visualize, Present.</li>
-                <li>List tools you’ll use (Excel, Power BI, Python, SQL).</li>
-                <li>Plan your visuals and key insights.</li>
-                <li>Set milestones: cleaning done by day 2, visuals by day 4, etc.</li>
-                <li>Stay organized to avoid stress.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “A plan is your roadmap—follow it, but enjoy the detours.”</div>
+                <li><pre><code>import pandas as pd
+df = pd.read_csv("data.csv")
+df.head()</code></pre></li>
+                <li>Use <code>read_csv()</code> to load CSV files.</li>
+                <li>Use <code>read_excel()</code> for Excel files.</li>
+                <li>Preview data with <code>head()</code> and <code>info()</code>.</li>
+                <li>Check for missing values with <code>isnull().sum()</code>.</li>
+                <li>pandas makes importing fast and easy.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Importing is your handshake with the data—start clean, start smart.”</div>
             </ol></div>` 
         },
         { 
-            title: "Tools You Can Use", 
+            title: "Data Cleaning in pandas", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li><strong>Tool: Excel</strong> - Cleaning, basic analysis, quick charts</li>
-                <li><strong>Tool: Power BI</strong> - Interactive dashboards, storytelling</li>
-                <li><strong>Tool: Python</strong> - Advanced cleaning, analysis, visuals</li>
-                <li><strong>Tool: SQL</strong> - Querying large datasets, joins</li>
-                <li>Choose tools based on your strengths and project needs.</li>
-                <li>Combine tools for maximum impact.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your tools are your brushes—use them to paint a vivid picture.”</div>
+                <li><pre><code>df.dropna(inplace=True)
+df['Name'] = df['Name'].str.strip().str.title()
+df.drop_duplicates(inplace=True)</code></pre></li>
+                <li>Use <code>dropna()</code> to remove missing values.</li>
+                <li>Use string functions to clean text.</li>
+                <li>Use <code>drop_duplicates()</code> to remove repeats.</li>
+                <li>Convert data types with <code>astype()</code> or <code>to_datetime()</code>.</li>
+                <li>Document your cleaning steps.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Cleaning with pandas is like brushing your data’s teeth—fresh, sharp, and ready to smile.”</div>
             </ol></div>` 
         },
         { 
-            title: "Presenting Your Capstone", 
+            title: "Exploratory Analysis in pandas", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Create a 5–7 slide presentation or a dashboard.</li>
-                <li>Include your question, key findings, visuals, and recommendations.</li>
-                <li>Tell a story: problem, evidence, solution.</li>
-                <li>Practice your presentation for clarity and confidence.</li>
-                <li>Be ready to answer questions.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your presentation is your stage—own it with pride and clarity.”</div>
+                <li><pre><code>df.describe()
+df['Region'].value_counts()
+df.groupby('Product')['Sales'].mean()</code></pre></li>
+                <li>Use <code>describe()</code> for summary stats.</li>
+                <li>Use <code>value_counts()</code> for category frequency.</li>
+                <li>Use <code>groupby()</code> for comparisons.</li>
+                <li>Spot trends, outliers, and patterns.</li>
+                <li>EDA helps you understand your data deeply.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Exploration is curiosity in action—ask, group, and discover.”</div>
             </ol></div>` 
         },
         { 
-            title: "Peer Review & Feedback", 
+            title: "Visualization with matplotlib/seaborn", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Share your project with peers or mentors.</li>
-                <li>Ask for feedback on clarity, visuals, and insights.</li>
-                <li>Be open to suggestions and improvements.</li>
-                <li>Give constructive feedback to others.</li>
-                <li>Feedback helps polish your work.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Feedback is growth—listen, learn, and level up.”</div>
+                <li><pre><code>import matplotlib.pyplot as plt
+import seaborn as sns
+sns.barplot(x='Product', y='Sales', data=df)</code></pre></li>
+                <li>Use matplotlib for basic charts.</li>
+                <li>Use seaborn for advanced visuals.</li>
+                <li>Create bar, line, scatter, and box plots.</li>
+                <li>Customize titles, labels, and colors.</li>
+                <li>Save charts as images for reports.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Visuals in Python are your spotlight—shine it where the insight lives.”</div>
             </ol></div>` 
         },
         { 
-            title: "Graduation & Certification", 
+            title: "Automating Data Tasks", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Congratulations! You’ve completed the course.</li>
-                <li>Your capstone project earns you a certificate.</li>
-                <li>Share your achievement on LinkedIn or with employers.</li>
-                <li>Celebrate your hard work and new skills.</li>
-                <li>This is just the start of your data journey!</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Graduation isn’t the end—it’s the launch of your data career.”</div>
+                <li>Use loops to repeat tasks across rows or files.</li>
+                <li>Use functions to reuse code.</li>
+                <li>Automate cleaning, analysis, and reporting.</li>
+                <li>Schedule scripts to run daily or weekly.</li>
+                <li>Python saves time and reduces errors.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Automation is your time-saver—teach the machine once, and let it run.”</div>
             </ol></div>` 
         },
         { 
-            title: "Next Steps in Your Journey", 
+            title: "Exporting Results", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Build more projects to grow your portfolio.</li>
-                <li>Join data communities on X, LinkedIn, or local meetups.</li>
-                <li>Explore advanced topics like machine learning or cloud analytics.</li>
-                <li>Apply for internships or entry-level analyst roles.</li>
-                <li>Keep learning and stay curious.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your journey doesn’t stop—every step builds a stronger analyst.”</div>
+                <li><pre><code>df.to_csv("cleaned_data.csv", index=False)</code></pre></li>
+                <li>Use <code>to_csv()</code> to save cleaned data.</li>
+                <li>Use <code>to_excel()</code> for Excel output.</li>
+                <li>Export charts using <code>plt.savefig()</code>.</li>
+                <li>Share results with teams or tools.</li>
+                <li>Always label and organize your exports.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Exporting is packaging—your insights, ready to deliver.”</div>
             </ol></div>` 
         },
         { 
-            title: "Practical: Complete Your Capstone", 
+            title: "Practical: Python Data Project", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
                 <li><strong>Task:</strong></li>
-                <li>Choose a dataset and define a question.</li>
-                <li>Follow the analytics cycle to analyze and visualize.</li>
-                <li>Create a dashboard or presentation with your findings.</li>
-                <li>Present to peers or mentors and collect feedback.</li>
-                <li>Finalize your project for your portfolio.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your capstone is your legacy—build it to last, share it to shine.”</div>
+                <li>Choose a dataset and import it using pandas.</li>
+                <li>Clean the data and perform EDA.</li>
+                <li>Create at least 2 charts using matplotlib or seaborn.</li>
+                <li>Export your cleaned data and visuals.</li>
+                <li>Save your notebook and share your findings.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your notebook is your narrative—code, clean, and communicate.”</div>
             </ol></div>` 
         },
         { 
             title: "Q&A", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>What if my dataset is too big? → Filter or sample it.</li>
-                <li>What if I don’t know what to ask? → Start with simple trends or comparisons.</li>
-                <li>What if my visuals aren’t clear? → Simplify and get feedback.</li>
-                <li>What if I’m nervous about presenting? → Practice with peers first.</li>
-                <li>What’s next after this? → Keep building and learning.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Every question is progress—ask, act, and achieve.”</div>
+                <li>What if I get an error? → Read the message and check your syntax.</li>
+                <li>What if I don’t know Python? → Start with small steps and practice.</li>
+                <li>What if my chart looks wrong? → Check your data and labels.</li>
+                <li>What if I forget a command? → Use documentation or search online.</li>
+                <li>What if I’m stuck? → Ask for help or copy working examples.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Every bug is a lesson—debug, learn, and grow.”</div>
             </ol></div>` 
         },
         { 
             title: "Key Takeaways", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Your capstone combines all your skills into one project.</li>
-                <li>Choose a dataset and question that excite you.</li>
-                <li>Use Excel, Power BI, Python, or SQL to create impact.</li>
-                <li>Present your work with clarity and confidence.</li>
-                <li>You’re now a data analyst—ready for the real world!</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your capstone is your crown—wear it with pride.”</div>
+                <li>Python is powerful for data analysis and automation.</li>
+                <li>Use pandas for importing, cleaning, and exploring data.</li>
+                <li>Use matplotlib and seaborn for visualization.</li>
+                <li>Automate tasks and export results efficiently.</li>
+                <li>You’re now ready to present your analysis.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Python is your analytical engine—fuel it with data, drive it with logic.”</div>
             </ol></div>` 
         },
         { 
-            title: "Final Reflect & Share", 
+            title: "Python Mini-Project", 
             content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li>Reflect on your capstone project and what you learned.</li>
-                <li>Share your project on LinkedIn, GitHub, or with peers.</li>
-                <li>Discuss challenges and how you overcame them.</li>
-                <li>Celebrate your growth as a data analyst.</li>
-                <li>Plan one action to continue your data journey.</li>
-                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your capstone is your first step—reflect, share, and keep climbing.”</div>
+                <li><strong>Task:</strong></li>
+                <li>Choose a dataset and complete a mini-project in Python.</li>
+                <li>Clean the data, perform EDA, and create visuals.</li>
+                <li>Export your results and write a short summary.</li>
+                <li>Save your notebook for your portfolio.</li>
+                <li>Reflect on what you learned.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> “Your Python project is your proof—show what you’ve built, and how it works.”</div>
             </ol></div>` 
         }
-        ]
-    }
-];
+    ]
+},
+
+    
+{
+    title: "From Analysis to Presentation",
+    slides: [
+        {
+            title: "Structuring Your Findings",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Start with a clear question and summary of your analysis.</li>
+                <li>Organize insights into themes or categories.</li>
+                <li>Use bullet points, visuals, and summaries.</li>
+                <li>Highlight key metrics and trends.</li>
+                <li>End with recommendations or next steps.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Structure turns data into a message—build it like a bridge, strong and clear.</div>
+            </ol></div>`
+        },
+        {
+            title: "Building a Compelling Story",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use the “Data → Insight → Action” flow.</li>
+                <li>Introduce the problem, show the evidence, and suggest solutions.</li>
+                <li>Keep it simple, logical, and engaging.</li>
+                <li>Use real-world examples to connect with your audience.</li>
+                <li>Every chart should support your story.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Data storytelling is persuasion with proof—make your case with clarity.</div>
+            </ol></div>`
+        },
+        {
+            title: "Creating Effective Slides",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use clean layouts with minimal text.</li>
+                <li>Highlight one insight per slide.</li>
+                <li>Use visuals instead of tables when possible.</li>
+                <li>Choose readable fonts and consistent colors.</li>
+                <li>Practice slide flow and transitions.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Slides are your stage—design them to spotlight your message.</div>
+            </ol></div>`
+        },
+        {
+            title: "Presenting with Confidence",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Know your content—practice until it feels natural.</li>
+                <li>Speak clearly and make eye contact.</li>
+                <li>Use pauses to emphasize key points.</li>
+                <li>Handle nerves with deep breaths and preparation.</li>
+                <li>Confidence comes from clarity and practice.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Confidence isn’t loud—it’s clear, calm, and ready.</div>
+            </ol></div>`
+        },
+        {
+            title: "Data-Driven Decision Making",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Use insights to support business or policy decisions.</li>
+                <li>Show how your findings solve real problems.</li>
+                <li>Link data to goals, KPIs, or outcomes.</li>
+                <li>Use “if-then” logic to guide action.</li>
+                <li>Decision-makers want clarity, not complexity.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Data is your compass—use it to guide smart decisions.</div>
+            </ol></div>`
+        },
+        {
+            title: "Executive Summaries",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Summarize your findings in one page or slide.</li>
+                <li>Include the question, key insights, and recommendations.</li>
+                <li>Use bullet points and visuals for quick reading.</li>
+                <li>Tailor language for non-technical audiences.</li>
+                <li>Executive summaries help leaders act fast.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Executives don’t need the whole story—just the headline and the punchline.</div>
+            </ol></div>`
+        },
+        {
+            title: "Presenting to Non-Technical Audiences",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Avoid jargon—use plain language.</li>
+                <li>Focus on impact, not process.</li>
+                <li>Use analogies or examples to explain concepts.</li>
+                <li>Highlight what matters to the audience.</li>
+                <li>Keep visuals simple and intuitive.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Speak human, not machine—make your insights relatable.</div>
+            </ol></div>`
+        },
+        {
+            title: "Handling Questions",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Listen fully before answering.</li>
+                <li>Repeat the question to clarify.</li>
+                <li>Use data to support your response.</li>
+                <li>Admit when you don’t know—offer to follow up.</li>
+                <li>Stay calm and respectful.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Questions aren’t attacks—they’re invitations to explain.</div>
+            </ol></div>`
+        },
+        {
+            title: "Portfolio Building",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Save your best projects and presentations.</li>
+                <li>Include visuals, summaries, and code (if applicable).</li>
+                <li>Use GitHub, LinkedIn, or a personal website.</li>
+                <li>Update regularly with new work.</li>
+                <li>Your portfolio is your professional showcase.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your portfolio is your passport—stamp it with every skill you earn.</div>
+            </ol></div>`
+        },
+        {
+            title: "Practical: Present Your Analysis",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a completed project from a previous module.</li>
+                <li>Create a 5-slide presentation with visuals and insights.</li>
+                <li>Include an executive summary and recommendations.</li>
+                <li>Present to a peer or mentor and get feedback.</li>
+                <li>Save your slides for your portfolio.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your presentation is your spotlight—step up and shine.</div>
+            </ol></div>`
+        },
+        {
+            title: "Q&A",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>What if I’m nervous? → Practice and breathe—confidence grows with repetition.</li>
+                <li>What if I get a tough question? → Stay calm, clarify, and respond with logic.</li>
+                <li>What if my slides are too long? → Trim to essentials—less is more.</li>
+                <li>What if I forget something? → Keep notes or cue cards.</li>
+                <li>What if I’m presenting online? → Test your tech and engage visually.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Every presenter starts unsure—practice turns nerves into power.</div>
+            </ol></div>`
+        },
+        {
+            title: "Key Takeaways",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Structure your findings into a clear, compelling story.</li>
+                <li>Use visuals and summaries to communicate effectively.</li>
+                <li>Present with confidence and clarity.</li>
+                <li>Tailor your message to your audience.</li>
+                <li>Your analysis deserves to be seen and understood.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Insight is only powerful when it’s shared—present like it matters.</div>
+            </ol></div>`
+        },
+        {
+            title: "Presentation Task",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a dataset and complete a full analysis.</li>
+                <li>Create a 5-slide presentation with visuals, insights, and recommendations.</li>
+                <li>Include an executive summary and prepare to present.</li>
+                <li>Record or deliver your presentation to a peer.</li>
+                <li>Reflect on what you learned and improve your slides.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your challenge is to speak insight—make your data heard.</div>
+            </ol></div>`
+        }
+    ]
+},
+{
+    title: "AI & Data Analytics",
+    slides: [
+        {
+            title: "What is AI in Data Analytics?",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI refers to machines that mimic human intelligence—learning, reasoning, and decision-making.</li>
+                <li>In data analytics, AI helps automate tasks and uncover patterns.</li>
+                <li>It includes machine learning, natural language processing, and computer vision.</li>
+                <li>AI can analyze large datasets faster than humans.</li>
+                <li>It’s transforming industries and workflows.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI doesn’t replace analysts—it empowers them to think bigger and faster.</div>
+            </ol></div>`
+        },
+        {
+            title: "AI Tools for Analysts",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>ChatGPT helps generate summaries, explanations, and code.</li>
+                <li>Microsoft Copilot assists with Excel, Power BI, and presentations.</li>
+                <li>AI tools can clean data, suggest visuals, and write queries.</li>
+                <li>They save time and reduce manual effort.</li>
+                <li>Analysts must guide AI with clear instructions.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI is your assistant—not your replacement. Use it wisely, lead it boldly.</div>
+            </ol></div>`
+        },
+        {
+            title: "Automating Data Cleaning with AI",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI can detect missing values, duplicates, and outliers.</li>
+                <li>Tools like OpenRefine and Python libraries use AI to clean data.</li>
+                <li>AI learns patterns and applies fixes across datasets.</li>
+                <li>Reduces human error and speeds up preparation.</li>
+                <li>Analysts still need to review and validate results.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Let AI sweep the floor—but you decide what stays and what goes.</div>
+            </ol></div>`
+        },
+        {
+            title: "AI for Data Visualization",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI can suggest the best chart for your data.</li>
+                <li>Tools like Power BI and Tableau use AI to auto-generate visuals.</li>
+                <li>AI can detect trends and highlight insights.</li>
+                <li>Some platforms offer natural language queries for visuals.</li>
+                <li>Helps non-technical users explore data easily.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI turns data into pictures—fast, smart, and surprisingly beautiful.</div>
+            </ol></div>`
+        },
+        {
+            title: "Predictive Analytics Basics",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Predictive analytics uses historical data to forecast future outcomes.</li>
+                <li>AI models learn patterns and make predictions.</li>
+                <li>Common techniques: regression, classification, clustering.</li>
+                <li>Used in finance, health, marketing, and logistics.</li>
+                <li>Requires clean data and careful model selection.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Prediction isn’t magic—it’s math, memory, and machine learning.</div>
+            </ol></div>`
+        },
+        {
+            title: "Ethics in AI & Data",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI must be fair, transparent, and accountable.</li>
+                <li>Bias in data leads to unfair outcomes.</li>
+                <li>Analysts must check for discrimination and misuse.</li>
+                <li>Privacy and consent are critical.</li>
+                <li>Ethical AI builds trust and protects people.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Smart analysis is ethical analysis—data without conscience is dangerous.</div>
+            </ol></div>`
+        },
+        {
+            title: "AI in Excel, Power BI, Python",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Excel: Copilot suggests formulas and summaries.</li>
+                <li>Power BI: AI visuals and natural language queries.</li>
+                <li>Python: AI libraries like scikit-learn, TensorFlow, and transformers.</li>
+                <li>AI enhances each tool’s capabilities.</li>
+                <li>Learn to integrate AI into your workflow.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI is the upgrade—your tools just got smarter.</div>
+            </ol></div>`
+        },
+        {
+            title: "Real-World AI Use Cases",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Sector – AI Application</strong></li>
+                <li>Healthcare – Predicting patient risk</li>
+                <li>Retail – Personalizing product recommendations</li>
+                <li>Finance – Fraud detection and credit scoring</li>
+                <li>Agriculture – Crop yield forecasting</li>
+                <li>Education – Adaptive learning and grading</li>
+                <li>AI is reshaping industries.</li>
+                <li>Analysts help design and interpret AI systems.</li>
+                <li>Use cases show the power and responsibility of AI.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI is everywhere—your job is to make it meaningful.</div>
+            </ol></div>`
+        },
+        {
+            title: "Limitations of AI",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI depends on the quality of data.</li>
+                <li>It can’t understand context or emotion like humans.</li>
+                <li>Models may be biased or inaccurate.</li>
+                <li>Over-reliance can lead to blind decisions.</li>
+                <li>Analysts must combine AI with human judgment.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI is smart—but not wise. That’s your role.</div>
+            </ol></div>`
+        },
+        {
+            title: "Practical: Use AI in a Data Task",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a dataset and use AI to clean, analyze, or visualize it.</li>
+                <li>Try tools like ChatGPT, Copilot, or Python libraries.</li>
+                <li>Document what AI did and what you reviewed manually.</li>
+                <li>Reflect on how AI helped or hindered your process.</li>
+                <li>Share your findings with a peer.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Let AI assist—but make sure your fingerprints are on the final product.</div>
+            </ol></div>`
+        },
+        {
+            title: "Q&A",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>What if AI gives wrong results? → Review and validate manually.</li>
+                <li>What if I don’t understand the model? → Focus on inputs and outputs first.</li>
+                <li>What if AI feels too complex? → Start with simple tools like Copilot or ChatGPT.</li>
+                <li>What if I’m worried about bias? → Check your data and test fairness.</li>
+                <li>What if I want to learn more? → Explore AI ethics, machine learning, and automation.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI is a tool—not a truth. Use it with care, and question everything.</div>
+            </ol></div>`
+        },
+        {
+            title: "Key Takeaways",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>AI enhances data analysis through automation and prediction.</li>
+                <li>Tools like ChatGPT, Copilot, and Python libraries support analysts.</li>
+                <li>Ethics and validation are critical in AI use.</li>
+                <li>AI is powerful—but needs human guidance.</li>
+                <li>You’re now equipped to use AI responsibly.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> AI gives you speed—your wisdom gives it direction.</div>
+            </ol></div>`
+        },
+        {
+            title: "AI-Enhanced Analysis",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a dataset and complete an analysis using AI tools.</li>
+                <li>Use AI for cleaning, visualization, or prediction.</li>
+                <li>Document your process and reflect on AI’s role.</li>
+                <li>Share your project and insights.</li>
+                <li>Save it for your portfolio.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your challenge is to lead the machine—don’t just use AI, guide it.</div>
+            </ol></div>`
+        }
+    ]
+},
+{
+    title: "Trends & The Future of Data Analytics",
+    slides: [
+        {
+            title: "The Evolving Data Landscape",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Data is growing exponentially—volume, variety, and velocity.</li>
+                <li>New sources include IoT, social media, and real-time sensors.</li>
+                <li>Analysts must adapt to faster, more complex data environments.</li>
+                <li>Cloud platforms and AI are reshaping workflows.</li>
+                <li>The future is real-time, predictive, and automated.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Data never sleeps—stay curious, stay current.</div>
+            </ol></div>`
+        },
+        {
+            title: "Big Data & Cloud Analytics",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Big Data refers to massive datasets that traditional tools can’t handle.</li>
+                <li>Cloud platforms like Azure, AWS, and Google Cloud offer scalable solutions.</li>
+                <li>Analysts use cloud tools for storage, processing, and collaboration.</li>
+                <li>Cloud analytics enables remote access and real-time updates.</li>
+                <li>Learn to work with cloud-based data pipelines.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> The cloud is your playground—big data, big possibilities.</div>
+            </ol></div>`
+        },
+        {
+            title: "Data Science vs. Data Analytics",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Role:</strong> Data Analyst – Descriptive & diagnostic analysis</li>
+                <li><strong>Role:</strong> Data Scientist – Predictive & prescriptive modeling</li>
+                <li>Analysts explain what happened and why.</li>
+                <li>Scientists predict what will happen and how to optimize it.</li>
+                <li>Both roles require strong data skills.</li>
+                <li>Analysts often transition into data science.</li>
+                <li>Choose your path based on interest and goals.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Analytics tells the story—data science writes the sequel.</div>
+            </ol></div>`
+        },
+        {
+            title: "Data Engineering Basics",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Data engineers build systems to collect, store, and move data.</li>
+                <li>They design pipelines and manage databases.</li>
+                <li>Tools include SQL, Python, Spark, and cloud platforms.</li>
+                <li>Analysts often work with engineers to access clean data.</li>
+                <li>Understanding engineering helps analysts collaborate better.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Engineers build the roads—analysts drive the insights.</div>
+            </ol></div>`
+        },
+        {
+            title: "Data Analytics in Kenya & Africa",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Governments use data for planning, budgeting, and service delivery.</li>
+                <li>Businesses use analytics for customer insights and growth.</li>
+                <li>NGOs use data to measure impact and allocate resources.</li>
+                <li>Mobile money and agriculture are key data-rich sectors.</li>
+                <li>Africa’s data future is local, innovative, and community-driven.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Kenya’s data story is rising—be part of the movement.</div>
+            </ol></div>`
+        },
+        {
+            title: "Industry Trends (Finance, Health, etc.)",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Sector:</strong> Finance – Real-time fraud detection</li>
+                <li><strong>Sector:</strong> Health – Predictive patient care</li>
+                <li><strong>Sector:</strong> Retail – Personalized marketing</li>
+                <li><strong>Sector:</strong> Education – Learning analytics</li>
+                <li><strong>Sector:</strong> Agriculture – Smart farming with sensors</li>
+                <li>Each industry uses data differently.</li>
+                <li>Analysts must understand domain-specific needs.</li>
+                <li>Trends include automation, personalization, and prediction.</li>
+                <li>Stay updated through blogs, webinars, and reports.</li>
+                <li>Choose a sector that aligns with your passion.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Every industry speaks data—learn its dialect, lead its future.</div>
+            </ol></div>`
+        },
+        {
+            title: "Data Privacy & Security",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Data must be protected from misuse and breaches.</li>
+                <li>Privacy laws like GDPR and Kenya’s Data Protection Act matter.</li>
+                <li>Analysts must handle sensitive data responsibly.</li>
+                <li>Use encryption, access controls, and anonymization.</li>
+                <li>Ethics and security go hand in hand.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Trust is built on privacy—protect the data, protect the people.</div>
+            </ol></div>`
+        },
+        {
+            title: "Open Data & Collaboration",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Open data is free, public, and reusable.</li>
+                <li>Governments and NGOs publish datasets for transparency.</li>
+                <li>Collaboration leads to innovation and shared solutions.</li>
+                <li>Use platforms like Kenya Open Data and World Bank.</li>
+                <li>Open data empowers communities and drives change.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Open data is open opportunity—share, learn, and build together.</div>
+            </ol></div>`
+        },
+        {
+            title: "Building a Career in Analytics",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Start with strong foundations in tools and thinking.</li>
+                <li>Build a portfolio with real projects.</li>
+                <li>Network through meetups, LinkedIn, and online forums.</li>
+                <li>Stay updated with certifications and courses.</li>
+                <li>Choose a niche and grow your expertise.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your career is a journey—every dataset is a step forward.</div>
+            </ol></div>`
+        },
+        {
+            title: "Practical: Research a Trend",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a trend in data analytics (e.g., AI, cloud, open data).</li>
+                <li>Research how it’s used in Kenya or globally.</li>
+                <li>Write a short summary with examples and impact.</li>
+                <li>Share your findings with the class or mentor.</li>
+                <li>Reflect on how this trend affects your future.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Trends are signals—follow them to shape your path.</div>
+            </ol></div>`
+        },
+        {
+            title: "Q&A",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>What if I don’t know which trend to follow? → Explore and experiment.</li>
+                <li>What if I’m worried about automation? → Focus on skills that AI can’t replace.</li>
+                <li>What if I want to work in Kenya? → Learn local tools, laws, and needs.</li>
+                <li>What if I’m interested in multiple sectors? → Start broad, then specialize.</li>
+                <li>What if I feel behind? → The future is still being written—start now.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> The future isn’t fixed—it’s yours to shape.</div>
+            </ol></div>`
+        },
+        {
+            title: "Key Takeaways",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Data analytics is evolving with AI, cloud, and big data.</li>
+                <li>Analysts must adapt to new tools and trends.</li>
+                <li>Kenya and Africa offer unique opportunities.</li>
+                <li>Ethics, privacy, and collaboration matter.</li>
+                <li>You’re ready to build a future-proof career.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> You’re not just learning data—you’re learning to lead with it.</div>
+            </ol></div>`
+        },
+        {
+            title: "Future-Proof Your Skills",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose one trend and one skill to focus on next.</li>
+                <li>Create a 30-day learning plan with resources and goals.</li>
+                <li>Join a community or attend a webinar.</li>
+                <li>Reflect on how this will grow your career.</li>
+                <li>Share your plan with a peer or mentor.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your challenge is to grow forward—learn what lasts, lead what’s next.</div>
+            </ol></div>`
+        }
+    ]
+},
+{
+    title: "Capstone Project & Graduation",
+    slides: [
+        {
+            title: "What is a Capstone Project?",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>A capstone is your final, full-scale project that brings together all modules.</li>
+                <li>It simulates a real-world data analysis task.</li>
+                <li>You’ll choose a dataset, define a question, and present insights.</li>
+                <li>It shows your skills in acquisition, cleaning, analysis, visualization, and presentation.</li>
+                <li>It’s your portfolio centerpiece.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> A capstone isn’t just a task—it’s your proof of growth.</div>
+            </ol></div>`
+        },
+        {
+            title: "Choosing Your Dataset",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Pick a topic you care about: business, health, education, finance, etc.</li>
+                <li>Use open data portals like Kaggle, Data.gov, or Kenya Open Data.</li>
+                <li>Make sure the dataset is clean enough to work with, but rich enough to explore.</li>
+                <li>Check for columns you can analyze and visualize.</li>
+                <li>Save your source and document your choice.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Choose data that speaks to you—your passion will power your project.</div>
+            </ol></div>`
+        },
+        {
+            title: "Defining Your Question",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Start with a clear, specific question.</li>
+                <li>Examples: “Which region has the highest sales?” or “What factors affect student performance?”</li>
+                <li>Break it into sub-questions if needed.</li>
+                <li>Your question guides your entire analysis.</li>
+                <li>Make sure it’s answerable with the data you have.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> A good question is half the answer—ask wisely.</div>
+            </ol></div>`
+        },
+        {
+            title: "Planning Your Workflow",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Step 1: Import and clean your data.</li>
+                <li>Step 2: Explore with summaries and visuals.</li>
+                <li>Step 3: Build dashboards or reports.</li>
+                <li>Step 4: Present findings with slides or notebooks.</li>
+                <li>Step 5: Reflect and document your process.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Plan your path—then walk it with purpose.</div>
+            </ol></div>`
+        },
+        {
+            title: "Tools You Can Use",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Tool:</strong> Excel – Cleaning, formulas, dashboards</li>
+                <li><strong>Tool:</strong> Power BI – Visuals, dashboards, sharing</li>
+                <li><strong>Tool:</strong> Python – Cleaning, analysis, automation</li>
+                <li><strong>Tool:</strong> SQL – Querying and joining data</li>
+                <li>Use any combination of tools you’ve learned.</li>
+                <li>Choose based on your comfort and project needs.</li>
+                <li>Document which tools you used and why.</li>
+                <li>Show versatility and depth.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your tools are your voice—choose the ones that speak best.</div>
+            </ol></div>`
+        },
+        {
+            title: "Presenting Your Capstone",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Create a 5–7 slide presentation or dashboard.</li>
+                <li>Include your question, process, insights, and recommendations.</li>
+                <li>Use visuals to support your story.</li>
+                <li>Practice your delivery and timing.</li>
+                <li>Share with peers, mentors, or online communities.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your capstone is your spotlight—step up and shine.</div>
+            </ol></div>`
+        },
+        {
+            title: "Peer Review & Feedback",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Present your project to a peer or mentor.</li>
+                <li>Ask for feedback on clarity, visuals, and insights.</li>
+                <li>Reflect on what worked and what could improve.</li>
+                <li>Use feedback to refine your final version.</li>
+                <li>Learning from others sharpens your skills.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Feedback isn’t criticism—it’s collaboration.</div>
+            </ol></div>`
+        },
+        {
+            title: "Graduation & Certification",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Celebrate completing all modules and your capstone.</li>
+                <li>Receive your certificate of completion.</li>
+                <li>Share your achievement on LinkedIn or your portfolio.</li>
+                <li>Reflect on your growth and next steps.</li>
+                <li>You’re now a certified data analyst.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Graduation isn’t the end—it’s your launchpad.</div>
+            </ol></div>`
+        },
+        {
+            title: "Next Steps in Your Journey",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Build your portfolio with more projects.</li>
+                <li>Apply for internships or freelance gigs.</li>
+                <li>Join data communities and attend meetups.</li>
+                <li>Keep learning new tools and trends.</li>
+                <li>Set goals for the next 3–6 months.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your journey continues—every dataset is a new adventure.</div>
+            </ol></div>`
+        },
+        {
+            title: "Practical: Complete Your Capstone",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Choose a dataset and define your question.</li>
+                <li>Clean, analyze, and visualize the data.</li>
+                <li>Create a presentation or dashboard.</li>
+                <li>Present to a peer or mentor.</li>
+                <li>Submit for review and certification.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> This is your final challenge—show what you’ve learned, and who you’ve become.</div>
+            </ol></div>`
+        },
+        {
+            title: "Q&A",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>What if I’m stuck choosing a topic? → Pick something personal or relevant.</li>
+                <li>What if my data is messy? → Clean what you can and explain the limitations.</li>
+                <li>What if I don’t finish on time? → Focus on progress, not perfection.</li>
+                <li>What if I’m nervous to present? → Practice and remember—you’ve earned this.</li>
+                <li>What if I want to keep going? → You absolutely should.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Every question is valid—this is your space to grow.</div>
+            </ol></div>`
+        },
+        {
+            title: "Key Takeaways",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li>Your capstone is your proof of learning and growth.</li>
+                <li>Choose a meaningful dataset and question.</li>
+                <li>Use your skills across tools and techniques.</li>
+                <li>Present with clarity and confidence.</li>
+                <li>You’re ready for the world of data.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> You didn’t just learn data—you became an analyst.</div>
+            </ol></div>`
+        },
+        {
+            title: "Final Reflect & Share",
+            content: `<div class="ai-slide-block"><ol class='highlight-list'>
+                <li><strong>Task:</strong></li>
+                <li>Write a short reflection:</li>
+                <li>What did you learn?</li>
+                <li>What surprised you?</li>
+                <li>What are you proud of?</li>
+                <li>Share your capstone and reflection with your cohort or online.</li>
+                <li>Celebrate your achievement—you’ve earned it.</li>
+                <hr><div class="activity-block"><strong>Food for the Mind:</strong> Your final challenge is reflection—look back, then leap forward.</div>
+            </ol></div>`
+        }
+    ]
+},
+    ];
 const welcomeSlide = {
     title: "Welcome to Tujengane Analyst Pro",
     content: `
