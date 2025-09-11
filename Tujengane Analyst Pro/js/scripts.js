@@ -1986,6 +1986,34 @@ sns.barplot(x='Product', y='Sales', data=df)</code></pre></li>
     ]
 },
     ];
+
+    // Celebration helpers (reuse global confetti library and audio element)
+    var _confettiInterval = null;
+    function startCelebration() {
+        // Avoid multiple intervals
+        if (_confettiInterval) return;
+        // Fire confetti in bursts; reduce intensity on small screens
+        var particleCount = window.innerWidth < 600 ? 40 : 80;
+        _confettiInterval = setInterval(function(){
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: particleCount, spread: 100, origin: { y: 0.6 } });
+            }
+        }, 800);
+        // play audio if available
+        try {
+            var cheer = document.getElementById('cheerAudio');
+            if (cheer) {
+                cheer.loop = true;
+                cheer.volume = 0.7;
+                cheer.play().catch(function(){});
+            }
+        } catch (e) {}
+    }
+
+    function stopCelebration() {
+        if (_confettiInterval) { clearInterval(_confettiInterval); _confettiInterval = null; }
+        try { var cheer = document.getElementById('cheerAudio'); if (cheer) { cheer.pause(); cheer.currentTime = 0; } } catch(e) {}
+    }
 const welcomeSlide = {
     title: "Welcome to Tujengane Analyst Pro",
     content: `
@@ -2033,6 +2061,8 @@ const sidebar = document.querySelector('.sidebar');
 const navLinks = document.getElementById('nav-links');
 
 function updateSlide(moduleIndex, slideIndex) {
+    // stop any running celebration when switching slides
+    try { stopCelebration(); } catch(e) {}
     const slide = moduleIndex !== null ? modules[moduleIndex].slides[slideIndex] : welcomeSlide;
     slideContainer.innerHTML = `
         <div class="slide-content">
@@ -2070,6 +2100,16 @@ function updateSlide(moduleIndex, slideIndex) {
             activeLink.parentElement.classList.add('active');
         }
     }
+
+    // If this is the last slide of the last module, trigger celebration
+    try {
+        var isLastModule = moduleIndex === (modules.length - 1);
+        var isLastSlide = moduleIndex !== null && slideIndex === (modules[moduleIndex].slides.length - 1);
+        if (isLastModule && isLastSlide) {
+            // small timeout to ensure DOM is painted
+            setTimeout(function(){ startCelebration(); }, 150);
+        }
+    } catch (e) { /* ignore */ }
 }
 
 function toggleModule(moduleIndex) {

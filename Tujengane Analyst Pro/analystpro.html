@@ -455,5 +455,112 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('DOMContentLoaded', toggleFloatingHomeBtn);
         </script>
         <script src="./js/scripts.js"></script>
+        <script>
+        /* Improved runtime list fixer
+           Rules implemented (non-destructive):
+           - Lists containing code, tables, or sub-headers => `.none`
+           - Lists that immediately follow a code block (previous sibling is pre/code) => `.bullet`
+           - Short ordered lists or lists with 'Step'/'Task' indicators => `.seq`
+           - Heuristic: lists with titles like 'Notes' or 'Takeaways' => `.diamond`
+           - Fallback: UL => bullet, OL => seq
+           - Uses MutationObserver to handle dynamic slide injection
+        */
+        (function(){
+            var processedFlag = '_listProcessedV2';
+            function textNearby(node) {
+                if (!node) return '';
+                var t = '';
+                if (node.previousElementSibling) t += ' ' + (node.previousElementSibling.getAttribute('data-title') || node.previousElementSibling.textContent || '');
+                if (node.parentElement && node.parentElement.previousElementSibling) t += ' ' + (node.parentElement.previousElementSibling.textContent || '');
+                return t.toLowerCase();
+            }
+
+            function isSequentialCandidate(list){
+                // Prefer numbers when list is explicitly OL and items look like ordered tasks
+                if (list.tagName && list.tagName.toLowerCase() === 'ol') return true;
+                // if the heading/text contains 'step' or 'task' or 'sequence'
+                var near = textNearby(list);
+                if (/\b(step|steps|task|tasks|sequence|sequential|first|second|third)\b/i.test(near)) return true;
+                // short lists of 2-6 items that contain digits or 'then' often are sequential
+                var items = list.querySelectorAll('li');
+                if (items.length > 1 && items.length <= 6) {
+                    var digity = 0;
+                    items.forEach(function(li){ if (/\d+\b/.test(li.textContent)) digity++; if (/\bthen\b/i.test(li.textContent)) digity++; });
+                    if (digity >= 1) return true;
+                }
+                return false;
+            }
+
+            function processHighlightLists(root){
+                root = root || document;
+                var lists = root.querySelectorAll('.highlight-list');
+                lists.forEach(function(list){
+                    if (list.dataset[processedFlag]) return;
+
+                    var containsComplex = !!list.querySelector('table, thead, tbody, pre, code, th, td, .demo-table, li h3, li h4, li .activity-block');
+                    var prev = list.previousElementSibling;
+                    var followsCode = prev && (prev.tagName.toLowerCase() === 'pre' || prev.tagName.toLowerCase() === 'code' || prev.querySelector && (prev.querySelector('pre, code')));
+
+                    // Clear marker classes we may have added earlier (except user-specified ones)
+                    list.classList.remove('seq','bullet','asterisk','none','diamond');
+
+                    if (containsComplex) {
+                        list.classList.add('none');
+                    } else if (followsCode) {
+                        // After a code example, prefer bullets rather than continuing numbering
+                        list.classList.add('bullet');
+                    } else if (isSequentialCandidate(list)) {
+                        list.classList.add('seq');
+                    } else {
+                        // Heuristic for notes/digest lists
+                        var near = textNearby(list);
+                        if (/\b(note|notes|takeaway|takeaways|summary|key point|key points)\b/i.test(near)) {
+                            list.classList.add('diamond');
+                        } else {
+                            // Default to a neutral bullet for non-sequential content
+                            list.classList.add('bullet');
+                        }
+                    }
+
+                    // If the list is inside a LI that itself is part of an OL, avoid re-numbering subheaders
+                    var parentLi = list.closest('li');
+                    if (parentLi && parentLi.parentElement && parentLi.parentElement.tagName.toLowerCase() === 'ol') {
+                        // sub-lists should not create new top-level numbers; prefer none or bullets
+                        if (list.classList.contains('seq')) {
+                            list.classList.remove('seq');
+                            list.classList.add('bullet');
+                        }
+                    }
+
+                    // small accessibility hint: ensure lists with no markers have left padding so content aligns
+                    if (list.classList.contains('none')) {
+                        list.style.paddingLeft = '0.5rem';
+                    } else {
+                        list.style.paddingLeft = '';
+                    }
+
+                    list.dataset[processedFlag] = '1';
+                });
+            }
+
+            function runOnce() { processHighlightLists(document); }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                setTimeout(runOnce, 120);
+                var container = document.getElementById('slide-container') || document.body;
+                try {
+                    var mo = new MutationObserver(function(mutations){
+                        // re-process only when nodes are added
+                        var changed = false;
+                        for (var i=0;i<mutations.length;i++) { if (mutations[i].addedNodes && mutations[i].addedNodes.length>0) { changed = true; break; } }
+                        if (changed) processHighlightLists(document);
+                    });
+                    mo.observe(container, { childList: true, subtree: true });
+                } catch (e) {
+                    setInterval(runOnce, 1200);
+                }
+            });
+        })();
+        </script>
 </body>
 </html>
