@@ -64,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function askPassword() {
     var input = prompt('This section is for authorized users only. Please enter the Analyst Pro password:');
         if (input === correctPassword) {
+            // remember successful authentication for this session
+            try { sessionStorage.setItem('tujengane_analyst_authenticated', 'true'); } catch(e) {}
             document.body.style.display = '';
         } else {
             tries++;
@@ -81,7 +83,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     document.body.style.display = 'none';
-    askPassword();
+    // If we've already authenticated this session, skip prompt
+    try {
+        var already = sessionStorage.getItem('tujengane_analyst_authenticated');
+        if (already === 'true') {
+            document.body.style.display = '';
+        } else {
+            askPassword();
+        }
+    } catch(e) {
+        // fallback: prompt if sessionStorage not available
+        askPassword();
+    }
 });
 </script>
     <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg">
