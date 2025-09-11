@@ -988,6 +988,19 @@ const modules = [
     }
 ];
 
+// Celebration helpers (non-destructive) — reuse confetti library and cheerAudio in page
+var _confettiIntervalCL = null;
+function startCelebrationCL() {
+    if (_confettiIntervalCL) return;
+    var particleCount = window.innerWidth < 600 ? 40 : 80;
+    _confettiIntervalCL = setInterval(function(){ if (typeof confetti === 'function') confetti({ particleCount: particleCount, spread: 100, origin: { y: 0.6 } }); }, 800);
+    try { var cheer = document.getElementById('cheerAudio'); if (cheer) { cheer.loop = true; cheer.volume = 0.7; cheer.play().catch(function(){}); } } catch(e) {}
+}
+function stopCelebrationCL() {
+    if (_confettiIntervalCL) { clearInterval(_confettiIntervalCL); _confettiIntervalCL = null; }
+    try { var cheer = document.getElementById('cheerAudio'); if (cheer) { cheer.pause(); cheer.currentTime = 0; } } catch(e) {}
+}
+
 const welcomeSlide = {
     title: "Welcome to Tujengane Computer Literacy",
     content: `
@@ -1035,6 +1048,9 @@ const sidebar = document.querySelector('.sidebar');
 const navLinks = document.getElementById('nav-links');
 
 function updateSlide(moduleIndex, slideIndex) {
+    // Ensure any running celebration is stopped when switching slides
+    try { stopCelebrationCL(); } catch (e) {}
+
     const slide = moduleIndex !== null ? modules[moduleIndex].slides[slideIndex] : welcomeSlide;
     slideContainer.innerHTML = `
         <div class="slide-content">
@@ -1052,6 +1068,11 @@ function updateSlide(moduleIndex, slideIndex) {
         document.querySelector('.navigation').classList.remove('hidden');
         document.getElementById('slide-number-display').classList.remove('hidden');
         document.getElementById('slide-number-display').textContent = `${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
+
+        // If this is the last slide of the last module, start celebration
+        if (moduleIndex === modules.length - 1 && slideIndex === modules[moduleIndex].slides.length - 1) {
+            try { startCelebrationCL(); } catch (e) {}
+        }
     } else {
         currentSlideDisplay.textContent = 0;
         totalSlidesDisplay.textContent = 0;
