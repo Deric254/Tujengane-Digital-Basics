@@ -61,25 +61,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     var correctPassword = 'analyst2025'; // Changed password for Analyst Pro
     var tries = 0;
-    function askPassword() {
-    var input = prompt('This section is for authorized users only. Please enter the Analyst Pro password:');
-        if (input === correctPassword) {
+    var sessionKey = 'tujengane_analyst_authenticated';
+
+    // If the user already entered the correct password this browser session, show the page and skip the prompt
+    try {
+        if (sessionStorage.getItem(sessionKey) === 'true') {
             document.body.style.display = '';
+            return;
+        }
+    } catch (e) {}
+
+    function askPassword() {
+        var input = prompt('This section is for authorized users only. Please enter the Analyst Pro password:');
+        // If the user clicked Cancel, the prompt returns null — close the dialog and do nothing
+        if (input === null) {
+            return;
+        }
+        if (input === correctPassword) {
+            try { sessionStorage.setItem(sessionKey, 'true'); } catch (e) {}
+            document.body.style.display = '';
+            return;
+        }
+        tries++;
+        if (tries >= 2) {
+            // Open WhatsApp chat with pre-filled message
+            var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
+            window.location.href = waUrl;
+            // Fallback message in case redirect fails
+            setTimeout(function() {
+                document.body.innerHTML = `
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;">
+                        <h2 style="color:#49A078;">Redirecting to WhatsApp...</h2>
+                        <p style="margin:1em 0;">If WhatsApp does not open, <a href="${waUrl}" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p>
+                    </div>
+                `;
+            }, 2000);
+            return;
         } else {
-            tries++;
-            if (tries >= 2) {
-                // Open WhatsApp chat with pre-filled message
-                var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
-                window.location.href = waUrl;
-                // Fallback message in case redirect fails
-                setTimeout(function() {
-                    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;"><h2 style="color:#49A078;">Redirecting to WhatsApp...</h2><p style="margin:1em 0;">If WhatsApp does not open, <a href="'+waUrl+'" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p></div>';
-                }, 2000);
-            } else {
-                askPassword();
-            }
+            askPassword();
         }
     }
+
     document.body.style.display = 'none';
     askPassword();
 });

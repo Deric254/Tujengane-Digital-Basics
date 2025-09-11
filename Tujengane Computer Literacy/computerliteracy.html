@@ -61,25 +61,50 @@
 document.addEventListener('DOMContentLoaded', function() {
     var correctPassword = 'literacy2025'; // Change this password as needed
     var tries = 0;
+    var sessionKey = 'tujengane_literacy_authenticated';
+
+    // If the user already entered the correct password this browser session, show the page and skip the prompt
+    try {
+        if (sessionStorage.getItem(sessionKey) === 'true') {
+            document.body.style.display = '';
+            return;
+        }
+    } catch (e) {
+        // sessionStorage may be unavailable in some contexts; fall back to prompting
+    }
+
     function askPassword() {
         var input = prompt('This section is for authorized users only. Please enter the password:');
+        // If the user clicked Cancel, the prompt returns null — close the dialog and do nothing
+        if (input === null) {
+            return;
+        }
         if (input === correctPassword) {
+            // Remember successful entry for this browser session so we don't prompt again
+            try { sessionStorage.setItem(sessionKey, 'true'); } catch (e) {}
             document.body.style.display = '';
+            return;
+        }
+        tries++;
+        if (tries >= 2) {
+            // Open WhatsApp chat with pre-filled message
+            var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Computer Literacy.');
+            window.location.href = waUrl;
+            // Fallback message in case redirect fails
+            setTimeout(function() {
+                document.body.innerHTML = `
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;">
+                        <h2 style="color:#49A078;">Redirecting to WhatsApp...</h2>
+                        <p style="margin:1em 0;">If WhatsApp does not open, <a href="${waUrl}" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p>
+                    </div>
+                `;
+            }, 2000);
+            return;
         } else {
-            tries++;
-            if (tries >= 2) {
-                // Open WhatsApp chat with pre-filled message
-                var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Computer Literacy.');
-                window.location.href = waUrl;
-                // Fallback message in case redirect fails
-                setTimeout(function() {
-                    document.body.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;"><h2 style="color:#49A078;">Redirecting to WhatsApp...</h2><p style="margin:1em 0;">If WhatsApp does not open, <a href="'+waUrl+'" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p></div>';
-                }, 2000);
-            } else {
-                askPassword();
-            }
+            askPassword();
         }
     }
+
     document.body.style.display = 'none';
     askPassword();
 });
