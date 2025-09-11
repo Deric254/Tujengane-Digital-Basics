@@ -208,11 +208,11 @@ body {
 }
 
 .slide-content h2 {
-    color: #256d4f;
+    color: #0f172a; /* dark heading for strong contrast */
     font-weight: 700;
     font-size: 1.75rem;
     margin-bottom: 1rem;
-    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.25s ease;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -223,7 +223,7 @@ body {
 }
 
 .slide-content p {
-    color: #1e3a8a;
+    color: #111827; /* dark body text for readability */
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -311,21 +311,21 @@ body {
 }
 
 .highlight-list li {
-    color: #1e3a8a;
+    color: #111827; /* dark list item text */
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 0.75rem;
     padding-left: 0.5rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s ease;
     position: relative;
     cursor: pointer;
 }
 
 .highlight-list li:hover {
     background: #fffbe6;
-    color: #256d4f;
+    color: #065f46; /* darker green accent on hover */
     transform: scale(1.02);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* Header */
