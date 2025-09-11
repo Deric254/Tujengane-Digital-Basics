@@ -764,3 +764,10 @@ nav .container {
         font-size: 0.9rem;
     }
 }
+
+/* AI demo modal and small animations */
+.hidden { display: none !important; }
+.fade-in { animation: fadeIn 300ms ease-out both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.nav-btn:active { transform: translateY(1px) scale(0.998); }
+.ai-highlight { border-left: 4px solid #49A078; padding-left: 0.75rem; }
