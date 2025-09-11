@@ -9,25 +9,4 @@
     <div class="flex gap-3 justify-center mt-4">
         <a href="https://chat.whatsapp.com/HrYrcCRLcVUKNXCehfzioZ" target="_blank" class="nav-btn" style="text-decoration:none;">Join Computer Literacy</a>
     </div>
-    <div class="flex gap-3 justify-center mt-4">
-        <button id="aiDemoBtn" class="nav-btn" title="Try a lightweight AI preview">Try AI Demo</button>
     </div>
-    <p class="text-sm text-gray-500 text-center mt-4">Curious? Try the client-side demo below to get a feel for how AI can speed up everyday work — no sign-up required.</p>
-</div>
-
-<!-- AI Demo Modal (keeps everything client-side; fake summarizer for curiosity) -->
-<div id="aiDemoModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white rounded-lg p-6 w-full max-w-2xl shadow-lg">
-        <div class="flex justify-between items-center mb-3">
-            <h3 class="font-bold text-lg">AI Preview — Course Summary</h3>
-            <button id="aiCloseBtn" class="text-gray-500 hover:text-red-500">&times;</button>
-        </div>
-        <textarea id="aiInput" rows="6" class="w-full p-3 border rounded-md" placeholder="Paste a paragraph or type a few sentences about your course...">Try the course: practical computer skills, Excel, Word, internet safety, and quick AI tricks.</textarea>
-        <div class="flex gap-3 mt-3">
-            <button id="aiSummarizeBtn" class="nav-btn">Summarize</button>
-            <button id="aiGenerateBtn" class="nav-btn">Generate Slide Idea</button>
-        </div>
-        <div id="aiResult" class="mt-4 p-3 bg-gray-50 border rounded-md text-gray-700 min-h-[60px]"></div>
-        <p class="text-xs text-gray-400 mt-2">Note: This is a quick client-side preview to spark ideas — full AI demos available in class.</p>
-    </div>
-</div>
