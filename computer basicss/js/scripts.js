@@ -93,6 +93,8 @@ function initializeSlideContent() {
         triggerConfetti();
         playCheer();
     }
+    // Initialize the lightweight, client-side AI demo if the slide provides it
+    initializeAIDemo();
 }
 
 function initializeQuiz() {
@@ -225,3 +227,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// ---------------------------
+// Lightweight client-side AI demo (deterministic, local-only)
+// ---------------------------
+function initializeAIDemo() {
+    const modal = document.getElementById('aiDemoModal');
+    if (!modal) return; // nothing to do on slides without the demo
+
+    const aiInput = document.getElementById('aiInput');
+    const aiSummarizeBtn = document.getElementById('aiSummarizeBtn');
+    const aiGenerateBtn = document.getElementById('aiGenerateBtn');
+    const aiResult = document.getElementById('aiResult');
+    const aiClose = document.getElementById('aiCloseBtn');
+
+    if (aiClose) aiClose.addEventListener('click', () => closeModal('aiDemoModal'));
+
+    if (aiSummarizeBtn) aiSummarizeBtn.addEventListener('click', () => {
+        const text = (aiInput && aiInput.value) ? aiInput.value.trim() : '';
+        if (!text) {
+            aiResult.textContent = 'Type or paste a paragraph from the slide to see a short summary.';
+            return;
+        }
+        const summary = summarizeText(text);
+        aiResult.innerHTML = '<strong>Summary:</strong><p>' + escapeHtml(summary) + '</p>';
+    });
+
+    if (aiGenerateBtn) aiGenerateBtn.addEventListener('click', () => {
+        const topic = (aiInput && aiInput.value.trim()) ? aiInput.value.trim() : 'Computer Basics';
+        const ideas = generateCourseIdeas(topic);
+        aiResult.innerHTML = '<strong>Course Ideas:</strong><ul>' + ideas.map(i => '<li>' + escapeHtml(i) + '</li>').join('') + '</ul>';
+    });
+}
+
+function summarizeText(text) {
+    // Very small, deterministic summarizer: pick the first 1-2 sentences and trim to 250 chars.
+    const sentences = text.match(/[^.!?]+[.!?]?/g) || [text];
+    let pick = sentences.slice(0, 2).join(' ').trim();
+    if (pick.length > 250) pick = pick.slice(0, 247) + '...';
+    return pick;
+}
+
+function generateCourseIdeas(topic) {
+    // Deterministic idea generator based on topic words
+    const base = topic.split(/\s+/).slice(0,3).join(' ');
+    return [
+        `Intro to ${base}: a 4-week hands-on course for beginners (tools, basics, practical tasks)`,
+        `${base} in Practice: 6 mini-projects to build real skills and a portfolio-worthy project`,
+        `Certification Prep: essential ${base} concepts, quizzes, and a final assessment to certify learning`
+    ];
+}
+
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, '&amp;')
+         .replace(/</g, '&lt;')
+         .replace(/>/g, '&gt;')
+         .replace(/"/g, '&quot;')
+         .replace(/'/g, '&#039;');
+}
