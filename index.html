@@ -120,18 +120,22 @@
         }
         .curriculum-card {
             background: #ffffff;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(73, 160, 120, 0.1);
             position: relative;
             z-index: 1;
             margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px; /* ensure consistent card height */
         }
         .curriculum-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            /* No movement on hover; only subtle shadow change for focus */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
             z-index: 2;
         }
         .curriculum-title {
@@ -143,11 +147,44 @@
             gap: 0.5rem;
             margin-bottom: 0.5rem;
         }
+        /* compact grid layout to shorten vertical length */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+        }
+        /* make descriptions shorter visually and fix invalid font-size */
         .curriculum-desc {
             color: #4b5563;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
+        .curriculum-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: auto; /* push actions to bottom so cards align */
+        }
+        .share-link {
+            display: inline-block;
+            background: transparent;
+            color: #256d4f;
+            padding: 0.35rem 0.6rem;
+            border-radius: 0.4rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border: 1px solid rgba(37,109,79,0.06);
+        }
+        .share-link:hover { background:#f0fdf4; }
+    /* kept for larger screens default spacing */
+    .curriculum-desc { margin-bottom: 1rem; }
         .curriculum-price {
             color: #49A078;
             font-weight: 600;
@@ -170,7 +207,31 @@
             color: #256d4f;
             text-decoration: none;
             outline: none;
-            transform: scale(1.05);
+            /* no scaling */
+        }
+        .free-badge {
+            display: inline-block;
+            background: #facc15;
+            color: #92400e;
+            font-weight: 800;
+            padding: 0.18rem 0.5rem;
+            border-radius: 9999px;
+            margin-left: 0.5rem;
+            font-size: 0.75rem;
+            vertical-align: middle;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+        .premium-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: #ffffff;
+            font-weight: 800;
+            padding: 0.15rem 0.45rem;
+            border-radius: 9999px;
+            margin-left: 0.5rem;
+            font-size: 0.75rem;
+            vertical-align: middle;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
         }
         /* Responsive tweaks for yellow links */
         @media (max-width: 768px) {
@@ -245,6 +306,7 @@
             .layout { flex-direction: column; padding: 1rem; }
             .main-content { border-radius: 0.75rem; padding: 1.5rem; }
             .slogan-marquee { font-size: 0.9rem; }
+            .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .sidebar { display: none !important; }
@@ -291,6 +353,7 @@
             .curriculum-card { padding: 1rem; }
             .footer { padding: 0.75rem; }
             .footer-socials { flex-wrap: wrap; }
+            .curriculum-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -365,25 +428,46 @@
                     <p>Explore digital skills for business and career growth. Choose a curriculum or connect with us to start your journey.</p>
                 </div>
                 <div class="subtitle text-lg text-gray-600 mt-6 mb-6">Choose your curriculum package below</div>
+                <div class="curriculum-grid">
                 <div class="curriculum-card">
-                    <div class="curriculum-title"><i class="fas fa-database"></i> Data Basics</div>
+                    <div class="curriculum-title"><i class="fas fa-database"></i> Data Basics <span class="free-badge">FREE</span></div>
                     <div class="curriculum-desc">Start here to learn how to capture clean, usable data for your business. Perfect for beginners and hustlers.</div>
                     <div class="curriculum-price">Price: Free</div>
-                    <a href="Tujengane data basics/databasics.html" class="curriculum-link">Explore Data Basics</a>
+                    <div class="curriculum-actions">
+                        <a href="Tujengane data basics/databasics.html" class="curriculum-link">Explore Data Basics</a>
+                        <a href="#" data-share-url="Tujengane data basics/databasics.html" class="share-link">Share</a>
+                    </div>
                 </div>
                 <div class="curriculum-card">
-                    <div class="curriculum-title"><i class="fas fa-chart-pie"></i> Analyst Pro</div>
+                    <div class="curriculum-title"><i class="fas fa-laptop"></i> Computer Basicss <span class="free-badge">FREE</span></div>
+                    <div class="curriculum-desc">Core computer skills: navigation, email, basic productivity, and practical AI tips to speed your work.</div>
+                    <div class="curriculum-price">Price: Free</div>
+                    <div class="curriculum-actions">
+                        <a href="computer basicss/computerbasicss.html" class="curriculum-link">Explore Computer Basicss</a>
+                        <a href="#" data-share-url="computer basicss/computerbasicss.html" class="share-link">Share</a>
+                    </div>
+                </div>
+                <div class="curriculum-card">
+                    <div class="curriculum-title"><i class="fas fa-chart-pie"></i> Analyst Pro <span class="premium-badge">PREMIUM</span></div>
                     <div class="curriculum-desc">Advanced analytics, business intelligence, and data-driven decision making for professionals.</div>
                     <div class="curriculum-price">Price: KES 100 per session</div>
-                    <a href="Tujengane analyst pro/analystpro.html" class="curriculum-link">Explore Analyst Pro</a>
+                    <div class="curriculum-actions">
+                        <a href="Tujengane analyst pro/analystpro.html" class="curriculum-link">Explore Analyst Pro</a>
+                        <a href="#" data-share-url="Tujengane analyst pro/analystpro.html" class="share-link">Share</a>
+                    </div>
                 </div>
                 <div class="curriculum-card">
-                    <div class="curriculum-title"><i class="fas fa-laptop-code"></i> Computer Literacy</div>
+                    <div class="curriculum-title"><i class="fas fa-laptop-code"></i> Computer Literacy <span class="premium-badge">PREMIUM</span></div>
                     <div class="curriculum-desc">Essential computer skills for everyone, especially high school graduates transitioning to campus and continuing students. Master typing, navigation, internet, and basic applications to excel in your studies and beyond.</div>
                     <div class="curriculum-price">Price: KES 100 per session</div>
-                    <a href="Tujengane computer literacy/computerliteracy.html" class="curriculum-link">Explore Computer Literacy</a>
+                    <div class="curriculum-actions">
+                        <a href="Tujengane computer literacy/computerliteracy.html" class="curriculum-link">Explore Computer Literacy</a>
+                        <a href="#" data-share-url="Tujengane computer literacy/computerliteracy.html" class="share-link">Share</a>
+                    </div>
                 </div>
             </div>
+            <!-- toast for lightweight feedback -->
+            <div id="toast" style="position:fixed;right:1rem;bottom:1rem;background:#111827;color:#fff;padding:0.6rem 1rem;border-radius:0.6rem;box-shadow:0 6px 18px rgba(0,0,0,0.2);opacity:0;transform:translateY(8px);transition:all .28s ease;z-index:9999"></div>
         </main>
     </div>
     <footer class="footer">
@@ -415,6 +499,43 @@
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('mobile-active');
+            });
+        });
+    </script>
+    <script>
+        // Lightweight Share button handler: try Web Share API, fallback to copying link
+        const toast = document.getElementById('toast');
+        function showToast(msg) {
+            if (!toast) return;
+            toast.textContent = msg;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(8px)';
+            }, 2600);
+        }
+        document.querySelectorAll('.share-link').forEach(btn => {
+            btn.addEventListener('click', async function (e) {
+                e.preventDefault();
+                const url = new URL(this.getAttribute('data-share-url'), window.location.href).href;
+                const title = document.title;
+                if (navigator.share) {
+                    try {
+                        await navigator.share({ title, url });
+                        showToast('Shared via system share');
+                        return;
+                    } catch (err) {
+                        // fallthrough to clipboard
+                    }
+                }
+                try {
+                    await navigator.clipboard.writeText(url);
+                    showToast('Link copied to clipboard');
+                } catch (err) {
+                    // final fallback: non-blocking prompt replacement
+                    showToast('Copy this link: ' + url);
+                }
             });
         });
     </script>
