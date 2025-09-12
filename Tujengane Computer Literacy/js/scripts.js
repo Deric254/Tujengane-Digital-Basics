@@ -1015,9 +1015,9 @@ const welcomeSlide = {
                 <i class="fas fa-chart-bar" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
                 For Aspiring Data Analysts<br><span style="font-weight:400; font-size:0.9rem;">Go to Analyst Pro</span>
             </a>
-            <a href="../Tujengane data basics/databasics.html" class="welcome-card" style="background:#49A078; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
+            <a href="../computer basicss/computerbasicss.html" class="welcome-card" style="background:#49A078; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
                 <i class="fas fa-database" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
-                For Beginner Analysts<br><span style="font-weight:400; font-size:0.9rem;">Go to Data Basics</span>
+                For Computer Basics <br><span style="font-weight:400; font-size:0.9rem;">Go to Data Basics</span>
             </a>
             <a href="https://exesbi.netlify.app/" target="_blank" class="welcome-card" style="background:#256d4f; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
                 <i class="fas fa-rocket" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
