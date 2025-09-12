@@ -87,13 +87,23 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tries >= 2) {
             // Show a user-clickable WhatsApp contact button instead of programmatically opening a new window
             var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
-            // Keep the page content inaccessible: append a full-viewport overlay with a compact control box
-            var overlay = document.createElement('div');
-            overlay.id = 'waFallbackOverlay';
-            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.56);backdrop-filter:blur(3px);z-index:100000;display:flex;align-items:center;justify-content:center;padding:18px;';
+            // Instead of exposing the protected content, show the site's index page behind the control box
+            var wrapper = document.createElement('div');
+            wrapper.id = 'waIframeWrapper';
+            wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;';
+
+            // iframe showing the index page as the background (keeps same-origin and visual continuity)
+            var bgFrame = document.createElement('iframe');
+            bgFrame.src = '../index.html';
+            bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+            bgFrame.setAttribute('aria-hidden','true');
+
+            // backdrop to dim the iframe
+            var backdrop = document.createElement('div');
+            backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
 
             var box = document.createElement('div');
-            box.style.cssText = 'max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;';
+            box.style.cssText = 'position:relative;max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;z-index:100002;';
             box.innerHTML = `
                 <div style="display:flex;align-items:flex-start;gap:12px;">
                     <div style="flex:1;min-width:0">
@@ -108,13 +118,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
 
-            overlay.appendChild(box);
-            document.documentElement.appendChild(overlay);
+            wrapper.appendChild(bgFrame);
+            wrapper.appendChild(backdrop);
+            wrapper.appendChild(box);
+            document.documentElement.appendChild(wrapper);
 
             // Minimal toast
             var toast = document.createElement('div');
             toast.id = 'waToast';
-            toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100001;display:none;font-size:0.95rem;';
+            toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100003;display:none;font-size:0.95rem;';
             toast.textContent = 'Link copied to clipboard';
             document.documentElement.appendChild(toast);
 
