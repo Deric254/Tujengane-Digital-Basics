@@ -567,7 +567,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 lists.forEach(function(list){
                     if (list.dataset[processedFlag]) return;
 
-                    var containsComplex = !!list.querySelector('table, thead, tbody, pre, code, th, td, .demo-table, li h3, li h4, li .activity-block');
+                    // Only treat lists as "none" when they contain block-level complex content
+                    // (tables, block <pre> examples, list-items that include headers or activity blocks).
+                    // Avoid matching inline <code> so normal points with inline code still get bullets.
+                    // Keep bullets for lists that contain code lines; only treat truly complex/block content as 'none'
+                    var containsComplex = !!list.querySelector('table, thead, tbody, li h3, li h4, li .activity-block, .demo-table');
                     var prev = list.previousElementSibling;
                     var followsCode = prev && (prev.tagName.toLowerCase() === 'pre' || prev.tagName.toLowerCase() === 'code' || prev.querySelector && (prev.querySelector('pre, code')));
 
