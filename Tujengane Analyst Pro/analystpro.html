@@ -85,19 +85,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         tries++;
         if (tries >= 2) {
-            // Open WhatsApp chat with pre-filled message
+            // Show a user-clickable WhatsApp contact button instead of programmatically opening a new window
             var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
-            // Open WhatsApp in a new tab instead of replacing the current page
-            try { window.open(waUrl, '_blank'); } catch (e) { window.location.href = waUrl; }
-            // Fallback message in case redirect fails
-            setTimeout(function() {
-                document.body.innerHTML = `
-                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;">
-                        <h2 style="color:#49A078;">Redirecting to WhatsApp...</h2>
-                        <p style="margin:1em 0;">If WhatsApp does not open, <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="color:#25D366;font-weight:bold;">click here to contact us</a> for access.</p>
+            // Keep the page content inaccessible: append a full-viewport overlay with a compact control box
+            var overlay = document.createElement('div');
+            overlay.id = 'waFallbackOverlay';
+            overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.56);backdrop-filter:blur(3px);z-index:100000;display:flex;align-items:center;justify-content:center;padding:18px;';
+
+            var box = document.createElement('div');
+            box.style.cssText = 'max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;';
+            box.innerHTML = `
+                <div style="display:flex;align-items:flex-start;gap:12px;">
+                    <div style="flex:1;min-width:0">
+                        <div style="font-weight:800;font-size:1.05rem;color:#fff;">Access blocked</div>
+                        <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">We couldn't verify your access. Use the button below to message us on WhatsApp to request access. You must click the link to open WhatsApp.</div>
                     </div>
-                `;
-            }, 2000);
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
+                    <a id="waOpenLink" href="${waUrl}" target="_blank" rel="noopener noreferrer" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">Open WhatsApp</a>
+                    <button id="waCopyBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Copy link</button>
+                    <button id="waCancelBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Cancel</button>
+                </div>
+            `;
+
+            overlay.appendChild(box);
+            document.documentElement.appendChild(overlay);
+
+            // Minimal toast
+            var toast = document.createElement('div');
+            toast.id = 'waToast';
+            toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100001;display:none;font-size:0.95rem;';
+            toast.textContent = 'Link copied to clipboard';
+            document.documentElement.appendChild(toast);
+
+            document.getElementById('waCopyBtn').addEventListener('click', function(){
+                try {
+                    navigator.clipboard.writeText(waUrl).then(function(){
+                        toast.style.display = 'block';
+                        setTimeout(function(){ toast.style.display='none'; }, 1800);
+                    }, function(){
+                        var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
+                    });
+                } catch(e){
+                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
+                }
+            });
+            document.getElementById('waCancelBtn').addEventListener('click', function(){ window.location.href = '../index.html'; });
+            return;
             return;
         } else {
             askPassword();
