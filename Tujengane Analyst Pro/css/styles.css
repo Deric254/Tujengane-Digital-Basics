@@ -1024,7 +1024,14 @@ nav .container {
    <ol class='highlight-list none'><!-- no markers, useful when code or custom layout should not show numbers -->
 */
 /* Non-destructive overrides: hide numeric prefixes and make headings/code clearer */
-.sidebar-item .slide-number { display: none !important; }
+.sidebar-item .slide-number {
+    display: inline-block !important; /* reveal runtime module.slide numbering */
+    min-width: 2.2em;
+    text-align: right;
+    margin-right: 0.6em;
+    color: #256d4f;
+    font-weight: 700;
+}
 
 /* Make slide headings underlined and slightly bolder for emphasis */
 .slide-content h2 {

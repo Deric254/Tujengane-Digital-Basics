@@ -1068,7 +1068,8 @@ function updateSlide(moduleIndex, slideIndex) {
         nextBtn.disabled = slideIndex === modules[moduleIndex].slides.length - 1 && moduleIndex === modules.length - 1;
         document.querySelector('.navigation').classList.remove('hidden');
         document.getElementById('slide-number-display').classList.remove('hidden');
-        document.getElementById('slide-number-display').textContent = `${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
+    // Include module number in the visible slide counter (non-destructive change)
+    document.getElementById('slide-number-display').textContent = `Module ${moduleIndex + 1} — ${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
 
         // If this is the last slide of the last module, start celebration
         if (moduleIndex === modules.length - 1 && slideIndex === modules[moduleIndex].slides.length - 1) {
@@ -1095,6 +1096,24 @@ function updateSlide(moduleIndex, slideIndex) {
         }
     }
 }
+
+// Small helper: set visible sidebar numbers to "module.slide" (e.g., 2.3) based on data attributes.
+// This updates the existing <span class="slide-number"> elements at runtime and is intentionally non-destructive.
+function setSidebarNumbersCL() {
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        try {
+            var mod = parseInt(link.dataset.module, 10);
+            var sl = parseInt(link.dataset.slide, 10);
+            var span = link.querySelector('.slide-number');
+            if (!isNaN(mod) && !isNaN(sl) && span) {
+                span.textContent = `${mod + 1}.${sl + 1}.`;
+            }
+        } catch (e) { /* ignore and leave original numbering */ }
+    });
+}
+
+// Run once on load to tidy sidebar numbering.
+try { setSidebarNumbersCL(); } catch (e) {}
 
 function toggleModule(moduleIndex) {
     const moduleToggles = document.querySelectorAll('.module-toggle');
