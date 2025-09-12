@@ -123,6 +123,8 @@ function initializeCertificateRequest() {
         nameInput.addEventListener('input', () => {
             const fullName = encodeURIComponent(nameInput.value.trim());
             certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20TDB&name=${fullName}`;
+            // Ensure the WhatsApp link opens in a new tab/window
+            try { certLink.target = '_blank'; certLink.rel = 'noopener noreferrer'; } catch (e) {}
         });
     }
 }
