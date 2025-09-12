@@ -102,12 +102,24 @@ function initializeSlideContent() {
     try {
         const slideContent = document.querySelector('.slide-content');
         if (slideContent) {
-            const hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
-            if (!hasLists) {
-                slideContent.classList.add('auto-bullets');
-            } else {
-                slideContent.classList.remove('auto-bullets');
-            }
+                // Basic structural list check
+                let hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
+                // Heuristic: treat paragraphs that start with a number (e.g. "1.") or
+                // common bullet characters as already-marked content so we don't add bullets.
+                if (!hasLists) {
+                    const textCandidates = Array.from(slideContent.querySelectorAll('p, div'))
+                        .map(el => (el.textContent || '').trim())
+                        .filter(t => t.length > 0);
+                    const numberedOrBulleted = textCandidates.some(t => {
+                        return /^\d+[\.\)]\s+/.test(t) || /^[\u2022\u2023\u25E6\-\*]\s+/.test(t);
+                    });
+                    if (numberedOrBulleted) hasLists = true;
+                }
+                if (!hasLists) {
+                    slideContent.classList.add('auto-bullets');
+                } else {
+                    slideContent.classList.remove('auto-bullets');
+                }
         }
     } catch (e) {
         // fail silently — this is a non-critical visual enhancement
