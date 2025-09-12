@@ -2079,7 +2079,7 @@ function updateSlide(moduleIndex, slideIndex) {
         nextBtn.disabled = slideIndex === modules[moduleIndex].slides.length - 1 && moduleIndex === modules.length - 1;
         document.querySelector('.navigation').classList.remove('hidden');
         document.getElementById('slide-number-display').classList.remove('hidden');
-        document.getElementById('slide-number-display').textContent = `${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
+    document.getElementById('slide-number-display').textContent = `Module ${moduleIndex + 1} — ${modules[moduleIndex].title} - Slide ${slideIndex + 1} of ${modules[moduleIndex].slides.length}`;
     } else {
         currentSlideDisplay.textContent = 0;
         totalSlidesDisplay.textContent = 0;
@@ -2180,6 +2180,24 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
         updateSlide(moduleIndex, slideIndex);
     });
 });
+
+// Ensure visible sidebar numbers reflect module.slide (non-destructive runtime fix)
+function setSidebarNumbers() {
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        try {
+            var m = parseInt(link.dataset.module);
+            var s = parseInt(link.dataset.slide);
+            var span = link.querySelector('.slide-number');
+            if (span && !isNaN(m) && !isNaN(s)) {
+                // format like "1.1." to match existing dot-style numbering
+                span.textContent = (m + 1) + '.' + (s + 1) + '.';
+            }
+        } catch (e) { /* ignore bad entries */ }
+    });
+}
+
+// Run once now to update static markup; it's safe and reversible (only updates span text)
+try { setSidebarNumbers(); } catch (e) { /* ignore */ }
 
 prevBtn.addEventListener('click', handlePrev);
 nextBtn.addEventListener('click', handleNext);
