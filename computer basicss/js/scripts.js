@@ -95,6 +95,24 @@ function initializeSlideContent() {
     }
     // Initialize the lightweight, client-side AI demo if the slide provides it
     initializeAIDemo();
+
+    // Selective auto-bullets: if the slide content contains no <ul>, <ol>, or
+    // elements with the .highlight-list class, add a presentation-only
+    // "auto-bullets" class to .slide-content so paragraphs display bullets.
+    try {
+        const slideContent = document.querySelector('.slide-content');
+        if (slideContent) {
+            const hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
+            if (!hasLists) {
+                slideContent.classList.add('auto-bullets');
+            } else {
+                slideContent.classList.remove('auto-bullets');
+            }
+        }
+    } catch (e) {
+        // fail silently — this is a non-critical visual enhancement
+        console.error('auto-bullets check failed', e);
+    }
 }
 
 function initializeQuiz() {

@@ -301,11 +301,14 @@ body {
     z-index: 20;
 }
 
-/* Lists in Computer Basicss: no markers and left-aligned text
-   We intentionally remove bullets/numbers so content appears as plain, left-aligned text. */
+/* Lists in Computer Basicss: preserve list markers when the slide provides them.
+   For slides that do not include any list markup, we add a presentation-only
+   "auto-bullets" class at runtime which visually prefixes paragraphs with bullets.
+   This preserves original slide HTML and only affects presentation. */
 .highlight-list {
-    list-style: none; /* remove decimal markers */
-    padding-left: 0; /* no left padding for lists */
+    /* allow default list markers; provide consistent left padding */
+    list-style: disc outside;
+    padding-left: 1.25rem;
     width: 100%;
     max-width: 600px;
     margin: 1rem 0;
@@ -316,7 +319,6 @@ body {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 0.5rem;
-    padding-left: 0; /* remove extra padding */
     transition: background 0.25s ease;
     position: relative;
     cursor: default; /* not interactive by default */
@@ -326,6 +328,23 @@ body {
 .highlight-list li:hover {
     background: transparent; /* avoid hover effects that shift layout */
     color: #111827;
+}
+
+/* Presentation-only auto-bullets for slides that lack list markup.
+   We target paragraphs inside .slide-content when JS adds .auto-bullets. */
+.slide-content.auto-bullets p {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+.slide-content.auto-bullets p::before {
+    content: "\2022"; /* bullet character */
+    position: absolute;
+    left: 0;
+    top: 0.15rem;
+    color: #256d4f;
+    font-size: 1.05rem;
+    line-height: 1;
 }
 
 /* Header */
