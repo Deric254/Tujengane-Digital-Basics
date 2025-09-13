@@ -11,13 +11,20 @@
             <div class="tooltip">Connect for digital skills</div>
         </li>
     </ul>
-    <div class="flex gap-3 justify-center mt-4">
-        <a href="../../Tujengane Computer Literacy/computerliteracy.html" target="_blank" class="nav-btn" style="text-decoration:none;">Join Premium Class</a>
-        <button class="finalize-btn bg-[#49A078] text-white px-6 py-3 rounded-lg font-semibold mt-6 hover:bg-[#3e8865]">
-            Finalize Data Basics
-            <div class="tooltip">Click to celebrate your achievement!</div>
-        </button>
+    <div class="flex gap-3 justify-center mt-4" style="align-items:center;">
+        <!-- Unified CTA styles: same size, same padding. No transform animations; active uses color + subtle shadow only -->
+        <a href="../../Tujengane Computer Literacy/computerliteracy.html" target="_blank" class="unified-cta" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;padding:0.8rem 1.1rem;border-radius:10px;background:#ffffff;color:#256d4f;font-weight:800;box-shadow:0 6px 18px rgba(37,109,79,0.12);min-width:180px;">Join Premium Class</a>
+        <button class="unified-cta" style="display:inline-flex;align-items:center;justify-content:center;padding:0.8rem 1.1rem;border-radius:10px;background:#49A078;color:#fff;font-weight:800;box-shadow:0 6px 18px rgba(37,109,79,0.12);min-width:180px;border:0;">Finalize Data Basics</button>
     </div>
+    <p class="text-center text-sm text-gray-600 mt-3" style="max-width:640px;margin-left:auto;margin-right:auto;">Summary: You completed the Data Basics course — join the next level (Analyst Pro) or strengthen core digital skills with Computer Literacy. Click any link to continue; links respond immediately with a color/shadow change on touch.</p>
+    <style>
+        /* Local small feedback for CTAs: no movement, only color/shadow to indicate press on touch devices */
+        .unified-cta { -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: background-color 120ms ease, box-shadow 120ms ease; }
+        .unified-cta:active { box-shadow: 0 4px 10px rgba(0,0,0,0.18); filter: brightness(0.95); }
+        .unified-cta:focus { outline: 3px solid rgba(73,160,120,0.18); outline-offset: 2px; }
+        /* Ensure links look like buttons on small screens */
+        @media (max-width: 640px) { .unified-cta { min-width:140px; padding:0.75rem 1rem; font-size:0.95rem; } }
+    </style>
     <div class="slide-interactive-tip" id="slideTip22">Click any link above to join the WhatsApp groups and continue your journey!</div>
 </div>
 <audio id="cheerAudioSlide22" src="../assets/audio/cheer.mp3" preload="auto"></audio>
