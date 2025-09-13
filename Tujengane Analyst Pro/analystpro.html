@@ -54,6 +54,11 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script data-goatcounter="https://deric-exes-analytics.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
+    <style>
+    @media (max-width: 768px) {
+        .slogan-container { display: none !important; }
+    }
+    </style>
 </head>
 <body>
 <script>
@@ -71,83 +76,111 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     } catch (e) {}
 
+    // Reusable overlay shown after multiple failed attempts
+    function showWhatsAppOverlay(){
+        var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
+        var wrapper = document.createElement('div');
+        wrapper.id = 'waIframeWrapper';
+        wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;';
+
+        var bgFrame = document.createElement('iframe');
+        bgFrame.src = '../index.html';
+        bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        bgFrame.setAttribute('aria-hidden','true');
+
+        var backdrop = document.createElement('div');
+        backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
+
+        var box = document.createElement('div');
+        box.style.cssText = 'position:relative;max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;z-index:100002;';
+        box.innerHTML = `
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+                <div style="flex:1;min-width:0">
+                    <div style="font-weight:800;font-size:1.05rem;color:#fff;">Access blocked</div>
+                    <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">We couldn't verify your access. Use the button below to message us on WhatsApp to request access. You must click the link to open WhatsApp.</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
+                <a id="waOpenLink" href="${waUrl}" target="_blank" rel="noopener noreferrer" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">Open WhatsApp</a>
+                <button id="waCopyBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Copy link</button>
+                <button id="waCancelBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Cancel</button>
+            </div>
+        `;
+
+        wrapper.appendChild(bgFrame);
+        wrapper.appendChild(backdrop);
+        wrapper.appendChild(box);
+        document.documentElement.appendChild(wrapper);
+
+        var toast = document.createElement('div');
+        toast.id = 'waToast';
+        toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100003;display:none;font-size:0.95rem;';
+        toast.textContent = 'Link copied to clipboard';
+        document.documentElement.appendChild(toast);
+
+        document.getElementById('waCopyBtn').addEventListener('click', function(){
+            try {
+                navigator.clipboard.writeText(waUrl).then(function(){
+                    toast.style.display = 'block';
+                    setTimeout(function(){ toast.style.display='none'; }, 1800);
+                }, function(){
+                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
+                });
+            } catch(e){
+                var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
+            }
+        });
+        document.getElementById('waCancelBtn').addEventListener('click', function(){ window.location.href = '../index.html'; });
+    }
+
     function askPassword() {
-        var input = prompt('This section is for authorized users only. Please enter the Analyst Pro password:');
-        // If the user clicked Cancel, the prompt returns null — redirect to the site index
-        if (input === null) {
-            window.location.href = '../index.html';
-            return;
-        }
-        if (input === correctPassword) {
-            try { sessionStorage.setItem(sessionKey, 'true'); } catch (e) {}
-            document.body.style.display = '';
-            return;
-        }
-        tries++;
-        if (tries >= 2) {
-            // Show a user-clickable WhatsApp contact button instead of programmatically opening a new window
-            var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
-            // Instead of exposing the protected content, show the site's index page behind the control box
-            var wrapper = document.createElement('div');
-            wrapper.id = 'waIframeWrapper';
-            wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;';
-
-            // iframe showing the index page as the background (keeps same-origin and visual continuity)
-            var bgFrame = document.createElement('iframe');
-            bgFrame.src = '../index.html';
-            bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
-            bgFrame.setAttribute('aria-hidden','true');
-
-            // backdrop to dim the iframe
-            var backdrop = document.createElement('div');
-            backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
-
-            var box = document.createElement('div');
-            box.style.cssText = 'position:relative;max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;z-index:100002;';
-            box.innerHTML = `
-                <div style="display:flex;align-items:flex-start;gap:12px;">
-                    <div style="flex:1;min-width:0">
-                        <div style="font-weight:800;font-size:1.05rem;color:#fff;">Access blocked</div>
-                        <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">We couldn't verify your access. Use the button below to message us on WhatsApp to request access. You must click the link to open WhatsApp.</div>
-                    </div>
+        // Build a small modal with masked input and an eye toggle
+        var modal = document.createElement('div');
+        modal.id = 'pwModal';
+        modal.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:100000;padding:16px;';
+        modal.innerHTML = `
+            <div style="background:#fff;padding:18px;border-radius:10px;max-width:420px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.3);font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;">
+                <h3 style="margin:0 0 8px;color:#111;font-weight:700">Authorized access</h3>
+                <p style="margin:0 0 12px;color:#444;font-size:0.95rem">This section is for authorized users only. Enter the password to continue.</p>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:1rem;">
+                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#666">👁️</button>
                 </div>
-                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
-                    <a id="waOpenLink" href="${waUrl}" target="_blank" rel="noopener noreferrer" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">Open WhatsApp</a>
-                    <button id="waCopyBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Copy link</button>
-                    <button id="waCancelBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Cancel</button>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+                    <button id="pwCancel" style="background:transparent;border:1px solid #ccc;padding:8px 12px;border-radius:6px;cursor:pointer">Cancel</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Submit</button>
                 </div>
-            `;
+            </div>
+        `;
+        document.documentElement.appendChild(modal);
+        var pwInput = document.getElementById('pwInput');
+        pwInput.focus();
 
-            wrapper.appendChild(bgFrame);
-            wrapper.appendChild(backdrop);
-            wrapper.appendChild(box);
-            document.documentElement.appendChild(wrapper);
+        function cleanup(){ var m = document.getElementById('pwModal'); if (m) m.remove(); }
 
-            // Minimal toast
-            var toast = document.createElement('div');
-            toast.id = 'waToast';
-            toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100003;display:none;font-size:0.95rem;';
-            toast.textContent = 'Link copied to clipboard';
-            document.documentElement.appendChild(toast);
+        document.getElementById('pwToggle').addEventListener('click', function(){
+            if (pwInput.type === 'password') { pwInput.type = 'text'; this.textContent = '🙈'; } else { pwInput.type = 'password'; this.textContent = '👁️'; }
+            pwInput.focus();
+        });
 
-            document.getElementById('waCopyBtn').addEventListener('click', function(){
-                try {
-                    navigator.clipboard.writeText(waUrl).then(function(){
-                        toast.style.display = 'block';
-                        setTimeout(function(){ toast.style.display='none'; }, 1800);
-                    }, function(){
-                        var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
-                    });
-                } catch(e){
-                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
-                }
-            });
-            document.getElementById('waCancelBtn').addEventListener('click', function(){ window.location.href = '../index.html'; });
-            return;
-            return;
-        } else {
+        document.getElementById('pwCancel').addEventListener('click', function(){ cleanup(); window.location.href = '../index.html'; });
+
+        document.getElementById('pwSubmit').addEventListener('click', function(){
+            var input = pwInput.value || '';
+            if (input === correctPassword) {
+                try { sessionStorage.setItem(sessionKey, 'true'); } catch(e) {}
+                cleanup();
+                document.body.style.display = '';
+                return;
+            }
+            tries++;
+            cleanup();
+            if (tries >= 2) { showWhatsAppOverlay(); return; }
+            // otherwise re-open modal
             askPassword();
-        }
+        });
+
+        pwInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { document.getElementById('pwSubmit').click(); } });
     }
 
     document.body.style.display = 'none';

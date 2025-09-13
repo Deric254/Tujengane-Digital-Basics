@@ -643,10 +643,27 @@
                     await navigator.clipboard.writeText(url);
                     showToast('Link copied — it\'s time to share with friends! 📣');
                 } catch (err) {
-                    // fallback copy using prompt
+                    // fallback copy using in-page modal (avoids native prompt with origin text)
                     try {
-                        window.prompt('Copy this link to share:', url);
-                        showToast('Link ready — paste it to share!');
+                        var copyModal = document.createElement('div');
+                        copyModal.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:1201;padding:12px;';
+                        copyModal.innerHTML = `
+                            <div style="background:#fff;padding:14px;border-radius:10px;max-width:520px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.25);">
+                                <div style="font-weight:800;margin-bottom:8px;">Copy link</div>
+                                <div style="display:flex;gap:8px;align-items:center;">
+                                    <input id="copyUrlInput" value="${url.replace(/\"/g,'&quot;')}" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;">
+                                    <button id="copyUrlBtn" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Copy</button>
+                                </div>
+                                <div style="display:flex;justify-content:flex-end;margin-top:10px;"><button id="copyClose" style="background:transparent;border:0;color:#666;cursor:pointer">Close</button></div>
+                            </div>
+                        `;
+                        document.body.appendChild(copyModal);
+                        var inputEl = document.getElementById('copyUrlInput'); inputEl.select();
+                        document.getElementById('copyUrlBtn').addEventListener('click', function(){
+                            try { navigator.clipboard.writeText(inputEl.value); showToast('Link copied — paste it to share!'); } catch(e){ try { inputEl.select(); document.execCommand('copy'); showToast('Link copied — paste it to share!'); } catch(err){ showToast('Unable to copy link — try manually: ' + inputEl.value); } }
+                            copyModal.remove();
+                        });
+                        document.getElementById('copyClose').addEventListener('click', function(){ copyModal.remove(); });
                     } catch (e) {
                         showToast('Unable to copy link — try manually: ' + url);
                     }
