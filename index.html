@@ -392,7 +392,7 @@
                 <button class="hamburger" id="hamburger-btn"><i class="fas fa-bars"></i></button>
                 <ul class="nav-links flex gap-4 text-sm font-medium items-center shrink-0" id="nav-links">
                     <li><a href="index.html" class="nav-link hover:text-[#facc15] transition-colors">Home</a></li>
-                    <li><a href="https://exesbi.netlify.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank">EXES BI</a></li>
+                    <li><a href="https://exesbi.netlify.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank" rel="noopener noreferrer">EXES BI</a></li>
                 </ul>
             </div>
         </div>
@@ -429,15 +429,15 @@
                     <p>Essential skills for students and professionals, KES 100 per session.</p>
                 </div>
                 <div class="sidebar-item">
-                    <a href="https://exesbi.netlify.app" target="_blank"><i class="fas fa-globe-africa"></i> EXES BI Platform</a>
+                    <a href="https://exesbi.netlify.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe-africa"></i> EXES BI Platform</a>
                     <p>Explore our advanced business intelligence platform.</p>
                 </div>
                 <div class="sidebar-item">
-                    <a href="https://wa.me/254791360805" target="_blank"><i class="fab fa-whatsapp"></i> Contact Us via WhatsApp</a>
+                    <a href="https://wa.me/254791360805" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Contact Us via WhatsApp</a>
                     <p>Reach out for inquiries or support via WhatsApp.</p>
                 </div>
                 <div class="sidebar-item" style="margin-top:0.5rem;">
-                    <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank"><i class="fas fa-user"></i> About the Author</a>
+                    <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-user"></i> About the Author</a>
                     <p>Learn more about Deric Marangu, the Founder  of ExesBI and Tujengane Digital Skills.</p>
                 </div>
                 <!-- Compact mission / vision / core values — small, readable, no layout change -->
@@ -604,13 +604,13 @@
                 <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Digital Skills</span>
             </div>
             <div class="footer-socials">
-                <a href="https://wa.me/254791360805" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/254791360805" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:dericmarangu@gmail.com" class="footer-link" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://web.facebook.com/deric.aldertrax" target="_blank" class="footer-link"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.facebook.com/exes.125107/" target="_blank" class="footer-link" title="EXES Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.linkedin.com/in/deric-marangu-134340297/" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/Dericmwiti" target="_blank" class="footer-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/dericmarangu/" target="_blank" class="footer-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://web.facebook.com/deric.aldertrax" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/exes.125107/" target="_blank" rel="noopener noreferrer" class="footer-link" title="EXES Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/deric-marangu-134340297/" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/Dericmwiti" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/dericmarangu/" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="text-xs text-gray-500 footer-copyright">
                 &copy; 2025 TDS powered by EXES BI – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#49A078] hover:underline">Deric Marangu</a>
@@ -670,23 +670,52 @@
                     try {
                         var copyModal = document.createElement('div');
                         copyModal.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:1201;padding:12px;';
-                        copyModal.innerHTML = `
-                            <div style="background:#fff;padding:14px;border-radius:10px;max-width:520px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.25);">
-                                <div style="font-weight:800;margin-bottom:8px;">Copy link</div>
-                                <div style="display:flex;gap:8px;align-items:center;">
-                                    <input id="copyUrlInput" value="${url.replace(/\"/g,'&quot;')}" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;">
-                                    <button id="copyUrlBtn" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Copy</button>
-                                </div>
-                                <div style="display:flex;justify-content:flex-end;margin-top:10px;"><button id="copyClose" style="background:transparent;border:0;color:#666;cursor:pointer">Close</button></div>
-                            </div>
-                        `;
+
+                        var inner = document.createElement('div');
+                        inner.style.cssText = 'background:#fff;padding:14px;border-radius:10px;max-width:520px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.25);';
+
+                        var title = document.createElement('div');
+                        title.style.fontWeight = '800';
+                        title.style.marginBottom = '8px';
+                        title.textContent = 'Copy link';
+
+                        var row = document.createElement('div');
+                        row.style.cssText = 'display:flex;gap:8px;align-items:center;';
+
+                        var inputEl = document.createElement('input');
+                        inputEl.id = 'copyUrlInput';
+                        inputEl.value = url;
+                        inputEl.style.cssText = 'flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;';
+
+                        var copyBtn = document.createElement('button');
+                        copyBtn.id = 'copyUrlBtn';
+                        copyBtn.textContent = 'Copy';
+                        copyBtn.style.cssText = 'background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer';
+
+                        row.appendChild(inputEl);
+                        row.appendChild(copyBtn);
+
+                        var footer = document.createElement('div');
+                        footer.style.cssText = 'display:flex;justify-content:flex-end;margin-top:10px;';
+                        var closeBtn = document.createElement('button');
+                        closeBtn.id = 'copyClose';
+                        closeBtn.textContent = 'Close';
+                        closeBtn.style.cssText = 'background:transparent;border:0;color:#666;cursor:pointer';
+                        footer.appendChild(closeBtn);
+
+                        inner.appendChild(title);
+                        inner.appendChild(row);
+                        inner.appendChild(footer);
+                        copyModal.appendChild(inner);
                         document.body.appendChild(copyModal);
-                        var inputEl = document.getElementById('copyUrlInput'); inputEl.select();
-                        document.getElementById('copyUrlBtn').addEventListener('click', function(){
+
+                        inputEl.select();
+
+                        copyBtn.addEventListener('click', function(){
                             try { navigator.clipboard.writeText(inputEl.value); showToast('Link copied — paste it to share!'); } catch(e){ try { inputEl.select(); document.execCommand('copy'); showToast('Link copied — paste it to share!'); } catch(err){ showToast('Unable to copy link — try manually: ' + inputEl.value); } }
                             copyModal.remove();
                         });
-                        document.getElementById('copyClose').addEventListener('click', function(){ copyModal.remove(); });
+                        closeBtn.addEventListener('click', function(){ copyModal.remove(); });
                     } catch (e) {
                         showToast('Unable to copy link — try manually: ' + url);
                     }
