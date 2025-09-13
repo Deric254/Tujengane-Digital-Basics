@@ -137,18 +137,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function askPassword() {
         var modal = document.createElement('div');
         modal.id = 'pwModal';
-        modal.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:100000;padding:16px;';
+        modal.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,8,10,0.34);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100000;padding:16px;';
         modal.innerHTML = `
-            <div style="background:#fff;padding:18px;border-radius:10px;max-width:420px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,0.3);font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;">
-                <h3 style="margin:0 0 8px;color:#111;font-weight:700">Authorized access</h3>
-                <p style="margin:0 0 12px;color:#444;font-size:0.95rem">This section is for authorized users only. Enter the password to continue.</p>
+            <div style="background:linear-gradient(180deg, rgba(8,10,12,0.62), rgba(6,8,10,0.54));border:1px solid rgba(255,255,255,0.06);padding:18px;border-radius:12px;max-width:520px;width:100%;box-shadow:0 12px 50px rgba(2,6,23,0.6);font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial;color:#fff;">
+                <h3 style="margin:0 0 8px;color:#fff;font-weight:800">Authorized access</h3>
+                <p style="margin:0 0 12px;color:rgba(255,255,255,0.9);font-size:0.95rem">This section is for authorized users only. Enter the password to continue.</p>
                 <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
-                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:1rem;">
-                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#666">👁️</button>
+                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
+                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.9">👁️</button>
                 </div>
                 <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-                    <button id="pwCancel" style="background:transparent;border:1px solid #ccc;padding:8px 12px;border-radius:6px;cursor:pointer">Cancel</button>
-                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:6px;cursor:pointer">Submit</button>
+                    <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;color:#fff;">Cancel</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Submit</button>
                 </div>
             </div>
         `;
