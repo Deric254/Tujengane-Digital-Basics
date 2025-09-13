@@ -82,3 +82,7 @@ Additional edits (2025-09-13):
    - Added a compact "Our Purpose" (Mission / Vision / Core values) block under the About the Author sidebar item on `index.html` to fill empty space without altering sidebar width or layout.
 
 All changes above were conservative and presentational only. No passwords, gating logic, or file/folder names were renamed. Manual verification recommended (open the three course pages and `index.html` on desktop and mobile/emulation).
+
+- Removal (2025-09-13):
+   - Removed a casual summary sentence from `Tujengane data basics/slides/slide22.html` that could be misinterpreted or display unprofessional language. The paragraph was removed to maintain a concise, professional tone across the curriculum slides.
+
