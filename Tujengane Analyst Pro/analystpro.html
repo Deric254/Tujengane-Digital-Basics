@@ -64,19 +64,15 @@
 <script>
 // Simple password protection (client-side, not secure)
 document.addEventListener('DOMContentLoaded', function() {
-    var correctPassword = 'analyst2025'; // Changed password for Analyst Pro
+    var correctPassword = 'analyst2025';
     var tries = 0;
     var sessionKey = 'tujengane_analyst_authenticated';
 
-    // If the user already entered the correct password this browser session, show the page and skip the prompt
+    // If already authenticated in this session, reveal page
     try {
-        if (sessionStorage.getItem(sessionKey) === 'true') {
-            document.body.style.display = '';
-            return;
-        }
+        if (sessionStorage.getItem(sessionKey) === 'true') { document.body.style.display = ''; return; }
     } catch (e) {}
 
-    // Reusable overlay shown after multiple failed attempts
     function showWhatsAppOverlay(){
         var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Analyst Pro.');
         var wrapper = document.createElement('div');
@@ -124,20 +120,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     toast.style.display = 'block';
                     setTimeout(function(){ toast.style.display='none'; }, 1800);
                 }, function(){
-                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
+                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display = 'block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
                 });
             } catch(e){
-                var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
+                var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display = 'block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
             }
         });
         document.getElementById('waCancelBtn').addEventListener('click', function(){ window.location.href = '../index.html'; });
     }
 
     function askPassword() {
-        // Build modal visually identical to the 'WhatsApp overlay' wrapper/box so the password prompt sits on the page.
         var wrapper = document.createElement('div');
         wrapper.id = 'pwModalWrapper';
         wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;';
+
+        var bgFrame = document.createElement('iframe');
+        bgFrame.src = '../index.html';
+        bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        bgFrame.setAttribute('aria-hidden','true');
 
         var backdrop = document.createElement('div');
         backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
@@ -148,25 +148,28 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="display:flex;align-items:flex-start;gap:12px;">
                 <div style="flex:1;min-width:0">
                     <div style="font-weight:800;font-size:1.05rem;color:#fff;">Authorized access</div>
-                    <div style="margin-top:6px;color:rgba(255,255,255,0.9);font-size:0.95rem;line-height:1.25">This section is for authorized users only. Enter the password to continue.</div>
+                    <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">This section is for authorized users only. Enter the password to continue.</div>
                 </div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;margin-top:12px;">
-                <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff;border-radius:8px;font-size:1rem;">
-                <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.95">👁️</button>
-            </div>
-            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-                <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer">Cancel</button>
-                <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Submit</button>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
+                <div style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;">
+                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
+                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.9">👁️</button>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+                    <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.12);padding:9px 12px;border-radius:8px;cursor:pointer;color:#fff;">Cancel</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Submit</button>
+                </div>
             </div>
         `;
 
+        wrapper.appendChild(bgFrame);
         wrapper.appendChild(backdrop);
         wrapper.appendChild(box);
         document.documentElement.appendChild(wrapper);
 
         var pwInput = document.getElementById('pwInput');
-        pwInput.focus();
+        if (pwInput) pwInput.focus();
 
         function cleanup(){ var w = document.getElementById('pwModalWrapper'); if (w) w.remove(); }
 
@@ -178,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('pwCancel').addEventListener('click', function(){ cleanup(); window.location.href = '../index.html'; });
 
         document.getElementById('pwSubmit').addEventListener('click', function(){
-            var input = pwInput.value || '';
+            var input = (pwInput && pwInput.value) ? pwInput.value : '';
             if (input === correctPassword) {
                 try { sessionStorage.setItem(sessionKey, 'true'); } catch(e) {}
                 cleanup();
@@ -190,8 +193,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (tries >= 2) { showWhatsAppOverlay(); return; }
             askPassword();
         });
-+
-        pwInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { document.getElementById('pwSubmit').click(); } });
+
+        if (pwInput) {
+            pwInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { document.getElementById('pwSubmit').click(); } });
+        }
     }
 
     document.body.style.display = 'none';
