@@ -65,3 +65,20 @@ If you'd like, I can now:
 - Revert any specific change if it's not what you expected.
 
 -- End of changelog
+
+Additional edits (2025-09-13):
+
+- Password modal layout & visual tweaks
+   - Updated the password entry modals on `Tujengane Analyst Pro/analystpro.html` and `Tujengane computer literacy/computerliteracy.html` to use the wrapper/backdrop/dark-box visual pattern and fixed the control layout so the password input + eye toggle sit on one row and Cancel + Submit appear on a second row. Preserved all JS logic, IDs, passwords, and sessionStorage keys.
+
+- Small-device UX and touch feedback
+   - Added a conservative, non-animated touch-feedback style block into `index.html` to give immediate press feedback (brightness + subtle shadow) for buttons and links. This is intentionally inline and minimal to avoid site-wide regressions.
+
+- Copy & CTA fixes
+   - Corrected visible text typos of "Computer Basicss" → "Computer Basics" (display text only; did not rename folders).
+   - Unified CTA sizes and added a short summary sentence on `Tujengane data basics/slides/slide22.html`.
+
+- Sidebar content
+   - Added a compact "Our Purpose" (Mission / Vision / Core values) block under the About the Author sidebar item on `index.html` to fill empty space without altering sidebar width or layout.
+
+All changes above were conservative and presentational only. No passwords, gating logic, or file/folder names were renamed. Manual verification recommended (open the three course pages and `index.html` on desktop and mobile/emulation).
