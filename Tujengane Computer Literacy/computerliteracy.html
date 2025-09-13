@@ -157,14 +157,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">This section is for authorized users only. Enter the password to continue.</div>
                 </div>
             </div>
-            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
-                <div style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;">
-                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
-                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.9">👁️</button>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+                <div style="display:flex;gap:8px;align-items:center;min-width:0;">
+                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
+                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.95;margin-left:6px;flex:0 0 auto;">👁️</button>
                 </div>
-                <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-                    <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.12);padding:9px 12px;border-radius:8px;cursor:pointer;color:#fff;">Cancel</button>
-                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Submit</button>
+                <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:nowrap;">
+                    <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.12);padding:9px 12px;border-radius:8px;cursor:pointer;color:#fff;flex:0 0 auto;white-space:nowrap;">Cancel</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;flex:0 0 auto;white-space:nowrap;">Submit</button>
                 </div>
             </div>
         `;
