@@ -748,9 +748,29 @@ nav .container {
         gap: 0.75rem;
     }
     .nav-btn {
-        width: 100px;
-        padding: 0.4rem;
-        font-size: 0.8rem;
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+        padding: 0.5rem 0 !important;
+        font-size: 1rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+    .nav-btn:hover {
+        background: #facc15 !important;
+        color: #256d4f !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+        outline: none !important;
+    }
+    .navigation {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1rem !important;
     }
     .footer {
         padding: 0.3rem;
