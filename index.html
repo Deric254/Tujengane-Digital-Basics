@@ -26,8 +26,8 @@
             display: flex;
             flex: 1;
             min-height: 0;
-            gap: 1.5rem;
-            padding: 1.5rem;
+            gap: 0.5rem;
+            padding: 0.5rem;
         }
         .sidebar {
             width: 280px;
@@ -86,15 +86,19 @@
         .main-content {
             flex: 1;
             background: linear-gradient(145deg, #ffffff, #f1f5f9);
-            border-radius: 1rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 1rem;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
             position: relative;
             overflow: hidden;
+            min-width: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .main-content::before {
             content: '';
@@ -109,8 +113,8 @@
         .hero-section {
             background: linear-gradient(90deg, #49A078, #3e8865);
             color: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 1;
@@ -126,18 +130,18 @@
         }
         .curriculum-card {
             background: #ffffff;
-            border-radius: 0.75rem;
-            padding: 1rem;
+            border-radius: 0.5rem;
+            padding: 0.7rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(73, 160, 120, 0.1);
             position: relative;
             z-index: 1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.7rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 180px; /* ensure consistent card height */
+            min-height: 120px;
         }
         .curriculum-card:hover {
             /* No movement on hover; only subtle shadow change for focus */
@@ -157,7 +161,7 @@
         .curriculum-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
+            gap: 0.7rem;
             align-items: stretch;
         }
         /* make descriptions shorter visually and fix invalid font-size */
@@ -309,21 +313,25 @@
         }
         @media (max-width: 1024px) {
             .sidebar { display: none !important; }
-            .layout { flex-direction: column; padding: 1rem; }
-            .main-content { border-radius: 0.75rem; padding: 1.5rem; }
+            .layout { flex-direction: column; padding: 0.5rem; gap: 0.5rem; }
+            .main-content { border-radius: 0.5rem; padding: 0.7rem; gap: 0.7rem; }
             .slogan-marquee { font-size: 0.9rem; }
-            .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+            .curriculum-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
         }
         @media (max-width: 768px) {
             .sidebar { display: none !important; }
             .hamburger { display: none !important; }
-            .main-content { padding: 1rem; }
+            .main-content { padding: 0.5rem; gap: 0.5rem; }
+            .hero-section { padding: 0.7rem; }
             .hero-section h1 { font-size: 1.75rem; }
             .hero-section p { font-size: 0.9rem; }
             .curriculum-title { font-size: 1.25rem; }
             .curriculum-desc { font-size: 0.85rem; }
             .curriculum-price { font-size: 0.8rem; }
             .curriculum-link { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+            .curriculum-card { padding: 0.5rem; min-height: 100px; }
+            .curriculum-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            section, .footer { margin-left: 0; margin-right: 0; }
             .hamburger { display: block; }
             .nav-links { display: none; }
             .nav-links.mobile-active {
@@ -358,11 +366,12 @@
             /* Removed: redundant, handled by previous rule */
         }
         @media (max-width: 480px) {
-            .hero-section { padding: 1.5rem; }
-            .curriculum-card { padding: 1rem; }
-            .footer { padding: 0.75rem; }
+            .main-content { padding: 0.3rem; gap: 0.3rem; }
+            .hero-section { padding: 0.5rem; }
+            .curriculum-card { padding: 0.3rem; min-height: 80px; }
+            .footer { padding: 0.5rem; }
             .footer-socials { flex-wrap: wrap; }
-            .curriculum-grid { grid-template-columns: 1fr; }
+            .curriculum-grid { grid-template-columns: 1fr; gap: 0.3rem; }
         }
     </style>
     <style>
@@ -469,7 +478,7 @@
     window.addEventListener('DOMContentLoaded', forceHideSidebar);
     window.addEventListener('resize', forceHideSidebar);
     </script>
-            <div class="max-w-4xl w-full mx-auto relative z-10">
+            <div class="w-full relative z-10">
                 <!-- Mobile-first conversion-focused hero -->
                 <section class="hero-section" aria-labelledby="hero-title">
                     <h1 id="hero-title" style="font-size:1.5rem;line-height:1.05;">Learn Digital Skills. Earn More. Grow Faster.</h1>
