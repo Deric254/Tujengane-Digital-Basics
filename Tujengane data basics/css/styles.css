@@ -1,4 +1,6 @@
-body {
+html, body {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to-br, #f0fdfa, #d9f99d);
     min-height: 100vh;
@@ -34,6 +36,7 @@ body {
     height: 100%; /* Full height of layout */
     max-height: calc(100vh - 110px - 0.25rem);
     overflow-y: auto;
+    overscroll-behavior: none;
     scrollbar-width: thin;
     scrollbar-color: #facc15 #3e8865;
     border-radius: 0;
@@ -120,6 +123,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+    overscroll-behavior: none;
     box-sizing: border-box;
 }
 
@@ -176,6 +180,7 @@ body {
     box-sizing: border-box;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    overscroll-behavior: none;
     border-radius: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -627,7 +632,7 @@ nav .container {
         bottom: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        padding: 1.2rem 0.5rem 5.5rem 0.5rem !important; /* More bottom padding for nav/footer */
+        padding: 1.2rem 0.5rem 7rem 0.5rem !important; /* Extra bottom padding for nav/footer */
         min-height: 0 !important;
         max-height: none !important;
         display: flex !important;
@@ -636,10 +641,14 @@ nav .container {
         flex: 1 1 auto !important;
         background: linear-gradient(135deg, #ffffff, #e6fffa) !important;
         border-radius: 0 !important;
-        box-shadow: none !important;
+        box-shadow: none !important; /* Remove shadow to prevent blinking */
         overflow-y: auto !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+        scroll-padding-bottom: 7rem !important;
+    }
+    .slide-content {
+        margin-bottom: 2.5rem !important; /* Prevent content from touching nav/footer */
     }
     .slide-content {
         padding: 0.5rem !important;
