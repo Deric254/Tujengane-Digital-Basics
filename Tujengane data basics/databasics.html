@@ -76,25 +76,226 @@
             padding: 0.75rem;
             border-radius: 0.5rem;
         }
+        
+        /* Enhanced slide indicator styling */
+        .slide-number-display {
+            background: linear-gradient(135deg, #49A078, #3e8865);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 2px 8px rgba(73, 160, 120, 0.3);
+            user-select: none;
+        }
+        
+        .slide-number-display:hover {
+            background: linear-gradient(135deg, #3e8865, #2d6b4f);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(73, 160, 120, 0.4);
+        }
+        
+        .slide-number-display .slide-text {
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .slide-number-display i {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .slide-number-display .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        
+        .slide-number-display:hover .fa-chevron-down {
+            transform: translateY(2px);
+        }
+        
+        /* Slide Navigator Modal */
+        .slide-navigator-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .slide-navigator-modal.show {
+            display: flex;
+        }
+        
+        .slide-navigator-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slide-navigator-header {
+            background: linear-gradient(135deg, #49A078, #3e8865);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .slide-navigator-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .close-navigator {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .close-navigator:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .slide-navigator-body {
+            padding: 1.5rem;
+        }
+        
+        .slide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        .slide-item {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+        
+        .slide-item:hover {
+            border-color: #49A078;
+            background: #f0f9f4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(73, 160, 120, 0.15);
+        }
+        
+        .slide-item.current {
+            border-color: #49A078;
+            background: linear-gradient(135deg, #49A078, #3e8865);
+            color: white;
+        }
+        
+        .slide-item-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #49A078;
+            margin-bottom: 0.5rem;
+        }
+        
+        .slide-item.current .slide-item-number {
+            color: #facc15;
+        }
+        
+        .slide-item-title {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         @media (max-width: 768px) {
             .sidebar {
                 display: none !important;
             }
             .slogan-container { display: none !important; }
             .main-content {
-                width: 100% ;
-                max-width: 100% ;
-                padding: 0.25rem;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0.5rem !important;
                 box-sizing: border-box;
             }
+            .main-content > div {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
             .slide-number-display {
-                font-size: 1rem;
-                padding: 0.3rem 0.6rem;
-                margin-bottom: 0.2rem;
-                text-align: center;
-                width: 100% ;
-                max-width: 100% ;
-                box-sizing: border-box;
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: relative !important;
+                font-size: 0.8rem !important;
+                padding: 0.4rem 0.6rem !important;
+                margin: 0 auto 0.75rem auto !important;
+                gap: 0.3rem !important;
+                width: auto !important;
+                min-width: fit-content !important;
+                max-width: 95% !important;
+                box-sizing: border-box !important;
+                z-index: 100 !important;
+                background: linear-gradient(135deg, #49A078, #3e8865) !important;
+                color: white !important;
+                border-radius: 20px !important;
+            }
+            .slide-number-display .slide-text {
+                font-size: 0.8rem !important;
+                white-space: nowrap !important;
+                color: white !important;
+            }
+            .slide-number-display i {
+                font-size: 0.7rem !important;
+                color: white !important;
+                opacity: 0.9 !important;
+            }
+            .slide-navigator-content {
+                margin: 10px;
+                max-height: 90vh;
+            }
+            .slide-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .slide-navigator-header {
+                padding: 0.75rem 1rem;
+            }
+            .slide-navigator-body {
+                padding: 1rem;
             }
             .navigation {
                 position: static !important;
@@ -253,7 +454,11 @@
         </aside>
         <main class="main-content">
             <div class="max-w-5xl w-full mx-auto relative z-10">
-                <div class="slide-number-display">Slide <span id="current-slide">1</span> of 22</div>
+                <div class="slide-number-display" id="slide-indicator" onclick="openSlideNavigator()" title="Click to view all slides">
+                    <i class="fas fa-list-ul"></i>
+                    <span class="slide-text">Slide <span id="current-slide">1</span> of 22</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
                 <div class="slide-container-wrapper">
                     <div id="slide-container" class="slide active"></div>
                     <div class="navigation">
@@ -263,6 +468,23 @@
                 </div>
             </div>
         </main>
+    </div>
+    
+    <!-- Slide Navigator Modal -->
+    <div id="slide-navigator-modal" class="slide-navigator-modal">
+        <div class="slide-navigator-content">
+            <div class="slide-navigator-header">
+                <h3><i class="fas fa-list-ul"></i> Navigate to Slide</h3>
+                <button class="close-navigator" onclick="closeSlideNavigator()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="slide-navigator-body">
+                <div class="slide-grid" id="slide-grid">
+                    <!-- Slides will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Navigation feedback indicators -->

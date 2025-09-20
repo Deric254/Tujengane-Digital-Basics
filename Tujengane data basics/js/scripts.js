@@ -7,6 +7,33 @@ const slides = [
     'slides/slide17.html', 'slides/slide18.html', 'slides/slide19.html', 'slides/slide20.html',
     'slides/slide21.html', 'slides/slide22.html' // Added slide22
 ];
+
+// Slide titles for the navigator
+const slideTitles = [
+    'Welcome',
+    'Meet Your Instructor', 
+    'The Real Problem',
+    'What Is Clean Data?',
+    'Why Hustlers Struggle',
+    'Data Is Everywhere',
+    '3 Rules of Clean Data',
+    'Common Mistakes',
+    'How Dirty Data Wastes Time',
+    'The Cost of Inaccuracy',
+    'Recording Daily Transactions',
+    'Using Tables Effectively',
+    'Naming Files & Entries',
+    'Avoiding Blanks & Guesswork',
+    'Demo – Clean vs. Messy Sheet',
+    'Hustler Audit Challenge',
+    'Data Quiz Time!',
+    'Real-Life Case Study',
+    'Analyst Pro Curriculum',
+    'Computer Literacy Module',
+    'Certificate & Data Partner Path',
+    'Ready to Level Up?'
+];
+
 let currentSlide = 0;
 let isNavigating = false;
 
@@ -174,6 +201,48 @@ function showNavigationFeedback(direction) {
     }
 }
 
+// Slide Navigator functions
+function openSlideNavigator() {
+    const modal = document.getElementById('slide-navigator-modal');
+    const slideGrid = document.getElementById('slide-grid');
+    
+    // Clear existing content
+    slideGrid.innerHTML = '';
+    
+    // Populate slide grid
+    slides.forEach((slide, index) => {
+        const slideItem = document.createElement('div');
+        slideItem.className = `slide-item ${index === currentSlide ? 'current' : ''}`;
+        slideItem.innerHTML = `
+            <div class="slide-item-number">${index + 1}.</div>
+            <div class="slide-item-title">${slideTitles[index]}</div>
+        `;
+        slideItem.onclick = () => navigateToSlideFromModal(index);
+        slideGrid.appendChild(slideItem);
+    });
+    
+    // Show modal
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeSlideNavigator() {
+    const modal = document.getElementById('slide-navigator-modal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function navigateToSlideFromModal(index) {
+    closeSlideNavigator();
+    if (index !== currentSlide) {
+        goToSlide(index);
+    }
+}
+
+// Make functions globally accessible
+window.openSlideNavigator = openSlideNavigator;
+window.closeSlideNavigator = closeSlideNavigator;
+
 // Touch event handlers for swipe navigation
 function handleTouchStart(e) {
     touchStartX = e.touches[0].clientX;
@@ -229,6 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
         if (isInputActive) return;
         
+        // Close slide navigator with Escape key
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('slide-navigator-modal');
+            if (modal.classList.contains('show')) {
+                closeSlideNavigator();
+                return;
+            }
+        }
+        
         // Left arrow key - previous slide
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
@@ -240,6 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             showNavigationFeedback('next');
             nextSlide();
+        }
+    });
+    
+    // Close slide navigator when clicking outside
+    document.getElementById('slide-navigator-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'slide-navigator-modal') {
+            closeSlideNavigator();
         }
     });
     
