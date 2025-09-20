@@ -555,6 +555,46 @@ nav .container {
     background: #f1f5f9;
 }
 
+/* MOBILE RESPONSIVE OVERRIDES (from internal style block) */
+/* small override copied from databasics to match mobile styling exactly */
+@media (max-width: 768px) {
+    .slogan-container { 
+        display: none !important; 
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .main-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.25rem;
+        box-sizing: border-box;
+    }
+    .slide-number-display {
+        font-size: 1rem;
+        padding: 0.3rem 0.6rem;
+        margin-bottom: 0.2rem;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .navigation {
+        position: static !important;
+        flex-direction: row !important;
+        margin-top: 0.5rem !important;
+        gap: 0.25rem !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        justify-content: center !important;
+    }
+    .nav-btn {
+        width: 80px !important;
+        padding: 0.4rem !important;
+        font-size: 0.95rem !important;
+    }
+}
+
 /* Responsive Design */
 @media (min-width: 769px) {
     .sidebar {
@@ -594,65 +634,29 @@ nav .container {
         height: 50px;
     }
 }
-        /* --- Databasics slide typography and highlight styles for consistency --- */
-        .slide-content h2 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: #49A078;
-            margin-bottom: 0.75rem;
-            line-height: 1.1;
-        }
-        .slide-content p,
-        .slide-content li,
-        .slide-content .text-lg {
-            color: #374151;
-            font-size: 1.125rem;
-        }
-        .slide-content .highlight-list li {
-            background: #f3f4f6;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-        }
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none !important;
-            }
-            .slogan-container { display: none !important; }
-            .main-content {
-                width: 100% ;
-                max-width: 100% ;
-                padding: 0.25rem;
-                box-sizing: border-box;
-            }
-            .slide-number-display {
-                font-size: 1rem;
-                padding: 0.3rem 0.6rem;
-                margin-bottom: 0.2rem;
-                text-align: center;
-                width: 100% ;
-                max-width: 100% ;
-                box-sizing: border-box;
-            }
-            .navigation {
-                position: static !important;
-                flex-direction: row !important;
-                margin-top: 0.5rem !important;
-                gap: 0.25rem !important;
-                width: 100% !important;
-                padding-right: 0 !important;
-                justify-content: center !important;
-            }
-            .nav-btn {
-                width: 80px !important;
-                padding: 0.4rem !important;
-                font-size: 0.95rem !important;
-            }
-        }
 
+/* --- Databasics slide typography and highlight styles for consistency --- */
+.slide-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #49A078;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+.slide-content p,
+.slide-content li,
+.slide-content .text-lg {
+    color: #374151;
+    font-size: 1.125rem;
+}
+.slide-content .highlight-list li {
+    background: #f3f4f6;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* Additional mobile responsiveness that was duplicated */
 @media (max-width: 768px) {
-    .sidebar {
-        display: none !important;
-    }
     .main-content, .max-w-5xl, .max-w-4xl, .slide-container-wrapper {
         width: 100% !important;
         max-width: 100% !important;

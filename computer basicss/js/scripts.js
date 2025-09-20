@@ -1,4 +1,4 @@
-// Copied from Tujengane data basics scripts.js - updated slides path to local slides folder
+// Tujengane Computer Basics - Complete JavaScript functionality
 const slides = [
     'slides/slide1.html', 'slides/slide2.html', 'slides/slide3.html', 'slides/slide4.html',
     'slides/slide5.html', 'slides/slide6.html', 'slides/slide7.html', 'slides/slide8.html',
@@ -7,9 +7,11 @@ const slides = [
     'slides/slide17.html', 'slides/slide18.html', 'slides/slide19.html', 'slides/slide20.html',
     'slides/slide21.html', 'slides/slide22.html'
 ];
+
 let currentSlide = 0;
 let isNavigating = false;
 
+// Core slide navigation functions
 function loadSlide(index) {
     if (isNavigating) return;
     if (index < 0 || index >= slides.length) return;
@@ -17,6 +19,7 @@ function loadSlide(index) {
     const slideContainer = document.getElementById('slide-container');
     const currentSlideDisplay = document.getElementById('current-slide');
     slideContainer.style.opacity = '0';
+    
     setTimeout(() => {
         fetch(slides[index])
             .then(response => {
@@ -27,20 +30,29 @@ function loadSlide(index) {
                 slideContainer.innerHTML = data;
                 slideContainer.style.opacity = '1';
                 slideContainer.classList.add('active');
+                
+                // Update sidebar active state
                 document.querySelectorAll('.sidebar-item').forEach(item => {
                     const link = item.querySelector('.sidebar-link');
                     const isActive = parseInt(link.dataset.slide) === index;
                     link.classList.toggle('active', isActive);
                     item.classList.toggle('active', isActive);
                 });
+                
                 currentSlideDisplay.textContent = index + 1;
                 updateNavigation();
                 initializeSlideContent();
+                
+                // Scroll active sidebar item into view
                 const activeItem = document.querySelector('.sidebar-item.active');
-                if (activeItem) activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                if (activeItem) {
+                    activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
             })
             .catch(error => console.error('Error loading slide:', error))
-            .finally(() => { isNavigating = false; });
+            .finally(() => { 
+                isNavigating = false; 
+            });
     }, 400); // Match CSS transition duration
 }
 
@@ -74,9 +86,13 @@ function goToSlide(index) {
         loadSlide(currentSlide);
     }
 }
+
+// Make goToSlide globally accessible
 window.goToSlide = goToSlide;
 
+// Slide content initialization
 function initializeSlideContent() {
+    // Interactive elements
     const interactiveElements = document.querySelectorAll('.highlight-list li, .rule-card, .cta-button, .finalize-btn');
     interactiveElements.forEach(elem => {
         elem.addEventListener('click', () => {
@@ -85,54 +101,58 @@ function initializeSlideContent() {
             setTimeout(() => elem.classList.remove('clicked'), 3000);
         });
     });
+
+    // Initialize quiz if present
     if (document.querySelector('.quiz-container')) {
         initializeQuiz();
     }
+
+    // Final slide special effects
     if (currentSlide === slides.length - 1) {
         initializeCertificateRequest();
         triggerConfetti();
         playCheer();
     }
-    // Initialize the lightweight, client-side AI demo if the slide provides it
+
+    // Initialize AI demo
     initializeAIDemo();
 
-    // Selective auto-bullets: if the slide content contains no <ul>, <ol>, or
-    // elements with the .highlight-list class, add a presentation-only
-    // "auto-bullets" class to .slide-content so paragraphs display bullets.
+    // Auto-bullets for slides without lists
     try {
         const slideContent = document.querySelector('.slide-content');
         if (slideContent) {
-                // Basic structural list check
-                let hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
-                // Heuristic: treat paragraphs that start with a number (e.g. "1.") or
-                // common bullet characters as already-marked content so we don't add bullets.
-                if (!hasLists) {
-                    const textCandidates = Array.from(slideContent.querySelectorAll('p, div'))
-                        .map(el => (el.textContent || '').trim())
-                        .filter(t => t.length > 0);
-                    const numberedOrBulleted = textCandidates.some(t => {
-                        return /^\d+[\.\)]\s+/.test(t) || /^[\u2022\u2023\u25E6\-\*]\s+/.test(t);
-                    });
-                    if (numberedOrBulleted) hasLists = true;
-                }
-                if (!hasLists) {
-                    slideContent.classList.add('auto-bullets');
-                } else {
-                    slideContent.classList.remove('auto-bullets');
-                }
+            let hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
+            
+            if (!hasLists) {
+                const textCandidates = Array.from(slideContent.querySelectorAll('p, div'))
+                    .map(el => (el.textContent || '').trim())
+                    .filter(t => t.length > 0);
+                const numberedOrBulleted = textCandidates.some(t => {
+                    return /^\d+[\.\)]\s+/.test(t) || /^[\u2022\u2023\u25E6\-\*]\s+/.test(t);
+                });
+                if (numberedOrBulleted) hasLists = true;
+            }
+            
+            if (!hasLists) {
+                slideContent.classList.add('auto-bullets');
+            } else {
+                slideContent.classList.remove('auto-bullets');
+            }
         }
     } catch (e) {
-        // fail silently — this is a non-critical visual enhancement
         console.error('auto-bullets check failed', e);
     }
 }
 
+// Quiz functionality
 function initializeQuiz() {
     const options = document.querySelectorAll('.quiz-option');
     const feedback = document.querySelector('.quiz-feedback');
+    
     options.forEach(option => {
         option.addEventListener('click', () => {
             options.forEach(opt => opt.classList.remove('correct', 'wrong'));
+            
             if (option.dataset.correct === 'true') {
                 option.classList.add('correct');
                 feedback.textContent = 'Correct! Well done!';
@@ -148,19 +168,24 @@ function initializeQuiz() {
     });
 }
 
+// Certificate request functionality
 function initializeCertificateRequest() {
     const nameInput = document.getElementById('full-name-input');
     const certLink = document.getElementById('certificate-link');
+    
     if (nameInput && certLink) {
         nameInput.addEventListener('input', () => {
             const fullName = encodeURIComponent(nameInput.value.trim());
             certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20TDB&name=${fullName}`;
-            // Ensure the WhatsApp link opens in a new tab/window
-            try { certLink.target = '_blank'; certLink.rel = 'noopener noreferrer'; } catch (e) {}
+            try { 
+                certLink.target = '_blank'; 
+                certLink.rel = 'noopener noreferrer'; 
+            } catch (e) {}
         });
     }
 }
 
+// Effects and animations
 function triggerConfetti() {
     if (typeof confetti === 'function') {
         confetti({
@@ -173,99 +198,37 @@ function triggerConfetti() {
 
 function playCheer() {
     const cheer = document.getElementById('cheerAudio');
-    if (cheer) cheer.play().catch(error => console.error('Error playing audio:', error));
+    if (cheer) {
+        cheer.play().catch(error => console.error('Error playing audio:', error));
+    }
 }
 
+// Chat and modal functions
 function toggleChat() {
     const chatWidget = document.getElementById('chatWidget');
-    if (chatWidget) chatWidget.classList.toggle('hidden');
+    if (chatWidget) {
+        chatWidget.classList.toggle('hidden');
+    }
 }
 
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) modal.classList.remove('hidden');
+    if (modal) {
+        modal.classList.remove('hidden');
+    }
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) modal.classList.add('hidden');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadSlide(currentSlide);
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const navLinks = document.getElementById('nav-links');
-    const sidebar = document.getElementById('slide-nav-panel');
-    if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-active');
-            sidebar.classList.toggle('active');
-        });
-    }
-    if (navLinks) navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('mobile-active');
-            sidebar.classList.remove('active');
-        });
-    });
-    // Sidebar navigation: click to go to slide
-    document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const slideIndex = parseInt(this.getAttribute('data-slide'));
-            if (!isNaN(slideIndex)) {
-                window.goToSlide(slideIndex);
-            }
-        });
-    });
-
-    // Prevent page jump on prev/next button click (especially prev)
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    if (prevBtn) {
-        prevBtn.addEventListener('mousedown', e => e.preventDefault());
-        prevBtn.addEventListener('click', e => {
-            e.preventDefault();
-            prevSlide();
-            prevBtn.blur();
-        });
-    }
-    if (nextBtn) {
-        nextBtn.addEventListener('mousedown', e => e.preventDefault());
-        nextBtn.addEventListener('click', e => {
-            e.preventDefault();
-            nextSlide();
-            nextBtn.blur();
-        });
-    }
-
-    // Tooltip auto-hide on small screens for nav-btns
-    function isSmallScreen() {
-        return window.innerWidth <= 768;
-    }
-    let tooltipTimeout;
-    document.querySelectorAll('.nav-btn[data-tip]').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            if (isSmallScreen()) {
-                clearTimeout(tooltipTimeout);
-                const self = this;
-                tooltipTimeout = setTimeout(() => {
-                    self.dispatchEvent(new Event('mouseleave'));
-                }, 2000); // Show for 2 seconds
-            }
-        });
-        btn.addEventListener('mouseleave', function() {
-            clearTimeout(tooltipTimeout);
-        });
-    });
-});
-
-// ---------------------------
-// Lightweight client-side AI demo (deterministic, local-only)
-// ---------------------------
+// AI Demo functionality
 function initializeAIDemo() {
     const modal = document.getElementById('aiDemoModal');
-    if (!modal) return; // nothing to do on slides without the demo
+    if (!modal) return;
 
     const aiInput = document.getElementById('aiInput');
     const aiSummarizeBtn = document.getElementById('aiSummarizeBtn');
@@ -273,27 +236,33 @@ function initializeAIDemo() {
     const aiResult = document.getElementById('aiResult');
     const aiClose = document.getElementById('aiCloseBtn');
 
-    if (aiClose) aiClose.addEventListener('click', () => closeModal('aiDemoModal'));
+    if (aiClose) {
+        aiClose.addEventListener('click', () => closeModal('aiDemoModal'));
+    }
 
-    if (aiSummarizeBtn) aiSummarizeBtn.addEventListener('click', () => {
-        const text = (aiInput && aiInput.value) ? aiInput.value.trim() : '';
-        if (!text) {
-            aiResult.textContent = 'Type or paste a paragraph from the slide to see a short summary.';
-            return;
-        }
-        const summary = summarizeText(text);
-        aiResult.innerHTML = '<strong>Summary:</strong><p>' + escapeHtml(summary) + '</p>';
-    });
+    if (aiSummarizeBtn) {
+        aiSummarizeBtn.addEventListener('click', () => {
+            const text = (aiInput && aiInput.value) ? aiInput.value.trim() : '';
+            if (!text) {
+                aiResult.textContent = 'Type or paste a paragraph from the slide to see a short summary.';
+                return;
+            }
+            const summary = summarizeText(text);
+            aiResult.innerHTML = '<strong>Summary:</strong><p>' + escapeHtml(summary) + '</p>';
+        });
+    }
 
-    if (aiGenerateBtn) aiGenerateBtn.addEventListener('click', () => {
-        const topic = (aiInput && aiInput.value.trim()) ? aiInput.value.trim() : 'Computer Basics';
-        const ideas = generateCourseIdeas(topic);
-        aiResult.innerHTML = '<strong>Course Ideas:</strong><ul>' + ideas.map(i => '<li>' + escapeHtml(i) + '</li>').join('') + '</ul>';
-    });
+    if (aiGenerateBtn) {
+        aiGenerateBtn.addEventListener('click', () => {
+            const topic = (aiInput && aiInput.value.trim()) ? aiInput.value.trim() : 'Computer Basics';
+            const ideas = generateCourseIdeas(topic);
+            aiResult.innerHTML = '<strong>Course Ideas:</strong><ul>' + 
+                ideas.map(i => '<li>' + escapeHtml(i) + '</li>').join('') + '</ul>';
+        });
+    }
 }
 
 function summarizeText(text) {
-    // Very small, deterministic summarizer: pick the first 1-2 sentences and trim to 250 chars.
     const sentences = text.match(/[^.!?]+[.!?]?/g) || [text];
     let pick = sentences.slice(0, 2).join(' ').trim();
     if (pick.length > 250) pick = pick.slice(0, 247) + '...';
@@ -301,7 +270,6 @@ function summarizeText(text) {
 }
 
 function generateCourseIdeas(topic) {
-    // Deterministic idea generator based on topic words
     const base = topic.split(/\s+/).slice(0,3).join(' ');
     return [
         `Intro to ${base}: a 4-week hands-on course for beginners (tools, basics, practical tasks)`,
@@ -318,3 +286,110 @@ function escapeHtml(unsafe) {
          .replace(/"/g, '&quot;')
          .replace(/'/g, '&#039;');
 }
+
+// Main initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Load initial slide
+    loadSlide(currentSlide);
+
+    // Hamburger menu functionality
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-links');
+    const sidebar = document.getElementById('slide-nav-panel');
+    
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+            sidebar.classList.toggle('active');
+        });
+    }
+
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-active');
+                sidebar.classList.remove('active');
+            });
+        });
+    }
+
+    // Sidebar navigation event listeners
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const slideIndex = parseInt(this.getAttribute('data-slide'));
+            if (!isNaN(slideIndex)) {
+                goToSlide(slideIndex);
+            }
+        });
+    });
+
+    // Navigation buttons event listeners
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('mousedown', e => e.preventDefault());
+        prevBtn.addEventListener('click', e => {
+            e.preventDefault();
+            prevSlide();
+            prevBtn.blur();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('mousedown', e => e.preventDefault());
+        nextBtn.addEventListener('click', e => {
+            e.preventDefault();
+            nextSlide();
+            nextBtn.blur();
+        });
+    }
+
+    // Tooltip functionality for mobile
+    function isSmallScreen() {
+        return window.innerWidth <= 768;
+    }
+    
+    let tooltipTimeout;
+    document.querySelectorAll('.nav-btn[data-tip]').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (isSmallScreen()) {
+                clearTimeout(tooltipTimeout);
+                const self = this;
+                tooltipTimeout = setTimeout(() => {
+                    self.dispatchEvent(new Event('mouseleave'));
+                }, 2000);
+            }
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            clearTimeout(tooltipTimeout);
+        });
+    });
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        prevSlide();
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        nextSlide();
+    } else if (e.key === 'Escape') {
+        // Close any open modals
+        document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+            if (!modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+            }
+        });
+    }
+});
+
+// Make functions globally accessible
+window.prevSlide = prevSlide;
+window.nextSlide = nextSlide;
+window.toggleChat = toggleChat;
+window.openModal = openModal;
+window.closeModal = closeModal;
