@@ -1,13 +1,15 @@
-/* Copied from Tujengane data basics styles.css - kept exact styling for consistency */
-body {
+html, body {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to-br, #f0fdfa, #d9f99d);
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport for mobile browsers */
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent full-page scrolling */
+    overflow: auto; /* Default: allow scroll on small screens */
 }
 
 .layout {
@@ -19,8 +21,10 @@ body {
     margin-top: 60px;
     margin-bottom: 50px;
     min-height: calc(100vh - 110px);
+    min-height: calc(100dvh - 110px); /* Dynamic viewport for mobile */
     height: calc(100vh - 110px); /* Match viewport height minus header and footer */
-    overflow: hidden;
+    height: calc(100dvh - 110px); /* Dynamic viewport fallback */
+    overflow: auto;
 }
 
 /* Sidebar */
@@ -34,7 +38,9 @@ body {
     margin: 0.125rem 0;
     height: 100%; /* Full height of layout */
     max-height: calc(100vh - 110px - 0.25rem);
+    max-height: calc(100dvh - 110px - 0.25rem); /* Dynamic viewport fallback */
     overflow-y: auto;
+    overscroll-behavior: none;
     scrollbar-width: thin;
     scrollbar-color: #facc15 #3e8865;
     border-radius: 0;
@@ -618,7 +624,7 @@ nav .container {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 90; /* Below navigation and chat */
     height: 50px;
     min-height: 50px;
     width: 100%;
