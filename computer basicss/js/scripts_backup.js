@@ -150,6 +150,7 @@ function initializeCertificateRequest() {
         nameInput.addEventListener('input', () => {
             const fullName = encodeURIComponent(nameInput.value.trim());
             certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20Computer%20Basics&name=${fullName}`;
+            // Ensure the WhatsApp link opens in a new tab/window
             try { certLink.target = '_blank'; certLink.rel = 'noopener noreferrer'; } catch (e) {}
         });
     }
@@ -256,139 +257,218 @@ window.closeSlideNavigator = closeSlideNavigator;
 window.prevSlide = prevSlide;
 window.nextSlide = nextSlide;
 
-// Touch event handlers for swipe navigation
-function handleTouchStart(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-}
-
-function handleTouchEnd(e) {
-    if (!touchStartX || !touchStartY) return;
-    
-    touchEndX = e.changedTouches[0].clientX;
-    touchEndY = e.changedTouches[0].clientY;
-    
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-    
-    // Check if it's a horizontal swipe (not vertical scroll)
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
-        if (deltaX > 0) {
-            // Swipe right - go to previous slide
-            showNavigationFeedback('prev');
-            prevSlide();
-        } else {
-            // Swipe left - go to next slide  
-            showNavigationFeedback('next');
-            nextSlide();
-        }
+    // Initialize quiz if present
+    if (document.querySelector('.quiz-container')) {
+        initializeQuiz();
     }
-    
-    // Reset touch variables
-    touchStartX = null;
-    touchStartY = null;
-    touchEndX = null;
-    touchEndY = null;
+
+    // Final slide special effects
+    if (currentSlide === slides.length - 1) {
+        initializeCertificateRequest();
+        triggerConfetti();
+        playCheer();
+    }
+
+    // Initialize AI demo
+    initializeAIDemo();
+
+    // Auto-bullets for slides without lists
+    try {
+        const slideContent = document.querySelector('.slide-content');
+        if (slideContent) {
+            let hasLists = slideContent.querySelector('ul, ol, .highlight-list') !== null;
+            
+            if (!hasLists) {
+                const textCandidates = Array.from(slideContent.querySelectorAll('p, div'))
+                    .map(el => (el.textContent || '').trim())
+                    .filter(t => t.length > 0);
+                const numberedOrBulleted = textCandidates.some(t => {
+                    return /^\d+[\.\)]\s+/.test(t) || /^[\u2022\u2023\u25E6\-\*]\s+/.test(t);
+                });
+                if (numberedOrBulleted) hasLists = true;
+            }
+            
+            if (!hasLists) {
+                slideContent.classList.add('auto-bullets');
+            } else {
+                slideContent.classList.remove('auto-bullets');
+            }
+        }
+    } catch (e) {
+        console.error('auto-bullets check failed', e);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadSlide(currentSlide);
+// Quiz functionality
+function initializeQuiz() {
+    const options = document.querySelectorAll('.quiz-option');
+    const feedback = document.querySelector('.quiz-feedback');
     
-    // Initialize chat overlay click handler - moved from inline script
-    const chatOverlay = document.getElementById('chatOverlay');
-    if (chatOverlay) {
-        chatOverlay.addEventListener('click', function() {
-            document.getElementById('chatWidget').classList.add('hidden');
-            this.classList.add('hidden');
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            options.forEach(opt => opt.classList.remove('correct', 'wrong'));
+            
+            if (option.dataset.correct === 'true') {
+                option.classList.add('correct');
+                feedback.textContent = 'Correct! Well done!';
+                feedback.style.display = 'block';
+                feedback.style.background = '#059669';
+            } else {
+                option.classList.add('wrong');
+                feedback.textContent = 'Try again! Review the slide content.';
+                feedback.style.display = 'block';
+                feedback.style.background = '#dc2626';
+            }
+        });
+    });
+}
+
+// Certificate request functionality
+function initializeCertificateRequest() {
+    const nameInput = document.getElementById('full-name-input');
+    const certLink = document.getElementById('certificate-link');
+    
+    if (nameInput && certLink) {
+        nameInput.addEventListener('input', () => {
+            const fullName = encodeURIComponent(nameInput.value.trim());
+            certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20TDB&name=${fullName}`;
+            try { 
+                certLink.target = '_blank'; 
+                certLink.rel = 'noopener noreferrer'; 
+            } catch (e) {}
         });
     }
-    
-    // Add touch event listeners for swipe navigation
-    const slideContainer = document.getElementById('slide-container');
-    const mainContent = document.querySelector('.main-content');
-    
-    if (slideContainer && mainContent) {
-        slideContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
-        slideContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
-        mainContent.addEventListener('touchstart', handleTouchStart, { passive: true });
-        mainContent.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
+
+// Effects and animations
+function triggerConfetti() {
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
     }
-    
-    // Add keyboard navigation for arrow keys
-    document.addEventListener('keydown', (e) => {
-        // Don't interfere with input fields or text areas
-        const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
-        if (isInputActive) return;
-        
-        // Close slide navigator with Escape key
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('slide-navigator-modal');
-            if (modal && modal.classList.contains('show')) {
-                closeSlideNavigator();
+}
+
+function playCheer() {
+    const cheer = document.getElementById('cheerAudio');
+    if (cheer) {
+        cheer.play().catch(error => console.error('Error playing audio:', error));
+    }
+}
+
+// Chat and modal functions
+function toggleChat() {
+    const chatWidget = document.getElementById('chatWidget');
+    if (chatWidget) {
+        chatWidget.classList.toggle('hidden');
+    }
+}
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('hidden');
+    }
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+
+// AI Demo functionality
+function initializeAIDemo() {
+    const modal = document.getElementById('aiDemoModal');
+    if (!modal) return;
+
+    const aiInput = document.getElementById('aiInput');
+    const aiSummarizeBtn = document.getElementById('aiSummarizeBtn');
+    const aiGenerateBtn = document.getElementById('aiGenerateBtn');
+    const aiResult = document.getElementById('aiResult');
+    const aiClose = document.getElementById('aiCloseBtn');
+
+    if (aiClose) {
+        aiClose.addEventListener('click', () => closeModal('aiDemoModal'));
+    }
+
+    if (aiSummarizeBtn) {
+        aiSummarizeBtn.addEventListener('click', () => {
+            const text = (aiInput && aiInput.value) ? aiInput.value.trim() : '';
+            if (!text) {
+                aiResult.textContent = 'Type or paste a paragraph from the slide to see a short summary.';
                 return;
             }
-        }
-        
-        // Left arrow key - previous slide
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            showNavigationFeedback('prev');
-            prevSlide();
-        }
-        // Right arrow key - next slide
-        else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            showNavigationFeedback('next');
-            nextSlide();
-        }
-    });
-    
-    // Close slide navigator when clicking outside
-    const slideNavigatorModal = document.getElementById('slide-navigator-modal');
-    if (slideNavigatorModal) {
-        slideNavigatorModal.addEventListener('click', (e) => {
-            if (e.target.id === 'slide-navigator-modal') {
-                closeSlideNavigator();
-            }
+            const summary = summarizeText(text);
+            aiResult.innerHTML = '<strong>Summary:</strong><p>' + escapeHtml(summary) + '</p>';
         });
     }
-    
-    // Hamburger menu functionality with click outside to close
+
+    if (aiGenerateBtn) {
+        aiGenerateBtn.addEventListener('click', () => {
+            const topic = (aiInput && aiInput.value.trim()) ? aiInput.value.trim() : 'Computer Basics';
+            const ideas = generateCourseIdeas(topic);
+            aiResult.innerHTML = '<strong>Course Ideas:</strong><ul>' + 
+                ideas.map(i => '<li>' + escapeHtml(i) + '</li>').join('') + '</ul>';
+        });
+    }
+}
+
+function summarizeText(text) {
+    const sentences = text.match(/[^.!?]+[.!?]?/g) || [text];
+    let pick = sentences.slice(0, 2).join(' ').trim();
+    if (pick.length > 250) pick = pick.slice(0, 247) + '...';
+    return pick;
+}
+
+function generateCourseIdeas(topic) {
+    const base = topic.split(/\s+/).slice(0,3).join(' ');
+    return [
+        `Intro to ${base}: a 4-week hands-on course for beginners (tools, basics, practical tasks)`,
+        `${base} in Practice: 6 mini-projects to build real skills and a portfolio-worthy project`,
+        `Certification Prep: essential ${base} concepts, quizzes, and a final assessment to certify learning`
+    ];
+}
+
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, '&amp;')
+         .replace(/</g, '&lt;')
+         .replace(/>/g, '&gt;')
+         .replace(/"/g, '&quot;')
+         .replace(/'/g, '&#039;');
+}
+
+// Main initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Load initial slide
+    loadSlide(currentSlide);
+
+    // Hamburger menu functionality
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navLinks = document.getElementById('nav-links');
     const sidebar = document.getElementById('slide-nav-panel');
     
-    if (hamburgerBtn && navLinks && sidebar) {
-        // Toggle hamburger menu
-        hamburgerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
             navLinks.classList.toggle('mobile-active');
             sidebar.classList.toggle('active');
         });
-        
-        // Close menu when clicking a link
+    }
+
+    if (navLinks) {
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('mobile-active');
                 sidebar.classList.remove('active');
             });
         });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburgerBtn.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('mobile-active');
-                sidebar.classList.remove('active');
-            }
-        });
-        
-        // Prevent menu closing when clicking inside nav-links
-        navLinks.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
     }
-    
-    // Sidebar navigation: click to go to slide
+
+    // Sidebar navigation event listeners
     document.querySelectorAll('.sidebar-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -399,22 +479,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Prevent page jump on prev/next button click (especially prev)
+    // Navigation buttons event listeners
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    
     if (prevBtn) {
         prevBtn.addEventListener('mousedown', e => e.preventDefault());
         prevBtn.addEventListener('click', e => {
             e.preventDefault();
             prevSlide();
-            // Remove focus after click to prevent outline or jump
-            prevBtn.blur();
-        });
-        prevBtn.addEventListener('focus', e => {
-            // Remove focus immediately if somehow focused
             prevBtn.blur();
         });
     }
+    
     if (nextBtn) {
         nextBtn.addEventListener('mousedown', e => e.preventDefault());
         nextBtn.addEventListener('click', e => {
@@ -422,15 +499,13 @@ document.addEventListener('DOMContentLoaded', () => {
             nextSlide();
             nextBtn.blur();
         });
-        nextBtn.addEventListener('focus', e => {
-            nextBtn.blur();
-        });
     }
 
-    // Tooltip auto-hide on small screens for nav-btns
+    // Tooltip functionality for mobile
     function isSmallScreen() {
         return window.innerWidth <= 768;
     }
+    
     let tooltipTimeout;
     document.querySelectorAll('.nav-btn[data-tip]').forEach(btn => {
         btn.addEventListener('mouseenter', function() {
@@ -438,13 +513,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearTimeout(tooltipTimeout);
                 const self = this;
                 tooltipTimeout = setTimeout(() => {
-                    // Remove tooltip by blurring or triggering mouseleave
                     self.dispatchEvent(new Event('mouseleave'));
-                }, 2000); // Show for 2 seconds
+                }, 2000);
             }
         });
+        
         btn.addEventListener('mouseleave', function() {
             clearTimeout(tooltipTimeout);
         });
     });
 });
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        prevSlide();
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        nextSlide();
+    } else if (e.key === 'Escape') {
+        // Close any open modals
+        document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+            if (!modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+            }
+        });
+    }
+});
+
+// Make functions globally accessible
+window.prevSlide = prevSlide;
+window.nextSlide = nextSlide;
+window.toggleChat = toggleChat;
+window.openModal = openModal;
+window.closeModal = closeModal;
