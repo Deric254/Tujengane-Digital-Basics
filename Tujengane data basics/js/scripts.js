@@ -169,18 +169,30 @@ function playCheer() {
     cheer.play().catch(error => console.error('Error playing audio:', error));
 }
 
+// Chat functionality - moved from inline script
 function toggleChat() {
     const chatWidget = document.getElementById('chatWidget');
-    chatWidget.classList.toggle('hidden');
+    const chatOverlay = document.getElementById('chatOverlay');
+    if (chatWidget.classList.contains('hidden')) {
+        chatWidget.classList.remove('hidden');
+        chatOverlay.classList.remove('hidden');
+    } else {
+        chatWidget.classList.add('hidden');
+        chatOverlay.classList.add('hidden');
+    }
 }
+// Make toggleChat globally accessible
+window.toggleChat = toggleChat;
 
 function openModal(modalId) {
     document.getElementById(modalId).classList.remove('hidden');
 }
+window.openModal = openModal;
 
 function closeModal(modalId) {
     document.getElementById(modalId).classList.add('hidden');
 }
+window.closeModal = closeModal;
 
 // Touch swipe navigation variables
 let touchStartX = null;
@@ -242,6 +254,8 @@ function navigateToSlideFromModal(index) {
 // Make functions globally accessible
 window.openSlideNavigator = openSlideNavigator;
 window.closeSlideNavigator = closeSlideNavigator;
+window.prevSlide = prevSlide;
+window.nextSlide = nextSlide;
 
 // Touch event handlers for swipe navigation
 function handleTouchStart(e) {
@@ -280,6 +294,12 @@ function handleTouchEnd(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadSlide(currentSlide);
+    
+    // Initialize chat overlay click handler - moved from inline script
+    document.getElementById('chatOverlay').addEventListener('click', function() {
+        document.getElementById('chatWidget').classList.add('hidden');
+        this.classList.add('hidden');
+    });
     
     // Add touch event listeners for swipe navigation
     const slideContainer = document.getElementById('slide-container');
@@ -360,6 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.addEventListener('click', (e) => {
         e.stopPropagation();
     });
+    
     // Sidebar navigation: click to go to slide
     document.querySelectorAll('.sidebar-link').forEach(link => {
         link.addEventListener('click', function(e) {

@@ -276,24 +276,6 @@
     </div>
     <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
     <script src="./js/scripts.js"></script>
-    <script>
-        // ...existing code...
-        function toggleChat() {
-            const chatWidget = document.getElementById('chatWidget');
-            const chatOverlay = document.getElementById('chatOverlay');
-            if (chatWidget.classList.contains('hidden')) {
-                chatWidget.classList.remove('hidden');
-                chatOverlay.classList.remove('hidden');
-            } else {
-                chatWidget.classList.add('hidden');
-                chatOverlay.classList.add('hidden');
-            }
-        }
-        document.getElementById('chatOverlay').addEventListener('click', function() {
-            document.getElementById('chatWidget').classList.add('hidden');
-            this.classList.add('hidden');
-        });
-        // ...existing code...
-    </script>
+    
 </body>
 </html>
