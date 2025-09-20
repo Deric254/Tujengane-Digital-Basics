@@ -111,6 +111,42 @@
                 font-size: 0.95rem !important;
             }
         }
+        
+        /* Navigation feedback indicators */
+        .nav-feedback {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(73, 160, 120, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-feedback.show {
+            opacity: 1;
+        }
+        
+        .nav-feedback.left {
+            left: 20px;
+        }
+        
+        .nav-feedback.right {
+            right: 20px;
+        }
+        
+        .nav-feedback i {
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -228,6 +264,17 @@
             </div>
         </main>
     </div>
+    
+    <!-- Navigation feedback indicators -->
+    <div id="nav-feedback-left" class="nav-feedback left">
+        <i class="fas fa-chevron-left"></i>
+        <span>Previous</span>
+    </div>
+    <div id="nav-feedback-right" class="nav-feedback right">
+        <i class="fas fa-chevron-right"></i>
+        <span>Next</span>
+    </div>
+    
     <footer class="footer">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3 footer-logo">

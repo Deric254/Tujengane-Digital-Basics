@@ -155,8 +155,94 @@ function closeModal(modalId) {
     document.getElementById(modalId).classList.add('hidden');
 }
 
+// Touch swipe navigation variables
+let touchStartX = null;
+let touchStartY = null;
+let touchEndX = null;
+let touchEndY = null;
+const minSwipeDistance = 50;
+
+// Visual feedback functions
+function showNavigationFeedback(direction) {
+    const feedbackId = direction === 'prev' ? 'nav-feedback-left' : 'nav-feedback-right';
+    const feedbackEl = document.getElementById(feedbackId);
+    if (feedbackEl) {
+        feedbackEl.classList.add('show');
+        setTimeout(() => {
+            feedbackEl.classList.remove('show');
+        }, 800);
+    }
+}
+
+// Touch event handlers for swipe navigation
+function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}
+
+function handleTouchEnd(e) {
+    if (!touchStartX || !touchStartY) return;
+    
+    touchEndX = e.changedTouches[0].clientX;
+    touchEndY = e.changedTouches[0].clientY;
+    
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    
+    // Check if it's a horizontal swipe (not vertical scroll)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+        if (deltaX > 0) {
+            // Swipe right - go to previous slide
+            showNavigationFeedback('prev');
+            prevSlide();
+        } else {
+            // Swipe left - go to next slide  
+            showNavigationFeedback('next');
+            nextSlide();
+        }
+    }
+    
+    // Reset touch variables
+    touchStartX = null;
+    touchStartY = null;
+    touchEndX = null;
+    touchEndY = null;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadSlide(currentSlide);
+    
+    // Add touch event listeners for swipe navigation
+    const slideContainer = document.getElementById('slide-container');
+    const mainContent = document.querySelector('.main-content');
+    
+    if (slideContainer && mainContent) {
+        slideContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+        slideContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+        mainContent.addEventListener('touchstart', handleTouchStart, { passive: true });
+        mainContent.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+    
+    // Add keyboard navigation for arrow keys
+    document.addEventListener('keydown', (e) => {
+        // Don't interfere with input fields or text areas
+        const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
+        if (isInputActive) return;
+        
+        // Left arrow key - previous slide
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            showNavigationFeedback('prev');
+            prevSlide();
+        }
+        // Right arrow key - next slide
+        else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            showNavigationFeedback('next');
+            nextSlide();
+        }
+    });
+    
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navLinks = document.getElementById('nav-links');
     const sidebar = document.getElementById('slide-nav-panel');
