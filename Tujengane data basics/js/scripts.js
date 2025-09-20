@@ -328,18 +328,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // Hamburger menu functionality with click outside to close
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navLinks = document.getElementById('nav-links');
     const sidebar = document.getElementById('slide-nav-panel');
-    hamburgerBtn.addEventListener('click', () => {
+    
+    // Toggle hamburger menu
+    hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('mobile-active');
         sidebar.classList.toggle('active');
     });
+    
+    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('mobile-active');
             sidebar.classList.remove('active');
         });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburgerBtn.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('mobile-active');
+            sidebar.classList.remove('active');
+        }
+    });
+    
+    // Prevent menu closing when clicking inside nav-links
+    navLinks.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
     // Sidebar navigation: click to go to slide
     document.querySelectorAll('.sidebar-link').forEach(link => {
