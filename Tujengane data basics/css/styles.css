@@ -549,9 +549,6 @@ nav .container {
 
 /* Responsive Design */
 @media (min-width: 769px) {
-    body {
-        overflow: hidden !important; /* Prevent whole page scroll on large screens */
-    }
     .sidebar {
         display: block;
     }
@@ -559,11 +556,9 @@ nav .container {
         flex-direction: row;
         margin-top: 60px;
         margin-bottom: 50px;
-        overflow: visible !important; /* Remove layout scroll on large screens */
     }
     .main-content {
         padding: 1rem;
-        overflow-y: auto; /* Allow main content to scroll if needed */
     }
     .slide-container-wrapper {
         max-width: 1200px;
@@ -574,7 +569,7 @@ nav .container {
         padding: 2rem;
         min-height: 350px;
         max-height: calc(100vh - 180px);
-        overflow-y: auto; /* Slide scrolls if content overflows */
+        overflow-y: auto; /* Keep individual slide scrolling */
     }
     .navigation {
         position: absolute;

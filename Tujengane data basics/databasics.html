@@ -349,6 +349,34 @@
             }
         }
         
+        /* Large Screen No-Scroll Rules */
+        @media (min-width: 769px) {
+            html, body {
+                overflow: hidden !important;
+                height: 100vh !important;
+            }
+            .layout {
+                overflow: hidden !important;
+                height: calc(100vh - 110px) !important;
+            }
+            .sidebar {
+                overflow-y: auto !important;
+                height: 100% !important;
+            }
+            .main-content {
+                overflow-y: hidden !important;
+                height: 100% !important;
+            }
+            .slide-container-wrapper {
+                overflow: hidden !important;
+                height: 100% !important;
+            }
+            .slide {
+                overflow-y: auto !important;
+                max-height: calc(100vh - 200px) !important;
+            }
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 display: none !important;
@@ -422,6 +450,49 @@
                 width: 80px !important;
                 padding: 0.4rem !important;
                 font-size: 0.95rem !important;
+            }
+            /* Additional responsive improvements for mobile navigation */
+            .hamburger {
+                display: block !important;
+            }
+            .nav-links {
+                display: none !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: #49A078 !important;
+                flex-direction: column !important;
+                padding: 1rem !important;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+            }
+            .nav-links.mobile-active {
+                display: flex !important;
+            }
+            /* Footer responsive improvements */
+            .footer .container {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+                text-align: center !important;
+            }
+            .footer-logo, .footer-socials {
+                justify-content: center !important;
+            }
+            .footer-copyright {
+                text-align: center !important;
+                font-size: 0.7rem !important;
+            }
+            /* Chat widget mobile positioning */
+            #chatButton {
+                bottom: 120px !important;
+                right: 10px !important;
+                z-index: 1000 !important;
+            }
+            #chatWidget {
+                bottom: 140px !important;
+                right: 10px !important;
+                width: calc(100vw - 20px) !important;
+                max-width: 320px !important;
             }
         }
         
