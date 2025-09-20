@@ -240,6 +240,115 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
+        /* Extra Small Devices (small phones, 320px-480px) */
+        @media (max-width: 480px) {
+            .slide-number-display {
+                font-size: 0.7rem !important;
+                padding: 0.25rem 0.4rem !important;
+                width: 95% !important;
+                max-width: 260px !important;
+                border-radius: 8px !important;
+                gap: 0.2rem !important;
+            }
+            .slide-number-display .slide-text {
+                font-size: 0.7rem !important;
+            }
+            .slide-number-display i {
+                font-size: 0.6rem !important;
+            }
+            .main-content {
+                padding: 0.2rem !important;
+            }
+            .nav-btn {
+                width: 65px !important;
+                padding: 0.25rem !important;
+                font-size: 0.75rem !important;
+            }
+            .slide-navigator-content {
+                margin: 5px;
+                max-width: calc(100vw - 10px);
+                border-radius: 8px;
+            }
+            .slide-navigator-header {
+                padding: 0.5rem 0.75rem;
+            }
+            .slide-navigator-header h3 {
+                font-size: 0.9rem;
+            }
+            .slide-item {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Small Devices (large phones, landscape, 481px-768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .slide-number-display {
+                font-size: 0.8rem !important;
+                padding: 0.4rem 0.6rem !important;
+                width: 85% !important;
+                max-width: 300px !important;
+                border-radius: 12px !important;
+            }
+            .nav-btn {
+                width: 80px !important;
+                padding: 0.4rem !important;
+                font-size: 0.9rem !important;
+            }
+            .slide-navigator-content {
+                margin: 8px;
+                max-width: calc(100vw - 16px);
+            }
+        }
+        
+        /* Medium Devices (tablets, small laptops, 769px-1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .slide-number-display {
+                font-size: 1rem;
+                padding: 0.7rem 1.2rem;
+                border-radius: 25px;
+                width: auto;
+                max-width: none;
+                margin: 0 auto 1rem auto;
+                gap: 0.6rem;
+            }
+            .slide-navigator-content {
+                max-width: 700px;
+            }
+            .slide-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Large Devices (desktops, 1025px-1440px) */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .slide-number-display {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.3rem;
+                border-radius: 30px;
+                gap: 0.75rem;
+            }
+            .slide-navigator-content {
+                max-width: 800px;
+            }
+        }
+        
+        /* Extra Large Devices (large desktops, 1441px and up) */
+        @media (min-width: 1441px) {
+            .slide-number-display {
+                font-size: 1.2rem;
+                padding: 0.9rem 1.4rem;
+                border-radius: 35px;
+                gap: 0.8rem;
+            }
+            .slide-navigator-content {
+                max-width: 900px;
+            }
+            .slide-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 display: none !important;
@@ -260,18 +369,21 @@
                 visibility: visible !important;
                 opacity: 1 !important;
                 position: relative !important;
-                font-size: 0.8rem !important;
-                padding: 0.4rem 0.6rem !important;
-                margin: 0 auto 0.75rem auto !important;
+                font-size: 0.75rem !important;
+                padding: 0.35rem 0.6rem !important;
+                margin: 0 auto 0.5rem auto !important;
                 gap: 0.3rem !important;
-                width: auto !important;
-                min-width: fit-content !important;
-                max-width: 95% !important;
+                width: 85% !important;
+                max-width: 320px !important;
                 box-sizing: border-box !important;
                 z-index: 100 !important;
                 background: linear-gradient(135deg, #49A078, #3e8865) !important;
                 color: white !important;
-                border-radius: 20px !important;
+                border-radius: 12px !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: auto !important;
+                line-height: 1.2 !important;
             }
             .slide-number-display .slide-text {
                 font-size: 0.8rem !important;
