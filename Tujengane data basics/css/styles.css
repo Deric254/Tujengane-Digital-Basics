@@ -908,6 +908,10 @@ nav .container {
         max-width: 100% !important;
         width: 100% !important;
     }
+    /* Ensure proper positioning context for hamburger menu */
+    nav .container > div:last-child {
+        position: relative !important;
+    }
     .slide-number-display {
         display: flex !important;
         visibility: visible !important;
@@ -969,20 +973,70 @@ nav .container {
     }
     .hamburger {
         display: block !important;
+        font-size: 1rem !important;
+        cursor: pointer !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        border-radius: 6px !important;
+        padding: 0.5rem 0.75rem !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        min-width: 40px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .hamburger:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+        transform: scale(1.05) !important;
+    }
+    .hamburger i {
+        font-size: 0.9rem !important;
     }
     .nav-links {
         display: none !important;
         position: absolute !important;
         top: 100% !important;
-        left: 0 !important;
         right: 0 !important;
-        background: #49A078 !important;
+        width: 200px !important;
+        background: linear-gradient(135deg, #49A078, #3e8865) !important;
         flex-direction: column !important;
-        padding: 1rem !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        padding: 0.75rem !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 8px !important;
+        margin-top: 4px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        z-index: 1000 !important;
     }
     .nav-links.mobile-active {
         display: flex !important;
+    }
+    .nav-links li {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .nav-links a {
+        display: block !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+        color: white !important;
+        text-decoration: none !important;
+        border-radius: 4px !important;
+        transition: all 0.3s ease !important;
+        margin-bottom: 2px !important;
+        text-align: left !important;
+        font-weight: 500 !important;
+    }
+    .nav-links a:hover {
+        background: rgba(250, 204, 21, 0.2) !important;
+        color: #facc15 !important;
+        transform: translateX(3px) !important;
+    }
+    .nav-links a:last-child {
+        margin-bottom: 0 !important;
     }
     .footer .container {
         flex-direction: column !important;
