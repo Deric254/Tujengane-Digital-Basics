@@ -1267,3 +1267,187 @@ function checkOrientation() {
 // Call on load and resize
 checkOrientation();
 window.addEventListener('resize', checkOrientation);
+
+// Password protection and authentication functions
+function initializePasswordProtection() {
+    var correctPassword = 'literacy2025'; // Change this password as needed
+    var tries = 0;
+    var sessionKey = 'tujengane_literacy_authenticated';
+
+    // If the user already entered the correct password this browser session, show the page and skip the prompt
+    try {
+        if (sessionStorage.getItem(sessionKey) === 'true') {
+            document.body.style.display = '';
+            return;
+        }
+    } catch (e) {
+        // sessionStorage may be unavailable in some contexts; fall back to prompting
+    }
+
+    function showWhatsAppOverlay(){
+        var waUrl = 'https://wa.me/254791360805?text=' + encodeURIComponent('Hey, I am requesting for the password to access Tujengane Computer Literacy.');
+        var wrapper = document.createElement('div');
+        wrapper.id = 'waIframeWrapper';
+        wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;';
+
+        var bgFrame = document.createElement('iframe');
+        bgFrame.src = '../index.html';
+        bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        bgFrame.setAttribute('aria-hidden','true');
+
+        var backdrop = document.createElement('div');
+        backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
+
+        var box = document.createElement('div');
+        box.style.cssText = 'position:relative;max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;z-index:100002;';
+        box.innerHTML = `
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+                <div style="flex:1;min-width:0">
+                    <div style="font-weight:800;font-size:1.05rem;color:#fff;">Access blocked</div>
+                    <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">We couldn't verify your access. Use the button below to message us on WhatsApp to request access. You must click the link to open WhatsApp.</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;align-items:center;">
+                <a id="waOpenLink" href="${waUrl}" target="_blank" rel="noopener noreferrer" style="background:#25D366;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;">Open WhatsApp</a>
+                <button id="waCopyBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Copy link</button>
+                <button id="waCancelBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;">Cancel</button>
+            </div>
+        `;
+
+        wrapper.appendChild(bgFrame);
+        wrapper.appendChild(backdrop);
+        wrapper.appendChild(box);
+        document.documentElement.appendChild(wrapper);
+
+        var toast = document.createElement('div');
+        toast.id = 'waToast';
+        toast.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 12px;border-radius:8px;z-index:100003;display:none;font-size:0.95rem;';
+        toast.textContent = 'Link copied to clipboard';
+        document.documentElement.appendChild(toast);
+
+        document.getElementById('waCopyBtn').addEventListener('click', function(){
+            try {
+                navigator.clipboard.writeText(waUrl).then(function(){
+                    toast.style.display = 'block';
+                    setTimeout(function(){ toast.style.display='none'; }, 1800);
+                }, function(){
+                    var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(e){} ta.remove();
+                });
+            } catch(e){
+                var ta = document.createElement('textarea'); ta.value = waUrl; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast.style.display='block'; setTimeout(function(){ toast.style.display='none'; },1800); } catch(err){} ta.remove();
+            }
+        });
+        document.getElementById('waCancelBtn').addEventListener('click', function(){ window.location.href = '../index.html'; });
+    }
+
+    function askPassword() {
+        // Visual wrapper/backdrop/box pattern (matches the WhatsApp overlay visual)
+        var wrapper = document.createElement('div');
+        wrapper.id = 'pwModalWrapper';
+        wrapper.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;';
+
+        var bgFrame = document.createElement('iframe');
+        bgFrame.src = '../index.html';
+        bgFrame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        bgFrame.setAttribute('aria-hidden','true');
+
+        var backdrop = document.createElement('div');
+        backdrop.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(2px);pointer-events:none;';
+
+        var box = document.createElement('div');
+        box.style.cssText = 'position:relative;max-width:520px;width:100%;background:linear-gradient(180deg, rgba(20,20,20,0.95), rgba(18,18,18,0.96));color:#fff;padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.5);font-family:system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;z-index:100002;';
+        box.innerHTML = `
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+                <div style="flex:1;min-width:0">
+                    <div style="font-weight:800;font-size:1.05rem;color:#fff;">Authorized access</div>
+                    <div style="margin-top:6px;color:#ddd;font-size:0.95rem;line-height:1.25">This section is for authorized users only. Enter the password to continue.</div>
+                </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+                <div style="display:flex;gap:8px;align-items:center;min-width:0;">
+                    <input id="pwInput" type="password" placeholder="Password" style="flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
+                    <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.95;margin-left:6px;flex:0 0 auto;">👁️</button>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:nowrap;">
+                    <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.12);padding:9px 12px;border-radius:8px;cursor:pointer;color:#fff;flex:0 0 auto;white-space:nowrap;">Cancel</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;flex:0 0 auto;white-space:nowrap;">Submit</button>
+                </div>
+            </div>
+        `;
+
+        wrapper.appendChild(bgFrame);
+        wrapper.appendChild(backdrop);
+        wrapper.appendChild(box);
+        document.documentElement.appendChild(wrapper);
+
+        var pwInput = document.getElementById('pwInput');
+        if (pwInput) pwInput.focus();
+
+        function cleanup(){ var w = document.getElementById('pwModalWrapper'); if (w) w.remove(); }
+
+        document.getElementById('pwToggle').addEventListener('click', function(){
+            if (pwInput.type === 'password') { pwInput.type = 'text'; this.textContent = '🙈'; } else { pwInput.type = 'password'; this.textContent = '👁️'; }
+            pwInput.focus();
+        });
+
+        document.getElementById('pwCancel').addEventListener('click', function(){ cleanup(); window.location.href = '../index.html'; });
+
+        document.getElementById('pwSubmit').addEventListener('click', function(){
+            var input = (pwInput && pwInput.value) ? pwInput.value : '';
+            if (input === correctPassword) {
+                try { sessionStorage.setItem(sessionKey, 'true'); } catch(e) {}
+                cleanup();
+                document.body.style.display = '';
+                return;
+            }
+            tries++;
+            cleanup();
+            if (tries >= 2) { showWhatsAppOverlay(); return; }
+            askPassword();
+        });
+
+        if (pwInput) {
+            pwInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') { document.getElementById('pwSubmit').click(); } });
+        }
+    }
+
+    document.body.style.display = 'none';
+    askPassword();
+}
+
+// Chat widget functionality
+function setupChatWidget() {
+    // Close chat widget when clicking outside
+    document.addEventListener('mousedown', function(event) {
+        const chatWidget = document.getElementById('chatWidget');
+        const chatButton = document.getElementById('chatButton');
+        if (!chatWidget.classList.contains('hidden')) {
+            if (!chatWidget.contains(event.target) && !chatButton.contains(event.target)) {
+                chatWidget.classList.add('hidden');
+            }
+        }
+    });
+}
+
+// Floating home button functionality
+function setupFloatingHomeButton() {
+    // Show floating Home button only on small screens
+    function toggleFloatingHomeBtn() {
+        var btn = document.getElementById('floatingHomeBtn');
+        if (!btn) return;
+        if (window.innerWidth <= 768) {
+            btn.style.display = 'flex';
+        } else {
+            btn.style.display = 'none';
+        }
+    }
+    window.addEventListener('resize', toggleFloatingHomeBtn);
+    window.addEventListener('DOMContentLoaded', toggleFloatingHomeBtn);
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializePasswordProtection();
+    setupChatWidget();
+    setupFloatingHomeButton();
+});
