@@ -981,3 +981,89 @@ nav .container {
         display: none !important; 
     }
 }
+
+/* Navigation feedback indicators */
+.nav-feedback {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(73, 160, 120, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-feedback.show {
+    opacity: 1;
+}
+
+.nav-feedback.left {
+    left: 20px;
+}
+
+.nav-feedback.right {
+    right: 20px;
+}
+
+.nav-feedback i {
+    font-size: 16px;
+}
+
+/* Enhanced slide transitions */
+.slide-container-wrapper {
+    touch-action: pan-y; /* Allow vertical scrolling but enable horizontal touch handling */
+}
+
+.slide {
+    touch-action: pan-y;
+}
+
+/* Prevent text selection during swipes */
+.slide-container-wrapper,
+.slide,
+.main-content {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Re-enable text selection for content elements */
+.slide-content p,
+.slide-content li,
+.slide-content div {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+@media (max-width: 768px) {
+    .nav-feedback {
+        font-size: 12px;
+        padding: 6px 10px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .nav-feedback i {
+        font-size: 14px;
+    }
+    
+    .nav-feedback.left {
+        left: 10px;
+    }
+    
+    .nav-feedback.right {
+        right: 10px;
+    }
+}
