@@ -273,25 +273,27 @@ body {
 
 .slide-content {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     text-align: center;
     position: relative;
     z-index: 5;
+    padding: 1.5rem;
 }
 
 .slide-content h2 {
     color: #256d4f;
-    font-weight: 700;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    font-weight: 800;
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
     transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    line-height: 1.2;
 }
 
 .slide-content h2:hover {
@@ -299,10 +301,41 @@ body {
 }
 
 .slide-content p {
-    color: #1e3a8a;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    color: #374151;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+}
+
+.slide-content li {
+    color: #374151;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.slide-content ul, 
+.slide-content ol {
+    text-align: left;
+    max-width: 700px;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.slide-content .highlight-list li {
+    background: #f3f4f6;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid #49A078;
+}
+
+.slide-content .text-lg {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
 }
 
 .navigation {
@@ -1099,7 +1132,7 @@ nav .container {
         box-sizing: border-box !important;
     }
     .slide-content {
-        padding: 0.5rem !important;
+        padding: 1rem !important;
         max-width: 100% !important;
         width: 100% !important;
         min-height: 0 !important;
@@ -1109,15 +1142,15 @@ nav .container {
         align-items: center !important;
         justify-content: flex-start !important;
         text-align: center !important;
-        gap: 1rem !important;
+        gap: 1.5rem !important;
         word-break: break-word !important;
         overflow-wrap: break-word !important;
         hyphens: auto !important;
         box-sizing: border-box !important;
     }
     .slide-content h2 {
-        font-size: 1.3rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
         hyphens: auto !important;
@@ -1126,9 +1159,9 @@ nav .container {
         max-width: 100% !important;
     }
     .slide-content p {
-        font-size: 1rem !important;
-        line-height: 1.5 !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: 1rem !important;
         max-width: 100% !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
@@ -1240,17 +1273,18 @@ nav .container {
         flex: 1 1 auto;
     }
     .slide-content {
-        padding: 0.25rem;
-        gap: 0.75rem;
+        padding: 1.25rem;
+        gap: 1.75rem;
     }
     .slide-content h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.2;
     }
     .slide-content p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
     }
     .navigation {
         position: relative !important;
@@ -1472,18 +1506,18 @@ nav .container {
     }
     
     .slide-content {
-        gap: 0.5rem !important;
-        padding: 0.25rem !important;
+        gap: 1.25rem !important;
+        padding: 1rem !important;
     }
     
     .slide-content h2 {
-        font-size: 1.1rem !important;
-        margin-bottom: 0.4rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.875rem !important;
         line-height: 1.3 !important;
     }
     
     .slide-content p, .slide-content li {
-        font-size: 0.85rem !important;
+        font-size: 1rem !important;
         line-height: 1.4 !important;
     }
     
@@ -1563,11 +1597,15 @@ nav .container {
     }
     
     .slide-content h2 {
-        font-size: 1.2rem !important;
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1rem !important;
     }
     
     .slide-content p, .slide-content li {
-        font-size: 0.9rem !important;
+        font-size: 1.05rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
     }
     
     .nav-btn {
