@@ -1633,11 +1633,15 @@ nav .container {
     }
     
     .slide-content h2 {
-        font-size: 1.35rem !important;
+        font-size: 1.75rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1.125rem !important;
     }
     
     .slide-content p, .slide-content li {
-        font-size: 1rem !important;
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: 1rem !important;
     }
     
     .nav-btn {
@@ -1838,8 +1842,9 @@ html, body {
     }
     
     .slide-content p, .slide-content li {
-        font-size: 0.8rem !important;
-        line-height: 1.3 !important;
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 0.75rem !important;
     }
     
     .navigation {
