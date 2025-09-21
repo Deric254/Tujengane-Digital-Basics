@@ -985,21 +985,23 @@ nav .container {
 /* Navigation feedback indicators */
 .nav-feedback {
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(73, 160, 120, 0.9);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
+    top: 20px;
+    transform: none;
+    background: rgba(128, 128, 128, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: normal;
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     pointer-events: none;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    max-width: 60px;
+    text-align: center;
 }
 
 .nav-feedback.show {
@@ -1007,15 +1009,15 @@ nav .container {
 }
 
 .nav-feedback.left {
-    left: 20px;
+    left: 10px;
 }
 
 .nav-feedback.right {
-    right: 20px;
+    right: 10px;
 }
 
 .nav-feedback i {
-    font-size: 16px;
+    font-size: 10px;
 }
 
 /* Enhanced slide transitions */
@@ -1049,21 +1051,21 @@ nav .container {
 
 @media (max-width: 768px) {
     .nav-feedback {
-        font-size: 12px;
-        padding: 6px 10px;
-        left: 10px;
-        right: 10px;
+        font-size: 9px;
+        padding: 2px 5px;
+        top: 15px;
+        max-width: 50px;
     }
     
     .nav-feedback i {
-        font-size: 14px;
+        font-size: 9px;
     }
     
     .nav-feedback.left {
-        left: 10px;
+        left: 8px;
     }
     
     .nav-feedback.right {
-        right: 10px;
+        right: 8px;
     }
 }

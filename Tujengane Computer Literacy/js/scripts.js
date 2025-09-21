@@ -1148,6 +1148,12 @@ function handlePrev() {
         return;
     }
     
+    // If on welcome screen, show disabled feedback
+    if (currentModule === null) {
+        showDisabledFeedback('prev');
+        return;
+    }
+    
     if (currentModule !== null && currentSlide > 0) {
         isNavigating = true;
         currentSlide--;
@@ -1162,6 +1168,17 @@ function handlePrev() {
 function handleNext() {
     if (isNavigating) {
         showDisabledFeedback('next');
+        return;
+    }
+    
+    // If on welcome screen, go to first module (Module 1)
+    if (currentModule === null) {
+        isNavigating = true;
+        currentModule = 0; // First module
+        currentSlide = 0;  // First slide
+        toggleModule(currentModule);
+        updateSlide(currentModule, currentSlide);
+        setTimeout(() => { isNavigating = false; }, navigationDelay);
         return;
     }
     
@@ -1182,9 +1199,6 @@ function handleNext() {
             // Show disabled feedback when at end
             showDisabledFeedback('next');
         }
-    } else {
-        // Show disabled feedback when no module is selected
-        showDisabledFeedback('next');
     }
 }
 
