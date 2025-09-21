@@ -731,8 +731,8 @@ nav .container {
     flex: 1 1 0%;
     position: relative;
     overflow: hidden;
-    min-width: 200px;
-    max-width: 600px;
+    min-width: 250px;
+    max-width: none;
     height: 2rem;
     display: flex;
     align-items: center;
@@ -743,12 +743,11 @@ nav .container {
     display: flex;
     width: max-content;
     position: absolute;
-    left: 0; /* anchor to left to avoid pushing content off-screen on small devices */
+    left: 0;
     top: 0;
     height: 100%;
-    animation: marquee-loop 12s linear infinite;
-    max-width: 100%;
-    overflow: hidden; /* ensure long marquee doesn't create horizontal scroll */
+    animation: marquee-loop 15s linear infinite;
+    white-space: nowrap;
 }
 
 .slogan-marquee {
@@ -1386,8 +1385,8 @@ nav .container {
     }
 }
 
-/* Additional protection for small devices */
-@media (max-width: 991px) {
+/* Simple mobile navigation - hide nav links, show hamburger */
+@media (max-width: 767px) {
     .nav-links {
         display: none !important;
     }
@@ -1396,16 +1395,58 @@ nav .container {
         display: block !important;
     }
     
-    .mobile-nav-dropdown {
-        display: block;
+    /* Position floating elements with proper spacing for small screens */
+    #floatingHomeBtn {
+        bottom: 160px !important;
+        right: 20px !important;
+        position: fixed !important;
+        z-index: 1000 !important;
+    }
+    
+    #chatWidget {
+        bottom: 70px !important;
+        right: 20px !important;
+        width: calc(100vw - 50px) !important;
+        max-width: 280px !important;
+        position: fixed !important;
+        z-index: 999 !important;
     }
 }
 
-/* Desktop navigation - Show nav-links, hide hamburger */
-@media (min-width: 992px) {
+/* Extra small screens - even more spacing */
+@media (max-width: 480px) {
+    #floatingHomeBtn {
+        bottom: 180px !important;
+        right: 15px !important;
+    }
+    
+    #chatWidget {
+        bottom: 60px !important;
+        right: 15px !important;
+        width: calc(100vw - 40px) !important;
+        max-width: 260px !important;
+    }
+}
+
+/* Very small screens - maximum stability */
+@media (max-width: 374px) {
+    #floatingHomeBtn {
+        bottom: 200px !important;
+        right: 10px !important;
+    }
+    
+    #chatWidget {
+        bottom: 50px !important;
+        right: 10px !important;
+        width: calc(100vw - 30px) !important;
+        max-width: 240px !important;
+    }
+}
+
+/* Simple desktop navigation - show nav links, hide hamburger and floating button */
+@media (min-width: 768px) {
     .nav-links {
         display: flex !important;
-        gap: 0.75rem !important;
     }
     
     .hamburger {
@@ -1416,11 +1457,16 @@ nav .container {
         display: none !important;
     }
     
-    .slogan-container {
-        display: flex !important;
-        max-width: 800px !important;
-        min-width: 350px !important;
-        margin: 0 1.5rem !important;
+    /* Hide floating button completely on desktop */
+    #floatingHomeBtn {
+        display: none !important;
+    }
+    
+    /* Position chat widget away from navigation area */
+    #chatWidget {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 320px !important;
     }
 }
 
@@ -1970,8 +2016,9 @@ html, body {
     .slogan-container {
         display: flex !important;
         margin: 0 2rem;
-        min-width: 300px;
-        max-width: 600px;
+        min-width: 350px;
+        max-width: none;
+        flex: 1;
     }
 }
 
@@ -1988,7 +2035,14 @@ html, body {
     
     .slogan-container {
         margin: 0 3rem;
-        max-width: 700px;
+        max-width: none;
         min-width: 400px;
+        flex: 1;
+    }
+    
+    /* Ensure no floating elements interfere with navigation on large screens */
+    #floatingHomeBtn {
+        display: none !important;
     }
 }
+
