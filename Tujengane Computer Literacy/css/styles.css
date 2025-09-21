@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to-br, #f0fdfa, #d9f99d);
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -17,7 +17,6 @@ body {
     padding: 0.125rem;
     margin-top: 60px;
     margin-bottom: 50px;
-    min-height: calc(100vh - 110px);
     height: calc(100vh - 110px);
     overflow: hidden;
 }
@@ -194,14 +193,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
+    height: 100%;
 }
 
 .max-w-5xl {
     width: 100%;
     max-width: 1280px;
-    min-height: calc(100vh - 110px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -730,10 +731,12 @@ nav .container {
     flex: 1 1 0%;
     position: relative;
     overflow: hidden;
-    min-width: 0;
+    min-width: 200px;
+    max-width: 400px;
     height: 2rem;
     display: flex;
     align-items: center;
+    margin: 0 1rem;
 }
 
 .slogan-marquee-track {
@@ -1020,12 +1023,12 @@ nav .container {
 /* Desktop navigation responsive adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-links {
-        gap: 0.5rem !important;
+        gap: 0.3rem !important;
     }
     
     .nav-link {
-        padding: 0.4rem 0.6rem !important;
-        font-size: 0.8rem !important;
+        padding: 0.3rem 0.5rem !important;
+        font-size: 0.7rem !important;
     }
     
     .nav-link i {
@@ -1035,23 +1038,23 @@ nav .container {
 
 @media (min-width: 1025px) and (max-width: 1200px) {
     .nav-links {
-        gap: 0.75rem !important;
+        gap: 0.5rem !important;
     }
     
     .nav-link {
-        padding: 0.5rem 0.7rem !important;
-        font-size: 0.85rem !important;
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.75rem !important;
     }
 }
 
 @media (min-width: 1201px) {
     .nav-links {
-        gap: 1rem !important;
+        gap: 0.75rem !important;
     }
     
     .nav-link {
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.9rem !important;
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -1371,7 +1374,46 @@ nav .container {
 /* Inline styles extracted from HTML */
 @media (max-width: 768px) {
     .slogan-container { 
-        display: none !important; 
+        display: none !important;
+    }
+    
+    .nav-links {
+        display: none !important;
+    }
+    
+    .hamburger {
+        display: block !important;
+    }
+}
+
+/* Additional protection for small devices */
+@media (max-width: 991px) {
+    .nav-links {
+        display: none !important;
+    }
+    
+    .hamburger {
+        display: block !important;
+    }
+    
+    .mobile-nav-dropdown {
+        display: block;
+    }
+}
+
+/* Desktop navigation - Show nav-links, hide hamburger */
+@media (min-width: 992px) {
+    .nav-links {
+        display: flex !important;
+        gap: 0.75rem !important;
+    }
+    
+    .hamburger {
+        display: none !important;
+    }
+    
+    .mobile-nav-dropdown {
+        display: none !important;
     }
 }
 
@@ -1887,5 +1929,58 @@ html, body {
     .footer {
         height: 35px !important;
         font-size: 0.6rem !important;
+    }
+}
+
+/* Enhanced Navigation Styling for Big Screens */
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .nav-link {
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+    
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #facc15;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hamburger {
+        display: none !important;
+    }
+    
+    .slogan-container {
+        display: flex !important;
+        margin: 0 2rem;
+        min-width: 250px;
+        max-width: 450px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-links {
+        gap: 2rem;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1.25rem;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    .slogan-container {
+        margin: 0 3rem;
+        max-width: 500px;
     }
 }
