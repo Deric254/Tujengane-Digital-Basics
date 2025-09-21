@@ -1142,6 +1142,25 @@ function toggleModule(moduleIndex) {
     }
 }
 
+function ensureModuleOpen(moduleIndex) {
+    if (moduleIndex === null) return;
+    
+    const moduleToggles = document.querySelectorAll('.module-toggle');
+    const moduleSlides = document.querySelectorAll('.module-slides');
+
+    moduleToggles.forEach((toggle, index) => {
+        if (index === moduleIndex) {
+            // Force module to be open (remove collapsed class)
+            toggle.classList.remove('collapsed');
+            moduleSlides[index].classList.add('open');
+            toggle.classList.remove('hidden');
+        } else {
+            toggle.classList.add('hidden');
+            moduleSlides[index].classList.remove('open');
+        }
+    });
+}
+
 function handlePrev() {
     if (isNavigating) {
         showDisabledFeedback('prev');
@@ -1176,7 +1195,7 @@ function handleNext() {
         isNavigating = true;
         currentModule = 0; // First module
         currentSlide = 0;  // First slide
-        toggleModule(currentModule);
+        ensureModuleOpen(currentModule);
         updateSlide(currentModule, currentSlide);
         setTimeout(() => { isNavigating = false; }, navigationDelay);
         return;
@@ -1192,7 +1211,7 @@ function handleNext() {
             isNavigating = true;
             currentModule++;
             currentSlide = 0;
-            toggleModule(currentModule);
+            ensureModuleOpen(currentModule);
             updateSlide(currentModule, 0);
             setTimeout(() => { isNavigating = false; }, navigationDelay);
         } else {
