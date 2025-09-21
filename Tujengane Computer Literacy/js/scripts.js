@@ -1256,6 +1256,61 @@ hamburgerBtn.addEventListener('click', () => {
     sidebar.classList.toggle('active', isSidebarOpen);
 });
 
+// Mobile navigation functionality
+function setupMobileNavigation() {
+    const mobileNavDropdown = document.getElementById('mobile-nav-dropdown');
+    const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const floatingHomeBtn = document.getElementById('floatingHomeBtn');
+    
+    // Mobile navigation trigger - use floating home button
+    if (floatingHomeBtn) {
+        floatingHomeBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            mobileNavDropdown.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile nav when clicking backdrop
+    if (mobileNavBackdrop) {
+        mobileNavBackdrop.addEventListener('click', () => {
+            mobileNavDropdown.classList.remove('active');
+        });
+    }
+    
+    // Close mobile nav when clicking close button
+    if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', () => {
+            mobileNavDropdown.classList.remove('active');
+        });
+    }
+    
+    // Close mobile nav when clicking any link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNavDropdown.classList.remove('active');
+        });
+    });
+    
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+        const isClickInsideNav = mobileNavDropdown.contains(e.target);
+        const isHomeButtonClick = floatingHomeBtn && floatingHomeBtn.contains(e.target);
+        
+        if (!isClickInsideNav && !isHomeButtonClick && mobileNavDropdown.classList.contains('active')) {
+            mobileNavDropdown.classList.remove('active');
+        }
+    });
+    
+    // Close mobile nav on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNavDropdown.classList.contains('active')) {
+            mobileNavDropdown.classList.remove('active');
+        }
+    });
+}
+
 document.addEventListener('click', (e) => {
     if (isSidebarOpen && !sidebar.contains(e.target) && !hamburgerBtn.contains(e.target)) {
         isSidebarOpen = false;
@@ -1514,6 +1569,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePasswordProtection();
     setupChatWidget();
     setupFloatingHomeButton();
+    setupMobileNavigation();
     initializeSwipeNavigation();
     initializeKeyboardNavigation();
 });
