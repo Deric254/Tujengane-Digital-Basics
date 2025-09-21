@@ -732,7 +732,7 @@ nav .container {
     position: relative;
     overflow: hidden;
     min-width: 200px;
-    max-width: 400px;
+    max-width: 600px;
     height: 2rem;
     display: flex;
     align-items: center;
@@ -1415,6 +1415,13 @@ nav .container {
     .mobile-nav-dropdown {
         display: none !important;
     }
+    
+    .slogan-container {
+        display: flex !important;
+        max-width: 800px !important;
+        min-width: 350px !important;
+        margin: 0 1.5rem !important;
+    }
 }
 
 /* Footer responsive styles for mobile */
@@ -1963,8 +1970,8 @@ html, body {
     .slogan-container {
         display: flex !important;
         margin: 0 2rem;
-        min-width: 250px;
-        max-width: 450px;
+        min-width: 300px;
+        max-width: 600px;
     }
 }
 
@@ -1981,6 +1988,7 @@ html, body {
     
     .slogan-container {
         margin: 0 3rem;
-        max-width: 500px;
+        max-width: 700px;
+        min-width: 400px;
     }
 }
