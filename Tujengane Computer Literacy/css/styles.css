@@ -1288,14 +1288,21 @@ nav .container {
     }
     .navigation {
         position: relative !important;
-        bottom: 70px !important;
+        bottom: auto !important;
         top: auto !important;
         transform: none !important;
-        left: 0;
-        right: 0;
-        gap: 0.75rem;
-        justify-content: flex-start;
-        z-index: 2;
+        left: 0 !important;
+        right: 0 !important;
+        gap: 0.75rem !important;
+        justify-content: center !important;
+        z-index: 2 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 1rem 0 !important;
+        margin-top: 1rem !important;
+        width: 100% !important;
+        flex-direction: row !important;
     }
     .nav-btn {
         width: 70px;
@@ -1331,7 +1338,16 @@ nav .container {
         z-index: 60 !important;
     }
     .navigation {
-        bottom: -40px !important;
+        position: relative !important;
+        bottom: auto !important;
+        top: auto !important;
+        transform: none !important;
+        padding: 0.75rem 0 !important;
+        gap: 0.5rem !important;
+        justify-content: center !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
     }
 }
 
@@ -1669,7 +1685,13 @@ nav .container {
     }
     
     .navigation {
-        width: 110px !important;
+        position: relative !important;
+        width: 100% !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        padding: 1rem 0 !important;
+        gap: 1rem !important;
+        margin-top: 1rem !important;
     }
     
     .nav-btn {
@@ -1848,7 +1870,13 @@ html, body {
     }
     
     .navigation {
-        padding: 0.25rem 0 !important;
+        position: relative !important;
+        padding: 1rem 0 !important;
+        gap: 0.75rem !important;
+        justify-content: center !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
     }
     
     .nav-btn {
