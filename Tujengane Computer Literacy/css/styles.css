@@ -1395,12 +1395,15 @@ nav .container {
         display: block !important;
     }
     
-    /* Position floating elements with proper spacing for small screens */
+    /* Position floating elements closer together with transparency */
     #floatingHomeBtn {
-        bottom: 160px !important;
+        bottom: 120px !important;
         right: 20px !important;
         position: fixed !important;
         z-index: 1000 !important;
+        background: rgba(73, 160, 120, 0.7) !important;
+        backdrop-filter: blur(8px) !important;
+        opacity: 0.8 !important;
     }
     
     #chatWidget {
@@ -1410,14 +1413,18 @@ nav .container {
         max-width: 280px !important;
         position: fixed !important;
         z-index: 999 !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(8px) !important;
     }
 }
 
-/* Extra small screens - even more spacing */
+/* Extra small screens - closer spacing */
 @media (max-width: 480px) {
     #floatingHomeBtn {
-        bottom: 180px !important;
+        bottom: 110px !important;
         right: 15px !important;
+        background: rgba(73, 160, 120, 0.6) !important;
+        opacity: 0.7 !important;
     }
     
     #chatWidget {
@@ -1425,21 +1432,25 @@ nav .container {
         right: 15px !important;
         width: calc(100vw - 40px) !important;
         max-width: 260px !important;
+        background: rgba(255, 255, 255, 0.85) !important;
     }
 }
 
-/* Very small screens - maximum stability */
+/* Very small screens - minimal spacing */
 @media (max-width: 374px) {
     #floatingHomeBtn {
-        bottom: 200px !important;
+        bottom: 100px !important;
         right: 10px !important;
+        background: rgba(73, 160, 120, 0.5) !important;
+        opacity: 0.6 !important;
     }
     
     #chatWidget {
-        bottom: 50px !important;
+        bottom: 55px !important;
         right: 10px !important;
         width: calc(100vw - 30px) !important;
         max-width: 240px !important;
+        background: rgba(255, 255, 255, 0.8) !important;
     }
 }
 
