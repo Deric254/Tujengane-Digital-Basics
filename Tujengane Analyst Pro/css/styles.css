@@ -9,75 +9,73 @@ body {
     overflow: hidden;
 }
 
-/* Navigation feedback styles */
+/* Navigation feedback styles - Match Computer Literacy */
 .nav-feedback {
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 20px;
+    transform: none;
     background: rgba(73, 160, 120, 0.9);
-    color: white;
-    padding: 16px 24px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    z-index: 9999;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: normal;
+    z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.2s ease;
     pointer-events: none;
-}
-
-#nav-feedback-left {
-    left: 20px;
-}
-
-#nav-feedback-right {
-    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    max-width: 60px;
+    text-align: center;
 }
 
 .nav-feedback.show {
     opacity: 1;
 }
 
-.nav-feedback::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-style: solid;
+.nav-feedback.left {
+    left: 10px;
 }
 
-#nav-feedback-left::before {
-    right: -12px;
-    border-width: 12px 0 12px 12px;
-    border-color: transparent transparent transparent rgba(73, 160, 120, 0.9);
+.nav-feedback.right {
+    right: 10px;
 }
 
-#nav-feedback-right::before {
-    left: -12px;
-    border-width: 12px 12px 12px 0;
-    border-color: transparent rgba(73, 160, 120, 0.9) transparent transparent;
+.nav-feedback i {
+    font-size: 10px;
 }
 
+#nav-feedback-left {
+    left: 10px;
+}
+
+#nav-feedback-right {
+    right: 10px;
+}
+
+/* Mobile responsive navigation feedback */
 @media (max-width: 768px) {
     .nav-feedback {
-        padding: 12px 18px;
-        font-size: 16px;
+        font-size: 9px;
+        padding: 2px 5px;
+        top: 15px;
+        max-width: 50px;
     }
     
-    #nav-feedback-left {
-        left: 10px;
+    .nav-feedback i {
+        font-size: 9px;
     }
     
-    #nav-feedback-right {
-        right: 10px;
+    .nav-feedback.left {
+        left: 8px;
     }
-}
-
-.layout {
+    
+    .nav-feedback.right {
+        right: 8px;
+    }
+}.layout {
     display: flex;
     flex: 1;
     flex-direction: row;
