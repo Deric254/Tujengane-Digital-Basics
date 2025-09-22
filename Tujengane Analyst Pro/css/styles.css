@@ -303,36 +303,54 @@ body {
     }
     
     /* Footer responsive styles */
-    .footer .container { 
-        flex-wrap: wrap !important; 
+    .footer {
+        padding: 0 !important; /* Remove footer padding */
     }
     
-    .footer-home-link {
-        display: inline-block !important;
-        font-weight: 600 !important;
-        color: #256d4f !important;
-        background: #fff !important;
-        border-radius: 6px !important;
-        padding: 0.3em 1.1em !important;
-        margin-left: auto !important;
-        margin-right: 0.1em !important;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
-        border: 1px solid #49A078 !important;
-        order: 99 !important;
-        min-width: 60px !important;
-        text-align: center !important;
-        margin-bottom: 10px !important;
-        width: 100% !important;
+    .footer .container { 
+        flex-wrap: wrap !important; 
+        justify-content: flex-start !important;
+        align-items: center !important;
+        padding: 0 !important; /* Remove all padding */
+        margin: 0 !important; /* Remove all margin */
+        max-width: 100% !important; /* Full width */
+    }
+    
+    /* Hide social links and copyright on mobile - only show logo + name */
+    .footer-socials {
+        display: none !important;
+    }
+    
+    .footer-copyright {
+        display: none !important;
+    }
+    
+    /* Keep only the logo and name visible on mobile - absolute left position */
+    .footer-logo {
+        width: auto !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        gap: 0.25rem !important;
+        margin: 0 !important; /* Remove all margins */
+        padding: 0 !important; /* Remove all padding */
+        flex-shrink: 0 !important;
+        position: relative !important;
+        left: 0 !important; /* Force to absolute left */
+    }
+    
+    .footer-logo span {
+        margin: 0 !important; /* Remove all margins */
+        padding: 0 !important; /* Remove all padding */
+    }
+    
+    .footer-logo img {
+        margin: 0 !important; /* Remove all margins */
+        padding: 0 !important; /* Remove all padding */
     }
     
     .footer-home-link:hover { 
         background: #49A078 !important; 
         color: #fff !important; 
-    }
-    
-    .footer-logo {
-        width: 40px !important;
-        height: 40px !important;
     }
 }
 
@@ -347,14 +365,24 @@ body {
     }
 }
 
-/* Desktop - hide floating button and footer home link */
+/* Desktop - hide floating button, show socials */
 @media (min-width: 769px) {
     #floatingHomeBtn {
         display: none !important;
     }
     
-    .footer-home-link { 
-        display: none !important; 
+    /* Show social links and copyright on desktop */
+    .footer-socials {
+        display: flex !important;
+    }
+    
+    .footer-copyright {
+        display: block !important;
+    }
+    
+    .footer-logo {
+        width: auto !important;
+        justify-content: flex-start !important;
     }
 }.layout {
     display: flex;
