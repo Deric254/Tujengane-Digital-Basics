@@ -1,17 +1,23 @@
 :root {
-    --nav-height: 60px;
+    --nav-height: 80px; /* Default for dynamic header */
     --footer-height: 50px;
 }
 
 @media (max-width: 768px) {
     :root {
-        --nav-height: 70px;
+        --nav-height: 90px; /* Increased for mobile wrapping */
+    }
+}
+
+@media (max-width: 575px) {
+    :root {
+        --nav-height: 100px; /* More space for smaller screens */
     }
 }
 
 @media (max-width: 374px) {
     :root {
-        --nav-height: 70px;
+        --nav-height: 110px; /* Maximum space for very small screens */
         --footer-height: 45px;
     }
 }
@@ -521,7 +527,7 @@ nav {
     left: 0;
     right: 0;
     z-index: 50;
-    min-height: 60px;
+    min-height: var(--nav-height);
     height: auto;
 }
 
@@ -1616,16 +1622,17 @@ nav .container {
 /* Inline styles extracted from HTML */
 @media (max-width: 768px) {
     nav {
-        min-height: 50px;
+        min-height: var(--nav-height);
         height: auto;
-        padding: 0.5rem 1rem;
+        padding: 0.75rem 1rem;
     }
     
     nav .container {
         flex-wrap: wrap;
         gap: 0.5rem;
         align-items: flex-start;
-        padding: 0.25rem 0;
+        padding: 0.5rem 0;
+        min-height: calc(var(--nav-height) - 1.5rem);
     }
     
     .slogan-container { 
@@ -1645,6 +1652,7 @@ nav .container {
         margin-bottom: var(--footer-height);
         min-height: calc(100vh - var(--nav-height) - var(--footer-height));
         height: calc(100vh - var(--nav-height) - var(--footer-height));
+        padding-top: 10px; /* Extra breathing room for growing header */
     }
 }
 
@@ -1853,8 +1861,8 @@ nav .container {
     }
     
     nav {
-        padding: 0.5rem 0.5rem;
-        min-height: 50px;
+        padding: 0.5rem;
+        min-height: var(--nav-height);
         height: auto;
     }
     
@@ -1863,7 +1871,8 @@ nav .container {
         flex-wrap: wrap;
         overflow: visible;
         align-items: flex-start;
-        padding: 0.25rem 0;
+        padding: 0.5rem 0;
+        min-height: calc(var(--nav-height) - 1rem);
     }
     
     nav .container > * {
@@ -1879,11 +1888,12 @@ nav .container {
     }
     
     .layout {
-        margin-top: 70px;
-        margin-bottom: 45px;
-        min-height: calc(100vh - 115px);
-        height: calc(100vh - 115px);
+        margin-top: var(--nav-height);
+        margin-bottom: var(--footer-height);
+        min-height: calc(100vh - var(--nav-height) - var(--footer-height));
+        height: calc(100vh - var(--nav-height) - var(--footer-height));
         padding: 0;
+        padding-top: 20px; /* Maximum extra space for header growth */
     }
     
     .sidebar.active {
@@ -1995,16 +2005,17 @@ nav .container {
 /* Small devices (phones, 375px to 576px) */
 @media (min-width: 375px) and (max-width: 575px) {
     nav {
-        min-height: 55px;
+        min-height: var(--nav-height);
         height: auto;
-        padding: 0.6rem 0.8rem;
+        padding: 0.8rem;
     }
     
     nav .container {
         flex-wrap: wrap;
         gap: 0.4rem;
         align-items: flex-start;
-        padding: 0.3rem 0;
+        padding: 0.4rem 0;
+        min-height: calc(var(--nav-height) - 1.6rem);
     }
     
     .layout {
@@ -2012,6 +2023,7 @@ nav .container {
         margin-bottom: var(--footer-height);
         min-height: calc(100vh - var(--nav-height) - var(--footer-height));
         height: calc(100vh - var(--nav-height) - var(--footer-height));
+        padding-top: 15px; /* Extra space for header growth */
     }
     
     .slide-number-display {
@@ -2047,7 +2059,7 @@ nav .container {
 /* Medium small devices (tablets, 576px to 768px) */
 @media (min-width: 576px) and (max-width: 767px) {
     nav {
-        min-height: 60px;
+        min-height: var(--nav-height);
         height: auto;
         padding: 0.7rem 1rem;
     }
@@ -2056,7 +2068,8 @@ nav .container {
         flex-wrap: wrap;
         gap: 0.6rem;
         align-items: flex-start;
-        padding: 0.3rem 0;
+        padding: 0.4rem 0;
+        min-height: calc(var(--nav-height) - 1.4rem);
     }
     
     .layout {
@@ -2064,6 +2077,7 @@ nav .container {
         margin-bottom: var(--footer-height);
         min-height: calc(100vh - var(--nav-height) - var(--footer-height));
         height: calc(100vh - var(--nav-height) - var(--footer-height));
+        padding-top: 12px; /* Extra space for header growth */
     }
     
     .slide-number-display {
@@ -2167,8 +2181,17 @@ nav .container {
 /* Landscape orientation fixes */
 @media (max-width: 768px) and (orientation: landscape) {
     :root {
-        --nav-height: 60px;
-        --footer-height: 40px;
+        --nav-height: 70px; /* Reduced for landscape */
+        --footer-height: 35px;
+    }
+    
+    nav {
+        padding: 0.4rem 1rem;
+    }
+    
+    nav .container {
+        padding: 0.2rem 0;
+        min-height: calc(var(--nav-height) - 0.8rem);
     }
     
     .layout {
@@ -2176,6 +2199,7 @@ nav .container {
         margin-bottom: var(--footer-height);
         min-height: calc(100vh - var(--nav-height) - var(--footer-height));
         height: calc(100vh - var(--nav-height) - var(--footer-height));
+        padding-top: 5px; /* Minimal extra space in landscape */
     }
     
     .slide-number-display {
