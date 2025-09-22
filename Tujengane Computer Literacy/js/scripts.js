@@ -973,17 +973,145 @@ const modules = [
                 <li>Share and present ideas confidently.</li>
                 <li>Use computers for daily life!</li>
             </ol><div class="ai-action-box">⏳ <strong>Note:</strong> Capstone skills help in real life.</div></div>` },
-            { title: "Q&A and Next Steps", content: `<div class="ai-slide-block"><ol class='highlight-list'>
-                <li><strong>Ask:</strong> Any questions about the project?</li>
-                <li><strong>Next Steps:</strong>
-                    <ol>
-                        <li>Keep practicing all tools.</li>
-                        <li>Explore more features (e.g., Google Docs).</li>
-                        <li>Share your skills with others!</li>
-                    </ol>
-                </li>
-                <li><strong>Certificate:</strong> Celebrate your completion!</li>
-            </ol><div class="ai-action-box">🎓 <strong>Encourage:</strong> Ask questions and distribute certificates.</div></div>` }
+            { title: "Q&A and Next Steps", content: `<div class="ai-slide-block">
+                <!-- 🎉 CELEBRATION HEADER 🎉 -->
+                <div style="text-align: center; margin-bottom: 2rem; padding: 2rem 1rem; background: linear-gradient(135deg, #facc15, #fbbf24, #f59e0b); border-radius: 20px; box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3); position: relative; overflow: hidden;">
+                    <h2 style="font-size: 2.5rem; font-weight: 900; color: #1e293b; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); position: relative; z-index: 1;">
+                        🎉 CONGRATULATIONS! 🎉
+                    </h2>
+                    <h3 style="font-size: 1.8rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; position: relative; z-index: 1;">
+                        You've Mastered Computer Literacy! 💻✨
+                    </h3>
+                    <p style="font-size: 1.2rem; color: #374151; font-weight: 600; position: relative; z-index: 1;">
+                        13 weeks of learning complete • Digital skills unlocked • Future secured! 🚀
+                    </p>
+                </div>
+
+                <!-- COMPLETION ACHIEVEMENTS -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">💪</div>
+                        <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Skills Mastered</h4>
+                        <p style="font-size: 1rem; opacity: 0.9;">Word, Excel, PowerPoint, Email, Internet Safety & More!</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+                        <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Achievement Unlocked</h4>
+                        <p style="font-size: 1rem; opacity: 0.9;">Digital Literacy Champion - Ready for the Modern World!</p>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATE REQUEST SECTION -->
+                <div style="margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, #49A078, #3e8865); border-radius: 20px; text-align: center; color: white; box-shadow: 0 12px 35px rgba(73, 160, 120, 0.4); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50px; right: -50px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: bounce 3s infinite;"></div>
+                    <div style="position: absolute; bottom: -30px; left: -30px; width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: bounce 2s infinite reverse;"></div>
+                    
+                    <div style="position: relative; z-index: 2;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem; animation: pulse 2s infinite;">📜</div>
+                        <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                            Get Your Official Certificate!
+                        </h3>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; line-height: 1.5;">
+                            Showcase your new digital skills to employers, friends, and family.<br>
+                            <strong>Your certificate is just one click away!</strong> 🌟
+                        </p>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <input type="text" id="full-name-input" placeholder="✏️ Enter your full name here" 
+                                   style="width: 100%; max-width: 400px; padding: 16px 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 12px; font-size: 1.1rem; font-weight: 600; background: rgba(255,255,255,0.15); color: white; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease;" 
+                                   onkeyup="this.style.background = this.value ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.15)'; this.style.borderColor = this.value ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.3)';"
+                                   onfocus="this.style.transform = 'scale(1.02)'; this.style.boxShadow = '0 5px 20px rgba(255,255,255,0.2)';"
+                                   onblur="this.style.transform = 'scale(1)'; this.style.boxShadow = 'none';">
+                        </div>
+                        
+                        <a href="https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20Computer%20Literacy" 
+                           id="certificate-link" target="_blank" rel="noopener noreferrer"
+                           style="display: inline-block; background: linear-gradient(135deg, #facc15, #fbbf24); color: #1e293b; padding: 18px 36px; border-radius: 12px; font-weight: 800; font-size: 1.2rem; text-decoration: none; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4); transition: all 0.3s ease; border: 2px solid rgba(255,255,255,0.2);"
+                           onmouseover="this.style.transform = 'translateY(-2px) scale(1.05)'; this.style.boxShadow = '0 12px 35px rgba(251, 191, 36, 0.6)';"
+                           onmouseout="this.style.transform = 'translateY(0) scale(1)'; this.style.boxShadow = '0 8px 25px rgba(251, 191, 36, 0.4)';">
+                           🎯 REQUEST MY CERTIFICATE NOW! 📜
+                        </a>
+                        
+                        <p style="margin-top: 1.5rem; font-size: 1rem; opacity: 0.85; line-height: 1.4;">
+                            💡 <strong>Pro Tip:</strong> Enter your name above, then click to get your personalized certificate via WhatsApp!<br>
+                            ⚡ <strong>Response Time:</strong> Usually within 1 hour during business hours
+                        </p>
+                    </div>
+                </div>
+
+                <!-- WHAT'S NEXT SECTION -->
+                <div style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; padding: 2rem; border-radius: 16px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);">
+                    <h3 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                        🚀 Ready for Your Next Adventure?
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">📊</div>
+                            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Data Analysis Skills</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.9; margin-bottom: 1rem;">Master Excel, Power BI, and analytics</p>
+                            <a href="../Tujengane Analyst Pro/analystpro.html" target="_blank" 
+                               style="background: #facc15; color: #1e293b; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; transition: all 0.2s ease;"
+                               onmouseover="this.style.transform = 'scale(1.05)'"
+                               onmouseout="this.style.transform = 'scale(1)'">
+                               Join Analyst Pro →
+                            </a>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.15); padding: 1.2rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px);">
+                            <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💼</div>
+                            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Professional Projects</h4>
+                            <p style="font-size: 0.95rem; opacity: 0.9; margin-bottom: 1rem;">Get real-world experience</p>
+                            <a href="https://exesbi.netlify.app" target="_blank" 
+                               style="background: #facc15; color: #1e293b; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; transition: all 0.2s ease;"
+                               onmouseover="this.style.transform = 'scale(1.05)'"
+                               onmouseout="this.style.transform = 'scale(1)'">
+                               Visit EXES BI →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FINAL ENCOURAGEMENT -->
+                <div style="text-align: center; background: linear-gradient(135deg, #f97316, #ea580c); color: white; padding: 2rem; border-radius: 16px; margin-top: 2rem; box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎊</div>
+                    <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem;">You're Now Digitally Empowered!</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.95;">
+                        Keep practicing, keep learning, and most importantly - <strong>keep growing!</strong><br>
+                        Share your new skills with others and help build a digitally literate community. 🌍✨
+                    </p>
+                </div>
+
+                <!-- CSS ANIMATIONS -->
+                <style>
+                    @keyframes bounce {
+                        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                        40% { transform: translateY(-10px); }
+                        60% { transform: translateY(-5px); }
+                    }
+                    
+                    @keyframes pulse {
+                        0% { transform: scale(1); }
+                        50% { transform: scale(1.1); }
+                        100% { transform: scale(1); }
+                    }
+                    
+                    #full-name-input::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                        font-weight: 600;
+                    }
+                    
+                    /* Responsive adjustments */
+                    @media (max-width: 768px) {
+                        /* Make text more readable on mobile */
+                        h2 { font-size: 2rem !important; }
+                        h3 { font-size: 1.4rem !important; }
+                        p { font-size: 1rem !important; }
+                        #full-name-input { font-size: 1rem !important; padding: 14px 18px !important; }
+                        a[id="certificate-link"] { font-size: 1rem !important; padding: 14px 24px !important; }
+                    }
+                </style>
+            </div>` }
         ]
     }
 
@@ -1073,7 +1201,11 @@ function updateSlide(moduleIndex, slideIndex) {
 
         // If this is the last slide of the last module, start celebration
         if (moduleIndex === modules.length - 1 && slideIndex === modules[moduleIndex].slides.length - 1) {
-            try { startCelebrationCL(); } catch (e) {}
+            try { 
+                startCelebrationCL(); 
+                // Initialize certificate request functionality if it exists
+                initializeCertificateRequest();
+            } catch (e) {}
         }
     } else {
         currentSlideDisplay.textContent = 0;
@@ -1114,6 +1246,20 @@ function setSidebarNumbersCL() {
 
 // Run once on load to tidy sidebar numbering.
 try { setSidebarNumbersCL(); } catch (e) {}
+
+// Certificate request functionality (from Data Basics system)
+function initializeCertificateRequest() {
+    const nameInput = document.getElementById('full-name-input');
+    const certLink = document.getElementById('certificate-link');
+    if (nameInput && certLink) {
+        nameInput.addEventListener('input', () => {
+            const fullName = encodeURIComponent(nameInput.value.trim());
+            certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20Computer%20Literacy&name=${fullName}`;
+            // Ensure the WhatsApp link opens in a new tab/window
+            try { certLink.target = '_blank'; certLink.rel = 'noopener noreferrer'; } catch (e) {}
+        });
+    }
+}
 
 function toggleModule(moduleIndex) {
     const moduleToggles = document.querySelectorAll('.module-toggle');
