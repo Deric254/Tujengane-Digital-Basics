@@ -73,8 +73,9 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0.125rem 0;
     height: 100%;
-    max-height: calc(100vh - 110px - 0.25rem);
+    max-height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #facc15 #3e8865;
     border-radius: 0;
@@ -100,8 +101,9 @@ html {
 
 @media (min-width: 769px) {
     .sidebar {
-        max-height: calc(100vh - 110px - 0.25rem);
+        max-height: 100%;
         overflow-y: auto;
+        overflow-x: hidden;
         scrollbar-width: thin;
         scrollbar-color: #facc15 #3e8865;
         border-radius: 0;
@@ -235,8 +237,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     box-sizing: border-box;
     height: 100%;
 }
@@ -251,6 +252,7 @@ html {
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
 }
 
 .slide-number-display {
@@ -1020,26 +1022,44 @@ nav .container {
 }
 
 @media (min-width: 769px) {
+    body {
+        overflow: hidden; /* Prevent full page scroll on desktop */
+    }
+    
     .sidebar {
         display: block;
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     .layout {
         flex-direction: row;
-        margin-top: 60px;
-        margin-bottom: 50px;
+        margin-top: var(--nav-height);
+        margin-bottom: var(--footer-height);
+        height: calc(100vh - var(--nav-height) - var(--footer-height));
+        max-height: calc(100vh - var(--nav-height) - var(--footer-height));
+        overflow: hidden; /* No independent scrolling */
     }
     .main-content {
         padding: 1rem;
+        overflow: hidden; /* Prevent main content from scrolling independently */
+        height: 100%;
+        max-height: 100%;
     }
     .slide-container-wrapper {
         max-width: 1200px;
-        min-height: calc(100vh - 180px);
+        height: 100%;
+        max-height: 100%;
+        overflow: hidden; /* Container should not scroll */
     }
     .slide {
         max-width: 800px;
         padding: 2rem;
-        min-height: calc(100vh - 180px);
-        max-height: calc(100vh - 180px);
+        height: 100%;
+        max-height: 100%;
+        overflow-y: auto; /* Only individual slides can scroll internally */
+        overflow-x: hidden;
     }
     .navigation {
         position: absolute;
@@ -1055,10 +1075,10 @@ nav .container {
         padding: 0.75rem;
     }
     .footer {
-        height: 50px;
+        height: var(--footer-height);
     }
     
-        /* Hide mobile nav dropdown on desktop */
+    /* Hide mobile nav dropdown on desktop */
     .mobile-nav-dropdown {
         display: none !important;
     }
