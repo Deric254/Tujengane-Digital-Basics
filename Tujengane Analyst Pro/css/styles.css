@@ -1070,3 +1070,41 @@ nav .container {
     background: transparent;
     padding: 0.125rem 0.25rem;
 }
+
+/* Additional mobile styles - previously inline */
+@media (max-width: 768px) {
+    .slogan-container { 
+        display: none !important; 
+    }
+}
+
+/* Footer responsive styles - previously inline */
+@media (max-width: 768px) {
+    .footer .container { 
+        flex-wrap: wrap !important; 
+    }
+    .footer-home-link {
+        display: inline-block !important;
+        font-weight: 600;
+        color: #256d4f !important;
+        background: #fff;
+        border-radius: 6px;
+        padding: 0.3em 1.1em;
+        margin-left: auto;
+        margin-right: 0.1em;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        border: 1px solid #49A078;
+        order: 99;
+        min-width: 60px;
+        text-align: center;
+    }
+    .footer-home-link:hover { 
+        background: #49A078; 
+        color: #fff !important; 
+    }
+}
+@media (min-width: 769px) {
+    .footer-home-link { 
+        display: none !important; 
+    }
+}
