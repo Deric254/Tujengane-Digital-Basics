@@ -373,6 +373,71 @@ html {
 
 /* Extra small screens - closer spacing */
 @media (max-width: 480px) {
+    /* Header responsive height approach */
+    nav {
+        padding: 0.75rem 0.5rem !important;
+        min-height: 60px !important;
+        height: auto !important;
+    }
+    
+    nav .container {
+        gap: 0.5rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        min-height: 60px !important;
+    }
+    
+    /* Logo and text container - allow natural sizing */
+    nav .container > div:first-child {
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    /* Logo image - reasonable size */
+    nav .container > div:first-child img {
+        width: 40px !important;
+        height: 40px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Header title text - allow wrapping if needed */
+    nav .container > div:first-child span {
+        font-size: 1rem !important;
+        line-height: 1.3 !important;
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+        word-wrap: break-word !important;
+    }
+    
+    /* Hamburger button - normal size */
+    .hamburger {
+        padding: 0.5rem !important;
+        font-size: 1.25rem !important;
+        flex-shrink: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Adjust layout to account for dynamic header */
+    .layout {
+        margin-top: 80px !important;
+        margin-bottom: 50px !important;
+        height: calc(100vh - 130px) !important;
+    }
+    
+    /* Hide slogan completely on very small screens to save space */
+    .slogan-container {
+        display: none !important;
+    }
+    
     #floatingHomeBtn {
         bottom: 110px !important;
         right: 15px !important;
@@ -892,7 +957,8 @@ nav {
     left: 0;
     right: 0;
     z-index: 50;
-    height: 60px;
+    min-height: 60px;
+    height: auto;
 }
 
 nav .container {
@@ -902,6 +968,8 @@ nav .container {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    flex-wrap: wrap;
+    min-height: 60px;
 }
 
 .slogan-container {
@@ -1143,6 +1211,24 @@ nav .container {
         overflow-y: auto !important;
         overflow-x: hidden !important;
         height: auto !important;
+    }
+    
+    /* Dynamic header height approach for mobile */
+    nav {
+        height: auto !important;
+        min-height: 60px !important;
+    }
+    
+    nav .container {
+        flex-wrap: wrap !important;
+        min-height: 60px !important;
+    }
+    
+    /* Adjust layout for dynamic header */
+    .layout {
+        margin-top: 80px !important;
+        margin-bottom: 50px !important;
+        height: calc(100vh - 130px) !important;
     }
     
     .sidebar {
@@ -1915,7 +2001,111 @@ nav .container {
     }
 }
 
+/* Critical fix for screens 370px and below */
+@media (max-width: 370px) {
+    /* Allow header to expand naturally */
+    nav {
+        padding: 0.5rem 0.3rem !important;
+        min-height: 60px !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+        position: fixed !important;
+        width: 100% !important;
+    }
+    
+    nav .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0.4rem !important;
+        flex-wrap: wrap !important;
+        box-sizing: border-box !important;
+        min-height: 60px !important;
+    }
+    
+    /* Logo container - allow natural flow */
+    nav .container > div:first-child {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
+    }
+    
+    /* Logo image - maintain reasonable size */
+    nav .container > div:first-child img {
+        width: 36px !important;
+        height: 36px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Text - maintain readability, allow wrapping */
+    nav .container > div:first-child span {
+        font-size: 0.9rem !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word !important;
+        flex-shrink: 1 !important;
+    }
+    
+    /* Hamburger - reasonable size */
+    .hamburger {
+        width: 40px !important;
+        height: 40px !important;
+        padding: 0.4rem !important;
+        font-size: 1.1rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Adjust layout to account for potentially taller header */
+    .layout {
+        margin-top: 90px !important;
+        height: calc(100vh - 140px) !important;
+    }
+}
+
 @media (max-width: 360px) {
+    /* Even smaller screens - allow header to expand */
+    nav {
+        padding: 0.4rem 0.25rem !important;
+        min-height: 60px !important;
+        height: auto !important;
+    }
+    
+    nav .container {
+        gap: 0.3rem !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        flex-wrap: wrap !important;
+        min-height: 60px !important;
+    }
+    
+    /* Logo - maintain visibility */
+    nav .container > div:first-child img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    /* Text - smaller but readable */
+    nav .container > div:first-child span {
+        font-size: 0.85rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Hamburger - functional size */
+    .hamburger {
+        padding: 0.35rem !important;
+        font-size: 1rem !important;
+        width: 38px !important;
+        height: 38px !important;
+    }
+    
+    /* Account for potentially taller header */
+    .layout {
+        margin-top: 100px !important;
+        height: calc(100vh - 150px) !important;
+    }
+    
     .slide-number-display {
         width: calc(100% - 1rem) !important;
         max-width: calc(100% - 1rem) !important;
