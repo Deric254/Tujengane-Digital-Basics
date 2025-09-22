@@ -215,13 +215,12 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to-br, #f0fdfa, #d9f99d);
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 /* Universal responsive utilities */
@@ -235,9 +234,10 @@ img, video, canvas, audio, iframe, embed, object {
     height: auto;
 }
 
-/* Prevent horizontal overflow */
+/* Prevent any body scrolling - containers handle their own */
 html {
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100vh;
 }
 
 /* Navigation feedback styles - Match Computer Literacy */
@@ -409,7 +409,6 @@ html {
     padding: 0.125rem;
     margin-top: 60px;
     margin-bottom: 50px;
-    min-height: calc(100vh - 110px);
     height: calc(100vh - 110px);
     overflow: hidden;
 }
@@ -424,8 +423,8 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0.125rem 0;
     height: 100%;
-    max-height: calc(100vh - 110px - 0.25rem);
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #facc15 #3e8865;
     border-radius: 0;
@@ -451,12 +450,21 @@ html {
 
 @media (min-width: 769px) {
     .sidebar {
-        max-height: calc(100vh - 110px - 0.25rem);
         overflow-y: auto;
+        overflow-x: hidden;
         scrollbar-width: thin;
         scrollbar-color: #facc15 #3e8865;
         border-radius: 0;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Ensure body stays locked to prevent full-page scrolling */
+    body {
+        overflow: hidden;
+    }
+    
+    html {
+        overflow: hidden;
     }
 }
 
@@ -593,13 +601,14 @@ html {
 .max-w-5xl {
     width: 100%;
     max-width: 1280px;
-    min-height: calc(100vh - 110px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
 }
 
 .slide-number-display {
@@ -626,11 +635,11 @@ html {
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex: 1;
     position: relative;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .slide {
@@ -639,8 +648,7 @@ html {
     background: linear-gradient(135deg, #ffffff, #e6fffa);
     border: 1px solid #e5e7eb;
     padding: 2rem;
-    min-height: calc(100vh - 180px);
-    max-height: calc(100vh - 180px);
+    height: 100%;
     display: none;
     flex-direction: column;
     justify-content: flex-start;
@@ -648,6 +656,7 @@ html {
     box-sizing: border-box;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -1085,19 +1094,23 @@ nav .container {
         flex-direction: row;
         margin-top: 60px;
         margin-bottom: 50px;
+        height: calc(100vh - 110px);
     }
     .main-content {
         padding: 1rem;
+        overflow: hidden;
     }
     .slide-container-wrapper {
         max-width: 1200px;
-        min-height: calc(100vh - 180px);
+        height: 100%;
+        overflow: hidden;
     }
     .slide {
         max-width: 800px;
         padding: 2rem;
-        min-height: calc(100vh - 180px);
-        max-height: calc(100vh - 180px);
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     .navigation {
         position: absolute;
@@ -1115,10 +1128,23 @@ nav .container {
     .footer {
         height: 50px;
     }
+    
+    /* Lock body and html from scrolling on desktop */
+    body, html {
+        overflow: hidden;
+        height: 100vh;
+    }
 }
 
 /* Main Mobile Responsive Section - Exact Computer Literacy Implementation */
 @media (max-width: 768px) {
+    /* Allow mobile scrolling by overriding desktop lock */
+    body, html {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+    }
+    
     .sidebar {
         display: none !important;
     }
