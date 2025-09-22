@@ -7,7 +7,7 @@
     <!-- Security meta tags (conservative, non-breaking defaults) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval' ; style-src 'self' https: 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https: wss:; font-src 'self' https: data:; frame-src 'self' https:; object-src 'none';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- X-Frame-Options removed - should be set by server headers, not meta tags -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <script src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js"></script>
@@ -55,6 +55,7 @@
     <link rel="shortcut icon" href="../assets/favicons/favicon.ico">
     <link rel="manifest" href="../assets/favicons/site.webmanifest">
     <meta name="theme-color" content="#ffffff">
+    <!-- Note: Tailwind CDN is used for development - consider installing via PostCSS/CLI for production -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -414,7 +415,8 @@
             </div>
         </div>
     </div>
-    <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio>
+    <!-- Audio element commented out to prevent 404 errors - add cheer.mp3 file if celebration sounds are needed -->
+    <!-- <audio id="cheerAudio" src="../assets/audio/cheer.mp3"></audio> -->
         <script src="./js/scripts.js"></script>
 </body>
 </html>
