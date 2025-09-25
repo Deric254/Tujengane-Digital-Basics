@@ -590,14 +590,65 @@
                     </div>
                 </section>
 
+                <!-- Clean dashboard mock images with CTA -->
+                <section class="dashboards-grid-section" style="margin-top:1.2rem;width:100%;">
+                    <div class="dashboards-grid" style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;width:100%;">
+                        <div class="dashboard-card" style="background:#fffbe6;border-radius:1rem;box-shadow:0 2px 8px rgba(250,204,21,0.08);padding:0.7rem 1rem;display:flex;flex-direction:column;align-items:center;">
+                            <img src="assets/dash1.JPG" alt="Dashboard 1" style="width:100%;border-radius:0.7rem;box-shadow:0 2px 8px rgba(250,204,21,0.10);margin-bottom:0.7rem;object-fit:cover;">
+                            <a href="my-projects.html" class="curriculum-link" style="background:#49A078;color:#fff;padding:0.5rem 1.1rem;font-weight:700;border-radius:0.5rem;box-shadow:0 2px 8px rgba(73,160,120,0.10);margin-top:0.3rem;width:100%;text-align:center;">See More Dashboards</a>
+                        </div>
+                        <div class="dashboard-card" style="background:#f0fdfa;border-radius:1rem;box-shadow:0 2px 8px rgba(73,160,120,0.08);padding:0.7rem 1rem;display:flex;flex-direction:column;align-items:center;">
+                            <img src="assets/dash2.JPG" alt="Dashboard 2" style="width:100%;border-radius:0.7rem;box-shadow:0 2px 8px rgba(73,160,120,0.10);margin-bottom:0.7rem;object-fit:cover;">
+                            <a href="my-projects.html" class="curriculum-link" style="background:#256d4f;color:#fff;padding:0.5rem 1.1rem;font-weight:700;border-radius:0.5rem;box-shadow:0 2px 8px rgba(73,160,120,0.10);margin-top:0.3rem;width:100%;text-align:center;">See More Dashboards</a>
+                        </div>
+                    </div>
+                    <style>
+                    @media (max-width: 900px) {
+                        .dashboards-grid { grid-template-columns:1fr !important; }
+                    }
+                    .dashboards-grid-section { width:100%; }
+                    .dashboard-card img { max-height:220px; }
+                    </style>
+                </section>
+
                 <!-- compact CTA footer inside main content -->
-                <section style="margin-top:1rem;display:flex;gap:0.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+
+                <!-- EXESBI Links Section for Large Screens -->
+
+                <!-- compact CTA footer inside main content (now last) -->
+                <section style="margin-top:2rem;display:flex;gap:0.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
                     <div style="font-weight:800;color:#0f172a;">Ready to start?</div>
                     <div style="display:flex;gap:0.5rem;">
                         <a href="Tujengane data basics/databasics.html" class="curriculum-link" style="padding:0.6rem 0.9rem;">Start Data Basics</a>
                         <a href="computer basicss/computerbasicss.html" class="curriculum-link" style="padding:0.6rem 0.9rem;">Start Computer Basics</a>
                     </div>
                 </section>
+                <!-- lightweight inline scripts for CTA behavior; small and fast -->
+                <script>
+                    // Starter kit delivery is via WhatsApp (real delivery). No fake downloads.
+                    var joinBtn = document.getElementById('joinWABtn');
+                    if (joinBtn) {
+                        joinBtn.addEventListener('click', function(){
+                            // prefills the WhatsApp message for starter kit request
+                            // nothing else to do here; WhatsApp link is target=_blank
+                        });
+                    }
+                </script>
+                <script>
+                // Show EXESBI links section only on large screens
+                function showExesbiLinksSection() {
+                    var exesbiSection = document.getElementById('exesbiLinksSection');
+                    if (exesbiSection) {
+                        if (window.innerWidth > 1024) {
+                            exesbiSection.style.display = 'flex';
+                        } else {
+                            exesbiSection.style.display = 'none';
+                        }
+                    }
+                }
+                window.addEventListener('DOMContentLoaded', showExesbiLinksSection);
+                window.addEventListener('resize', showExesbiLinksSection);
+                </script>
 
                 <!-- lightweight inline scripts for CTA behavior; small and fast -->
                 <script>
