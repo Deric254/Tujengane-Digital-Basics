@@ -311,6 +311,38 @@
             gap: 0.75rem;
             margin: 0.5rem 0;
         }
+        /* Custom Training Scrollable Styles */
+        .trainings-scroll-area {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .trainings-scroll-area::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        .training-card {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .training-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .training-card {
+                flex: 0 0 260px;
+                min-height: 220px;
+            }
+            .scroll-control {
+                width: 26px;
+                height: 26px;
+            }
+        }
+        @media (max-width: 480px) {
+            .training-card {
+                flex: 0 0 calc(100% - 10px);
+                min-height: 200px;
+            }
+        }
         @media (max-width: 1024px) {
             .sidebar { display: none !important; }
             .layout { flex-direction: column; padding: 0.5rem; gap: 0.5rem; }
@@ -444,6 +476,14 @@
                     <p>Essential skills for students and professionals, KES 100 per session.</p>
                 </div>
                 <div class="sidebar-item">
+                    <a href="#custom-training-section" style="display:flex;align-items:center;gap:0.5rem;background:#facc15;color:#92400e;">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Custom Trainings</span>
+                        <span style="margin-left:auto;background:#92400e;color:#fff;padding:0.15rem 0.45rem;border-radius:0.25rem;font-size:0.7rem;">NEW</span>
+                    </a>
+                    <p>Specialized training programs and simulations for specific skills.</p>
+                </div>
+                <div class="sidebar-item">
                     <a href="https://exesbi.netlify.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe-africa"></i> EXES BI Platform</a>
                     <p>Explore our advanced business intelligence platform.</p>
                 </div>
@@ -456,6 +496,30 @@
                     <p>Learn more about Deric Marangu, the Founder  of ExesBI and Tujengane Digital Skills.</p>
                 </div>
                 <!-- Compact mission / vision / core values — small, readable, no layout change -->
+                <!-- Featured Training Section -->
+                <div class="sidebar-item" style="margin-top:0.5rem;background: rgba(250,204,21,0.15);border:1px solid rgba(250,204,21,0.3);">
+                    <div style="font-weight:800;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;color:#facc15;">
+                        <i class="fas fa-star"></i><span>Featured Training</span>
+                    </div>
+                    <a href="other_trainings/kneck.html" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+                        <div style="background:#facc15;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-user-graduate" style="color:#92400e;font-size:14px;"></i>
+                        </div>
+                        <span>KNEC Exam Simulation</span>
+                        <span class="free-badge" style="margin-left:auto;font-size:0.7rem;">NEW</span>
+                    </a>
+                    <p style="margin-top:0.5rem;">Experience a realistic KNEC online exam with full camera verification and security features.</p>
+                    <div style="margin-top:0.5rem;display:flex;justify-content:space-between;align-items:center;">
+                        <a href="other_trainings/kneck.html" style="color:#facc15;font-size:0.8rem;font-weight:700;display:flex;align-items:center;gap:0.3rem;">
+                            <span>Try now</span>
+                            <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                        </a>
+                        <a href="#" class="share-link" data-share-url="other_trainings/kneck.html" style="background:rgba(255,255,255,0.1);color:#fff;border:none;padding:0.3rem 0.5rem;font-size:0.75rem;">
+                            <i class="fas fa-share-alt"></i> Share
+                        </a>
+                    </div>
+                </div>
+                
                 <div class="sidebar-item" style="margin-top:0.5rem; padding:0.75rem;">
                     <div style="font-weight:800;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;"><i class="fas fa-bullseye"></i><span>Our Purpose</span></div>
                     <div style="font-size:0.82rem;color:rgba(229,231,235,0.95);line-height:1.15;">Mission: Equip learners with practical digital skills that create income and opportunity.</div>
@@ -546,6 +610,172 @@
                     <div style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
                         <a href="computer basicss/computerbasicss.html" class="curriculum-link" style="padding:0.6rem 0.85rem;">Start Learning Now</a>
                         <a href="Tujengane analyst pro/analystpro.html" class="curriculum-link" style="padding:0.6rem 0.85rem;">View Analyst Pro</a>
+                    </div>
+                </section>
+
+                <!-- Custom Training Section with Scrollable List -->
+                <section id="custom-training-section" style="margin-top:1.5rem;">
+                    <h2 style="font-size:1.25rem;font-weight:800;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;">
+                        <i class="fas fa-graduation-cap" style="color:#49A078;"></i>
+                        Custom Training Programs
+                    </h2>
+                    <div style="background:linear-gradient(145deg, #f9fafb, #f0fdfa);padding:0.8rem;border-radius:0.8rem;margin-bottom:1rem;border:1px solid rgba(73, 160, 120, 0.1);">
+                        <p style="font-size:0.95rem;color:#374151;">
+                            Specialized training programs designed for unique learning needs and specific competencies.
+                            Browse our growing collection of simulations and practical exercises.
+                        </p>
+                    </div>
+                    
+                    <!-- Scrollable Training Cards Container -->
+                    <div class="custom-trainings-container" style="position:relative;margin-bottom:1rem;">
+                        <!-- Scroll Controls -->
+                        <button id="scroll-left" class="scroll-control" style="position:absolute;left:-12px;top:50%;transform:translateY(-50%);background:#49A078;color:white;width:30px;height:30px;border-radius:50%;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:10;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                            <i class="fas fa-chevron-left" style="font-size:12px;"></i>
+                        </button>
+                        <button id="scroll-right" class="scroll-control" style="position:absolute;right:-12px;top:50%;transform:translateY(-50%);background:#49A078;color:white;width:30px;height:30px;border-radius:50%;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:10;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+                            <i class="fas fa-chevron-right" style="font-size:12px;"></i>
+                        </button>
+                        
+                        <!-- Scrollable Area -->
+                        <div class="trainings-scroll-area" style="display:flex;gap:14px;overflow-x:auto;padding:0.5rem;scroll-behavior:smooth;scrollbar-width:thin;-webkit-overflow-scrolling:touch;padding-bottom:1rem;position:relative;">
+                            <!-- KNEC Exam Simulation -->
+                            <div class="training-card" style="flex:0 0 300px;background:white;border-radius:0.7rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-top:4px solid #facc15;display:flex;flex-direction:column;min-height:240px;position:relative;transition:transform 0.3s,box-shadow 0.3s;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;">
+                                    <div style="background:#facc15;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-user-graduate" style="color:#92400e;font-size:16px;"></i>
+                                    </div>
+                                    <h3 style="font-size:1.1rem;font-weight:700;margin:0;color:#1f2937;">KNEC Exam Simulation</h3>
+                                </div>
+                                <div style="flex-grow:1;">
+                                    <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.5rem;line-height:1.5;">Experience a realistic KNEC online exam environment with:</p>
+                                    <ul style="font-size:0.9rem;color:#4b5563;padding-left:1.2rem;margin:0.5rem 0;">
+                                        <li>Camera identity verification</li>
+                                        <li>Fullscreen security enforcement</li>
+                                        <li>Timed assessments</li>
+                                        <li>Network monitoring</li>
+                                    </ul>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+                                    <a href="other_trainings/kneck.html" class="curriculum-link" style="display:flex;align-items:center;gap:0.4rem;flex:1;justify-content:center;">
+                                        <i class="fas fa-external-link-alt" style="font-size:0.8rem;"></i> Open Simulation
+                                    </a>
+                                    <a href="#" class="share-link" data-share-url="other_trainings/kneck.html" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;">
+                                        <i class="fas fa-share-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Computer Proficiency Assessment -->
+                            <div class="training-card" style="flex:0 0 300px;background:white;border-radius:0.7rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-top:4px solid #0ea5e9;display:flex;flex-direction:column;min-height:240px;position:relative;transition:transform 0.3s,box-shadow 0.3s;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;">
+                                    <div style="background:#0ea5e9;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-desktop" style="color:#fff;font-size:16px;"></i>
+                                    </div>
+                                    <h3 style="font-size:1.1rem;font-weight:700;margin:0;color:#1f2937;">Computer Proficiency</h3>
+                                    <span style="background:#e5e7eb;color:#4b5563;font-weight:600;padding:0.2rem 0.5rem;border-radius:999px;font-size:0.7rem;">COMING SOON</span>
+                                </div>
+                                <div style="flex-grow:1;">
+                                    <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.5rem;line-height:1.5;">Test your computer skills with interactive assessments covering:</p>
+                                    <ul style="font-size:0.9rem;color:#4b5563;padding-left:1.2rem;margin:0.5rem 0;">
+                                        <li>Office applications</li>
+                                        <li>File management</li>
+                                        <li>Email communication</li>
+                                        <li>Web research</li>
+                                    </ul>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+                                    <button disabled class="curriculum-link" style="display:flex;align-items:center;gap:0.4rem;flex:1;justify-content:center;opacity:0.7;cursor:not-allowed;background:#e5e7eb;color:#6b7280;">
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Excel Skills Assessment -->
+                            <div class="training-card" style="flex:0 0 300px;background:white;border-radius:0.7rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-top:4px solid #22c55e;display:flex;flex-direction:column;min-height:240px;position:relative;transition:transform 0.3s,box-shadow 0.3s;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;">
+                                    <div style="background:#22c55e;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-file-excel" style="color:#fff;font-size:16px;"></i>
+                                    </div>
+                                    <h3 style="font-size:1.1rem;font-weight:700;margin:0;color:#1f2937;">Excel Skills Assessment</h3>
+                                    <span style="background:#e5e7eb;color:#4b5563;font-weight:600;padding:0.2rem 0.5rem;border-radius:999px;font-size:0.7rem;">COMING SOON</span>
+                                </div>
+                                <div style="flex-grow:1;">
+                                    <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.5rem;line-height:1.5;">Demonstrate your Excel proficiency through practical exercises:</p>
+                                    <ul style="font-size:0.9rem;color:#4b5563;padding-left:1.2rem;margin:0.5rem 0;">
+                                        <li>Data analysis</li>
+                                        <li>Formula mastery</li>
+                                        <li>PivotTables</li>
+                                        <li>Data visualization</li>
+                                    </ul>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+                                    <button disabled class="curriculum-link" style="display:flex;align-items:center;gap:0.4rem;flex:1;justify-content:center;opacity:0.7;cursor:not-allowed;background:#e5e7eb;color:#6b7280;">
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Web Development Basics -->
+                            <div class="training-card" style="flex:0 0 300px;background:white;border-radius:0.7rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-top:4px solid #8b5cf6;display:flex;flex-direction:column;min-height:240px;position:relative;transition:transform 0.3s,box-shadow 0.3s;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;">
+                                    <div style="background:#8b5cf6;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-code" style="color:#fff;font-size:16px;"></i>
+                                    </div>
+                                    <h3 style="font-size:1.1rem;font-weight:700;margin:0;color:#1f2937;">Web Development</h3>
+                                    <span style="background:#e5e7eb;color:#4b5563;font-weight:600;padding:0.2rem 0.5rem;border-radius:999px;font-size:0.7rem;">COMING SOON</span>
+                                </div>
+                                <div style="flex-grow:1;">
+                                    <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.5rem;line-height:1.5;">Learn web development fundamentals with interactive lessons:</p>
+                                    <ul style="font-size:0.9rem;color:#4b5563;padding-left:1.2rem;margin:0.5rem 0;">
+                                        <li>HTML structure</li>
+                                        <li>CSS styling</li>
+                                        <li>JavaScript basics</li>
+                                        <li>Responsive design</li>
+                                    </ul>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+                                    <button disabled class="curriculum-link" style="display:flex;align-items:center;gap:0.4rem;flex:1;justify-content:center;opacity:0.7;cursor:not-allowed;background:#e5e7eb;color:#6b7280;">
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Database Fundamentals -->
+                            <div class="training-card" style="flex:0 0 300px;background:white;border-radius:0.7rem;padding:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-top:4px solid #f97316;display:flex;flex-direction:column;min-height:240px;position:relative;transition:transform 0.3s,box-shadow 0.3s;">
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;">
+                                    <div style="background:#f97316;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-database" style="color:#fff;font-size:16px;"></i>
+                                    </div>
+                                    <h3 style="font-size:1.1rem;font-weight:700;margin:0;color:#1f2937;">Database Fundamentals</h3>
+                                    <span style="background:#e5e7eb;color:#4b5563;font-weight:600;padding:0.2rem 0.5rem;border-radius:999px;font-size:0.7rem;">COMING SOON</span>
+                                </div>
+                                <div style="flex-grow:1;">
+                                    <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.5rem;line-height:1.5;">Master database concepts with practical exercises:</p>
+                                    <ul style="font-size:0.9rem;color:#4b5563;padding-left:1.2rem;margin:0.5rem 0;">
+                                        <li>SQL queries</li>
+                                        <li>Database design</li>
+                                        <li>Data relationships</li>
+                                        <li>Basic administration</li>
+                                    </ul>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:0.5rem;margin-top:1rem;">
+                                    <button disabled class="curriculum-link" style="display:flex;align-items:center;gap:0.4rem;flex:1;justify-content:center;opacity:0.7;cursor:not-allowed;background:#e5e7eb;color:#6b7280;">
+                                        Coming Soon
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Indicator Dots -->
+                    <div id="scroll-indicators" class="scroll-indicators" style="display:flex;justify-content:center;gap:6px;margin:0.5rem 0 1rem;">
+                        <!-- Dots will be inserted via JavaScript -->
+                    </div>
+                    
+                    <div style="text-align:center;margin-top:0.8rem;">
+                        <a href="https://wa.me/254791360805?text=Hello%2C%20I'm%20interested%20in%20requesting%20a%20custom%20training%20program.%20Could%20you%20please%20provide%20more%20information%3F" target="_blank" rel="noopener noreferrer" class="curriculum-link" style="display:inline-flex;align-items:center;gap:0.4rem;background:#49A078;color:white;padding:0.5rem 1.2rem;">
+                            <i class="fab fa-whatsapp"></i> Request Custom Training
+                        </a>
                     </div>
                 </section>
 
@@ -698,6 +928,114 @@
     <!-- Toast for share feedback -->
     <div id="toast" aria-live="polite" style="position:fixed;right:1rem;bottom:1rem;background:#256d4f;color:#fff;padding:0.75rem 1rem;border-radius:0.6rem;box-shadow:0 8px 20px rgba(0,0,0,0.18);opacity:0;transform:translateY(8px);transition:all 260ms ease;z-index:1200;"></div>
     <script>
+        // Custom Training Scrollable Container
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollArea = document.querySelector('.trainings-scroll-area');
+            const scrollLeftBtn = document.getElementById('scroll-left');
+            const scrollRightBtn = document.getElementById('scroll-right');
+            const scrollIndicators = document.getElementById('scroll-indicators');
+            
+            if (scrollArea && scrollLeftBtn && scrollRightBtn && scrollIndicators) {
+                const cards = scrollArea.querySelectorAll('.training-card');
+                const cardWidth = 314; // 300px card + 14px gap
+                
+                // Create indicator dots
+                cards.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('scroll-indicator-dot');
+                    dot.style.width = '8px';
+                    dot.style.height = '8px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.background = index === 0 ? '#49A078' : '#e5e7eb';
+                    dot.style.transition = 'background-color 0.3s';
+                    dot.style.cursor = 'pointer';
+                    
+                    dot.addEventListener('click', () => {
+                        scrollArea.scrollLeft = index * cardWidth;
+                    });
+                    
+                    scrollIndicators.appendChild(dot);
+                });
+                
+                // Update active dot based on scroll position
+                scrollArea.addEventListener('scroll', () => {
+                    const scrollPos = scrollArea.scrollLeft;
+                    const activeIndex = Math.round(scrollPos / cardWidth);
+                    
+                    const dots = scrollIndicators.querySelectorAll('.scroll-indicator-dot');
+                    dots.forEach((dot, index) => {
+                        dot.style.background = index === activeIndex ? '#49A078' : '#e5e7eb';
+                    });
+                });
+                
+                // Scroll buttons functionality
+                scrollLeftBtn.addEventListener('click', () => {
+                    scrollArea.scrollBy({
+                        left: -cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                scrollRightBtn.addEventListener('click', () => {
+                    scrollArea.scrollBy({
+                        left: cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // Show/hide scroll buttons based on scroll position
+                function updateScrollButtons() {
+                    if (scrollArea.scrollLeft <= 10) {
+                        scrollLeftBtn.style.opacity = '0.5';
+                    } else {
+                        scrollLeftBtn.style.opacity = '1';
+                    }
+                    
+                    if (scrollArea.scrollLeft >= scrollArea.scrollWidth - scrollArea.clientWidth - 10) {
+                        scrollRightBtn.style.opacity = '0.5';
+                    } else {
+                        scrollRightBtn.style.opacity = '1';
+                    }
+                }
+                
+                scrollArea.addEventListener('scroll', updateScrollButtons);
+                updateScrollButtons(); // Initial check
+                
+                // Add touch-friendly scrolling for mobile devices
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+                
+                scrollArea.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    scrollArea.style.cursor = 'grabbing';
+                    startX = e.pageX - scrollArea.offsetLeft;
+                    scrollLeft = scrollArea.scrollLeft;
+                });
+                
+                scrollArea.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    scrollArea.style.cursor = 'grab';
+                });
+                
+                scrollArea.addEventListener('mouseup', () => {
+                    isDown = false;
+                    scrollArea.style.cursor = 'grab';
+                });
+                
+                scrollArea.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - scrollArea.offsetLeft;
+                    const walk = (x - startX) * 2; // Scroll speed
+                    scrollArea.scrollLeft = scrollLeft - walk;
+                });
+                
+                // Set initial cursor style
+                scrollArea.style.cursor = 'grab';
+            }
+        });
+    
         // Fun share: copy module link and show playful toast
         const toast = document.getElementById('toast');
         function showToast(msg) {
