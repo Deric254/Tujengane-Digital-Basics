@@ -60,8 +60,9 @@
   .violation-log{background:#fff1f1;color:#e11d48;border-left:4px solid #e11d48;padding:8px 12px;font-size:12px;margin-top:10px;max-width:90%;max-height:40vh;overflow-y:auto;text-align:left}
   .violation-log-item{margin:4px 0;padding:4px 0;border-bottom:1px solid rgba(225,29,72,0.2)}
   .text-input{background:#fff;border:1px solid #eef3fb;padding:8px;border-radius:6px;min-height:80px;width:100%}
-  .section-nav{display:flex;gap:10px;margin-top:12px;border-bottom:1px solid #eef3fb;padding-bottom:12px}
-  .section-nav button{background:transparent;color:var(--muted);border:1px solid #eef3fb;padding:8px 12px}
+  .question img{max-width:100%;margin:12px 0;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.1);border:1px solid #eef3fb}
+  .section-nav{display:flex;gap:8px;margin-top:12px;border-bottom:1px solid #eef3fb;padding-bottom:12px;flex-wrap:wrap}
+  .section-nav button{background:transparent;color:var(--muted);border:1px solid #eef3fb;padding:8px 10px;font-size:13px;white-space:nowrap}
   .section-nav button.active{background:var(--knc);color:#fff;border:none}
   .loader{width:40px;height:40px;border:4px solid #eef3fb;border-top-color:var(--knc);border-radius:50%;animation:spin 1s linear infinite}
   @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
@@ -88,7 +89,7 @@
       <div class="knc-mark" aria-hidden="true">KNEC</div>
       <div>
         <h1 id="apptitle" class="title">KNEC — Online Exam (Training)</h1>
-        <div class="subtitle">Kenya National Examinations Council — Invigilator Training Demo</div>
+        <div class="subtitle">Kenya National Examinations Council — Digital Skills Assessment</div>
       </div>
       <div class="head-right">
         <div id="session" style="font-weight:700">PRIMARY 4 — ENGLISH PAPER 1</div>
@@ -106,7 +107,6 @@
           <div class="step" id="step2">2</div>
           <div class="step" id="step3">3</div>
           <div class="step" id="step4">4</div>
-          <div class="step" id="step5">5</div>
         </div>
 
         <!-- 1. SYSTEM CHECK -->
@@ -191,7 +191,7 @@
               <div style="font-weight:700">Candidate Login</div>
               <div class="muted" style="margin-top:6px">Type candidate details exactly as on the attendance list.</div>
             </div>
-            <div class="muted" style="font-size:13px">Exam duration: <strong id="durLabel">30 min</strong></div>
+            <div class="muted" style="font-size:13px">Exam duration: <strong id="durLabel">45 min</strong></div>
           </div>
 
           <div style="margin-top:12px">
@@ -228,7 +228,7 @@
               <li>Use the question palette on the right to quickly jump to any question.</li>
               <li>Once you click "Submit Paper", you cannot change your answers.</li>
               <li>Do not attempt to leave the exam window or switch to another application.</li>
-              <li>If you experience technical issues, raise your hand to alert the invigilator.</li>
+              <li>If you experience technical issues, contact your instructor for assistance.</li>
             </ol>
           </div>
 
@@ -252,9 +252,13 @@
           </div>
 
           <div class="section-nav" id="section-nav">
-            <button class="active" data-section="section1">Section 1: Grammar</button>
-            <button data-section="section2">Section 2: Vocabulary</button>
-            <button data-section="section3">Section 3: Comprehension</button>
+            <button class="active" data-section="section1">Section 1: Basic Knowledge</button>
+            <button data-section="section2">Section 2: Computer Knowledge</button>
+            <button data-section="section3">Section 3: Software Applications</button>
+            <button data-section="section4">Section 4: Internet</button>
+            <button data-section="section5">Section 5: Hardware</button>
+            <button data-section="section6">Section 6: Essay</button>
+            <button data-section="section7">Section 7: Image Analysis</button>
           </div>
 
           <div class="progress" aria-hidden="true">
@@ -288,7 +292,7 @@
             
             <div style="padding:12px;margin:0 auto 18px;max-width:300px;background:#f9fafc;border-radius:6px">
               <div id="confirm-stats" style="text-align:left">
-                <div>Total questions: <strong>5</strong></div>
+                <div>Total questions: <strong>35</strong></div>
                 <div style="margin-top:4px">Answered: <strong id="confirm-answered">0</strong></div>
                 <div style="margin-top:4px">Unanswered: <strong id="confirm-unanswered">0</strong></div>
                 <div style="margin-top:4px">Flagged for review: <strong id="confirm-flagged">0</strong></div>
@@ -425,7 +429,7 @@
             
             <div style="margin-top:14px;padding:10px;background:#f9fafc;border-radius:6px;font-size:13px">
               <div style="font-weight:600">Question Statistics:</div>
-              <div style="margin-top:6px">Total Questions: <strong>5</strong></div>
+              <div style="margin-top:6px">Total Questions: <strong>35</strong></div>
               <div style="margin-top:4px">Answered: <strong id="stats-answered">0</strong></div>
               <div style="margin-top:4px">Correct: <strong id="stats-correct">0</strong></div>
               <div style="margin-top:4px">Incorrect: <strong id="stats-incorrect">0</strong></div>
@@ -441,7 +445,7 @@
     <div style="font-size:24px;margin-bottom:16px">⚠️ Warning: Exam Security Violation</div>
     <div style="font-size:18px;margin-bottom:24px">You have left the secure exam environment!</div>
     <div style="font-size:14px;max-width:400px;text-align:center;margin-bottom:20px">
-      In a real KNEC exam, this would be reported to invigilators and may be considered exam malpractice.
+      Please remain in fullscreen mode for the best assessment experience.
       The incident has been logged with details including time and nature of violation.
     </div>
     
@@ -455,19 +459,56 @@
 
 <script>
 /* CONFIG */
-const DURATION_MIN = 30; // realistic default
+const DURATION_MIN = 45; // increased for more questions
 const QUESTIONS = [
+  // Basic Knowledge Section
   {id:1, section:"section1", q:"1. Who is the President of Kenya?", choices:["William Ruto","Uhuru Kenyatta","Mwai Kibaki","Daniel arap Moi"], answer:0},
   {id:2, section:"section1", q:"2. 7 + 5 = ?", choices:["10","11","12","13"], answer:2},
-  {id:3, section:"section2", q:"3. Which of these is a vegetable?", choices:["Banana","Carrot","Mango","Bread"], answer:1},
-  {id:4, section:"section2", q:"4. The Sun rises from the _____.", choices:["West","East","North","South"], answer:1},
-  {id:5, section:"section3", q:"5. Which animal gives us milk?", choices:["Goat","Lion","Eagle","Snake"], answer:0},
+  {id:3, section:"section1", q:"3. Which of these is a vegetable?", choices:["Banana","Carrot","Mango","Bread"], answer:1},
+  {id:4, section:"section1", q:"4. The Sun rises from the _____.", choices:["West","East","North","South"], answer:1},
+  {id:5, section:"section1", q:"5. Which animal gives us milk?", choices:["Goat","Lion","Eagle","Snake"], answer:0},
   
-  // Text entry question example
-  {id:6, section:"section3", q:"6. Write a short sentence using the word 'happy'.", type:"text", answer:"Any sentence containing 'happy'"},
+  // Computer Knowledge Section
+  {id:6, section:"section2", q:"6. Which device is used for inputting data into a computer?", choices:["Monitor","Keyboard","Printer","Projector"], answer:1},
+  {id:7, section:"section2", q:"7. What does CPU stand for?", choices:["Central Processing Unit","Computer Personal Unit","Central Processor Utility","Computer Processing Upgrade"], answer:0},
+  {id:8, section:"section2", q:"8. Which of these is a storage device?", choices:["Speaker","Mouse","Hard Drive","Monitor"], answer:2},
+  {id:9, section:"section2", q:"9. The software used to browse the internet is called:", choices:["Operating System","Antivirus","Web Browser","Spreadsheet"], answer:2},
+  {id:10, section:"section2", q:"10. What is the main function of an operating system?", choices:["Edit text documents","Manage hardware and software resources","Create presentations","Calculate numerical data"], answer:1},
   
-  // Image-based question example
-  {id:7, section:"section3", q:"7. Look at the image below. What animal is shown?", image:"assets/img/lion.jpg", choices:["Lion","Tiger","Elephant","Giraffe"], answer:0},
+  // Software Applications Section
+  {id:11, section:"section3", q:"11. Which program is used to create spreadsheets?", choices:["Microsoft Word","Microsoft Excel","Microsoft PowerPoint","Microsoft Paint"], answer:1},
+  {id:12, section:"section3", q:"12. True or False: Microsoft PowerPoint is primarily used for text editing.", choices:["True","False"], answer:1},
+  {id:13, section:"section3", q:"13. What file extension is commonly used for PDF documents?", choices:[".txt",".doc",".pdf",".xls"], answer:2},
+  {id:14, section:"section3", q:"14. In Microsoft Word, the shortcut CTRL+S is used to:", choices:["Save","Select All","Spell Check","Search"], answer:0},
+  {id:15, section:"section3", q:"15. What is the function of CTRL+Z in most applications?", choices:["Zoom","Redo","Copy","Undo"], answer:3},
+  
+  // Internet and Communication
+  {id:16, section:"section4", q:"16. What does URL stand for?", choices:["Universal Resource Locator","Uniform Resource Locator","United Resource Link","Universal Remote Link"], answer:1},
+  {id:17, section:"section4", q:"17. Which of these is a valid email address format?", choices:["www.example@com","user@example","user@example.com","@example.com"], answer:2},
+  {id:18, section:"section4", q:"18. What is the purpose of an email attachment?", choices:["To secure the email","To send files with an email","To create a backup of the email","To verify the sender's identity"], answer:1},
+  {id:19, section:"section4", q:"19. Which of these is NOT a web browser?", choices:["Google Chrome","Mozilla Firefox","Internet Explorer","Microsoft Office"], answer:3},
+  {id:20, section:"section4", q:"20. What does HTTP stand for?", choices:["HyperText Transfer Protocol","High Tech Transfer Process","HyperText Technical Processing","HyperTool Transfer Protocol"], answer:0},
+  
+  // Hardware Section
+  {id:21, section:"section5", q:"21. Which component stores data permanently even when the computer is turned off?", choices:["RAM","CPU","Hard Drive","Monitor"], answer:2},
+  {id:22, section:"section5", q:"22. What unit of measurement is used for storage capacity?", choices:["Hertz","Pixel","Byte","Voltage"], answer:2},
+  {id:23, section:"section5", q:"23. Which of these is an output device?", choices:["Keyboard","Mouse","Scanner","Speaker"], answer:3},
+  {id:24, section:"section5", q:"24. What does RAM stand for?", choices:["Read Access Memory","Random Access Memory","Remote Access Module","Read-only Access Memory"], answer:1},
+  {id:25, section:"section5", q:"25. Which of these is NOT a pointing device?", choices:["Mouse","Touchpad","Joystick","Printer"], answer:3},
+  
+  // Text Entry Questions
+  {id:26, section:"section6", q:"26. Write a short essay explaining what a computer virus is, how it spreads, and at least three ways to protect your computer from virus infections.", type:"text", answer:"Any comprehensive explanation of computer viruses and protection methods"},
+  {id:27, section:"section6", q:"27. Describe the purpose of passwords in digital security. Explain what makes a strong password and why using different passwords for different accounts is recommended.", type:"text", answer:"Any valid explanation about password security principles"},
+  {id:28, section:"section6", q:"28. Compare and contrast cloud storage versus local storage. Discuss advantages and disadvantages of each approach with at least two examples.", type:"text", answer:"Any balanced comparison of cloud vs local storage with examples"},
+  {id:29, section:"section6", q:"29. Explain the concept of phishing in cybersecurity. Describe how to identify phishing attempts and what steps to take if you suspect you've received a phishing message.", type:"text", answer:"Any comprehensive explanation of phishing and protection strategies"},
+  {id:30, section:"section6", q:"30. Discuss the importance of software updates. Why should users regularly update their operating systems and applications? What risks might outdated software pose?", type:"text", answer:"Any thorough explanation of software update importance and risks"},
+  
+  // Image-based Questions
+  {id:31, section:"section7", q:"31. Look at the image below. Which computer component is shown?", image:"../assets/dash1.JPG", choices:["Motherboard","Hard Drive","Graphics Card","Power Supply"], answer:0},
+  {id:32, section:"section7", q:"32. What is the function of the highlighted icon in the image?", image:"../assets/dash2.JPG", choices:["Start a program","Close a window","Save a file","Print a document"], answer:2},
+  {id:33, section:"section7", q:"33. Identify the type of connection port shown in the image?", image:"../assets/logo.png", choices:["HDMI","USB","VGA","Ethernet"], answer:1},
+  {id:34, section:"section7", q:"34. What type of chart is displayed in the image below?", image:"../assets/dash1.JPG", choices:["Bar Chart","Pie Chart","Line Graph","Scatter Plot"], answer:0},
+  {id:35, section:"section7", q:"35. Based on the logo shown below, which of these best describes the organization?", image:"../assets/Tujengane Digital Skills Logo.png", choices:["Financial Institution","Educational Platform","Government Agency","Social Media Company"], answer:1}
 ];
 
 /* STATE */
@@ -522,8 +563,7 @@ const stepIndicators = [
   document.getElementById('step1'),
   document.getElementById('step2'),
   document.getElementById('step3'),
-  document.getElementById('step4'),
-  document.getElementById('step5')
+  document.getElementById('step4')
 ];
 
 // System check elements
@@ -674,10 +714,13 @@ function updateStep(step) {
   
   // Update step indicators
   stepIndicators.forEach((indicator, index) => {
-    if (index + 1 < step) {
+    // Our steps are now 1-based
+    const stepValue = parseInt(indicator.textContent);
+    
+    if (stepValue < step) {
       indicator.classList.remove('active');
       indicator.classList.add('done');
-    } else if (index + 1 === step) {
+    } else if (stepValue === step) {
       indicator.classList.add('active');
       indicator.classList.remove('done');
     } else {
@@ -685,13 +728,13 @@ function updateStep(step) {
     }
   });
   
-  // Enable fullscreen when entering exam (step 5)
-  if (step === 5) {
+  // Enable fullscreen when entering exam (step 4)
+  if (step === 4) {
     requestFullscreen();
     
     // Add fullscreen requirement to security checks
     const fsCheck = setInterval(() => {
-      if (state.step === 5 && state.started && !state.submitted) {
+      if (state.step === 4 && state.started && !state.submitted) {
         checkFullscreenState();
       } else {
         clearInterval(fsCheck);
@@ -700,11 +743,11 @@ function updateStep(step) {
   }
   
   // Hide all cards and sidebars
-  [systemCheckCard, invigilatorCard, loginCard, instructionsCard, examCard, confirmSubmitCard, submittingCard, finishCard, reviewCard].forEach(card => {
+  [systemCheckCard, loginCard, instructionsCard, examCard, confirmSubmitCard, submittingCard, finishCard, reviewCard].forEach(card => {
     card.style.display = 'none';
   });
   
-  [systemCheckSidebar, invigilatorSidebar, examSidebar, resultsSidebar].forEach(sidebar => {
+  [systemCheckSidebar, examSidebar, resultsSidebar].forEach(sidebar => {
     sidebar.style.display = 'none';
   });
   
@@ -714,31 +757,14 @@ function updateStep(step) {
       systemCheckCard.style.display = 'block';
       systemCheckSidebar.style.display = 'block';
       break;
-    case 2: // Invigilator Verification
-      invigilatorCard.style.display = 'block';
-      // Initialize the camera when we reach invigilator verification
-      if (cameraButton) {
-        // Reset any previous verifications
-        state.candidatePhotoVerified = false;
-        state.candidatePhotoData = null;
-        snapshotContainer.style.display = 'none';
-        
-        // Start with a button to activate camera (for privacy)
-        cameraStatus.textContent = "Click 'Start Camera' to begin verification";
-        cameraStatus.className = "camera-status";
-        cameraButton.textContent = "📷";
-      }
-      invigilatorSidebar.style.display = 'block';
-      break;
-    case 3: // Candidate Login
+    case 2: // Candidate Login
       loginCard.style.display = 'block';
-      invigilatorSidebar.style.display = 'block';
       break;
-    case 4: // Instructions
+    case 3: // Instructions
       instructionsCard.style.display = 'block';
       examSidebar.style.display = 'block';
       break;
-    case 5: // Exam
+    case 4: // Exam
       examCard.style.display = 'block';
       examSidebar.style.display = 'block';
       break;
@@ -752,7 +778,7 @@ function renderGrid(){
   qGrid.innerHTML = '';
   
   // Filter questions by active section if in exam mode
-  const displayQuestions = state.step === 5 
+  const displayQuestions = state.step === 4 
     ? QUESTIONS.filter(q => q.section === state.activeSection || !q.section)
     : QUESTIONS;
   
@@ -866,15 +892,27 @@ function renderQuestion() {
 
 function updateStatus() {
   // Count total questions per section
-  const displayQuestions = state.step === 5 
+  const displayQuestions = state.step === 4 
     ? QUESTIONS.filter(q => q.section === state.activeSection || !q.section)
     : QUESTIONS;
   
-  const totalQuestions = displayQuestions.length;
+  // Get unique question IDs for the section
+  const uniqueQuestionIds = new Set();
+  displayQuestions.forEach(q => uniqueQuestionIds.add(q.id));
+  
+  const totalQuestions = uniqueQuestionIds.size;
   
   // Count answered questions
   const answeredCount = Object.keys(state.answers).length;
-  const displayAnswered = displayQuestions.filter(q => state.answers[q.id] !== undefined).length;
+  
+  // Count unique answered questions in the current section
+  const answeredIds = new Set();
+  displayQuestions.forEach(q => {
+    if (state.answers[q.id] !== undefined) {
+      answeredIds.add(q.id);
+    }
+  });
+  const displayAnswered = answeredIds.size;
   
   // Update progress bar
   const pct = totalQuestions > 0 ? Math.round(100 * (displayAnswered / totalQuestions)) : 0;
@@ -889,7 +927,7 @@ function updateStatus() {
   // Update confirmation stats if visible
   if (confirmSubmitCard.style.display !== 'none') {
     confirmAnswered.textContent = answeredCount;
-    confirmUnanswered.textContent = QUESTIONS.length - answeredCount;
+    confirmUnanswered.textContent = 35 - answeredCount; // Hardcoded total of 35 unique questions
     confirmFlagged.textContent = flaggedCount;
   }
 }
@@ -1389,7 +1427,7 @@ function initializeSystemCheck() {
       state.systemRequirements = systemRequirements;
       state.requirementsFailed = requirementsFailed;
       save();
-      updateStep(2); // Move to invigilator verification
+      updateStep(2); // Move directly to candidate login
     });
     
     systemLoader.parentNode.appendChild(continueBtn);
@@ -1436,7 +1474,7 @@ function isFullscreen() {
 }
 
 function checkFullscreenState() {
-  if (!isFullscreen() && state.step === 5) {
+  if (!isFullscreen() && state.step === 4) {
     // Not in fullscreen while in exam
     fullscreenNotice.style.display = 'flex';
     logViolation('Left fullscreen mode');
@@ -1465,22 +1503,7 @@ confirmPhotoBtn.addEventListener('click', () => {
   confirmPhotoIdentity();
 });
 
-// Invigilator verification
-verifyPin.addEventListener('click', () => {
-  const pin = invPin.value.trim();
-  if (pin !== '123456') {
-    alert('Invalid PIN. For this demo, use 123456.');
-    return;
-  }
-  
-  if (!state.candidatePhotoVerified) {
-    cameraStatus.textContent = "You must verify candidate identity with photo before proceeding.";
-    cameraStatus.className = "camera-status error";
-    return;
-  }
-  
-  updateStep(3); // Move to candidate login
-});
+// Invigilator verification removed
 
 // Candidate login
 startBtn.addEventListener('click', () => {
@@ -1493,7 +1516,7 @@ startBtn.addEventListener('click', () => {
   
   state.candidate = name;
   state.indexNo = idx;
-  updateStep(4); // Move to instructions
+  updateStep(3); // Move to instructions
   save();
 });
 
@@ -1501,7 +1524,7 @@ startBtn.addEventListener('click', () => {
 beginExamBtn.addEventListener('click', () => {
   state.started = true;
   state.timeLeft = DURATION_MIN * 60;
-  updateStep(5); // Move to exam
+  updateStep(4); // Move to exam
   renderGrid();
   renderQuestion();
   startTimer();
@@ -1934,7 +1957,11 @@ function autoSubmit(timeout = false) {
   // Calculate results
   let correct = 0, attempted = 0, incorrect = 0;
   
+  // Use a Set to track unique question IDs
+  const uniqueQuestionIds = new Set();
+  
   QUESTIONS.forEach(q => {
+    uniqueQuestionIds.add(q.id);
     const a = state.answers[q.id];
     if (a !== undefined) {
       attempted++;
@@ -1946,7 +1973,7 @@ function autoSubmit(timeout = false) {
     }
   });
   
-  const total = QUESTIONS.length;
+  const total = 35; // Hardcoding the total as we know there are 35 unique questions
   const pct = Math.round(100 * (correct / total));
   
   // Store results in state for later use
@@ -2022,7 +2049,7 @@ if (state.step > 1) {
   updateStep(state.step);
   
   // If in exam mode and not submitted, restart timer
-  if (state.step === 5 && state.started && !state.submitted) {
+  if (state.step === 4 && state.started && !state.submitted) {
     renderGrid();
     renderQuestion();
     startTimer();
