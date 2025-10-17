@@ -92,13 +92,14 @@
             min-height: 0;
             gap: 0.5rem;
             padding: 0.5rem;
+            align-items: flex-start;
         }
         .sidebar {
             width: 280px;
             background: linear-gradient(135deg, #49A078, #3e8865);
             color: white;
             padding: 1.5rem;
-            border-radius: 1rem;
+            border-radius: 0;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
@@ -135,6 +136,7 @@
             text-decoration: none;
             outline: none;
             transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(250,204,21,0.3);
         }
         .sidebar-item p {
             color: #e5e7eb;
@@ -209,7 +211,9 @@
             overflow: hidden;
         }
         .curriculum-card:hover {
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: #facc15;
             z-index: 2;
         }
         .curriculum-title {
@@ -260,7 +264,26 @@
             text-decoration: none;
             border: 1px solid rgba(37,109,79,0.06);
         }
-        .share-link:hover { background:#f0fdf4; }
+        .share-link:hover { 
+            background:#facc15; 
+            color: #256d4f; 
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #facc15;
+            color: #256d4f;
+            transform: scale(1.1);
+        }
+        a.unified-cta:hover {
+            background: #facc15;
+            color: #256d4f;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(250,204,21,0.3);
+        }
+        .curriculum-link:hover {
+            color: #facc15;
+        }
         .curriculum-desc { margin-bottom: 1rem; }
         .curriculum-price {
             color: #49A078;
@@ -394,11 +417,16 @@
         }
         .footer-link {
             color: #49A078;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
             font-size: 1rem;
             border: 1px solid rgba(73, 160, 120, 0.3);
             border-radius: 0.25rem;
             padding: 0.25rem 0.5rem;
+        }
+        .footer-link:hover, .footer-link:focus {
+            color: #facc15;
+            transform: scale(1.2);
+            box-shadow: 0 4px 8px rgba(250,204,21,0.3);
         }
         .footer-copyright a:hover {
             color: #3e8865;
@@ -516,7 +544,10 @@
             transition: background 0.3s;
         }
         .hamburger-menu a:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            color: #facc15;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         @media (max-width: 640px) {
             .hamburger-menu {
@@ -559,6 +590,12 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.16) !important;
         }
         a.curriculum-link:focus, button:focus, .nav-btn:focus, .unified-cta:focus { outline: 3px solid rgba(73,160,120,0.14); outline-offset: 2px; }
+        @media (min-width: 1024px) {
+            .layout { align-items: stretch; padding-top: 0.5rem; }
+            .sidebar { padding-top: 1rem; }
+            .main-content { padding-top: 0; }
+            .hero-section { padding-top: 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -593,6 +630,11 @@
             </div>
         </div>
     </nav>
+
+    <div id="discount-banner" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-center py-3 px-4 shadow-lg animate-pulse">
+        <span class="font-bold text-lg cursor-pointer" onclick="document.getElementById('premium-section').scrollIntoView({behavior: 'smooth'});">🎉 All Premium Packages on 50% Discount for the Next 30 Days! 🎉</span>
+        <button id="dismiss-banner" class="ml-4 bg-red-600 text-white px-3 py-1 rounded-full font-semibold hover:bg-red-700 transition">Dismiss</button>
+    </div>
 
     <div class="layout">
         <aside class="sidebar" id="mainSidebar">
@@ -715,7 +757,7 @@
                 <!-- Curriculum preview compact -->
                 <section id="start" style="margin-top:1rem;">
                     <h2 style="font-size:1.05rem;font-weight:800;margin-bottom:0.5rem;">Quick curriculum preview</h2>
-                    <div class="curriculum-grid">
+                    <div class="curriculum-grid" id="premium-section">
                         <div class="curriculum-card" style="padding:1rem;min-height:140px;box-sizing:border-box;width:100%;">
                             <a class="card-link" href="Tujengane data basics/databasics.html" style="color:inherit;text-decoration:none;">
                                 <div class="curriculum-title" style="font-size:1.15rem;"><i class="fas fa-database"></i>&nbsp;Data Basics <span class="free-badge" style="margin-left:0.5rem;">FREE</span></div>
@@ -1021,9 +1063,12 @@
                 <a href="https://x.com/Dericmwiti" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-twitter"></i></a>
                 <a href="https://www.instagram.com/dericmarangu/" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="text-xs text-gray-500 footer-copyright" style="display:flex; justify-content:space-between; align-items:center;">
-                &copy; 2025 TDS powered by <span class="deric-part">deric</span><span class="bi-part">BI</span> – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-[#49A078]">Deric Marangu</a>
-                <img src="assets/images/profile.png" alt="Deric Marangu" style="width:40px;height:40px;border-radius:50%;">
+            <div class="text-xs text-gray-500 footer-copyright" style="text-align: center;">
+                &copy; 2025 TDS powered by <span class="deric-part">deric</span><span class="bi-part">BI</span><br>
+                <a href="https://dericmarangu-portfolio.netlify.app" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                    <img src="assets/images/profile.png" alt="Deric Marangu" class="inline h-4 w-4 rounded-full mr-1" style="border-radius:9999px;">
+                    Developed by Deric Marangu
+                </a>
             </div>
         </div>
     </footer>
@@ -1265,6 +1310,18 @@
                 }
             });
         });
+
+        // Discount banner dismiss
+        const discountBanner = document.getElementById('discount-banner');
+        const dismissBtn = document.getElementById('dismiss-banner');
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', function() {
+                discountBanner.style.display = 'none';
+                const layout = document.querySelector('.layout');
+                const isBigScreen = window.innerWidth >= 1024;
+                layout.style.paddingTop = isBigScreen ? '0.5rem' : '0.5rem';
+            });
+        }
     </script>
 </body>
 </html>
