@@ -619,7 +619,7 @@ nav .container {
 .footer {
     background: #DFF3EA;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     text-align: center;
     position: fixed;
     bottom: 0;
@@ -1048,8 +1048,18 @@ nav .container {
         gap: 0.5rem !important;
         text-align: center !important;
     }
-    .footer-logo, .footer-socials {
-        justify-content: center !important;
+    .footer {
+        height: 50px !important;
+        min-height: 50px !important;
+    }
+    .footer-socials {
+        display: none !important;
+    }
+    .footer-copyright {
+        display: none !important;
+    }
+    .footer > div {
+        align-items: flex-start !important;
     }
     .footer-copyright {
         text-align: center !important;
