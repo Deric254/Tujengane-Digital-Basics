@@ -966,7 +966,7 @@ nav .container {
     }
     .layout {
         flex-direction: row;
-        margin-top: 60px;
+        margin-top: 0;
         margin-bottom: 0;
         height: auto;
     }
