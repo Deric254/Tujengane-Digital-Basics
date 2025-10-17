@@ -18,12 +18,12 @@ html, body {
     flex-direction: row;
     gap: 0.5rem;
     padding: 0.125rem;
-    margin-top: 60px;
-    margin-bottom: 50px;
-    min-height: calc(100vh - 110px);
-    min-height: calc(100dvh - 110px); /* Dynamic viewport for mobile */
-    height: calc(100vh - 110px); /* Match viewport height minus header and footer */
-    height: calc(100dvh - 110px); /* Dynamic viewport fallback */
+    margin-top: 0;
+    margin-bottom: 0.28125rem;
+    min-height: calc(100vh - 170px);
+    min-height: calc(100dvh - 170px);
+    height: calc(100vh - 170px);
+    height: calc(100dvh - 170px);
     overflow: auto;
 }
 
@@ -610,13 +610,20 @@ nav .container {
 
 .hamburger {
     display: none;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     cursor: pointer;
-    background: #49A078;
-    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
-    border-radius: 0.5rem;
+    border-radius: 0.375rem;
     padding: 0.5rem 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.hamburger:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Footer */
@@ -625,13 +632,9 @@ nav .container {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 90; /* Below navigation and chat */
-    height: 50px;
-    min-height: 50px;
+    position: relative;
+    height: 60px;
+    min-height: 60px;
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -646,7 +649,6 @@ nav .container {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    overflow: hidden;
 }
 
 .footer-logo {
@@ -654,6 +656,7 @@ nav .container {
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
+    margin-left: -1rem;
 }
 
 .footer-socials {
@@ -661,6 +664,9 @@ nav .container {
     gap: 0.75rem;
     margin: 0;
     flex-shrink: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .footer-link {
@@ -675,13 +681,14 @@ nav .container {
 }
 
 .footer-copyright {
-    font-size: 0.95rem;
     color: #256d4f;
     text-align: right;
     flex-shrink: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: absolute;
+    right: 1rem;
 }
 
 /* Chat Button and Widget */
@@ -917,8 +924,23 @@ nav .container {
         gap: 0.5rem !important;
         text-align: center !important;
     }
-    .footer-logo, .footer-socials {
-        justify-content: center !important;
+    .footer {
+        height: 60px !important;
+        min-height: 60px !important;
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        right: unset !important;
+        z-index: unset !important;
+    }
+    .footer-socials {
+        display: none !important;
+    }
+    .footer-copyright {
+        display: none !important;
+    }
+    .footer > div {
+        align-items: flex-start !important;
     }
     .footer-copyright {
         text-align: center !important;
@@ -945,20 +967,21 @@ nav .container {
     .layout {
         flex-direction: row;
         margin-top: 60px;
-        margin-bottom: 50px;
+        margin-bottom: 0;
+        height: auto;
     }
     .main-content {
         padding: 1rem;
     }
     .slide-container-wrapper {
         max-width: 1200px;
-        min-height: calc(100vh - 180px);
+        min-height: calc(100vh - 190px);
     }
     .slide {
         max-width: none;
         padding: 2rem;
         min-height: 350px;
-        max-height: calc(100vh - 180px);
+        max-height: calc(100vh - 190px);
     }
     .navigation {
         position: absolute;

@@ -109,11 +109,13 @@
 </head>
 
 <body>
-    <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg">
-        <div class="container mx-auto flex items-center justify-between gap-4">
+    <nav class="bg-[#49A078] text-white shadow-lg" style="position: relative; padding: 1rem;">
+        <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white" style="border-radius:9999px;">
-                <span class="font-bold text-xl tracking-tight">Tujengane Digital Skills</span>
+                <a href="https://dericbi.netlify.app" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white" style="border-radius:9999px;">
+                </a>
+                <span class="font-bold text-xl tracking-tight" style="word-wrap: break-word;">Tujengane Digital Skills</span>
             </div>
             <div class="slogan-container">
                 <div class="slogan-marquee-track">
@@ -259,9 +261,11 @@
     </div>
     
     <footer class="footer">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex flex-col md:flex-row items-start justify-between gap-4" style="padding-left: 1rem;">
             <div class="flex items-center gap-3 footer-logo">
-                <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white" style="border-radius:9999px;">
+                <a href="../index.html">
+                    <img src="../assets/logo.png" alt="Tujengane Digital Skills Logo" class="h-10 w-10 rounded-full object-cover shadow-md border-2 border-white" style="border-radius:9999px;">
+                </a>
                 <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Digital Skills</span>
             </div>
             <div class="footer-socials">
@@ -273,8 +277,12 @@
                  <a href="https://x.com/Dericmwiti" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-twitter"></i></a>
                  <a href="https://www.instagram.com/dericmarangu/" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="text-xs text-gray-500 footer-copyright">
-                &copy; 2025 TDS powered by <span style="color: black;">Deric</span><span style="color: #facc15;">BI</span> – Developed by <a href="https://dericmarangu-portfolio.netlify.app/" target="_blank" class="text-[#49A078] hover:underline">Deric Marangu</a>
+            <div class="text-xs text-gray-500 footer-copyright" style="text-align: center;">
+                &copy; 2025 TDS powered by <span class="deric-part">deric</span><span class="bi-part">BI</span><br>
+                <a href="https://dericmarangu-portfolio.netlify.app" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:text-gray-600 transition-colors duration-200">
+                    <img src="../assets/images/profile.png" alt="Deric Marangu" class="inline h-4 w-4 rounded-full mr-1" style="border-radius:9999px;">
+                    Developed by Deric Marangu
+                </a>
             </div>
         </div>
     </footer>
