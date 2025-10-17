@@ -19,11 +19,11 @@ html, body {
     gap: 0.5rem;
     padding: 0.125rem;
     margin-top: 0;
-    margin-bottom: 0;
-    min-height: calc(100vh - 110px);
-    min-height: calc(100dvh - 110px);
-    height: calc(100vh - 110px);
-    height: calc(100dvh - 110px);
+    margin-bottom: 0.28125rem;
+    min-height: calc(100vh - 160px);
+    min-height: calc(100dvh - 160px);
+    height: calc(100vh - 160px);
+    height: calc(100dvh - 160px);
     overflow: auto;
 }
 
@@ -621,11 +621,7 @@ nav .container {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 90;
+    position: relative;
     height: 50px;
     min-height: 50px;
     width: 100%;
@@ -875,9 +871,9 @@ nav .container {
     }
     .layout {
         overflow: hidden !important;
-        height: calc(100vh - 110px) !important;
+        height: calc(100vh - 160px) !important;
         margin-top: 0 !important;
-        margin-bottom: 0 !important;
+        margin-bottom: 0.28125rem !important;
     }
     .sidebar {
         overflow-y: auto !important;
@@ -1058,6 +1054,11 @@ nav .container {
     .footer {
         height: 50px !important;
         min-height: 50px !important;
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        right: unset !important;
+        z-index: unset !important;
     }
     .footer-socials {
         display: none !important;
@@ -1093,7 +1094,7 @@ nav .container {
     .layout {
         flex-direction: row;
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 0.28125rem;
     }
     .main-content {
         padding: 1rem;
