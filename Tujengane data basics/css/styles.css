@@ -908,7 +908,7 @@ nav .container {
     .main-content {
         width: 100% !important;
         max-width: 100% !important;
-        padding: 0.5rem !important;
+        padding: 0.5rem 0.5rem 2rem 0.5rem !important;
         box-sizing: border-box;
     }
     .main-content > div {
