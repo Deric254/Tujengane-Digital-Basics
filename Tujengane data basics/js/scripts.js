@@ -5,7 +5,7 @@ const slides = [
     'slides/slide9.html', 'slides/slide10.html', 'slides/slide11.html', 'slides/slide12.html',
     'slides/slide13.html', 'slides/slide14.html', 'slides/slide15.html', 'slides/slide16.html',
     'slides/slide17.html', 'slides/slide18.html', 'slides/slide19.html', 'slides/slide20.html',
-    'slides/slide21.html', 'slides/slide22.html' // Added slide22
+    'slides/slide21.html', 'slides/slide22.html'
 ];
 
 // Slide titles for the navigator
@@ -68,7 +68,7 @@ function loadSlide(index) {
             })
             .catch(error => console.error('Error loading slide:', error))
             .finally(() => { isNavigating = false; });
-    }, 400); // Match CSS transition duration
+    }, 400);
 }
 
 function updateNavigation() {
@@ -150,7 +150,6 @@ function initializeCertificateRequest() {
         nameInput.addEventListener('input', () => {
             const fullName = encodeURIComponent(nameInput.value.trim());
             certLink.href = `https://wa.me/254791360805?text=I%20am%20requesting%20my%20certificate%20for%20completing%20TDB&name=${fullName}`;
-            // Ensure the WhatsApp link opens in a new tab/window
             try { certLink.target = '_blank'; certLink.rel = 'noopener noreferrer'; } catch (e) {}
         });
     }
@@ -169,7 +168,7 @@ function playCheer() {
     cheer.play().catch(error => console.error('Error playing audio:', error));
 }
 
-// Chat functionality - moved from inline script
+// Chat functionality
 function toggleChat() {
     const chatWidget = document.getElementById('chatWidget');
     const chatOverlay = document.getElementById('chatOverlay');
@@ -181,7 +180,6 @@ function toggleChat() {
         chatOverlay.classList.add('hidden');
     }
 }
-// Make toggleChat globally accessible
 window.toggleChat = toggleChat;
 
 function openModal(modalId) {
@@ -218,10 +216,8 @@ function openSlideNavigator() {
     const modal = document.getElementById('slide-navigator-modal');
     const slideGrid = document.getElementById('slide-grid');
     
-    // Clear existing content
     slideGrid.innerHTML = '';
     
-    // Populate slide grid
     slides.forEach((slide, index) => {
         const slideItem = document.createElement('div');
         slideItem.className = `slide-item ${index === currentSlide ? 'current' : ''}`;
@@ -233,15 +229,14 @@ function openSlideNavigator() {
         slideGrid.appendChild(slideItem);
     });
     
-    // Show modal
     modal.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
 }
 
 function closeSlideNavigator() {
     const modal = document.getElementById('slide-navigator-modal');
     modal.classList.remove('show');
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    document.body.style.overflow = 'auto';
 }
 
 function navigateToSlideFromModal(index) {
@@ -251,13 +246,11 @@ function navigateToSlideFromModal(index) {
     }
 }
 
-// Make functions globally accessible
 window.openSlideNavigator = openSlideNavigator;
 window.closeSlideNavigator = closeSlideNavigator;
 window.prevSlide = prevSlide;
 window.nextSlide = nextSlide;
 
-// Touch event handlers for swipe navigation
 function handleTouchStart(e) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
@@ -272,20 +265,16 @@ function handleTouchEnd(e) {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
     
-    // Check if it's a horizontal swipe (not vertical scroll)
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
         if (deltaX > 0) {
-            // Swipe right - go to previous slide
             showNavigationFeedback('prev');
             prevSlide();
         } else {
-            // Swipe left - go to next slide  
             showNavigationFeedback('next');
             nextSlide();
         }
     }
     
-    // Reset touch variables
     touchStartX = null;
     touchStartY = null;
     touchEndX = null;
@@ -295,13 +284,11 @@ function handleTouchEnd(e) {
 document.addEventListener('DOMContentLoaded', () => {
     loadSlide(currentSlide);
     
-    // Initialize chat overlay click handler - moved from inline script
     document.getElementById('chatOverlay').addEventListener('click', function() {
         document.getElementById('chatWidget').classList.add('hidden');
         this.classList.add('hidden');
     });
     
-    // Add touch event listeners for swipe navigation
     const slideContainer = document.getElementById('slide-container');
     const mainContent = document.querySelector('.main-content');
     
@@ -312,13 +299,10 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.addEventListener('touchend', handleTouchEnd, { passive: true });
     }
     
-    // Add keyboard navigation for arrow keys
     document.addEventListener('keydown', (e) => {
-        // Don't interfere with input fields or text areas
         const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
         if (isInputActive) return;
         
-        // Close slide navigator with Escape key
         if (e.key === 'Escape') {
             const modal = document.getElementById('slide-navigator-modal');
             if (modal.classList.contains('show')) {
@@ -327,13 +311,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Left arrow key - previous slide
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             showNavigationFeedback('prev');
             prevSlide();
         }
-        // Right arrow key - next slide
         else if (e.key === 'ArrowRight') {
             e.preventDefault();
             showNavigationFeedback('next');
@@ -341,26 +323,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Close slide navigator when clicking outside
     document.getElementById('slide-navigator-modal').addEventListener('click', (e) => {
         if (e.target.id === 'slide-navigator-modal') {
             closeSlideNavigator();
         }
     });
     
-    // Hamburger menu functionality with click outside to close
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navLinks = document.getElementById('nav-links');
     const sidebar = document.getElementById('slide-nav-panel');
     
-    // Toggle hamburger menu
     hamburgerBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navLinks.classList.toggle('mobile-active');
         sidebar.classList.toggle('active');
     });
     
-    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('mobile-active');
@@ -368,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!hamburgerBtn.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('mobile-active');
@@ -376,12 +353,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Prevent menu closing when clicking inside nav-links
     navLinks.addEventListener('click', (e) => {
         e.stopPropagation();
     });
     
-    // Sidebar navigation: click to go to slide
     document.querySelectorAll('.sidebar-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -392,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Prevent page jump on prev/next button click (especially prev)
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     if (prevBtn) {
@@ -400,11 +374,9 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtn.addEventListener('click', e => {
             e.preventDefault();
             prevSlide();
-            // Remove focus after click to prevent outline or jump
             prevBtn.blur();
         });
         prevBtn.addEventListener('focus', e => {
-            // Remove focus immediately if somehow focused
             prevBtn.blur();
         });
     }
@@ -420,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Tooltip auto-hide on small screens for nav-btns
     function isSmallScreen() {
         return window.innerWidth <= 768;
     }
@@ -431,9 +402,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearTimeout(tooltipTimeout);
                 const self = this;
                 tooltipTimeout = setTimeout(() => {
-                    // Remove tooltip by blurring or triggering mouseleave
                     self.dispatchEvent(new Event('mouseleave'));
-                }, 2000); // Show for 2 seconds
+                }, 2000);
             }
         });
         btn.addEventListener('mouseleave', function() {
