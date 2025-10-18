@@ -1392,3 +1392,48 @@ nav .container {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .nav-btn:active { transform: translateY(1px) scale(0.998); }
 .ai-highlight { border-left: 4px solid #49A078; padding-left: 0.75rem; }
+
+/* Button styling like index */
+button {
+    background: #3e8865;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+button:hover {
+    background: #facc15;
+    color: #256d4f;
+    transform: scale(1.1);
+}
+
+/* Footer link styling like index */
+.footer-link {
+    color: #49A078;
+    border: 1px solid rgba(73, 160, 120, 0.3);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+.footer-link:hover, .footer-link:focus {
+    color: #facc15;
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(250,204,21,0.3);
+}
+
+/* Nav link styling like buttons */
+.nav-link {
+    background: #3e8865;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.nav-link:hover {
+    background: #facc15;
+    color: #256d4f;
+}
