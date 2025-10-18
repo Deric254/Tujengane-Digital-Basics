@@ -1113,6 +1113,26 @@ nav .container {
         padding: 1.5rem 1rem 4rem 1rem !important;
         border-radius: 0.5rem !important;
     }
+    /* Nav responsive fixes for narrow screens */
+    nav {
+        padding: 0.75rem !important;
+    }
+    nav .flex.items-center.justify-between {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+    nav .flex.items-center.gap-3 {
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+    }
+    nav .flex.items-center.gap-3 span {
+        font-size: 1rem !important;
+        line-height: 1.2 !important;
+        word-break: break-word !important;
+    }
+    nav .flex.items-center.gap-4:last-child {
+        flex-shrink: 0 !important;
+    }
 }
 
 /* Extra Small Devices (small phones, 320px-480px) */
@@ -1162,6 +1182,46 @@ nav .container {
         max-width: 500px !important;
         padding: 1rem 0.75rem 3rem 0.75rem !important;
         border-radius: 0.375rem !important;
+    }
+    /* Additional nav fixes for very small screens */
+    nav {
+        padding: 0.5rem !important;
+    }
+    nav .flex.items-center.gap-3 img {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    nav .hamburger {
+        padding: 0.25rem !important;
+        min-width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
+    }
+    nav .hamburger i {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* Extra Extra Small Devices (very small phones, under 360px) */
+@media (max-width: 360px) {
+    nav {
+        padding: 0.25rem !important;
+    }
+    nav .flex.items-center.gap-3 img {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
+    nav .flex.items-center.gap-3 span {
+        font-size: 0.9rem !important;
+    }
+    nav .hamburger {
+        padding: 0.2rem !important;
+        min-width: 28px !important;
+        height: 28px !important;
+        font-size: 0.7rem !important;
+    }
+    nav .hamburger i {
+        font-size: 0.6rem !important;
     }
 }
 
