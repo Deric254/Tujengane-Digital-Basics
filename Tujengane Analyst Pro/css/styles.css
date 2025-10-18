@@ -612,12 +612,16 @@ html {
 }
 
 .sidebar-link {
-    color: #fffbe6;
-    font-weight: 600;
+    color: #b45309;
+    background: #fffbe6;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    transition: background 0.3s, color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(250,204,21,0.08);
     cursor: pointer;
     text-decoration: none;
 }
@@ -629,14 +633,18 @@ html {
     background: rgba(250, 204, 21, 0.2);
 }
 
-.sidebar-link:hover {
-    color: #facc15;
+.sidebar-link:hover, .sidebar-link:focus {
+    color: #256d4f;
+    background: #facc15;
+    text-decoration: none;
+    outline: none;
     transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(250,204,21,0.3);
 }
 
 .sidebar-item .slide-number {
     font-weight: bold;
-    color: #facc15;
+    color: inherit;
     width: 2rem;
     text-align: right;
     margin-right: 0.5rem;
