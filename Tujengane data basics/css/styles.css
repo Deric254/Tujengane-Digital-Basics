@@ -991,6 +991,9 @@ nav .container {
     .slogan-container { 
         display: none !important; 
     }
+    .nav-links {
+        display: none !important;
+    }
     .main-content {
         width: 100% !important;
         max-width: 100% !important;
@@ -1004,6 +1007,45 @@ nav .container {
     /* Ensure proper positioning context for hamburger menu */
     nav .container > div:last-child {
         position: relative !important;
+    }
+    /* Nav overflow prevention */
+    nav .flex.items-center.justify-between {
+        gap: 0.5rem !important;
+        width: 100% !important;
+    }
+    nav .flex.items-center.gap-3 {
+        gap: 0.5rem !important;
+        min-width: 0 !important;
+        flex: 1 1 0% !important;
+        overflow: hidden !important;
+    }
+    nav .flex.items-center.gap-3 img {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    nav .flex.items-center.gap-3 span {
+        font-size: 0.8rem !important;
+        line-height: 1.2 !important;
+        word-break: break-word !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: calc(100vw - 120px) !important;
+    }
+    nav .flex.items-center.gap-4 {
+        gap: 0.25rem !important;
+        flex-shrink: 0 !important;
+    }
+    nav .hamburger {
+        padding: 0.4rem !important;
+        min-width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+        margin-left: 0.25rem !important;
+        flex-shrink: 0 !important;
+    }
+    nav .hamburger i {
+        font-size: 0.8rem !important;
     }
     .slide-number-display {
         display: flex !important;
