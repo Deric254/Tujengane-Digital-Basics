@@ -1124,11 +1124,16 @@ nav .container {
     nav .flex.items-center.gap-3 {
         min-width: 0 !important;
         flex: 1 1 auto !important;
+        overflow: hidden !important;
     }
     nav .flex.items-center.gap-3 span {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
         line-height: 1.2 !important;
         word-break: break-word !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 100% !important;
     }
     nav .flex.items-center.gap-4:last-child {
         flex-shrink: 0 !important;
@@ -1197,31 +1202,35 @@ nav .container {
         gap: 0.5rem !important;
         min-width: 0 !important;
         flex: 1 1 0% !important;
+        overflow: hidden !important;
     }
     nav .flex.items-center.gap-3 img {
         width: 2rem !important;
         height: 2rem !important;
     }
     nav .flex.items-center.gap-3 span {
-        font-size: 1rem !important;
+        font-size: 0.8rem !important;
         line-height: 1.2 !important;
         word-break: break-word !important;
-        max-width: calc(100vw - 100px) !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: calc(100vw - 120px) !important;
     }
     nav .flex.items-center.gap-4 {
         gap: 0.25rem !important;
         flex-shrink: 0 !important;
     }
     nav .hamburger {
-        padding: 0.25rem !important;
-        min-width: 32px !important;
-        height: 32px !important;
-        font-size: 0.8rem !important;
+        padding: 0.4rem !important;
+        min-width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
         margin-left: 0.25rem !important;
         flex-shrink: 0 !important;
     }
     nav .hamburger i {
-        font-size: 0.7rem !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -1242,28 +1251,32 @@ nav .container {
         flex: 1 1 0% !important;
         overflow: hidden !important;
     }
+    nav .flex.items-center.gap-3 img {
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
     nav .flex.items-center.gap-3 span {
-        font-size: 0.8rem !important;
+        font-size: 0.7rem !important;
         line-height: 1.1 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
-        max-width: calc(100vw - 80px) !important;
+        max-width: calc(100vw - 100px) !important;
     }
     nav .flex.items-center.gap-4 {
         gap: 0.25rem !important;
         flex-shrink: 0 !important;
     }
     nav .hamburger {
-        padding: 0.15rem !important;
-        min-width: 24px !important;
-        height: 24px !important;
-        font-size: 0.6rem !important;
+        padding: 0.3rem !important;
+        min-width: 32px !important;
+        height: 32px !important;
+        font-size: 0.8rem !important;
         margin-left: 0.25rem !important;
         flex-shrink: 0 !important;
     }
     nav .hamburger i {
-        font-size: 0.55rem !important;
+        font-size: 0.7rem !important;
     }
 }
 
