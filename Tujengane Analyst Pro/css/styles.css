@@ -2121,3 +2121,22 @@ nav .container {
         display: none !important; 
     }
 }
+/* === FIX THE HEADER POSITIONING === */
+nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    height: 60px !important; /* Set fixed height */
+}
+
+.layout {
+    margin-top: 60px !important; /* Push layout down by header height */
+    /* REMOVED: border: 2px solid blue !important; */
+}
+
+.sidebar.active {
+    top: 60px !important; /* Position sidebar below header */
+    /* REMOVED any border/background colors */
+}
