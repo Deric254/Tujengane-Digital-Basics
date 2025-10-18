@@ -1580,35 +1580,36 @@ nav .container {
         margin-bottom: 0.5rem;
     }
     .navigation {
-        position: relative !important;
-        bottom: auto !important;
+        position: fixed !important;
+        bottom: 60px !important;
+        left: 0 !important;
+        right: 0 !important;
         top: auto !important;
         transform: none !important;
         flex-direction: row !important;
-        gap: 0.5rem !important;
+        gap: 0.25rem !important;
         width: 100% !important;
         padding: 0.5rem 0 !important;
         justify-content: center !important;
         align-items: center !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        z-index: 2 !important;
-        left: auto !important;
-        right: auto !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1) !important;
+        z-index: 1000 !important;
+        backdrop-filter: blur(10px) !important;
     }
     .nav-btn {
-        width: 30% !important;
-        min-width: 100px !important;
-        max-width: 150px !important;
-        padding: 0.6rem !important;
-        font-size: 0.9rem !important;
+        width: 28% !important;
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 0.5rem 0.3rem !important;
+        font-size: 0.8rem !important;
         background: #49A078 !important;
         color: white !important;
         border: none !important;
         cursor: pointer !important;
         border-radius: 0.5rem !important;
         font-weight: 600 !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-align: center !important;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
         position: relative !important;
