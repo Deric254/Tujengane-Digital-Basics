@@ -1471,6 +1471,19 @@ function toggleChat() {
     chatOverlay.classList.toggle('hidden');
 }
 
+// Add click outside functionality for chatbot
+document.addEventListener('DOMContentLoaded', function() {
+    const chatOverlay = document.getElementById('chatOverlay');
+    const chatWidget = document.getElementById('chatWidget');
+    
+    if (chatOverlay) {
+        chatOverlay.addEventListener('click', function() {
+            chatWidget.classList.add('hidden');
+            chatOverlay.classList.add('hidden');
+        });
+    }
+});
+
 function openModal(modalId) {
     document.getElementById(modalId).classList.remove('hidden');
     document.getElementById('chatOverlay').classList.remove('hidden');
