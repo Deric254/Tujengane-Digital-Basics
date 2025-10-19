@@ -1934,16 +1934,6 @@ nav .container {
         overflow-x: hidden;
     }
     
-    .navigation {
-        position: fixed !important;
-        right: 10px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 100px !important;
-        padding: 0.5rem !important;
-        gap: 0.75rem !important;
-    }
-    
     nav {
         padding: 0.5rem;
         min-height: var(--nav-height);
@@ -2088,15 +2078,6 @@ nav .container {
 
 /* Small devices (phones, 375px to 576px) */
 @media (min-width: 375px) and (max-width: 575px) {
-    .navigation {
-        position: fixed !important;
-        right: 15px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 110px !important;
-        padding: 0.75rem !important;
-        gap: 0.875rem !important;
-    }
     nav {
         min-height: var(--nav-height);
         height: auto;
@@ -2151,15 +2132,6 @@ nav .container {
 
 /* Medium small devices (tablets, 576px to 768px) */
 @media (min-width: 576px) and (max-width: 767px) {
-    .navigation {
-        position: fixed !important;
-        right: 18px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 120px !important;
-        padding: 0.875rem !important;
-        gap: 1rem !important;
-    }
     nav {
         min-height: var(--nav-height);
         height: auto;
@@ -2215,15 +2187,6 @@ nav .container {
 
 /* Large tablets (768px to 992px) */
 @media (min-width: 768px) and (max-width: 991px) {
-    .navigation {
-        position: fixed !important;
-        right: 20px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 130px !important;
-        padding: 1rem !important;
-        gap: 1rem !important;
-    }
     .sidebar {
         width: 260px !important;
     }
@@ -2237,16 +2200,6 @@ nav .container {
         font-size: 1.6rem !important;
     }
     
-    .navigation {
-        position: relative !important;
-        width: 100% !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        padding: 1rem 0 !important;
-        gap: 1rem !important;
-        margin-top: 1rem !important;
-    }
-    
     .nav-btn {
         padding: 0.7rem 0.8rem !important;
         font-size: 0.95rem !important;
@@ -2255,15 +2208,6 @@ nav .container {
 
 /* Large screens (992px to 1200px) */
 @media (min-width: 992px) and (max-width: 1199px) {
-    .navigation {
-        position: fixed !important;
-        right: 25px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 140px !important;
-        padding: 1rem !important;
-        gap: 1rem !important;
-    }
     .sidebar {
         width: 280px;
     }
@@ -2280,15 +2224,6 @@ nav .container {
 
 /* Extra large screens (1200px and up) */
 @media (min-width: 1200px) {
-    .navigation {
-        position: fixed !important;
-        right: 30px !important;
-        top: 50vh !important;
-        transform: translateY(-50%) !important;
-        width: 150px !important;
-        padding: 1.25rem !important;
-        gap: 1.25rem !important;
-    }
     .sidebar {
         width: 300px;
     }
@@ -2300,10 +2235,6 @@ nav .container {
     
     .slide-content h2 {
         font-size: 1.8rem;
-    }
-    
-    .navigation {
-        width: 130px;
     }
 }
 
