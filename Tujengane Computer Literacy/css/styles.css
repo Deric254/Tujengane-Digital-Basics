@@ -2484,3 +2484,23 @@ html, body {
     }
 }
 
+
+
+/* === FIX THE HEADER POSITIONING USING CSS VARIABLES === */
+nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    min-height: var(--nav-height) !important;
+    height: auto !important;
+}
+
+.layout {
+    margin-top: var(--nav-height) !important;
+}
+
+.sidebar.active {
+    top: var(--nav-height) !important;
+}
