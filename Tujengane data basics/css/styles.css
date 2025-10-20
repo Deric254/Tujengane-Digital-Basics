@@ -574,7 +574,7 @@ nav > div > div:last-child {
 .slogan-container {
 position: relative;
 overflow: hidden;
-min-width: 200px;
+min-width: 600px;
 height: 2rem;
 display: flex;
 align-items: center;
