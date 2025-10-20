@@ -20,10 +20,10 @@ html, body {
     padding: 0.125rem;
     margin-top: 0;
     margin-bottom: 0.28125rem;
-    min-height: calc(100vh - 160px);
-    min-height: calc(100dvh - 160px);
-    height: calc(100vh - 160px);
-    height: calc(100dvh - 160px);
+    min-height: calc(100vh - 174px);
+    min-height: calc(100dvh - 174px);
+    height: calc(100vh - 174px);
+    height: calc(100dvh - 174px);
     overflow: auto;
 }
 
@@ -37,8 +37,8 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 0.125rem 0;
     height: 100%; /* Full height of layout */
-    max-height: calc(100vh - 100px - 0.25rem);
-    max-height: calc(100dvh - 100px - 0.25rem); /* Dynamic viewport fallback */
+    max-height: calc(100vh - 114px - 0.25rem);
+    max-height: calc(100dvh - 114px - 0.25rem); /* Dynamic viewport fallback */
     overflow-y: auto;
     overscroll-behavior: none;
     scrollbar-width: thin;
@@ -134,7 +134,7 @@ html, body {
 .max-w-5xl {
     width: 100%;
     max-width: 1280px;
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 124px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -560,7 +560,7 @@ nav {
     left: 0;
     right: 0;
     z-index: 50;
-    height: 50px;
+    height: 4rem;
 }
 
 nav .container {
@@ -613,7 +613,6 @@ nav .container {
     font-size: 1.1rem;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     border-radius: 0.375rem;
     padding: 0.5rem 0.75rem;
@@ -811,7 +810,6 @@ nav .container {
         font-size: 1rem !important;
         cursor: pointer !important;
         background: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         color: white !important;
         border-radius: 6px !important;
         padding: 0.5rem 0.75rem !important;
@@ -921,7 +919,6 @@ nav .container {
         font-size: 1rem !important;
         cursor: pointer !important;
         background: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         color: white !important;
         border-radius: 6px !important;
         padding: 0.5rem 0.75rem !important;
@@ -1045,13 +1042,13 @@ nav .container {
     }
     .slide-container-wrapper {
         max-width: 1200px;
-        min-height: calc(100vh - 190px);
+        min-height: calc(100vh - 204px);
     }
     .slide {
         max-width: none;
         padding: 2rem;
         min-height: 350px;
-        max-height: calc(100vh - 190px);
+        max-height: calc(100vh - 204px);
     }
     .navigation {
         position: absolute;
@@ -1402,7 +1399,7 @@ nav .container {
     }
     .slide {
         overflow-y: auto !important;
-        max-height: calc(100vh - 200px) !important;
+        max-height: calc(100vh - 214px) !important;
     }
 }
 
