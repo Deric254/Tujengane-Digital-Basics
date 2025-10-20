@@ -692,6 +692,19 @@ nav .container {
     right: 1rem;
 }
 
+/* Hide footer socials on medium screens to prevent overlap */
+@media (max-width: 1024px) {
+    .footer-socials {
+        display: none !important;
+    }
+    .footer-copyright {
+        position: static !important;
+        text-align: center !important;
+        flex: 1 !important;
+        margin-left: auto !important;
+    }
+}
+
 /* Chat Button and Widget */
 #chatButton {
     bottom: 50px;
