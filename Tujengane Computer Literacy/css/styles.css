@@ -565,6 +565,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
 }
 
 nav .container {
@@ -575,6 +576,18 @@ nav .container {
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+nav .container > div:first-child {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Reduce title font size on small screens to prevent horizontal scroll */
+@media (max-width: 480px) {
+    nav .container > div:first-child span {
+        font-size: 1rem !important;
+    }
 }
 
 .nav-link {
@@ -813,7 +826,7 @@ flex: 1 1 0%;
 position: relative;
 overflow: hidden;
 min-width: 250px;
-max-width: none;
+max-width: 250px;
 height: 2rem;
 display: flex;
 align-items: center;
@@ -1132,6 +1145,22 @@ flex-shrink: 0;
     
     .nav-link i {
         font-size: 0.75rem !important;
+    }
+}
+
+/* Reduce nav gap further on smaller desktop screens */
+@media (min-width: 769px) and (max-width: 1000px) {
+    nav {
+        padding: 1rem 1rem !important;
+    }
+    
+    .nav-links {
+        gap: 0.2rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.25rem 0.4rem !important;
+        font-size: 0.65rem !important;
     }
 }
 
@@ -1799,7 +1828,15 @@ flex-shrink: 0;
 }
 
 /* Simple desktop navigation - show nav links, hide hamburger and floating button */
-@media (min-width: 768px) {
+@media (min-width: 769px) {
+    nav .container {
+        flex-wrap: nowrap;
+    }
+    
+    .slogan-container {
+        font-size: 0.75rem;
+    }
+    
     .nav-links {
         display: flex !important;
     }
@@ -1824,6 +1861,8 @@ flex-shrink: 0;
         width: 320px !important;
     }
 }
+
+
 
 /* Footer responsive styles for mobile */
 @media (max-width: 768px) {
