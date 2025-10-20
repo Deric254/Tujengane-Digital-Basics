@@ -411,3 +411,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Event listeners for inline onclick replacements
+document.addEventListener('DOMContentLoaded', function() {
+    // Slide navigation buttons
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+    
+    // Slide indicator for opening navigator
+    const slideIndicator = document.getElementById('slide-indicator');
+    if (slideIndicator) {
+        slideIndicator.addEventListener('click', openSlideNavigator);
+    }
+    
+    // Close navigator button
+    const closeNavigatorBtn = document.querySelector('.close-navigator');
+    if (closeNavigatorBtn) {
+        closeNavigatorBtn.addEventListener('click', closeSlideNavigator);
+    }
+    
+    // Sidebar slide links
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    sidebarLinks.forEach((link, index) => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            goToSlide(index);
+        });
+    });
+    
+    // Chat functionality
+    const chatButton = document.getElementById('chatButton');
+    if (chatButton) {
+        chatButton.addEventListener('click', toggleChat);
+    }
+    
+    // Modal buttons
+    const projectModalButton = document.querySelector('button[onclick*="openModal"]');
+    if (projectModalButton) {
+        projectModalButton.addEventListener('click', function() {
+            openModal('projectModal');
+        });
+    }
+    
+    const closeModalButton = document.querySelector('button[onclick*="closeModal"]');
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', function() {
+            closeModal('projectModal');
+        });
+    }
+});

@@ -1304,7 +1304,6 @@ button {
 button:hover {
     background: #facc15;
     color: #256d4f;
-    transform: scale(1.1);
 }
 
 /* Footer link styling like index */
@@ -1333,4 +1332,38 @@ button:hover {
         transform: none !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     }
+}
+
+/* Migrated Inline Styles */
+nav.main-nav {
+    position: relative;
+    padding: 1rem;
+}
+
+.rounded-full-border {
+    border-radius: 9999px;
+}
+
+.word-break {
+    word-wrap: break-word;
+}
+
+.brand-black {
+    color: black;
+}
+
+.brand-yellow {
+    color: #facc15;
+}
+
+.padding-left-rem {
+    padding-left: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-transparent {
+    background: transparent;
 }
