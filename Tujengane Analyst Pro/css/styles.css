@@ -386,7 +386,6 @@ html {
         margin: 0 !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        min-height: 60px !important;
     }
     
     /* Logo and text container - allow natural sizing */
@@ -967,6 +966,8 @@ nav {
     z-index: 50;
     min-height: 60px;
     height: auto;
+    display: flex;
+    align-items: center;
 }
 
 nav .container {
@@ -977,7 +978,6 @@ nav .container {
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
-    min-height: 60px;
 }
 
 .slogan-container {
@@ -1229,7 +1229,6 @@ nav .container {
     
     nav .container {
         flex-wrap: wrap !important;
-        min-height: 60px !important;
     }
     
     /* Adjust layout for dynamic header */
