@@ -1,23 +1,23 @@
 :root {
-    --nav-height: 70px; /* Default for desktop */
+    --nav-height: 70px; /* Fixed height for all screen sizes */
     --footer-height: 50px;
 }
 
 @media (max-width: 768px) {
     :root {
-        --nav-height: 100px; /* Increased for mobile wrapping */
+        --nav-height: 70px; /* Keep consistent height */
     }
 }
 
 @media (max-width: 575px) {
     :root {
-        --nav-height: 110px; /* More space for smaller screens */
+        --nav-height: 70px; /* Keep consistent height */
     }
 }
 
 @media (max-width: 374px) {
     :root {
-        --nav-height: 120px; /* Maximum space for very small screens */
+        --nav-height: 70px; /* Keep consistent height */
         --footer-height: 45px;
     }
 }
