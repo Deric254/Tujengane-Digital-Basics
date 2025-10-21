@@ -1054,7 +1054,7 @@ const modules = [
                                style="background: #facc15; color: #1e293b; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; transition: all 0.2s ease;"
                                onmouseover="this.style.transform = 'scale(1.05)'"
                                onmouseout="this.style.transform = 'scale(1)'">
-                               Join Analyst Pro →
+                               Join Data literacy →
                             </a>
                         </div>
                         
@@ -1141,7 +1141,7 @@ const welcomeSlide = {
         <div class="welcome-links" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; margin-bottom:1.2rem;">
             <a href="../Tujengane Analyst Pro/analystpro.html" class="welcome-card" style="background:#facc15; color:#1e293b; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
                 <i class="fas fa-chart-bar" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
-                For Aspiring Data Analysts<br><span style="font-weight:400; font-size:0.9rem;">Go to Analyst Pro</span>
+                For Aspiring Data Analysts<br><span style="font-weight:400; font-size:0.9rem;">Go to Data literacy</span>
             </a>
             <a href="../computer basicss/computerbasicss.html" class="welcome-card" style="background:#49A078; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
                 <i class="fas fa-database" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
