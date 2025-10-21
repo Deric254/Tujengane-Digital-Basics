@@ -28,7 +28,7 @@ const slideTitles = [
     'Hustler Audit Challenge',
     'Data Quiz Time!',
     'Real-Life Case Study',
-    'Analyst Pro Curriculum',
+    'Data literacy Curriculum',
     'Computer Literacy Module',
     'Certificate & Data Partner Path',
     'Ready to Level Up?'
