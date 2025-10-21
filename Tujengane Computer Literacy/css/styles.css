@@ -1,23 +1,23 @@
 :root {
-    --nav-height: 60px; /* Default for desktop */
+    --nav-height: 70px; /* Default for desktop */
     --footer-height: 50px;
 }
 
 @media (max-width: 768px) {
     :root {
-        --nav-height: 90px; /* Increased for mobile wrapping */
+        --nav-height: 100px; /* Increased for mobile wrapping */
     }
 }
 
 @media (max-width: 575px) {
     :root {
-        --nav-height: 100px; /* More space for smaller screens */
+        --nav-height: 110px; /* More space for smaller screens */
     }
 }
 
 @media (max-width: 374px) {
     :root {
-        --nav-height: 110px; /* Maximum space for very small screens */
+        --nav-height: 120px; /* Maximum space for very small screens */
         --footer-height: 45px;
     }
 }
@@ -54,11 +54,11 @@ html {
     display: flex;
     flex: 1;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 1rem;
     padding: 0.125rem;
-    margin-top: 60px;
-    margin-bottom: 50px;
-    height: calc(100vh - 110px);
+    margin-top: var(--nav-height);
+    margin-bottom: var(--footer-height);
+    height: calc(100vh - var(--nav-height) - var(--footer-height));
     overflow: hidden;
 }
 
@@ -70,8 +70,8 @@ html {
     padding: 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 0.125rem 0;
-    height: 100%;
+    margin: 0.5rem 0 1rem 0;
+    height: calc(100% - 1rem);
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
@@ -273,8 +273,7 @@ html {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    box-sizing: border-box;
-    height: 100%;
+    margin-bottom: 1rem;
 }
 
 .max-w-5xl {
@@ -1743,6 +1742,13 @@ align-items: center;
         min-height: calc(100vh - var(--nav-height) - var(--footer-height));
         height: calc(100vh - var(--nav-height) - var(--footer-height));
         padding-top: 10px; /* Extra breathing room for growing header */
+    }
+}
+
+/* Medium screens - hide marquee to make room for nav links */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .slogan-container {
+        display: none !important;
     }
 }
 
