@@ -565,6 +565,84 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 70px; /* Fixed height to prevent growth */
+    min-height: 70px; /* Minimum height */
+    max-height: 70px; /* Maximum height */
+    display: flex;
+    align-items: center;
+}
+
+/* Make nav links more prominent */
+.nav-links {
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.025em !important;
+}
+
+/* Ensure all nav links are visible on different screen sizes */
+@media (max-width: 1400px) {
+    .nav-links {
+        gap: 1rem !important; /* Reduce gap from 1.5rem to 1rem */
+    }
+}
+
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 0.75rem !important; /* Further reduce gap */
+        font-size: 0.9rem !important; /* Slightly smaller font */
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        gap: 0.5rem !important; /* Minimal gap */
+        font-size: 0.85rem !important; /* Smaller font for space */
+    }
+}
+
+/* Prevent nav links from wrapping and ensure they're always visible */
+.nav-links {
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+/* Ensure nav container gives priority to nav links */
+@media (max-width: 1400px) {
+    nav .container {
+        gap: 2rem !important; /* Reduce gap between nav sections */
+    }
+    
+    /* Make logo section maintain minimum space */
+    nav .container > div:first-child {
+        flex-shrink: 1 !important;
+        min-width: 280px !important; /* Ensure logo + text has enough space */
+        flex-basis: auto !important;
+    }
+    
+    /* Make nav links section prioritize space */
+    nav .container > div:last-child {
+        flex-shrink: 0 !important;
+        flex-grow: 0 !important;
+    }
+    
+    /* Ensure marquee doesn't encroach on logo */
+    .slogan-container {
+        flex: 1 !important;
+        min-width: 0 !important;
+        margin: 0 1rem !important; /* Add margins to prevent touching adjacent sections */
+    }
+}
+
+.nav-link {
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.375rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-1px) !important;
 }
 
 nav .container {
@@ -846,12 +924,13 @@ white-space: nowrap;
 .slogan-marquee {
 white-space: nowrap;
 color: #facc15;
-font-weight: bold;
-font-size: 1rem;
+font-weight: 500;
+font-size: 0.85rem;
 display: inline-block;
 padding-right: 3rem;
 overflow: hidden;
 text-overflow: ellipsis;
+opacity: 0.8;
 }
 
 @keyframes marquee-loop {
@@ -1746,7 +1825,7 @@ align-items: center;
 }
 
 /* Medium screens - hide marquee to make room for nav links */
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1200px) {
     .slogan-container {
         display: none !important;
     }
