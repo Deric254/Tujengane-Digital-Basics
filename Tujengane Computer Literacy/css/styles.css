@@ -1,5 +1,5 @@
 :root {
-    --nav-height: 80px; /* Default for dynamic header */
+    --nav-height: 60px; /* Default for desktop */
     --footer-height: 50px;
 }
 
@@ -56,9 +56,9 @@ html {
     flex-direction: row;
     gap: 0.5rem;
     padding: 0.125rem;
-    margin-top: var(--nav-height);
-    margin-bottom: var(--footer-height);
-    height: calc(100vh - var(--nav-height) - var(--footer-height));
+    margin-top: 60px;
+    margin-bottom: 50px;
+    height: calc(100vh - 110px);
     overflow: hidden;
 }
 
@@ -891,7 +891,7 @@ align-items: center;
 
 .footer .container {
     max-width: 1200px;
-    margin: 0 auto 0 1rem;
+    margin: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -912,34 +912,17 @@ align-items: center;
 }
 
 .footer-socials {
-display: flex;
-gap: 0.75rem;
-margin: 0;
-flex-shrink: 0;
+    display: flex;
+    gap: 0.75rem;
     margin: 0;
     flex-shrink: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-link {
-    color: #49A078;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1rem;
-    white-space: nowrap;
-}
 
-.footer-link:hover {
-    color: #3e8865;
-}
 
 .footer-copyright {
     font-size: 0.95rem;
     color: #256d4f;
-    text-align: right;
-    flex-shrink: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Floating navigation button (replaces home button on mobile) */
@@ -1872,7 +1855,10 @@ flex-shrink: 0;
 /* Footer responsive styles for mobile */
 @media (max-width: 768px) {
     .footer .container { 
-        flex-wrap: wrap !important; 
+        gap: 0.5rem !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
     }
     .footer-home-link {
         display: inline-block !important;
@@ -1892,6 +1878,14 @@ flex-shrink: 0;
     .footer-home-link:hover { 
         background: #49A078; 
         color: #fff !important; 
+    }
+    
+    .footer-logo span {
+        font-size: 0.8rem !important;
+    }
+    
+    .footer-socials {
+        gap: 0.75rem !important;
     }
 }
 
