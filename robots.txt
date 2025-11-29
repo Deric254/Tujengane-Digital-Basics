@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tujengane.netlify.app/sitemap.xml
+Sitemap: https://dericbiskills.vercel.app/sitemap.xml
