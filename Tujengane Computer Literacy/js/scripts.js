@@ -1062,7 +1062,7 @@ const modules = [
                             <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">💼</div>
                             <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Professional Projects</h4>
                             <p style="font-size: 0.95rem; opacity: 0.9; margin-bottom: 1rem;">Get real-world experience</p>
-                            <a href="https://dericbi.netlify.app" target="_blank" 
+                            <a href="https://dericbi.vercel.app" target="_blank" 
                                style="background: #facc15; color: #1e293b; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; transition: all 0.2s ease;"
                                onmouseover="this.style.transform = 'scale(1.05)'"
                                onmouseout="this.style.transform = 'scale(1)'">
@@ -1147,7 +1147,7 @@ const welcomeSlide = {
                 <i class="fas fa-database" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
                 For Computer Basics <br><span style="font-weight:400; font-size:0.9rem;">Go to Data Basics</span>
             </a>
-            <a href="https://dericbi.netlify.app/" target="_blank" class="welcome-card" style="background:#256d4f; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
+            <a href="https://dericbi.vercel.app/" target="_blank" class="welcome-card" style="background:#256d4f; color:#fff; border-radius:0.7rem; padding:1rem 1.2rem; font-weight:700; font-size:0.98rem; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-decoration:none; transition:transform 0.2s; display:flex; flex-direction:column; align-items:center; min-width:120px;">
                 <i class="fas fa-rocket" style="font-size:1.2rem; margin-bottom:0.3rem;"></i>
                 For Professional Analysis<br><span style="font-weight:400; font-size:0.9rem;">Visit dericBI</span>
             </a>
