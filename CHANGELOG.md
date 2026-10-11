@@ -1,3 +1,25 @@
+Date: 2026-10-11 - 404 fix, dead-code removal, metadata accuracy, image performance
+
+Fixed:
+- index.html: link to 'Tujengane computer literacy/' (lowercase) 404'd on Vercel (case-sensitive). Now 'Tujengane Computer Literacy/'.
+- index.html: invalid JSON-LD (stray '],') repaired; structured data was being ignored.
+- og:url / JSON-LD urls pointing to non-existent /analyst-pro, /computer-literacy, /computer-basics now use real page URLs.
+- og:image / twitter:image were relative ('../assets/logo.png'); now absolute so link previews work.
+
+Removed (verified unreferenced):
+- Tujengane Analyst Pro/css/styles.css.bak, styles_responsive_fix.css; computer basicss/js/scripts_backup.js
+- Tujengane Analyst Pro/modules/ and Tujengane Computer Literacy/modules/ (342 slide files never fetched; course content is served from scripts.js)
+- Unused 'navLinks' variable (Analyst Pro and Computer Literacy scripts.js); commented-out <audio> and <button> blocks.
+
+Performance:
+- Added assets/logo-128.png (23 KB) and assets/images/profile-64.png (12 KB) for in-page <img> use; originals kept for og:image.
+- Dashboard screenshots on home page now loading=lazy.
+- <audio src=cheer.mp3> (file not present) set to preload=none to stop a 404 on every page load.
+
+Not changed / follow-ups: add assets/audio/cheer.mp3 if celebration sound is wanted; see notes in chat.
+
+----------------------------------------
+
 Changelog - Tujengane Digital Skills (conservative layout & numbering fixes)
 
 Date: 2025-09-13

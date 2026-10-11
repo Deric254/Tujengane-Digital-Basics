@@ -2058,7 +2058,6 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const sidebar = document.querySelector('.sidebar');
-const navLinks = document.getElementById('nav-links');
 
 function updateSlide(moduleIndex, slideIndex) {
     // stop any running celebration when switching slides
