@@ -1,0 +1,14 @@
+{
+  "name": "tujengane-digital-skills",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tujengane Digital Skills static site (Vercel). Tailwind CSS is precompiled; paid-course access is enforced by api/ functions.",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --watch",
+    "test": "node --test tests/course-api.test.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

@@ -1597,7 +1597,6 @@ cancelSubmit.addEventListener('click', () => {
 
 // Confirm submission
 confirmSubmit.addEventListener('click', () => {
-  console.log("Confirm submission clicked");
   
   // Hide confirmation dialog and show loading
   confirmSubmitCard.style.display = 'none';
@@ -1605,7 +1604,6 @@ confirmSubmit.addEventListener('click', () => {
   
   // Simulate submission process with delay
   setTimeout(() => {
-    console.log("Submission timeout completed");
     submittingCard.style.display = 'none';
     autoSubmit(false);
   }, 2000);
@@ -1940,10 +1938,8 @@ function renderReviewAnswers() {
 }
 
 function autoSubmit(timeout = false) {
-  console.log("autoSubmit called");
   
   if (state.submitted) {
-    console.log("Already submitted, showing results");
     displayResults();
     return;
   }
@@ -1991,12 +1987,10 @@ function autoSubmit(timeout = false) {
   // Save state
   save();
   
-  console.log("Submission completed successfully");
 }
 
 // New function to display results (separated from calculation)
 function displayResults() {
-  console.log("Displaying results");
   
   try {
     // Get results from state
@@ -2060,7 +2054,6 @@ if (state.step > 1) {
   
   // If submitted, show results
   if (state.submitted) {
-    console.log("Resuming from submitted state");
     setTimeout(() => displayResults(), 500);
   }
   

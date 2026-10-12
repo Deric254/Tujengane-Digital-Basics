@@ -1,3 +1,21 @@
+Date: 2026-10-12 - Security, Tailwind build, assets
+
+Security:
+- Course passwords were hard-coded in public scripts and lesson content shipped to every visitor. Access is now verified server-side (api/analyst.js, api/literacy.js) with signed HttpOnly cookies; lessons moved to api/_data/. Old passwords are retired: set COURSE_* env vars (see README).
+
+Performance / build:
+- Tailwind Play CDN (and tailwindcss-jit-cdn on Computer Literacy) replaced by precompiled assets/css/tailwind.css (14 KB). Computer Literacy now uses Tailwind 3 like the other pages.
+- Course scripts shrank from 167 KB / 131 KB to 40 KB / 36 KB (content now loaded after login).
+- Added 1200x630 assets/og-image.png for social previews; og:image sizes now accurate.
+- Tujengane Digital Skills Logo.png re-encoded (1.4 MB -> 46 KB, identical dimensions).
+
+Fixed / removed:
+- Added assets/audio/cheer.mp3 and restored the <audio> element on Analyst Pro and Computer Literacy.
+- Removed unused images (profile.png, profileprev1.png, advert1_TDB.png, images/profile.png, tdslogo2.png) and 7 debug console.log calls in kneck.html.
+- robots.txt: Disallow /api/.
+
+----------------------------------------
+
 Date: 2026-10-11 - 404 fix, dead-code removal, metadata accuracy, image performance
 
 Fixed:
