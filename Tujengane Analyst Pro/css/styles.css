@@ -1864,10 +1864,14 @@ nav .container {
     font-weight: 700;
 }
 
-/* Make slide headings underlined and slightly bolder for emphasis */
+/* Make slide headings underlined and slightly bolder for emphasis (refined: thicker brand-gold underline, offset from the text) */
 .slide-content h2 {
     font-weight: 800 !important;
     text-decoration: underline !important;
+    text-decoration-color: #facc15 !important;
+    text-decoration-thickness: 3px !important;
+    text-underline-offset: 6px !important;
+    text-decoration-skip-ink: auto;
 }
 
 /* Ensure code/pre blocks do not inherit list numbering and are visually distinct */

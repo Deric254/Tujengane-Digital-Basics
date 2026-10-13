@@ -1,3 +1,27 @@
+Date: 2026-10-13 - Quality audit (links, errors, polish)
+
+Fixed:
+- other_trainings/kneck.html: `exitBtn is not defined` stopped the exam script mid-way, so state restore, fullscreen handlers, refresh protection and the return-to-exam button never ran. Now guarded (#exit-btn is optional); the dormant code runs as originally written.
+- kneck system-check badges: removed doubled icons (CSS tick + literal tick, CSS '!' + literal warning sign); badges now start neutral instead of showing a tick before anything is verified.
+- Amplitude init no longer throws when the analytics script is blocked (ad-blockers) on any course page.
+- Removed ineffective <meta http-equiv> tags (X-Frame-Options, X-Content-Type-Options, Permissions-Policy, Cache-Control, Expires, COEP/COOP/CORP); real security headers now come from vercel.json (nosniff, SAMEORIGIN, strict-origin-when-cross-origin). Camera access is intentionally NOT restricted (the exam uses it).
+- Added rel="noopener noreferrer" to all 37 target=_blank links.
+- Slide links to Computer Literacy used '../../' (only worked because browsers clamp at the site root); now '../Tujengane%20Computer%20Literacy/...'.
+- Analyst Pro slide headings: underline refined (3px brand-gold, offset) instead of the default thin black line.
+
+Verified (headless Chromium): every page at 3 sizes, all 377 lesson slides opened; 0 JS errors, 0 broken images, 0 failed local requests, 0 horizontal overflow, 0 broken internal links; layout unchanged vs previous build (300 geometry checks).
+
+----------------------------------------
+
+Date: 2026-10-12 - Header/footer polish
+
+- New assets/css/chrome.css (linked last in every page): header and footer content now use the full screen width (Tailwind's capped .container and the course pages' `.footer .container {max-width:1200px}` no longer pinch it); consistent pill-style header links on all pages (Analyst Pro had none); header gradient + shadow; gold ring on logos; gradient footer with brand accent line; footer items vertically centred on the free courses.
+- Safe by construction: never sets position/height/margin/z-index (course pages pin header/footer with fixed bars). Verified in Chromium at 6 widths x 5 pages: no layout shift; phones (<=640px) unchanged. Guarded by tests/chrome-css.test.js.
+- Home page footer has slightly more padding on tablet/desktop (body.home-page).
+- Nav label capitalisation fixed: 'Computer Basics', 'Data Literacy'.
+
+----------------------------------------
+
 Date: 2026-10-12 - Security, Tailwind build, assets
 
 Security:

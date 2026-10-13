@@ -14,6 +14,12 @@ Pages load `assets/css/tailwind.css`, built from `tailwind.config.js`. After add
 The built file is committed so Vercel needs no build step. Custom CSS (`css/styles.css`) intentionally loads *after*
 Tailwind so it can override utilities.
 
+### Security headers
+`vercel.json` sets `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN` and `Referrer-Policy`. Do not add a camera/microphone `Permissions-Policy` site-wide: the KNEC exam needs the camera.
+
+### Header / footer styling
+`assets/css/chrome.css` (loaded last on every page) controls header/footer width and polish. It is deliberately visual-only: the course pages pin their bars with `position: fixed` and fixed heights, so do not add position/height/margin rules there (`npm test` enforces this).
+
 ### Paid-course access (Analyst Pro, Computer Literacy)
 Passwords are checked on the server, not in the browser. Lesson content is in `api/_data/*.json` and is only returned by
 `/api/analyst` and `/api/literacy` to a visitor holding a valid signed session cookie.

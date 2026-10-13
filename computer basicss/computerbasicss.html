@@ -8,8 +8,8 @@
   <!-- ✅ Amplitude Analytics -->
   <script src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js"></script>
   <script>
-    window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-    window.amplitude.init('5a4bb01b3841a994768853dd53f10382', {"fetchRemoteConfig":true,"autocapture":true});
+    if (window.amplitude && window.sessionReplay) window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    if (window.amplitude) window.amplitude.init('5a4bb01b3841a994768853dd53f10382', {"fetchRemoteConfig":true,"autocapture":true});
   </script>
 
   <!-- ✅ Google Analytics -->
@@ -157,6 +157,7 @@
     ]
   }
   </script>
+    <link rel="stylesheet" href="../assets/css/chrome.css">
 </head>
 
 <body>
@@ -180,8 +181,8 @@
                     <li><a href="../index.html" class="nav-link hover:text-[#facc15] transition-colors">Home</a></li>
                     <li><a href="../Tujengane data basics/databasics.html" class="nav-link hover:text-[#facc15] transition-colors">Data Basics</a></li>
                     <li><a href="../Tujengane Computer Literacy/computerliteracy.html" class="nav-link hover:text-[#facc15] transition-colors">Computer Literacy</a></li>
-                    <li><a href="../Tujengane Analyst Pro/analystpro.html" class="nav-link hover:text-[#facc15] transition-colors">Data literacy</a></li>
-                    <li><a href="https://dericbi.vercel.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank"><span style="color: black;">Deric</span><span style="color: #facc15;">BI</span></a></li>
+                    <li><a href="../Tujengane Analyst Pro/analystpro.html" class="nav-link hover:text-[#facc15] transition-colors">Data Literacy</a></li>
+                    <li><a href="https://dericbi.vercel.app" class="nav-link hover:text-[#facc15] transition-colors" target="_blank" rel="noopener noreferrer"><span style="color: black;">Deric</span><span style="color: #facc15;">BI</span></a></li>
                 </ul>
             </div>
         </div>
@@ -262,7 +263,7 @@
                 </div>
                 <div class="mt-2">
                     &copy; 2025 TDS powered by <span style="color: black;">Deric</span><span style="color: #facc15;">BI</span><br>
-                    Developed by <a href="https://dericmarangu.vercel.app/" target="_blank" class="text-[#facc15] hover:underline">Deric Marangu</a>
+                    Developed by <a href="https://dericmarangu.vercel.app/" target="_blank" class="text-[#facc15] hover:underline" rel="noopener noreferrer">Deric Marangu</a>
                 </div>
             </div>
         </aside>
@@ -320,7 +321,7 @@
                 <span class="font-extrabold text-lg text-gray-800 tracking-wide">Tujengane Digital Skills</span>
             </div>
             <div class="footer-socials">
-                <a href="https://wa.me/254791360805" target="_blank" class="footer-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/254791360805" target="_blank" class="footer-link" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:dericmarangu@gmail.com" class="footer-link" title="Email"><i class="fas fa-envelope"></i></a>
                  <a href="https://web.facebook.com/deric.aldertrax" target="_blank" rel="noopener noreferrer" class="footer-link"><i class="fab fa-facebook"></i></a>
                  <a href="https://www.facebook.com/dericbiservices/" target="_blank" rel="noopener noreferrer" class="footer-link" title="DericBI Facebook"><i class="fab fa-facebook"></i></a>
@@ -371,15 +372,15 @@
             <h2 class="text-lg font-bold mb-4 text-center text-[#49A078]">Choose Your Learning Path</h2>
             <p class="text-gray-600 text-center mb-6">Pick the option that suits your learning needs best:</p>
             <div class="flex flex-col gap-4">
-                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md" rel="noopener noreferrer">
                     💻 Computer Basics Training
                     <div class="tooltip">Learn essential computer skills</div>
                 </a>
-                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md" rel="noopener noreferrer">
                     🎓 Advanced Computer Literacy
                     <div class="tooltip">Master advanced computer skills</div>
                 </a>
-                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md">
+                <a href="https://forms.gle/krViHXVaJKP2JARZ7" target="_blank" class="block bg-[#49A078] hover:bg-[#3e8865] text-white text-center px-4 py-3 rounded-lg font-semibold shadow-md" rel="noopener noreferrer">
                     📊 Data Analysis Training
                     <div class="tooltip">Learn data analysis skills</div>
                 </a>

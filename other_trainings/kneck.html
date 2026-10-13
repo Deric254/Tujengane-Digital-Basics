@@ -120,10 +120,10 @@
           </div>
 
           <div style="margin-top:18px">
-            <div class="security-badge secure" id="browser-check">Browser compatibility check</div>
-            <div class="security-badge secure" id="network-check" style="margin-top:8px">Network connectivity check</div>
-            <div class="security-badge secure" id="screen-check" style="margin-top:8px">Screen resolution check</div>
-            <div class="security-badge secure" id="plugins-check" style="margin-top:8px">Browser plugins check</div>
+            <div class="security-badge" id="browser-check">Browser compatibility check</div>
+            <div class="security-badge" id="network-check" style="margin-top:8px">Network connectivity check</div>
+            <div class="security-badge" id="screen-check" style="margin-top:8px">Screen resolution check</div>
+            <div class="security-badge" id="plugins-check" style="margin-top:8px">Browser plugins check</div>
             <div class="security-badge" id="camera-check" style="margin-top:8px">Camera access check</div>
             
             <div style="margin-top:20px;display:flex;justify-content:space-between;">
@@ -1183,21 +1183,21 @@ function initializeSystemCheck() {
         const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
         
         if (isChrome || isFirefox || isEdge || isSafari) {
-          browserCheck.textContent = "✓ Browser compatibility verified";
+          browserCheck.textContent = "Browser compatibility verified";
           browserCheck.classList.add("secure");
           systemRequirements.browser = true;
         } else {
-          browserCheck.textContent = "⚠ Unsupported browser detected";
+          browserCheck.textContent = "Unsupported browser detected";
           browserCheck.classList.add("alert");
           requirementsFailed = true;
         }
       } else {
-        browserCheck.textContent = "⚠ Browser missing required features";
+        browserCheck.textContent = "Browser missing required features";
         browserCheck.classList.add("alert");
         requirementsFailed = true;
       }
     } catch (err) {
-      browserCheck.textContent = "⚠ Browser check failed";
+      browserCheck.textContent = "Browser check failed";
       browserCheck.classList.add("alert");
       requirementsFailed = true;
     }
@@ -1218,16 +1218,16 @@ function initializeSystemCheck() {
           const latency = Date.now() - start;
           
           if (latency < 1000) {
-            networkCheck.textContent = `✓ Network connectivity verified (${latency}ms)`;
+            networkCheck.textContent = `Network connectivity verified (${latency}ms)`;
             networkCheck.classList.add("secure");
             systemRequirements.network = true;
           } else {
-            networkCheck.textContent = `⚠ Network latency high (${latency}ms)`;
+            networkCheck.textContent = `Network latency high (${latency}ms)`;
             networkCheck.classList.add("alert");
             requirementsFailed = true;
           }
         } catch (err) {
-          networkCheck.textContent = "⚠ Network connectivity issue";
+          networkCheck.textContent = "Network connectivity issue";
           networkCheck.classList.add("alert");
           requirementsFailed = true;
         }
@@ -1241,11 +1241,11 @@ function initializeSystemCheck() {
         const height = window.innerHeight;
         
         if (width >= 1024 && height >= 768) {
-          screenCheck.textContent = `✓ Screen resolution verified (${width}x${height})`;
+          screenCheck.textContent = `Screen resolution verified (${width}x${height})`;
           screenCheck.classList.add("secure");
           systemRequirements.screen = true;
         } else {
-          screenCheck.textContent = `⚠ Screen too small (${width}x${height})`;
+          screenCheck.textContent = `Screen too small (${width}x${height})`;
           screenCheck.classList.add("alert");
           requirementsFailed = true;
         }
@@ -1271,7 +1271,7 @@ function initializeSystemCheck() {
           const isFramed = window !== window.top;
           
           if (cookiesEnabled && localStorageWorks && !isFramed) {
-            pluginsCheck.textContent = "✓ Browser environment verified";
+            pluginsCheck.textContent = "Browser environment verified";
             pluginsCheck.classList.add("secure");
             systemRequirements.plugins = true;
           } else {
@@ -1280,7 +1280,7 @@ function initializeSystemCheck() {
             if (!localStorageWorks) issues.push("storage blocked");
             if (isFramed) issues.push("running in frame");
             
-            pluginsCheck.textContent = `⚠ Browser environment issues (${issues.join(', ')})`;
+            pluginsCheck.textContent = `Browser environment issues (${issues.join(', ')})`;
             pluginsCheck.classList.add("alert");
             requirementsFailed = true;
           }
@@ -1291,7 +1291,7 @@ function initializeSystemCheck() {
             navigator.mediaDevices.getUserMedia({ video: true, audio: false })
               .then((stream) => {
                 // Camera access successful
-                cameraCheck.textContent = "✓ Camera access verified";
+                cameraCheck.textContent = "Camera access verified";
                 cameraCheck.classList.add("secure");
                 systemRequirements.camera = true;
                 
@@ -1305,7 +1305,7 @@ function initializeSystemCheck() {
               })
               .catch((err) => {
                 // Camera access failed
-                cameraCheck.textContent = "⚠ Camera access not available";
+                cameraCheck.textContent = "Camera access not available";
                 cameraCheck.classList.add("alert");
                 requirementsFailed = true;
                 
@@ -1650,8 +1650,9 @@ newBtn.addEventListener('click', () => {
   }
 });
 
-// Exit button to return to main page
-exitBtn.addEventListener('click', () => {
+// Exit button to return to main page (only wired if the page provides an #exit-btn element)
+const exitBtn = document.getElementById('exit-btn');
+if (exitBtn) exitBtn.addEventListener('click', () => {
   if (isFullscreen()) {
     exitFullscreen();
   }
