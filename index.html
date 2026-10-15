@@ -1136,6 +1136,30 @@
 
 <!-- Additional Security Headers -->
 
+    <style>
+        /* Featured product banner: DericBI Instructor desktop app */
+        .app-banner { margin-top: 1rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.2rem; align-items: center; padding: 1.4rem; border-radius: 16px; color: #e9f3ee;
+            background: radial-gradient(520px 260px at 100% 0%, rgba(73,160,120,0.35), transparent 60%), linear-gradient(150deg, #0a0f1a 0%, #0f2a21 100%); box-shadow: 0 18px 40px -22px rgba(10,30,22,0.7); }
+        .app-banner-tag { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #facc15; background: rgba(250,204,21,0.14); border: 1px solid rgba(250,204,21,0.4); }
+        .app-banner h3 { margin: 0.6rem 0 0.3rem; font-size: 1.6rem; font-weight: 850; color: #fff; letter-spacing: -0.02em; }
+        .app-banner p { margin: 0 0 0.7rem; color: #c3d6cd; font-size: 0.97rem; line-height: 1.55; }
+        .app-banner-steps { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; padding: 0; list-style: none; counter-reset: s; }
+        .app-banner-steps li { counter-increment: s; padding: 0.3rem 0.75rem 0.3rem 0.4rem; border-radius: 999px; background: rgba(255,255,255,0.09); font-size: 0.85rem; color: #dcebe3; display: inline-flex; align-items: center; gap: 0.45rem; }
+        .app-banner-steps li::before { content: counter(s); width: 1.3rem; height: 1.3rem; border-radius: 50%; background: #49A078; color: #fff; display: inline-grid; place-items: center; font-size: 0.75rem; font-weight: 800; }
+        .app-banner-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .app-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.7rem 1.15rem; border-radius: 12px; font-weight: 800; font-size: 0.95rem; text-decoration: none; border: 2px solid transparent; transition: transform 0.18s ease, background-color 0.18s ease; }
+        .app-btn:hover { transform: translateY(-2px); }
+        .app-btn:focus-visible { outline: 3px solid #facc15; outline-offset: 3px; }
+        .app-btn-primary { background: #facc15; color: #1a1500; }
+        .app-btn-primary:hover { background: #ffd93a; }
+        .app-btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.35); }
+        .app-btn-ghost:hover { background: rgba(255,255,255,0.16); }
+        .app-banner-shot { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 50px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1); line-height: 0; }
+        .app-banner-shot img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+        .app-banner-shot:hover img { transform: scale(1.03); }
+        @media (max-width: 860px) { .app-banner { grid-template-columns: 1fr; padding: 1.1rem; } .app-banner h3 { font-size: 1.4rem; } }
+        @media (prefers-reduced-motion: reduce) { .app-btn, .app-banner-shot img { transition: none; } .app-btn:hover, .app-banner-shot:hover img { transform: none; } }
+    </style>
     <link rel="stylesheet" href="assets/css/chrome.css">
 </head>
 <body class="home-page">
@@ -1208,6 +1232,13 @@
                         <span class="discount-badge">50% OFF</span>
                     </a>
                     <p>Essential skills for students and professionals, 5 USD (650 KES) per module or 50 USD (6500 KES) full package.</p>
+                </div>
+                <div class="sidebar-item">
+                    <a href="dericbi-instructor/" style="display:flex;align-items:center;gap:0.5rem;"><i class="fas fa-desktop"></i>
+                        <span>DericBI Instructor</span>
+                        <span style="margin-left:auto;background:#256d4f;color:#fff;padding:0.15rem 0.45rem;border-radius:0.25rem;font-size:0.7rem;">APP</span>
+                    </a>
+                    <p>60 guided lessons on your Windows PC: SQL, Excel, Python, Power BI, Statistics and Business. Get a license key, download the installer, start learning.</p>
                 </div>
                 <div class="sidebar-item">
                     <a href="#custom-training-section" style="display:flex;align-items:center;gap:0.5rem;background:#facc15;color:#92400e;">
@@ -1355,6 +1386,25 @@
                                 <a href="#" class="share-link" data-share-url="Tujengane Computer Literacy/computerliteracy.html" style="margin-left:0.5rem;">Share</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="app-banner" id="instructor-app">
+                        <div class="app-banner-copy">
+                            <span class="app-banner-tag"><i class="fas fa-desktop"></i> Desktop app for Windows</span>
+                            <h3>DericBI Instructor</h3>
+                            <p>Your personal analytics mentor on your PC: 60 guided lessons and 129 hands-on exercises in SQL, Excel, Python, Power BI, Statistics and Business, with an optional AI tutor.</p>
+                            <ol class="app-banner-steps">
+                                <li>Get your license key</li>
+                                <li>Download the installer</li>
+                                <li>Install and start learning</li>
+                            </ol>
+                            <div class="app-banner-actions">
+                                <a class="app-btn app-btn-primary" href="dericbi-instructor/#get-started">Get the app</a>
+                                <a class="app-btn app-btn-ghost" href="dericbi-instructor/">See how it works</a>
+                            </div>
+                        </div>
+                        <a class="app-banner-shot" href="dericbi-instructor/" aria-label="See the DericBI Instructor desktop app">
+                            <img src="dericbi-instructor/img/dashboard.webp" width="1280" height="800" loading="lazy" decoding="async" alt="DericBI Instructor dashboard with six academies">
+                        </a>
                     </div>
                     <div style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
                         <a href="computer basicss/computerbasicss.html" class="curriculum-link" style="padding:0.6rem 0.85rem;">Start Learning Now</a>

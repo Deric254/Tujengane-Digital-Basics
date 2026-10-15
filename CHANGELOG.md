@@ -1,3 +1,12 @@
+Date: 2026-10-14 - DericBI Instructor desktop app added as a product
+
+- New product page /dericbi-instructor/ : guided 5-step journey (get license key, download installer, install, activate, create account), real screenshots, offline/online table, optional AI-tutor setup, FAQ and Windows SmartScreen help. Installer link: GitHub latest release; the page shows the live version/size/date and degrades gracefully (no release yet -> WhatsApp fallback; API blocked -> direct link still works). Strict CSP, no inline scripts/styles.
+- Home page: sidebar entry (badge APP) and a featured banner under the course cards; sitemap entry; product social card (og-instructor.png).
+- tests/product-page.test.js guards the page (links, CSP, structured data, noopener, download URL, home entry points).
+- Price is deliberately not stated: buyers are sent to WhatsApp for today's price. Edit the step-1 text in dericbi-instructor/index.html to publish one.
+
+----------------------------------------
+
 Date: 2026-10-13 - Quality audit (links, errors, polish)
 
 Fixed:
