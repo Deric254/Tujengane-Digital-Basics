@@ -284,3 +284,11 @@ footer.footer a:hover { text-decoration: underline; }
   .ix-hero { background: #fff; color: #000; }
   .ix-hero h1, .ix-hero p { color: #000; }
 }
+
+/* ---------- Price ---------- */
+.ix-price { margin: 1rem 0 0; font-size: 1.05rem; color: #c3d6cd; }
+.ix-price strong { color: var(--y); font-size: 1.35rem; margin-right: 0.2rem; }
+.ix-price span { color: #9fb8ac; }
+.ix-card p.ix-price-box { display: inline-block; margin: 0.5rem 0 0.2rem; padding: 0.45rem 0.9rem; border-radius: 12px; background: #fff7d6; border: 1px solid #f0d56b; color: #5a4700; font-size: 1rem; }
+.ix-card p.ix-price-box strong { font-size: 1.25rem; color: #3d3000; }
+.ix-monthly { margin-top: 1.4rem; }

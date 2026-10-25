@@ -5,7 +5,7 @@
 
   var RELEASES_API = 'https://api.github.com/repos/Deric254/dericbi-instructor/releases/latest'
   var INSTALLER_NAME = 'DericBI-Instructor-Setup.exe'
-  var STORAGE_KEY = 'dbi-instructor-steps-v1'
+  var STORAGE_KEY = 'dbi-instructor-steps-v2' // v2: the steps changed (activation-code flow), so old ticks are ignored
   var TOTAL_STEPS = 5
 
   var root = document.documentElement

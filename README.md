@@ -15,7 +15,7 @@ The built file is committed so Vercel needs no build step. Custom CSS (`css/styl
 Tailwind so it can override utilities.
 
 ### DericBI Instructor product page
-`dericbi-instructor/` is the product page for the desktop app (source: github.com/Deric254/dericbi-instructor). The download button always points at `releases/latest/download/DericBI-Instructor-Setup.exe`; the page also reads the GitHub releases API to show the version and size. To change the price text or support contact, edit step 1 and the `wa.me` links in `dericbi-instructor/index.html`. New Tailwind classes there need `npm run build:css`.
+`dericbi-instructor/` is the product page for the desktop app (source: github.com/Deric254/dericbi-instructor). The download button always points at `releases/latest/download/DericBI-Instructor-Setup.exe`; the page also reads the GitHub releases API to show the version and size. To change the price or support contact, edit step 3, the FAQ and the `wa.me` links in `dericbi-instructor/index.html`. New Tailwind classes there need `npm run build:css`.
 
 ### Security headers
 `vercel.json` sets `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN` and `Referrer-Policy`. Do not add a camera/microphone `Permissions-Policy` site-wide: the KNEC exam needs the camera.

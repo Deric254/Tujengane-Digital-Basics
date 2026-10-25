@@ -62,3 +62,28 @@ test('home page links to the product (sidebar + banner) and the sitemap lists it
 test('header nav on the product page links to all sibling pages', () => {
   for (const target of ['databasics.html', 'computerbasicss.html', 'analystpro.html', 'computerliteracy.html']) assert.ok(html.includes(target), target);
 });
+
+test('the 1,000 USD price is stated consistently (page, FAQ, structured data, WhatsApp text, home)', () => {
+  assert.match(html, /"price": "1000", "priceCurrency": "USD"/);
+  assert.match(html, /class="ix-price"><strong>1,000 USD<\/strong>/);
+  assert.match(html, /How much does it cost and how do I pay\?/);
+  assert.ok((html.match(/1%2C000%20USD/g) || []).length >= 2, 'WhatsApp message should mention the price');
+  assert.doesNotMatch(html, /today's price/i, 'old "ask for the price" wording should be gone');
+  assert.match(home, /class="app-banner-price"><strong>1,000 USD<\/strong>/);
+});
+
+test('the page teaches the activation-code flow and nothing from the old key system', () => {
+  assert.match(html, /activation code/i);
+  assert.match(html, /DBIN1\./);
+  assert.match(html, /Send my code on WhatsApp/);
+  assert.match(html, /Keeping your licence active/);
+  assert.doesNotMatch(html, /DBI-|license key|licen[s]e/i, 'old key format or US spelling left behind');
+  const steps = [...html.matchAll(/data-step="(\d)"/g)].map((m) => m[1]);
+  assert.deepEqual(steps, ['1', '2', '3', '4', '5']);
+  assert.ok(fs.existsSync(path.join(pageDir, 'img', 'activate.webp')));
+  assert.ok(!fs.existsSync(path.join(pageDir, 'img', 'license.webp')), 'the old activation screenshot should be gone');
+});
+
+test('the checklist storage key was bumped when the steps changed', () => {
+  assert.match(fs.readFileSync(path.join(pageDir, 'js', 'instructor.js'), 'utf8'), /dbi-instructor-steps-v2/);
+});

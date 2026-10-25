@@ -1,3 +1,12 @@
+Date: 2026-10-17 - DericBI Instructor page updated for the new licensing
+
+- The app now uses per-computer activation codes (no more license keys). The product page teaches the new journey: download, install, send your activation code on WhatsApp, paste the licence we reply with, create your account. New real screenshot of the activation screen.
+- Added 'Keeping your licence active' (renewal licences each paid period, reminder 14 days before the end) and FAQ answers for: licence not accepted, what happens when a licence ends, using another computer.
+- Pricing wording is now neutral ('1,000 USD per licence'); the 'one-time' claim was removed because licences follow the months paid. Spelling is 'licence' throughout. Checklist progress storage key bumped (old ticks no longer apply).
+- Deploy together with app version 1.7+ (the old installer asks for a key, not a code).
+
+----------------------------------------
+
 Date: 2026-10-14 - DericBI Instructor desktop app added as a product
 
 - New product page /dericbi-instructor/ : guided 5-step journey (get license key, download installer, install, activate, create account), real screenshots, offline/online table, optional AI-tutor setup, FAQ and Windows SmartScreen help. Installer link: GitHub latest release; the page shows the live version/size/date and degrades gracefully (no release yet -> WhatsApp fallback; API blocked -> direct link still works). Strict CSP, no inline scripts/styles.
