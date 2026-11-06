@@ -1,3 +1,12 @@
+Date: 2026-11-05 - Clean-up and a rolling offer
+
+- The discount is now one ongoing offer driven by assets/js/promo.js: it counts down each 30-day round and starts the next one by itself. Set `percent` to 0 in that file to close it; the banner and every "% OFF" badge then hide. Visitors who dismiss the banner are not shown it again on that page.
+- Removed claims that could not be backed up (a specific monthly income, a sales increase, "thousands" of learners) and the decorative emoji in headings, banners and social previews. The learner quotes remain, without figures.
+- The footer year is computed; the copyright meta tag and the "updated" meta tag no longer carry a year. sitemap.xml no longer carries a fixed last-modified date.
+- Removed the unused old activation screenshot (dericbi-instructor/img/license.webp); the product-page test passes again.
+
+----------------------------------------
+
 Date: 2026-10-17 - DericBI Instructor page updated for the new licensing
 
 - The app now uses per-computer activation codes (no more license keys). The product page teaches the new journey: download, install, send your activation code on WhatsApp, paste the licence we reply with, create your account. New real screenshot of the activation screen.

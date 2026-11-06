@@ -1,0 +1,38 @@
+/* Layered lessons: every slide keeps its short Foundation text, then adds
+   Practice and Mastery layers plus a self-check. Native <details>, no script. */
+.layers { margin-top: 1.5rem; display: grid; gap: .75rem; text-align: left; }
+.layers .layer, .layers .layer-check { border: 1px solid #d9e6df; border-left-width: 4px; border-radius: .6rem; background: #fff; }
+.layers .layer-practice { border-left-color: #49a078; }
+.layers .layer-mastery { border-left-color: #1f4e79; }
+.layers .layer-check { border-left-color: #e0a100; background: #fffbea; }
+.layers summary { cursor: pointer; padding: .65rem .9rem; font-weight: 700; font-size: .95rem; list-style: none; display: flex; align-items: center; gap: .5rem; }
+.layers summary::-webkit-details-marker { display: none; }
+.layers summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: #eef6f1; color: #256d4f; font-weight: 800; flex: none; }
+.layers details[open] > summary::before { content: "\2212"; }
+.layers .layer-practice > summary { color: #256d4f; }
+.layers .layer-mastery > summary { color: #1f4e79; }
+.layers .layer-check > summary { color: #7a5800; }
+.layers .layer-body { padding: 0 .9rem .8rem 2.65rem; font-size: .95rem; line-height: 1.6; color: #1f2937; }
+.layers .layer-body p { margin: .4rem 0; }
+.layers .layer-body ul, .layers .layer-body ol { margin: .4rem 0 .4rem 1.1rem; }
+.layers .layer-body ul { list-style: disc; }
+.layers .layer-body ol { list-style: decimal; }
+.layers .layer-body li { margin: .2rem 0; background: none; padding: 0; border: 0; }
+.layers .layer-body code { background: #f1f5f3; padding: .05rem .3rem; border-radius: .25rem; font-size: .88em; }
+.layers .layer-body pre { background: #0f172a; color: #e2e8f0; padding: .75rem .9rem; border-radius: .5rem; overflow-x: auto; margin: .5rem 0; font-size: .85rem; line-height: 1.5; }
+.layers .layer-body pre code { background: none; color: inherit; padding: 0; }
+.layers .layer-body table { border-collapse: collapse; margin: .5rem 0; font-size: .9rem; display: block; overflow-x: auto; }
+.layers .layer-body th, .layers .layer-body td { border: 1px solid #d9e6df; padding: .3rem .6rem; text-align: left; }
+.layers .layer-body th { background: #eef6f1; }
+@media (prefers-color-scheme: dark) {
+  .layers .layer, .layers .layer-check { background: #14201b; border-color: #2a3d34; }
+  .layers .layer-check { background: #2a2410; }
+  .layers .layer-body { color: #e5e7eb; }
+  .layers .layer-body code { background: #1f2d27; }
+  .layers .layer-practice > summary { color: #7fd1ad; }
+  .layers .layer-mastery > summary { color: #8ab8e6; }
+  .layers .layer-check > summary { color: #f0c04a; }
+  .layers summary::before { background: #1f2d27; color: #7fd1ad; }
+  .layers .layer-body th { background: #1f2d27; }
+}
+@media print { .layers details > * { display: block !important; } }
