@@ -61,7 +61,7 @@ body.home-page .main-content {
 body.home-page .main-content > .relative {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3.4vw, 40px);
+  gap: clamp(20px, 2.8vw, 32px);
 }
 body.home-page .main-content section { margin-top: 0 !important; }
 
@@ -137,7 +137,7 @@ body.home-page .hero-section {
   background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 55%, #ecfccb 100%);
   border: 1px solid #d7ebe0;
   border-radius: 18px;
-  padding: clamp(32px, 6vw, 64px) clamp(18px, 4vw, 48px);
+  padding: clamp(28px, 4.6vw, 52px) clamp(18px, 4vw, 48px);
   box-shadow: none;
 }
 body.home-page .hero-section::before,
@@ -346,7 +346,7 @@ body.home-page .curriculum-actions a.share-link { min-height: 40px; padding: 0 1
 body.home-page .curriculum-actions a.share-link { margin-left: 0 !important; }
 
 /* ---------- quick links under the app banner ---------- */
-body.home-page .ui-quick { display: flex; flex-wrap: wrap; gap: 12px !important; margin-top: 16px !important; }
+body.home-page .ui-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px !important; margin-top: 16px !important; }
 body.home-page .ui-quick a.curriculum-link { padding: 0 22px !important; }
 
 /* ---------- desktop app banner: keep its design, align rhythm ---------- */
@@ -384,7 +384,7 @@ body.home-page .ui-testi-actions {
 body.home-page .ui-testi-actions > div { color: var(--ui-ink) !important; }
 
 /* ---------- skill chips (Excel / Power BI / AI ready) ---------- */
-body.home-page .ui-chips { gap: 10px !important; }
+body.home-page .ui-chips { gap: 10px !important; justify-content: center; }
 body.home-page .ui-chips > div {
   background: #fff !important;
   border: 1px solid var(--ui-line);
@@ -410,9 +410,9 @@ body.home-page .dashboard-card img {
   width: 100%;
   height: auto;
   max-height: none;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;                  /* show the whole dashboard, never crop it */
-  background: #f8fafc;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;                    /* fills the frame: no blank bars (the two screenshots are 1.86:1 and 2.22:1) */
+  object-position: center top;
   border-radius: 10px !important;
   box-shadow: none !important;
   border: 1px solid var(--ui-line);
@@ -470,13 +470,24 @@ body.home-page #pricing-section a.curriculum-link { padding: 0 28px !important; 
 
 /* ---------- desktop sidebar ---------- */
 body.home-page .sidebar {
-  align-self: flex-start;               /* was stretching to the page height, leaving a big empty green block */
+  position: sticky;                     /* stays in view while the page scrolls: no blank column beside long content */
+  top: 12px;
+  align-self: flex-start;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .35) transparent;
   background: linear-gradient(160deg, var(--ui-green), var(--ui-green-dark));
   border-radius: var(--ui-radius);
   border: 0;
   box-shadow: 0 10px 30px rgba(31, 92, 67, .18);
 }
+body.home-page .sidebar { padding: 14px; }
+body.home-page .sidebar-content { gap: 10px; }
 body.home-page .sidebar-item {
+  padding: 12px !important;
+  margin-top: 0 !important;
   border-radius: 12px;
   background: rgba(255, 255, 255, .08);
   border: 1px solid rgba(255, 255, 255, .16);

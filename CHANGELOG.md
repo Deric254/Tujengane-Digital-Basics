@@ -1,7 +1,7 @@
 Date: 2026-11-08 - Home page UI refinement (dericBI look)
 
 - New assets/css/ui.css, loaded after chrome.css and scoped to body.home-page, so no course page changes. Same design language as the dericBI site: one green palette, 14px cards with hairline borders, one button system (solid green = go, white outline = secondary, gold = main call to action), consistent section headings, calm motion and clear focus rings.
-- Home page: a light, centred hero (soft gradient, big dark headline, green main button) like the dericBI site, plus value cards, 2x2 course cards, "Ready to start?" call-to-action band, pricing, dashboards, testimonials, chips and the desktop sidebar were refined. Phone buttons are full width.
+- Home page: a light, centred hero (soft gradient, big dark headline, green main button) like the dericBI site, plus value cards, 2x2 course cards, "Ready to start?" call-to-action band, pricing, dashboards, testimonials, chips and the desktop sidebar were refined. The sidebar now stays in view (sticky, scrolls on its own) so there is never a blank column beside long content. Phone buttons are full width.
 - Fixed on the way: the invalid body background ("to-br"), the global button:hover that zoomed every button and turned it yellow, badges clipped at card and sidebar edges, yellow-on-white sidebar links, whole-banner pulsing, mismatched dashboard cards, two conflicting theme-color tags, and the sidebar stretching into an empty block.
 - Respects prefers-reduced-motion. Only class hooks were added to index.html (ui-values, ui-quick, ui-testi, ui-testi-actions, ui-chips, ui-ready); no ids, scripts or content were removed.
 - package.json now pins Node to 24.x so Vercel stops auto-upgrading to 26.x.
