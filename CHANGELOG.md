@@ -1,7 +1,8 @@
 Date: 2026-11-07 - PayPal "Pay now" with proof of payment
 
 - New shared modal (assets/js/paypal-pay.js, assets/css/paypal-pay.css). "Pay now" buttons were added to the Per Module and Full Package prices and the DericBI Instructor licence on the home page, and to the licence steps on the DericBI Instructor page. The Per Module button has a 1-13 module stepper.
-- The modal shows the total, the PayPal address (dericmarangu@gmail.com) with Copy and Open PayPal, then asks for name, optional transaction ID (and the activation code for licences) and opens a pre-filled email, or Gmail. Browsers cannot attach files to an email by themselves, so the learner attaches the screenshot in the email; phones that support file sharing also get a button that sends the screenshot attached.
+- The modal shows the total and the PayPal address (dericmarangu@gmail.com) with a Copy button, then one form: name, phone or email, optional transaction ID (and the activation code for licences) and the payment screenshot. The screenshot is shrunk in the browser and shown as a thumbnail so the learner can see it is attached. "Send proof" posts it to api/payment-proof.js, which emails it to the owner as a real attachment.
+- The email is sent through your own Gmail (nodemailer, SMTP). It needs one environment variable in Vercel: GMAIL_APP_PASSWORD (a Google app password). GMAIL_USER and PROOF_TO are optional (see .env.example). Until the password is set the button says sending is not switched on yet. package.json now lists nodemailer and Node 20+.
 - Payment Methods now lists PayPal. The Instructor page keeps its strict CSP (no inline script or style).
 
 ----------------------------------------

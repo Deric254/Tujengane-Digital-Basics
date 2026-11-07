@@ -68,17 +68,13 @@ button.app-btn[data-pay] { font-family: inherit; cursor: pointer; }
 .pp-email { flex: 1; min-width: 0; display: flex; align-items: center; padding: .55rem .7rem; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: .6rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .95rem; font-weight: 700; color: #111827; overflow-wrap: anywhere; user-select: all; }
 .pp-copy { flex: none; padding: 0 .9rem; border: 1px solid #2f7d5b; border-radius: .6rem; background: #fff; color: #256d4f; font: inherit; font-weight: 700; cursor: pointer; }
 .pp-copy:hover { background: #eef6f1; }
-.pp-copy.pp-done { background: #2f7d5b; color: #fff; }
+.pp-copy.pp-copied { background: #2f7d5b; color: #fff; }
 
 .pp-btn { display: flex; align-items: center; justify-content: center; gap: .45rem; width: 100%; padding: .8rem 1rem; border: 0; border-radius: .7rem; font: inherit; font-weight: 800; font-size: 1rem; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background .2s ease, transform .18s ease; }
 .pp-btn:hover { transform: translateY(-1px); }
-.pp-btn:focus-visible, .pp-copy:focus-visible, .pp-close:focus-visible, .pp-qty button:focus-visible, .pp-link:focus-visible, .pp-input:focus-visible { outline: 3px solid #facc15; outline-offset: 2px; }
-.pp-btn-paypal { background: #0070ba; color: #fff; }
-.pp-btn-paypal:hover { background: #005ea6; color: #fff; }
+.pp-btn:focus-visible, .pp-copy:focus-visible, .pp-close:focus-visible, .pp-qty button:focus-visible, .pp-attach:focus-visible, .pp-input:focus-visible { outline: 3px solid #facc15; outline-offset: 2px; }
 .pp-btn-send { background: #facc15; color: #1a1500; margin-top: .8rem; }
 .pp-btn-send:hover { background: #ffd93a; }
-.pp-btn-share { background: #fff; color: #256d4f; border: 2px solid #2f7d5b; margin-top: .55rem; }
-.pp-btn-share:hover { background: #eef6f1; }
 
 .pp-field { display: block; margin: .55rem 0 0; }
 .pp-field > span { display: block; font-weight: 700; font-size: .88rem; color: #111827; margin-bottom: .2rem; }
@@ -86,8 +82,6 @@ button.app-btn[data-pay] { font-family: inherit; cursor: pointer; }
 .pp-input { width: 100%; padding: .6rem .7rem; border: 1px solid #9ca3af; border-radius: .6rem; background: #fff; color: #111827; font: inherit; font-size: 1rem; }
 .pp-input[aria-invalid="true"] { border-color: #dc2626; background: #fef2f2; }
 .pp-input::placeholder { color: #6b7280; }
-.pp-error { color: #b91c1c; font-size: .85rem; font-weight: 600; margin: .25rem 0 0; min-height: 0; }
-.pp-error:empty { display: none; }
 
 .pp-file { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-top: .65rem; padding: .65rem .75rem; border: 2px dashed #9ca3af; border-radius: .7rem; background: #fafafa; }
 .pp-file.pp-has { border-style: solid; border-color: #2f7d5b; background: #f0fdf4; }
@@ -97,10 +91,14 @@ button.app-btn[data-pay] { font-family: inherit; cursor: pointer; }
 .pp-file-clear { border: 0; background: none; color: #b91c1c; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; text-decoration: underline; }
 .pp-file input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none; }
 
-.pp-hint { margin: .7rem 0 0; padding: .65rem .8rem; border-radius: .6rem; background: #fffbea; border: 1px solid #f0dc8a; color: #5b4300; font-size: .9rem; font-weight: 600; }
-.pp-hint:empty { display: none; }
-.pp-link { display: inline-block; margin-top: .6rem; color: #0b5cab; font-weight: 700; font-size: .92rem; text-decoration: underline; background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer; }
-.pp-foot { margin: 1rem 0 0; padding-top: .8rem; border-top: 1px solid #e5e7eb; font-size: .82rem; color: #4b5563; }
+
+.pp-thumb { flex: none; width: 3.2rem; height: 3.2rem; object-fit: cover; border-radius: .45rem; border: 1px solid #b9d9c9; background: #fff; }
+.pp-status { margin: .7rem 0 0; color: #b91c1c; font-size: .9rem; font-weight: 700; }
+.pp-status:empty { display: none; }
+.pp-done-screen { text-align: center; padding: .6rem 0 .2rem; }
+.pp-done-screen h3 { margin: .6rem 0 .3rem; font-size: 1.3rem; font-weight: 800; color: #111827; }
+.pp-done-screen p { margin: 0 0 1rem; color: #374151; }
+.pp-tick { width: 3.4rem; height: 3.4rem; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: #2f7d5b; color: #fff; font-size: 1.8rem; font-weight: 800; }
 
 @media (max-width: 560px) {
   .pp-overlay { align-items: flex-end; padding: 0; }
