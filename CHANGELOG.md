@@ -1,3 +1,11 @@
+Date: 2026-11-07 - PayPal "Pay now" with proof of payment
+
+- New shared modal (assets/js/paypal-pay.js, assets/css/paypal-pay.css). "Pay now" buttons were added to the Per Module and Full Package prices and the DericBI Instructor licence on the home page, and to the licence steps on the DericBI Instructor page. The Per Module button has a 1-13 module stepper.
+- The modal shows the total, the PayPal address (dericmarangu@gmail.com) with Copy and Open PayPal, then asks for name, optional transaction ID (and the activation code for licences) and opens a pre-filled email, or Gmail. Browsers cannot attach files to an email by themselves, so the learner attaches the screenshot in the email; phones that support file sharing also get a button that sends the screenshot attached.
+- Payment Methods now lists PayPal. The Instructor page keeps its strict CSP (no inline script or style).
+
+----------------------------------------
+
 Date: 2026-11-07 - Layered lessons and a professional deck look
 
 - Every slide in the four courses now has a Foundation text plus a Practice layer, a Level-up/Expert layer and a Check-yourself answer (assets/css/layers.css). The 342 unused placeholder files under the old modules folders were removed.
