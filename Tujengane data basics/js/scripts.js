@@ -61,6 +61,7 @@ function loadSlide(index) {
                     item.classList.toggle('active', isActive);
                 });
                 currentSlideDisplay.textContent = index + 1;
+                document.documentElement.style.setProperty('--deck-progress', ((index + 1) / slides.length * 100) + '%');
                 updateNavigation();
                 initializeSlideContent();
                 const activeItem = document.querySelector('.sidebar-item.active');

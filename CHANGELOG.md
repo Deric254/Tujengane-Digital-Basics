@@ -1,3 +1,11 @@
+Date: 2026-11-07 - Layered lessons and a professional deck look
+
+- Every slide in the four courses now has a Foundation text plus a Practice layer, a Level-up/Expert layer and a Check-yourself answer (assets/css/layers.css). The 342 unused placeholder files under the old modules folders were removed.
+- Data Basics and Computer Basics use a new presentation layer (assets/css/deck.css): slides fill the whole panel, a deep-green side panel with a clear active marker, a progress bar, and a Previous/Next toolbar. Nothing in the scripts changed except one line that sets the progress bar.
+- The course footers compute the year (assets/js/year.js).
+
+----------------------------------------
+
 Date: 2026-11-05 - Clean-up and a rolling offer
 
 - The discount is now one ongoing offer driven by assets/js/promo.js: it counts down each 30-day round and starts the next one by itself. Set `percent` to 0 in that file to close it; the banner and every "% OFF" badge then hide. Visitors who dismiss the banner are not shown it again on that page.

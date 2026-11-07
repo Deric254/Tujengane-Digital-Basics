@@ -45,3 +45,16 @@ test('course footers compute the year instead of hard-coding it', () => {
     assert.doesNotMatch(h, /&copy; 2025/, p)
   }
 })
+
+test('free decks load the professional deck stylesheet and keep every hook the script needs', () => {
+  for (const [p, n] of [['Tujengane data basics/databasics.html', 22], ['computer basicss/computerbasicss.html', 22]]) {
+    const h = fs.readFileSync(path.join(root, p), 'utf8')
+    assert.match(h, /assets\/css\/deck\.css/, p)
+    for (const id of ['slide-container', 'prevBtn', 'nextBtn', 'slide-indicator', 'current-slide', 'slide-navigator-modal', 'slide-grid']) {
+      assert.ok(h.includes(`id="${id}"`), `${p}: #${id}`)
+    }
+    assert.equal((h.match(/class="sidebar-item"/g) || []).length, n, `${p}: sidebar items`)
+  }
+  const css = fs.readFileSync(path.join(root, 'assets/css/deck.css'), 'utf8')
+  assert.ok(!/position:\s*fixed|(^|[^-])height:\s*\d+px\s*!important/.test(css), 'deck.css must not touch the pinned header/footer')
+})
