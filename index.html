@@ -88,9 +88,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png" />
 <link rel="manifest" href="assets/favicons/site.webmanifest" />
-<meta name="theme-color" content="#ffffff" />
-<meta name="msapplication-TileColor" content="#ffffff" />
-<meta name="msapplication-config" content="assets/favicons/browserconfig.xml" />
 <link rel="stylesheet" href="assets/css/tailwind.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 
@@ -1163,6 +1160,7 @@
         @media (prefers-reduced-motion: reduce) { .app-btn, .app-banner-shot img { transition: none; } .app-btn:hover, .app-banner-shot:hover img { transform: none; } }
     </style>
     <link rel="stylesheet" href="assets/css/chrome.css">
+    <link rel="stylesheet" href="assets/css/ui.css">
     <link rel="stylesheet" href="assets/css/paypal-pay.css">
 </head>
 <body class="home-page">
@@ -1339,7 +1337,7 @@
                 </section>
 
                 <!-- Quick value bullets -->
-                <section style="margin-top:1rem;display:flex;gap:0.5rem;flex-direction:column;">
+                <section class="ui-values" style="margin-top:1rem;display:flex;gap:0.5rem;flex-direction:column;">
                     <div style="display:flex;gap:0.6rem;align-items:flex-start;"><i class="fas fa-bolt" style="color:#facc15;font-size:1.1rem;margin-top:4px;"></i><div><strong>Fast & practical</strong><div style="color:#4b5563;font-size:0.95rem;">Short modules focused on income-generating skills.</div></div></div>
                     <div style="display:flex;gap:0.6rem;align-items:flex-start;"><i class="fas fa-users" style="color:#49A078;font-size:1.1rem;margin-top:4px;"></i><div><strong>Community support</strong><div style="color:#4b5563;font-size:0.95rem;">WhatsApp cohorts & peer learning.</div></div></div>
                     <div style="display:flex;gap:0.6rem;align-items:flex-start;"><i class="fas fa-certificate" style="color:#ef4444;font-size:1.1rem;margin-top:4px;"></i><div><strong>Recognized outcomes</strong><div style="color:#4b5563;font-size:0.95rem;">Completion support & practical certification.</div></div></div>
@@ -1411,7 +1409,7 @@
                             <img src="dericbi-instructor/img/dashboard.webp" width="1280" height="800" loading="lazy" decoding="async" alt="DericBI Instructor dashboard with six academies">
                         </a>
                     </div>
-                    <div style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
+                    <div class="ui-quick" style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
                         <a href="computer basicss/computerbasicss.html" class="curriculum-link" style="padding:0.6rem 0.85rem;">Start Learning Now</a>
                         <a href="Tujengane Analyst Pro/analystpro.html" class="curriculum-link" style="padding:0.6rem 0.85rem;">View Data literacy</a>
                     </div>
@@ -1589,7 +1587,7 @@
                 </section>
 
                 <!-- Playful Testimonials -->
-                <section style="margin-top:1rem;">
+                <section class="ui-testi" style="margin-top:1rem;">
                     <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.6rem;">What learners tell us</h3>
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.6rem;">
                         <div style="background:#ffffff;padding:0.8rem;border-radius:0.75rem;box-shadow:0 6px 18px rgba(0,0,0,0.06);">
@@ -1605,14 +1603,14 @@
                             <div style="color:#4b5563;margin-top:0.4rem;font-size:0.95rem;">I learnt Excel tricks that saved me hours of homework, and I now freelance on the side.</div>
                         </div>
                     </div>
-                    <div style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
+                    <div class="ui-testi-actions" style="margin-top:0.6rem;display:flex;gap:0.5rem;align-items:center;">
                         <div style="font-weight:700;color:#0f172a;">Have a win? Share it!</div>
                         <a href="https://wa.me/254791360805?text=I%27ve%20got%20a%20win%20to%20share%20from%20Tujengane" target="_blank" rel="noopener noreferrer" class="curriculum-link">Share your win on WhatsApp</a>
                     </div>
                 </section>
 
                 <!-- Trust badges (authentic) -->
-                <section style="margin-top:1rem;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
+                <section class="ui-chips" style="margin-top:1rem;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
                     <div style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem 0.6rem;background:#fff;border-radius:0.5rem;box-shadow:0 6px 12px rgba(0,0,0,0.04);">
                         <i class="fas fa-file-excel" style="color:#217346;font-size:18px"></i>
                         <span style="font-weight:700;color:#374151;">Excel</span>
@@ -1649,7 +1647,7 @@
                 </section>
 
                 <!-- compact CTA footer inside main content (now last) -->
-                <section style="margin-top:2rem;display:flex;gap:0.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+                <section class="ui-ready" style="margin-top:2rem;display:flex;gap:0.6rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
                     <div style="font-weight:800;color:#0f172a;">Ready to start?</div>
                     <div style="display:flex;gap:0.5rem;">
                         <a href="Tujengane data basics/databasics.html" class="curriculum-link" style="padding:0.6rem 0.9rem;">Start Data Basics</a>

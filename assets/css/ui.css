@@ -1,0 +1,530 @@
+/* =============================================================================
+   Tujengane home page: UI refinement layer.
+   Same design language as the dericBI site (assets/css/ui.css there): one green
+   palette, 14px cards with hairline borders, one button system, calm motion,
+   clear focus rings.
+
+   Rules for this file
+   - Loaded last, and every rule is scoped to body.home-page, so no other page
+     (course pages share chrome.css) is affected.
+   - It refines the page's inline styles; it does not replace them. !important is
+     used only where an element carries an inline style= that has to be overridden.
+   - No ids, classes, scripts or content were removed to make this work.
+   ========================================================================== */
+
+:root {
+  --ui-green: #2f7d5b;
+  --ui-green-2: #49A078;
+  --ui-green-dark: #1f5c43;
+  --ui-green-deep: #14532d;
+  --ui-ink: #111827;
+  --ui-mute: #4b5563;
+  --ui-line: #e5e7eb;
+  --ui-soft: #f6faf8;
+  --ui-mint: #eaf5ef;
+  --ui-gold: #facc15;
+  --ui-radius: 14px;
+  --ui-shadow: 0 1px 2px rgba(16, 24, 40, .05);
+  --ui-lift: 0 8px 24px rgba(16, 24, 40, .08);
+}
+
+/* ---------- base ---------- */
+body.home-page {
+  background: var(--ui-soft);           /* the old gradient used the invalid keyword "to-br" and was ignored */
+  color: var(--ui-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body.home-page ::selection { background: #cfe9da; color: var(--ui-ink); }
+body.home-page button:hover { transform: none; }  /* the global rule zoomed every button 10% on hover */
+body.home-page :is(a, button, summary, input, select, textarea):focus-visible {
+  outline: 3px solid var(--ui-gold);
+  outline-offset: 2px;
+}
+
+/* ---------- layout ---------- */
+body.home-page .layout {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 20px;
+  padding: clamp(8px, 1.6vw, 20px);
+}
+body.home-page .main-content {
+  background: #fff;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+  padding: clamp(14px, 2.6vw, 30px);
+}
+/* one even vertical rhythm instead of per-section margin-tops */
+body.home-page .main-content > .relative {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.4vw, 40px);
+}
+body.home-page .main-content section { margin-top: 0 !important; }
+
+/* ---------- promo banner ---------- */
+body.home-page #discount-banner {
+  background: var(--ui-green-deep);
+  background-image: none;
+  color: #fff;
+  box-shadow: none;
+  animation: none;                      /* whole-banner pulsing was distracting and hard to read */
+  padding: 10px 16px;
+}
+body.home-page #discount-banner > span {
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+body.home-page #discount-banner [data-promo-percent],
+body.home-page #discount-banner [data-promo-countdown] {
+  color: var(--ui-gold);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+body.home-page #dismiss-banner {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .45);
+  padding: 2px 12px;
+  min-height: 30px;
+  font-size: .8rem;
+  font-weight: 600;
+  margin-left: 12px;
+}
+body.home-page #dismiss-banner:hover { background: rgba(255, 255, 255, .14); color: #fff; }
+
+/* ---------- section headings ---------- */
+body.home-page .main-content h2,
+body.home-page .ui-testi h3 {
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--ui-ink);
+  margin: 0 0 14px !important;
+  text-wrap: balance;
+}
+body.home-page .main-content h2 i { color: var(--ui-green) !important; font-size: .9em; }
+
+/* intro notes under the headings (custom training, pricing) */
+body.home-page #custom-training-section > div:nth-of-type(1),
+body.home-page #pricing-section > div:nth-of-type(1) {
+  background: var(--ui-soft) !important;
+  border: 1px solid var(--ui-line) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+}
+body.home-page #custom-training-section > div:nth-of-type(1) p,
+body.home-page #pricing-section > div:nth-of-type(1) p {
+  color: var(--ui-mute) !important;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------- hero: light, centred, big dark headline (the dericBI home look) ---------- */
+body.home-page .hero-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--ui-ink);
+  background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 55%, #ecfccb 100%);
+  border: 1px solid #d7ebe0;
+  border-radius: 18px;
+  padding: clamp(32px, 6vw, 64px) clamp(18px, 4vw, 48px);
+  box-shadow: none;
+}
+body.home-page .hero-section::before,
+body.home-page .hero-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+body.home-page .hero-section::before { width: 260px; height: 260px; left: -90px; bottom: -110px; background: rgba(47, 125, 91, .13); }
+body.home-page .hero-section::after { width: 220px; height: 220px; right: -70px; top: -80px; background: rgba(59, 130, 246, .12); }
+body.home-page .hero-section > * { position: relative; z-index: 1; }
+body.home-page .hero-section h1 {
+  font-size: clamp(1.85rem, 4.6vw, 3rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.025em;
+  color: var(--ui-ink);
+  max-width: 24ch;
+  margin: 0 auto !important;
+  text-wrap: balance;
+}
+body.home-page .hero-section p {
+  font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.6;
+  opacity: 1 !important;
+  max-width: 56ch;
+  color: var(--ui-mute);
+  margin: 16px auto 0 !important;
+  text-wrap: pretty;
+}
+body.home-page .hero-section > div {
+  justify-content: center;
+  margin-top: 28px !important;
+  gap: 12px !important;
+}
+body.home-page .hero-section > div a {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px !important;
+  border-radius: 10px !important;
+  font-size: .95rem;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+body.home-page #primaryCta_data { background: var(--ui-green) !important; color: #fff !important; border: 1px solid var(--ui-green) !important; box-shadow: 0 1px 2px rgba(16, 24, 40, .12) !important; }
+body.home-page #primaryCta_data:hover { background: #276a4d !important; border-color: #276a4d !important; color: #fff !important; }
+body.home-page #primaryCta_comp,
+body.home-page #whatsappData { background: #fff !important; color: var(--ui-green) !important; border: 1px solid #b9d9c9 !important; box-shadow: none !important; }
+body.home-page #primaryCta_comp:hover,
+body.home-page #whatsappData:hover { background: var(--ui-soft) !important; border-color: var(--ui-green) !important; color: #276a4d !important; }
+
+/* ---------- value strip (Fast & practical / Community / Outcomes) ---------- */
+body.home-page .ui-values {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));   /* a clean row of three, never 2 + 1 */
+  gap: 14px !important;
+}
+@media (max-width: 720px) {
+  body.home-page .ui-values { grid-template-columns: minmax(0, 1fr); }
+}
+body.home-page .ui-values > div {
+  background: #fff;
+  border: 1px solid var(--ui-line);
+  border-left: 3px solid var(--ui-green-2);
+  border-radius: var(--ui-radius);
+  padding: 18px;
+  box-shadow: var(--ui-shadow);
+  gap: 14px !important;
+  align-items: center !important;
+}
+body.home-page .ui-values i {
+  flex: none;
+  width: 1.5rem;
+  text-align: center;
+  margin: 0 !important;
+  color: var(--ui-green) !important;    /* was yellow / green / red; one colour reads as one system */
+  font-size: 1.25rem !important;
+}
+body.home-page .ui-values strong { display: block; color: var(--ui-ink); font-size: 1rem; }
+body.home-page .ui-values div div { color: var(--ui-mute) !important; font-size: .9rem !important; line-height: 1.5; margin-top: 2px; }
+
+/* ---------- course cards ---------- */
+body.home-page .curriculum-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 640px) {
+  body.home-page .curriculum-grid { grid-template-columns: minmax(0, 1fr); }
+}
+body.home-page .curriculum-card {
+  background: #fff;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+  padding: 20px !important;
+  min-height: 0 !important;
+  margin-bottom: 0;
+  overflow: visible;
+  transition: box-shadow .2s ease, border-color .2s ease, transform .2s ease;
+}
+body.home-page .curriculum-card:hover {
+  transform: translateY(-2px);
+  border-color: #cfe3d9;                /* was a yellow border + 5px jump */
+  box-shadow: var(--ui-lift);
+}
+body.home-page .curriculum-title {
+  flex-wrap: wrap;                      /* badges used to overflow and get clipped */
+  gap: 6px 8px;
+  font-size: 1.1rem !important;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+body.home-page .curriculum-title .free-badge,
+body.home-page .curriculum-title .premium-badge,
+body.home-page .curriculum-title .discount-badge { margin-left: 0 !important; }
+body.home-page .curriculum-title i { color: var(--ui-green); }
+body.home-page .curriculum-desc {
+  color: var(--ui-mute);
+  font-size: .95rem !important;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+body.home-page .curriculum-actions { gap: 10px; margin-top: auto !important; }
+
+/* badges */
+body.home-page .free-badge,
+body.home-page .premium-badge,
+body.home-page .discount-badge {
+  font-size: .7rem;
+  letter-spacing: .04em;
+  padding: 3px 9px;
+  box-shadow: none;
+  line-height: 1.3;
+}
+body.home-page .free-badge { background: #fef3c7; color: #92400e; }
+body.home-page .discount-badge { background: var(--ui-green); animation: none; }   /* the glowing pulse was the loudest thing on the page */
+
+/* ---------- buttons: one system ----------
+   Primary = solid green (go / open / register).  Secondary = white with a green outline. */
+body.home-page a.curriculum-link,
+body.home-page a.share-link,
+body.home-page .app-banner-actions button { -webkit-tap-highlight-color: transparent; }
+
+body.home-page a.curriculum-link,
+body.home-page a.share-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+/* secondary (default for plain curriculum-link buttons and Share) */
+body.home-page a.curriculum-link,
+body.home-page a.share-link {
+  background: #fff;
+  color: var(--ui-green);
+  border: 1px solid #b9d9c9;
+  box-shadow: none;
+}
+body.home-page a.curriculum-link:hover,
+body.home-page a.curriculum-link:focus,
+body.home-page a.share-link:hover {
+  background: var(--ui-soft);
+  color: #276a4d;
+  border-color: var(--ui-green);
+  transform: none;
+  box-shadow: none;
+}
+/* primary: Open on cards, simulations, Register, dashboards, custom training */
+body.home-page .curriculum-actions a.curriculum-link,
+body.home-page .training-card a.curriculum-link,
+body.home-page #pricing-section a.curriculum-link,
+body.home-page .dashboard-card a.curriculum-link,
+body.home-page #custom-training-section a.curriculum-link[href^="https://wa.me"],
+body.home-page .ui-quick a.curriculum-link:first-child {
+  background: var(--ui-green) !important;
+  color: #fff !important;
+  border-color: var(--ui-green) !important;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .12) !important;
+}
+body.home-page .curriculum-actions a.curriculum-link:hover,
+body.home-page .training-card a.curriculum-link:hover,
+body.home-page #pricing-section a.curriculum-link:hover,
+body.home-page .dashboard-card a.curriculum-link:hover,
+body.home-page #custom-training-section a.curriculum-link[href^="https://wa.me"]:hover,
+body.home-page .ui-quick a.curriculum-link:first-child:hover {
+  background: #276a4d !important;
+  border-color: #276a4d !important;
+  color: #fff !important;
+}
+body.home-page .curriculum-actions a.curriculum-link,
+body.home-page .curriculum-actions a.share-link { min-height: 40px; padding: 0 18px; }
+body.home-page .curriculum-actions a.share-link { margin-left: 0 !important; }
+
+/* ---------- quick links under the app banner ---------- */
+body.home-page .ui-quick { display: flex; flex-wrap: wrap; gap: 12px !important; margin-top: 16px !important; }
+body.home-page .ui-quick a.curriculum-link { padding: 0 22px !important; }
+
+/* ---------- desktop app banner: keep its design, align rhythm ---------- */
+body.home-page .app-banner { margin-top: 20px; border-radius: 16px; }
+
+/* ---------- custom training scroller ---------- */
+body.home-page .training-card {
+  border-radius: var(--ui-radius) !important;       /* keeps each card's coloured top border */
+  box-shadow: 0 0 0 1px var(--ui-line), var(--ui-shadow) !important;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+body.home-page .training-card:hover { box-shadow: 0 0 0 1px #cfe3d9, var(--ui-lift) !important; transform: translateY(-2px); }
+body.home-page .training-card > div:first-child span:first-child { letter-spacing: -.005em; }
+body.home-page .training-card a.curriculum-link { min-height: 42px; }
+
+/* ---------- testimonials ---------- */
+body.home-page .ui-testi > div:nth-of-type(1) { gap: 16px !important; }
+body.home-page .ui-testi > div:nth-of-type(1) > div {
+  background: #fff !important;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius) !important;
+  box-shadow: var(--ui-shadow) !important;
+  padding: 20px !important;
+}
+body.home-page .ui-testi > div:nth-of-type(1) > div > div:first-child { color: var(--ui-ink); font-size: 1rem; }
+body.home-page .ui-testi > div:nth-of-type(1) > div > div:last-child { color: #374151 !important; line-height: 1.65; margin-top: 8px !important; }
+body.home-page .ui-testi-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center !important;
+  justify-content: center;
+  gap: 12px !important;
+  margin-top: 20px !important;
+}
+body.home-page .ui-testi-actions > div { color: var(--ui-ink) !important; }
+
+/* ---------- skill chips (Excel / Power BI / AI ready) ---------- */
+body.home-page .ui-chips { gap: 10px !important; }
+body.home-page .ui-chips > div {
+  background: #fff !important;
+  border: 1px solid var(--ui-line);
+  border-radius: 9999px !important;
+  box-shadow: none !important;
+  padding: 7px 16px !important;
+}
+
+/* ---------- dashboards ---------- */
+body.home-page .dashboards-grid { gap: 20px !important; }
+body.home-page .dashboard-card {
+  background: #fff !important;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius) !important;
+  box-shadow: var(--ui-shadow) !important;
+  padding: 16px !important;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+body.home-page .dashboard-card:hover { border-color: #cfe3d9; box-shadow: var(--ui-lift) !important; }
+body.home-page .dashboard-card a.curriculum-link { width: 100%; margin-top: 0 !important; }
+body.home-page .dashboard-card { justify-content: space-between; }
+body.home-page .dashboard-card img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;                  /* show the whole dashboard, never crop it */
+  background: #f8fafc;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  border: 1px solid var(--ui-line);
+  margin-bottom: 14px !important;
+}
+
+/* ---------- "Ready to start?" becomes the green call-to-action band ---------- */
+body.home-page .ui-ready {
+  background: linear-gradient(135deg, var(--ui-green), var(--ui-green-dark));
+  border-radius: 16px;
+  padding: clamp(20px, 3.4vw, 32px) clamp(18px, 3.4vw, 32px);
+  gap: 16px !important;
+  box-shadow: 0 10px 30px rgba(31, 92, 67, .18);
+}
+body.home-page .ui-ready > div:first-child {
+  color: #fff !important;
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  font-weight: 800 !important;
+  letter-spacing: -.015em;
+}
+body.home-page .ui-ready > div:last-child { flex-wrap: wrap; gap: 12px !important; }
+body.home-page .ui-ready a.curriculum-link { padding: 0 22px !important; }
+body.home-page .ui-ready a.curriculum-link:first-child { background: var(--ui-gold); color: #1f2937; border-color: var(--ui-gold); }
+body.home-page .ui-ready a.curriculum-link:first-child:hover { background: #fde047; color: #1f2937; border-color: #fde047; }
+body.home-page .ui-ready a.curriculum-link:last-child { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .6); }
+body.home-page .ui-ready a.curriculum-link:last-child:hover { background: rgba(255, 255, 255, .14); color: #fff; border-color: #fff; }
+
+/* ---------- pricing ---------- */
+body.home-page .pricing-grid { gap: 16px !important; }
+body.home-page .pricing-grid > div {
+  border: 1px solid var(--ui-line) !important;
+  border-radius: var(--ui-radius) !important;
+  box-shadow: var(--ui-shadow) !important;
+  padding: 22px !important;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+body.home-page .pricing-grid > div:hover { border-color: #cfe3d9 !important; box-shadow: var(--ui-lift) !important; }
+body.home-page .pricing-grid h3 { color: var(--ui-ink) !important; margin-bottom: 6px !important; }
+body.home-page .pricing-grid > div > p:first-of-type {
+  color: var(--ui-green) !important;    /* darker green: the old #49A078 was only 3:1 on white */
+  font-size: 1.9rem !important;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+}
+body.home-page #pricing-section > div:nth-of-type(3) {
+  background: var(--ui-soft) !important;
+  border: 1px solid var(--ui-line) !important;
+  border-radius: var(--ui-radius) !important;
+  padding: 18px 20px !important;
+}
+body.home-page #pricing-section > div:nth-of-type(3) h4 { color: var(--ui-ink) !important; margin-bottom: 8px !important; }
+body.home-page #pricing-section > div:nth-of-type(3) p { color: var(--ui-mute) !important; line-height: 1.6; }
+body.home-page #pricing-section > div:nth-of-type(4) { margin-top: 20px !important; }
+body.home-page #pricing-section a.curriculum-link { padding: 0 28px !important; }
+
+/* ---------- desktop sidebar ---------- */
+body.home-page .sidebar {
+  align-self: flex-start;               /* was stretching to the page height, leaving a big empty green block */
+  background: linear-gradient(160deg, var(--ui-green), var(--ui-green-dark));
+  border-radius: var(--ui-radius);
+  border: 0;
+  box-shadow: 0 10px 30px rgba(31, 92, 67, .18);
+}
+body.home-page .sidebar-item {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .16);
+  backdrop-filter: none;
+}
+body.home-page .sidebar-item a:has(.discount-badge) { flex-wrap: wrap; }   /* the 50% OFF badge was clipped at the sidebar edge */
+body.home-page .sidebar-item a {
+  font-size: .95rem;
+  background: #fff;
+  color: var(--ui-green-dark);
+  border-radius: 10px;
+  box-shadow: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+body.home-page .sidebar-item a:hover,
+body.home-page .sidebar-item a:focus { background: var(--ui-gold); color: #1f2937; transform: none; box-shadow: none; }
+/* small text links that carry an inline yellow colour: they were yellow on a white chip (unreadable) */
+body.home-page .sidebar-item a[style*="color:#facc15"] {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  color: var(--ui-gold) !important;
+}
+body.home-page .sidebar-item a[style*="color:#facc15"]:hover { text-decoration: underline; transform: none; }
+body.home-page .sidebar a.share-link { min-height: 32px; border-radius: 8px; padding: 0 10px; }
+body.home-page .sidebar-item a .discount-badge,
+body.home-page .sidebar-item a .premium-badge { margin-left: 0 !important; }
+body.home-page .sidebar-item p { color: rgba(255, 255, 255, .88); line-height: 1.5; }
+
+/* ---------- footer ---------- */
+body.home-page .footer-link { transition: color .2s ease; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 480px) {
+  body.home-page .hero-section > div a { flex: 1 1 100%; }
+  body.home-page .ui-ready a.curriculum-link,
+  body.home-page .ui-quick a.curriculum-link { flex: 1 1 100%; }
+  body.home-page #discount-banner > span { display: block; margin-bottom: 6px; }
+  body.home-page #dismiss-banner { margin-left: 0; }
+}
+
+/* ---------- motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body.home-page *,
+  body.home-page *::before,
+  body.home-page *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
