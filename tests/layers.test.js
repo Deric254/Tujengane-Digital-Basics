@@ -58,3 +58,12 @@ test('free decks load the professional deck stylesheet and keep every hook the s
   const css = fs.readFileSync(path.join(root, 'assets/css/deck.css'), 'utf8')
   assert.ok(!/position:\s*fixed|(^|[^-])height:\s*\d+px\s*!important/.test(css), 'deck.css must not touch the pinned header/footer')
 })
+
+test('all four course pages share one side panel stylesheet, loaded after chrome.css', () => {
+  for (const p of ['Tujengane Analyst Pro/analystpro.html', 'Tujengane Computer Literacy/computerliteracy.html', 'Tujengane data basics/databasics.html', 'computer basicss/computerbasicss.html']) {
+    const h = fs.readFileSync(path.join(root, p), 'utf8')
+    assert.ok(h.indexOf('assets/css/course-nav.css') > h.indexOf('assets/css/chrome.css') && h.includes('assets/css/chrome.css'), p)
+  }
+  const css = fs.readFileSync(path.join(root, 'assets/css/course-nav.css'), 'utf8')
+  assert.ok(!/position:\s*fixed|(^|[^-])height:\s*\d+px\s*!important/.test(css), 'course-nav.css must not touch the pinned header/footer')
+})

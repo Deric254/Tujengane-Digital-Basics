@@ -1,3 +1,14 @@
+Date: 2026-11-08 - Course pages: one side panel for all four courses
+
+- New assets/css/course-nav.css, linked last on Data Basics, Computer Basics, Data Literacy (Analyst Pro) and Computer Literacy. It restyles only: ids, hooks, the module accordion open/close rules and all scripts are unchanged.
+- The free decks had a dark green panel (deck.css) and the paid courses a third look (mid-green boxed cards); all now use the same light panel as the home page: white card, mint number tiles, green active row, one width (300px) on desktop, spare height shared between rows so there is no empty strip.
+- The dark panel block moved out of deck.css (deck.css keeps only stage and slide styling); the unused --dk-panel variable was removed.
+- Fits without scrolling at 900px tall and up: all 22 lessons of both free decks, and all 13 modules of both paid courses. Shorter windows scroll inside the panel as before.
+- Header links on Computer Literacy now match the other three pages. Bar heights are left alone because each page's layout math depends on them.
+- Checked at 390, 768, 1024 and 1440 px: no horizontal overflow, no script errors. npm test: 58 of 58.
+
+----------------------------------------
+
 Date: 2026-11-08 - Home page comfort pass (one calm screen, no empty panels)
 
 - Only assets/css/ui.css changed (still scoped to body.home-page). No markup, script, id, content or logic changes.
