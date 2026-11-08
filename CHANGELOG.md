@@ -1,43 +1,7 @@
-Date: 2026-11-08 - Course pages: one side panel for all four courses
+Date: 2026-11-07 - DericBI Instructor pricing and PayPal
 
-- New assets/css/course-nav.css, linked last on Data Basics, Computer Basics, Data Literacy (Analyst Pro) and Computer Literacy. It restyles only: ids, hooks, the module accordion open/close rules and all scripts are unchanged.
-- The free decks had a dark green panel (deck.css) and the paid courses a third look (mid-green boxed cards); all now use the same light panel as the home page: white card, mint number tiles, green active row, one width (300px) on desktop, spare height shared between rows so there is no empty strip.
-- The dark panel block moved out of deck.css (deck.css keeps only stage and slide styling); the unused --dk-panel variable was removed.
-- Fits without scrolling at 900px tall and up: all 22 lessons of both free decks, and all 13 modules of both paid courses. Shorter windows scroll inside the panel as before.
-- Header links on Computer Literacy now match the other three pages. Bar heights are left alone because each page's layout math depends on them.
-- Checked at 390, 768, 1024 and 1440 px: no horizontal overflow, no script errors. npm test: 58 of 58.
-
-----------------------------------------
-
-Date: 2026-11-08 - Home page comfort pass (one calm screen, no empty panels)
-
-- Only assets/css/ui.css changed (still scoped to body.home-page). No markup, script, id, content or logic changes.
-- First screen: header and promo bar are slimmer, the headline sits on one line on desktop, and the hero, value strip, all four course cards and the top of the app banner now show together at 1280x720 and up. Course cards stay four across down to 1181px wide (they went two-by-two at 1280px before).
-- Content sits directly on the soft page tint instead of a second white slab, so there is no large blank white panel behind the cards.
-- Side panel: slightly wider with larger text, every row on a single line (the 50% OFF badge no longer drops to a second line), and the whole panel still fits one screen from 720px tall up, and it now stretches to the bottom of the first screen with spare height shared between the rows, so there is no empty strip under it. Restyled as a light, premium panel: white card, icon tile on every row, one line per row, a soft gold Featured Training card, a quiet Our Purpose card; no scrolling at any common laptop or desktop height.
-- Phones: the round training arrows (they covered card text) are hidden, swiping and the dots remain; the two prices sit side by side. On wider screens the arrows get a side gutter so nothing pokes past the content edge.
-- Main panel from 1181px wide: the long single stack became a compact 12-column grid (DOM order unchanged, placement only): training scroller beside testimonials, dashboards, a slim Ready band, and pricing with payment methods in one row. Course cards, value strip, hero and app banner are smaller (app preview is a cropped thumbnail). Page height at 1440x900 went from about 2,720px to about 1,980px, with no stretched or empty cells.
-- Checked in headless Chromium at 320, 390, 768, 1024, 1181, 1280, 1440 and 1920 px: no horizontal overflow, no script errors. npm test: 57 of 57 pass.
-
-----------------------------------------
-
-Date: 2026-11-08 - Home page UI refinement (compact, dericBI look)
-
-- New assets/css/ui.css, loaded after chrome.css and scoped to body.home-page, so no course page changes. Compact density in the dericBI design language: one green palette, small 12px cards, one button system (solid green = go, white outline = secondary, gold = main call to action), consistent headings, calm motion and clear focus rings. The page is about 24% shorter on desktop and 21% on phones.
-- Side panel: every item is still there (13 blocks), shrunk to slim one-line rows that scale with the window height so the whole panel fits on one screen (checked from 650px tall up). Each link's description opens in a small panel on hover or keyboard focus. The panel is sticky, so there is no blank column beside long content. On very short windows (under 560px tall) it scrolls instead of clipping.
-- Main area: smaller hero, value cards, course cards four across (two on tablets, one on phones), slimmer app banner, training cards, testimonials, dashboards, pricing and call-to-action band. Buttons are finger-sized on phones.
-- Fixed on the way: the invalid body background ("to-br"), the global button:hover that zoomed every button and turned it yellow, badges clipped at card and sidebar edges, yellow-on-white sidebar links, whole-banner pulsing, mismatched dashboard cards, two conflicting theme-color tags.
-- Respects prefers-reduced-motion. Only class hooks were added to index.html (ui-values, ui-quick, ui-testi, ui-testi-actions, ui-chips, ui-ready); no ids, scripts or content were removed.
-- package.json pins Node to 24.x so Vercel stops auto-upgrading to 26.x.
-
-----------------------------------------
-
-Date: 2026-11-07 - PayPal "Pay now" with proof of payment
-
-- New shared modal (assets/js/paypal-pay.js, assets/css/paypal-pay.css). "Pay now" buttons were added to the Per Module and Full Package prices and the DericBI Instructor licence on the home page, and to the licence steps on the DericBI Instructor page. The Per Module button has a 1-13 module stepper.
-- The modal shows the total and the PayPal address (dericmarangu@gmail.com) with a Copy button, then one form: name, phone or email, optional transaction ID (and the activation code for licences) and the payment screenshot. The screenshot is shrunk in the browser and shown as a thumbnail so the learner can see it is attached. "Send proof" posts it to api/payment-proof.js, which emails it to the owner as a real attachment.
-- The email is sent through your own Gmail (nodemailer, SMTP). It needs one environment variable in Vercel: GMAIL_APP_PASSWORD (a Google app password). GMAIL_USER and PROOF_TO are optional (see .env.example). Until the password is set the button says sending is not switched on yet. package.json now lists nodemailer and pins Node to 24.x (the version Vercel is set to).
-- Payment Methods now lists PayPal. The Instructor page keeps its strict CSP (no inline script or style).
+- DericBI Instructor is now stated as 1,000 USD for life or 100 USD per month (30 days, 5 days to renew, then view-only) on the product page, its FAQ, its structured data and the home banner.
+- The step "Get your licence" has a Pay with PayPal button that opens the one renewal page on the main DericBI site (renew.html?app=instructor), so licence payments are taken in one place only.
 
 ----------------------------------------
 
