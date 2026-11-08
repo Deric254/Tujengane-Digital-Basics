@@ -1,10 +1,22 @@
-Date: 2026-11-08 - Home page UI refinement (dericBI look)
+Date: 2026-11-08 - Home page comfort pass (one calm screen, no empty panels)
 
-- New assets/css/ui.css, loaded after chrome.css and scoped to body.home-page, so no course page changes. Same design language as the dericBI site: one green palette, 14px cards with hairline borders, one button system (solid green = go, white outline = secondary, gold = main call to action), consistent section headings, calm motion and clear focus rings.
-- Home page: a light, centred hero (soft gradient, big dark headline, green main button) like the dericBI site, plus value cards, 2x2 course cards, "Ready to start?" call-to-action band, pricing, dashboards, testimonials, chips and the desktop sidebar were refined. The sidebar now stays in view (sticky, scrolls on its own) so there is never a blank column beside long content. Phone buttons are full width.
-- Fixed on the way: the invalid body background ("to-br"), the global button:hover that zoomed every button and turned it yellow, badges clipped at card and sidebar edges, yellow-on-white sidebar links, whole-banner pulsing, mismatched dashboard cards, two conflicting theme-color tags, and the sidebar stretching into an empty block.
+- Only assets/css/ui.css changed (still scoped to body.home-page). No markup, script, id, content or logic changes.
+- First screen: header and promo bar are slimmer, the headline sits on one line on desktop, and the hero, value strip, all four course cards and the top of the app banner now show together at 1280x720 and up. Course cards stay four across down to 1181px wide (they went two-by-two at 1280px before).
+- Content sits directly on the soft page tint instead of a second white slab, so there is no large blank white panel behind the cards.
+- Side panel: slightly wider with larger text, every row on a single line (the 50% OFF badge no longer drops to a second line), and the whole panel still fits one screen from 720px tall up.
+- Phones: the round training arrows (they covered card text) are hidden, swiping and the dots remain; the two prices sit side by side. On wider screens the arrows get a side gutter so nothing pokes past the content edge.
+- Checked in headless Chromium at 320, 390, 768, 1024, 1181, 1280, 1440 and 1920 px: no horizontal overflow, no script errors. npm test: 57 of 57 pass.
+
+----------------------------------------
+
+Date: 2026-11-08 - Home page UI refinement (compact, dericBI look)
+
+- New assets/css/ui.css, loaded after chrome.css and scoped to body.home-page, so no course page changes. Compact density in the dericBI design language: one green palette, small 12px cards, one button system (solid green = go, white outline = secondary, gold = main call to action), consistent headings, calm motion and clear focus rings. The page is about 24% shorter on desktop and 21% on phones.
+- Side panel: every item is still there (13 blocks), shrunk to slim one-line rows that scale with the window height so the whole panel fits on one screen (checked from 650px tall up). Each link's description opens in a small panel on hover or keyboard focus. The panel is sticky, so there is no blank column beside long content. On very short windows (under 560px tall) it scrolls instead of clipping.
+- Main area: smaller hero, value cards, course cards four across (two on tablets, one on phones), slimmer app banner, training cards, testimonials, dashboards, pricing and call-to-action band. Buttons are finger-sized on phones.
+- Fixed on the way: the invalid body background ("to-br"), the global button:hover that zoomed every button and turned it yellow, badges clipped at card and sidebar edges, yellow-on-white sidebar links, whole-banner pulsing, mismatched dashboard cards, two conflicting theme-color tags.
 - Respects prefers-reduced-motion. Only class hooks were added to index.html (ui-values, ui-quick, ui-testi, ui-testi-actions, ui-chips, ui-ready); no ids, scripts or content were removed.
-- package.json now pins Node to 24.x so Vercel stops auto-upgrading to 26.x.
+- package.json pins Node to 24.x so Vercel stops auto-upgrading to 26.x.
 
 ----------------------------------------
 

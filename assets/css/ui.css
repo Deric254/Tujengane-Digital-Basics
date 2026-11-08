@@ -1,8 +1,8 @@
 /* =============================================================================
-   Tujengane home page: UI refinement layer.
-   Same design language as the dericBI site (assets/css/ui.css there): one green
-   palette, 14px cards with hairline borders, one button system, calm motion,
-   clear focus rings.
+   Tujengane home page: UI refinement layer (compact density).
+   Same design language as the dericBI site: one green palette, small 12px cards
+   with hairline borders, one button system, calm motion, clear focus rings, and a
+   side panel that fits on one screen.
 
    Rules for this file
    - Loaded last, and every rule is scoped to body.home-page, so no other page
@@ -23,9 +23,9 @@
   --ui-soft: #f6faf8;
   --ui-mint: #eaf5ef;
   --ui-gold: #facc15;
-  --ui-radius: 14px;
+  --ui-radius: 12px;
   --ui-shadow: 0 1px 2px rgba(16, 24, 40, .05);
-  --ui-lift: 0 8px 24px rgba(16, 24, 40, .08);
+  --ui-lift: 0 8px 24px rgba(16, 24, 40, .10);
 }
 
 /* ---------- base ---------- */
@@ -47,21 +47,22 @@ body.home-page .layout {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  gap: 20px;
-  padding: clamp(8px, 1.6vw, 20px);
+  gap: 14px;
+  padding: clamp(8px, 1.1vw, 14px);
 }
+body.home-page > nav { padding: 8px clamp(12px, 2vw, 24px); }
+body.home-page > nav img { height: 36px; width: 36px; }
 body.home-page .main-content {
-  background: #fff;
-  border: 1px solid var(--ui-line);
-  border-radius: var(--ui-radius);
-  box-shadow: var(--ui-shadow);
-  padding: clamp(14px, 2.6vw, 30px);
+  background: transparent;              /* cards sit on the soft page tint, not on a second white slab */
+  border: 0;
+  box-shadow: none;
+  padding: 0;
 }
-/* one even vertical rhythm instead of per-section margin-tops */
+/* one even, tight vertical rhythm instead of per-section margin-tops */
 body.home-page .main-content > .relative {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2.8vw, 32px);
+  gap: clamp(12px, 1.4vw, 18px);
 }
 body.home-page .main-content section { margin-top: 0 !important; }
 
@@ -72,40 +73,32 @@ body.home-page #discount-banner {
   color: #fff;
   box-shadow: none;
   animation: none;                      /* whole-banner pulsing was distracting and hard to read */
-  padding: 10px 16px;
+  padding: 5px 14px;
 }
-body.home-page #discount-banner > span {
-  font-size: .95rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
+body.home-page #discount-banner > span { font-size: .88rem; font-weight: 600; line-height: 1.45; }
 body.home-page #discount-banner [data-promo-percent],
-body.home-page #discount-banner [data-promo-countdown] {
-  color: var(--ui-gold);
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-}
+body.home-page #discount-banner [data-promo-countdown] { color: var(--ui-gold); font-weight: 800; font-variant-numeric: tabular-nums; }
 body.home-page #dismiss-banner {
   background: transparent;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .45);
-  padding: 2px 12px;
-  min-height: 30px;
-  font-size: .8rem;
+  padding: 1px 10px;
+  min-height: 26px;
+  font-size: .75rem;
   font-weight: 600;
-  margin-left: 12px;
+  margin-left: 10px;
 }
 body.home-page #dismiss-banner:hover { background: rgba(255, 255, 255, .14); color: #fff; }
 
 /* ---------- section headings ---------- */
 body.home-page .main-content h2,
 body.home-page .ui-testi h3 {
-  font-size: clamp(1.25rem, 2.6vw, 1.65rem) !important;
+  font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
   font-weight: 800 !important;
   line-height: 1.2;
-  letter-spacing: -.015em;
+  letter-spacing: -.01em;
   color: var(--ui-ink);
-  margin: 0 0 14px !important;
+  margin: 0 0 10px !important;
   text-wrap: balance;
 }
 body.home-page .main-content h2 i { color: var(--ui-green) !important; font-size: .9em; }
@@ -115,17 +108,13 @@ body.home-page #custom-training-section > div:nth-of-type(1),
 body.home-page #pricing-section > div:nth-of-type(1) {
   background: var(--ui-soft) !important;
   border: 1px solid var(--ui-line) !important;
-  border-radius: 12px !important;
-  padding: 12px 16px !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
 }
 body.home-page #custom-training-section > div:nth-of-type(1) p,
-body.home-page #pricing-section > div:nth-of-type(1) p {
-  color: var(--ui-mute) !important;
-  line-height: 1.6;
-  margin: 0;
-}
+body.home-page #pricing-section > div:nth-of-type(1) p { color: var(--ui-mute) !important; font-size: .9rem !important; line-height: 1.5; margin: 0; }
 
-/* ---------- hero: light, centred, big dark headline (the dericBI home look) ---------- */
+/* ---------- hero: light, centred, compact ---------- */
 body.home-page .hero-section {
   position: relative;
   overflow: hidden;
@@ -136,59 +125,50 @@ body.home-page .hero-section {
   color: var(--ui-ink);
   background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 55%, #ecfccb 100%);
   border: 1px solid #d7ebe0;
-  border-radius: 18px;
-  padding: clamp(28px, 4.6vw, 52px) clamp(18px, 4vw, 48px);
+  border-radius: 14px;
+  padding: clamp(14px, 2vw, 22px) clamp(14px, 3vw, 28px);
   box-shadow: none;
 }
 body.home-page .hero-section::before,
-body.home-page .hero-section::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-body.home-page .hero-section::before { width: 260px; height: 260px; left: -90px; bottom: -110px; background: rgba(47, 125, 91, .13); }
-body.home-page .hero-section::after { width: 220px; height: 220px; right: -70px; top: -80px; background: rgba(59, 130, 246, .12); }
+body.home-page .hero-section::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+body.home-page .hero-section::before { width: 150px; height: 150px; left: -50px; bottom: -70px; background: rgba(47, 125, 91, .12); }
+body.home-page .hero-section::after { width: 130px; height: 130px; right: -40px; top: -50px; background: rgba(59, 130, 246, .11); }
 body.home-page .hero-section > * { position: relative; z-index: 1; }
 body.home-page .hero-section h1 {
-  font-size: clamp(1.85rem, 4.6vw, 3rem) !important;
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem) !important;
   font-weight: 800 !important;
-  line-height: 1.12 !important;
-  letter-spacing: -.025em;
+  line-height: 1.15 !important;
+  letter-spacing: -.02em;
   color: var(--ui-ink);
-  max-width: 24ch;
+  max-width: 56ch;
   margin: 0 auto !important;
   text-wrap: balance;
 }
 body.home-page .hero-section p {
-  font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+  font-size: clamp(.95rem, 1.5vw, 1.05rem) !important;
   font-weight: 400 !important;
-  line-height: 1.6;
+  line-height: 1.5;
   opacity: 1 !important;
-  max-width: 56ch;
+  max-width: 58ch;
   color: var(--ui-mute);
-  margin: 16px auto 0 !important;
+  margin: 6px auto 0 !important;
   text-wrap: pretty;
 }
-body.home-page .hero-section > div {
-  justify-content: center;
-  margin-top: 28px !important;
-  gap: 12px !important;
-}
+body.home-page .hero-section > div { justify-content: center; margin-top: 12px !important; gap: 8px !important; }
 body.home-page .hero-section > div a {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 24px !important;
-  border-radius: 10px !important;
-  font-size: .95rem;
+  min-height: 40px;
+  padding: 0 18px !important;
+  border-radius: 9px !important;
+  font-size: .88rem;
   font-weight: 700 !important;
   line-height: 1.2;
   text-align: center;
   transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
-body.home-page #primaryCta_data { background: var(--ui-green) !important; color: #fff !important; border: 1px solid var(--ui-green) !important; box-shadow: 0 1px 2px rgba(16, 24, 40, .12) !important; }
+body.home-page #primaryCta_data { background: var(--ui-green) !important; color: #fff !important; border: 1px solid var(--ui-green) !important; box-shadow: none !important; }
 body.home-page #primaryCta_data:hover { background: #276a4d !important; border-color: #276a4d !important; color: #fff !important; }
 body.home-page #primaryCta_comp,
 body.home-page #whatsappData { background: #fff !important; color: var(--ui-green) !important; border: 1px solid #b9d9c9 !important; box-shadow: none !important; }
@@ -196,129 +176,78 @@ body.home-page #primaryCta_comp:hover,
 body.home-page #whatsappData:hover { background: var(--ui-soft) !important; border-color: var(--ui-green) !important; color: #276a4d !important; }
 
 /* ---------- value strip (Fast & practical / Community / Outcomes) ---------- */
-body.home-page .ui-values {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));   /* a clean row of three, never 2 + 1 */
-  gap: 14px !important;
-}
-@media (max-width: 720px) {
-  body.home-page .ui-values { grid-template-columns: minmax(0, 1fr); }
-}
+body.home-page .ui-values { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px !important; }
+@media (max-width: 720px) { body.home-page .ui-values { grid-template-columns: minmax(0, 1fr); gap: 8px !important; } }
 body.home-page .ui-values > div {
   background: #fff;
   border: 1px solid var(--ui-line);
   border-left: 3px solid var(--ui-green-2);
-  border-radius: var(--ui-radius);
-  padding: 18px;
-  box-shadow: var(--ui-shadow);
-  gap: 14px !important;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: none;
+  gap: 10px !important;
   align-items: center !important;
 }
-body.home-page .ui-values i {
-  flex: none;
-  width: 1.5rem;
-  text-align: center;
-  margin: 0 !important;
-  color: var(--ui-green) !important;    /* was yellow / green / red; one colour reads as one system */
-  font-size: 1.25rem !important;
-}
-body.home-page .ui-values strong { display: block; color: var(--ui-ink); font-size: 1rem; }
-body.home-page .ui-values div div { color: var(--ui-mute) !important; font-size: .9rem !important; line-height: 1.5; margin-top: 2px; }
+body.home-page .ui-values i { flex: none; width: 1.2rem; text-align: center; margin: 0 !important; color: var(--ui-green) !important; font-size: 1.05rem !important; }
+body.home-page .ui-values strong { display: block; color: var(--ui-ink); font-size: .92rem; line-height: 1.25; }
+body.home-page .ui-values div div { color: var(--ui-mute) !important; font-size: .82rem !important; line-height: 1.4; margin-top: 1px; }
 
-/* ---------- course cards ---------- */
-body.home-page .curriculum-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-@media (max-width: 640px) {
-  body.home-page .curriculum-grid { grid-template-columns: minmax(0, 1fr); }
-}
+/* ---------- course cards: four across on desktop ---------- */
+body.home-page .curriculum-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1180px) { body.home-page .curriculum-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { body.home-page .curriculum-grid { grid-template-columns: minmax(0, 1fr); } }
 body.home-page .curriculum-card {
   background: #fff;
   border: 1px solid var(--ui-line);
-  border-radius: var(--ui-radius);
-  box-shadow: var(--ui-shadow);
-  padding: 20px !important;
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 12px 14px !important;
   min-height: 0 !important;
   margin-bottom: 0;
   overflow: visible;
-  transition: box-shadow .2s ease, border-color .2s ease, transform .2s ease;
+  transition: box-shadow .2s ease, border-color .2s ease;
 }
-body.home-page .curriculum-card:hover {
-  transform: translateY(-2px);
-  border-color: #cfe3d9;                /* was a yellow border + 5px jump */
-  box-shadow: var(--ui-lift);
-}
-body.home-page .curriculum-title {
-  flex-wrap: wrap;                      /* badges used to overflow and get clipped */
-  gap: 6px 8px;
-  font-size: 1.1rem !important;
-  line-height: 1.3;
-  margin-bottom: 8px;
-}
+body.home-page .curriculum-card:hover { transform: none; border-color: #cfe3d9; box-shadow: var(--ui-lift); }
+body.home-page .curriculum-title { flex-wrap: wrap; gap: 4px 6px; font-size: .98rem !important; line-height: 1.25; margin-bottom: 4px; }
 body.home-page .curriculum-title .free-badge,
 body.home-page .curriculum-title .premium-badge,
 body.home-page .curriculum-title .discount-badge { margin-left: 0 !important; }
 body.home-page .curriculum-title i { color: var(--ui-green); }
-body.home-page .curriculum-desc {
-  color: var(--ui-mute);
-  font-size: .95rem !important;
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-body.home-page .curriculum-actions { gap: 10px; margin-top: auto !important; }
+body.home-page .curriculum-desc { color: var(--ui-mute); font-size: .85rem !important; line-height: 1.45; margin-bottom: 10px; }
+body.home-page .curriculum-actions { gap: 8px; margin-top: auto !important; }
 
 /* badges */
 body.home-page .free-badge,
 body.home-page .premium-badge,
-body.home-page .discount-badge {
-  font-size: .7rem;
-  letter-spacing: .04em;
-  padding: 3px 9px;
-  box-shadow: none;
-  line-height: 1.3;
-}
+body.home-page .discount-badge { font-size: .66rem; letter-spacing: .04em; padding: 2px 8px; box-shadow: none; line-height: 1.3; }
 body.home-page .free-badge { background: #fef3c7; color: #92400e; }
 body.home-page .discount-badge { background: var(--ui-green); animation: none; }   /* the glowing pulse was the loudest thing on the page */
 
 /* ---------- buttons: one system ----------
    Primary = solid green (go / open / register).  Secondary = white with a green outline. */
 body.home-page a.curriculum-link,
-body.home-page a.share-link,
-body.home-page .app-banner-actions button { -webkit-tap-highlight-color: transparent; }
-
-body.home-page a.curriculum-link,
 body.home-page a.share-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 20px;
-  border-radius: 10px;
-  font-size: .95rem;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-size: .88rem;
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
-  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
-}
-/* secondary (default for plain curriculum-link buttons and Share) */
-body.home-page a.curriculum-link,
-body.home-page a.share-link {
   background: #fff;
   color: var(--ui-green);
   border: 1px solid #b9d9c9;
   box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 body.home-page a.curriculum-link:hover,
 body.home-page a.curriculum-link:focus,
-body.home-page a.share-link:hover {
-  background: var(--ui-soft);
-  color: #276a4d;
-  border-color: var(--ui-green);
-  transform: none;
-  box-shadow: none;
-}
+body.home-page a.share-link:hover { background: var(--ui-soft); color: #276a4d; border-color: var(--ui-green); transform: none; box-shadow: none; }
 /* primary: Open on cards, simulations, Register, dashboards, custom training */
 body.home-page .curriculum-actions a.curriculum-link,
 body.home-page .training-card a.curriculum-link,
@@ -329,203 +258,280 @@ body.home-page .ui-quick a.curriculum-link:first-child {
   background: var(--ui-green) !important;
   color: #fff !important;
   border-color: var(--ui-green) !important;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, .12) !important;
+  box-shadow: none !important;
 }
 body.home-page .curriculum-actions a.curriculum-link:hover,
 body.home-page .training-card a.curriculum-link:hover,
 body.home-page #pricing-section a.curriculum-link:hover,
 body.home-page .dashboard-card a.curriculum-link:hover,
 body.home-page #custom-training-section a.curriculum-link[href^="https://wa.me"]:hover,
-body.home-page .ui-quick a.curriculum-link:first-child:hover {
-  background: #276a4d !important;
-  border-color: #276a4d !important;
-  color: #fff !important;
-}
+body.home-page .ui-quick a.curriculum-link:first-child:hover { background: #276a4d !important; border-color: #276a4d !important; color: #fff !important; }
 body.home-page .curriculum-actions a.curriculum-link,
-body.home-page .curriculum-actions a.share-link { min-height: 40px; padding: 0 18px; }
+body.home-page .curriculum-actions a.share-link { min-height: 34px; padding: 0 14px; }
 body.home-page .curriculum-actions a.share-link { margin-left: 0 !important; }
 
 /* ---------- quick links under the app banner ---------- */
-body.home-page .ui-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px !important; margin-top: 16px !important; }
-body.home-page .ui-quick a.curriculum-link { padding: 0 22px !important; }
+body.home-page .ui-quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px !important; margin-top: 0 !important; }
+body.home-page .ui-quick a.curriculum-link { padding: 0 18px !important; }
 
-/* ---------- desktop app banner: keep its design, align rhythm ---------- */
-body.home-page .app-banner { margin-top: 20px; border-radius: 16px; }
+/* ---------- desktop app banner: same design, slimmer ---------- */
+body.home-page .app-banner { margin: 14px 0 0; padding: 14px 18px; gap: 16px; border-radius: 12px; }
+body.home-page .app-banner-tag { font-size: .66rem; padding: .12rem .6rem; }
+body.home-page .app-banner h3 { font-size: 1.25rem; margin: 6px 0 4px; }
+body.home-page .app-banner p { font-size: .86rem; line-height: 1.45; margin: 0 0 6px; }
+body.home-page .app-banner .app-banner-price { font-size: .86rem; margin: 0 0 6px; }
+body.home-page .app-banner-price strong { font-size: 1.05rem; }
+body.home-page .app-banner-steps { gap: 6px; margin: 0 0 10px; }
+body.home-page .app-banner-steps li { padding: .18rem .6rem .18rem .3rem; font-size: .76rem; }
+body.home-page .app-banner-steps li::before { width: 1.1rem; height: 1.1rem; font-size: .68rem; }
+body.home-page .app-btn { padding: .45rem .95rem; font-size: .84rem; border-radius: 9px; border-width: 1px; min-height: 36px; }
+body.home-page .app-banner-shot { border-radius: 10px; }
 
 /* ---------- custom training scroller ---------- */
 body.home-page .training-card {
-  border-radius: var(--ui-radius) !important;       /* keeps each card's coloured top border */
-  box-shadow: 0 0 0 1px var(--ui-line), var(--ui-shadow) !important;
-  transition: box-shadow .2s ease, transform .2s ease;
+  border-radius: 12px !important;                    /* keeps each card's coloured top border */
+  box-shadow: 0 0 0 1px var(--ui-line) !important;
+  padding: 12px 14px !important;
+  min-height: 0 !important;
+  transition: box-shadow .2s ease;
 }
-body.home-page .training-card:hover { box-shadow: 0 0 0 1px #cfe3d9, var(--ui-lift) !important; transform: translateY(-2px); }
-body.home-page .training-card > div:first-child span:first-child { letter-spacing: -.005em; }
-body.home-page .training-card a.curriculum-link { min-height: 42px; }
+body.home-page .training-card:hover { box-shadow: 0 0 0 1px #cfe3d9, var(--ui-lift) !important; transform: none; }
+body.home-page .training-card ul { margin: 4px 0 10px !important; font-size: .84rem !important; line-height: 1.4 !important; }
+body.home-page .training-card p { font-size: .85rem !important; line-height: 1.45 !important; }
+body.home-page .training-card a.curriculum-link { min-height: 36px; }
+/* side gutter so the round arrows sit beside the cards instead of poking past the content edge */
+@media (min-width: 641px) { body.home-page .custom-trainings-container { margin-inline: 14px; } }
 
 /* ---------- testimonials ---------- */
-body.home-page .ui-testi > div:nth-of-type(1) { gap: 16px !important; }
+body.home-page .ui-testi > div:nth-of-type(1) { gap: 10px !important; }
 body.home-page .ui-testi > div:nth-of-type(1) > div {
   background: #fff !important;
   border: 1px solid var(--ui-line);
-  border-radius: var(--ui-radius) !important;
-  box-shadow: var(--ui-shadow) !important;
-  padding: 20px !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 12px 14px !important;
 }
-body.home-page .ui-testi > div:nth-of-type(1) > div > div:first-child { color: var(--ui-ink); font-size: 1rem; }
-body.home-page .ui-testi > div:nth-of-type(1) > div > div:last-child { color: #374151 !important; line-height: 1.65; margin-top: 8px !important; }
-body.home-page .ui-testi-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center !important;
-  justify-content: center;
-  gap: 12px !important;
-  margin-top: 20px !important;
-}
-body.home-page .ui-testi-actions > div { color: var(--ui-ink) !important; }
+body.home-page .ui-testi > div:nth-of-type(1) > div > div:first-child { color: var(--ui-ink); font-size: .92rem; }
+body.home-page .ui-testi > div:nth-of-type(1) > div > div:last-child { color: #374151 !important; font-size: .88rem; line-height: 1.5; margin-top: 4px !important; }
+body.home-page .ui-testi-actions { display: flex; flex-wrap: wrap; align-items: center !important; justify-content: center; gap: 10px !important; margin-top: 12px !important; }
+body.home-page .ui-testi-actions > div { color: var(--ui-ink) !important; font-size: .9rem; }
 
 /* ---------- skill chips (Excel / Power BI / AI ready) ---------- */
-body.home-page .ui-chips { gap: 10px !important; justify-content: center; }
-body.home-page .ui-chips > div {
-  background: #fff !important;
-  border: 1px solid var(--ui-line);
-  border-radius: 9999px !important;
-  box-shadow: none !important;
-  padding: 7px 16px !important;
-}
+body.home-page .ui-chips { gap: 8px !important; justify-content: center; margin-top: -6px; }
+body.home-page .ui-chips > div { background: #fff !important; border: 1px solid var(--ui-line); border-radius: 9999px !important; box-shadow: none !important; padding: 4px 12px !important; font-size: .85rem; }
 
 /* ---------- dashboards ---------- */
-body.home-page .dashboards-grid { gap: 20px !important; }
+body.home-page .dashboards-grid { gap: 12px !important; }
 body.home-page .dashboard-card {
+  justify-content: space-between;
   background: #fff !important;
   border: 1px solid var(--ui-line);
-  border-radius: var(--ui-radius) !important;
-  box-shadow: var(--ui-shadow) !important;
-  padding: 16px !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 10px !important;
   transition: box-shadow .2s ease, border-color .2s ease;
 }
 body.home-page .dashboard-card:hover { border-color: #cfe3d9; box-shadow: var(--ui-lift) !important; }
-body.home-page .dashboard-card a.curriculum-link { width: 100%; margin-top: 0 !important; }
-body.home-page .dashboard-card { justify-content: space-between; }
 body.home-page .dashboard-card img {
   width: 100%;
   height: auto;
   max-height: none;
-  aspect-ratio: 2 / 1;
-  object-fit: cover;                    /* fills the frame: no blank bars (the two screenshots are 1.86:1 and 2.22:1) */
+  aspect-ratio: 2.6 / 1;
+  object-fit: cover;                    /* fills the frame: no blank bars */
   object-position: center top;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
   border: 1px solid var(--ui-line);
-  margin-bottom: 14px !important;
+  margin-bottom: 8px !important;
 }
+body.home-page .dashboard-card a.curriculum-link { width: 100%; margin-top: 0 !important; }
 
-/* ---------- "Ready to start?" becomes the green call-to-action band ---------- */
+/* ---------- "Ready to start?" green call-to-action band ---------- */
 body.home-page .ui-ready {
   background: linear-gradient(135deg, var(--ui-green), var(--ui-green-dark));
-  border-radius: 16px;
-  padding: clamp(20px, 3.4vw, 32px) clamp(18px, 3.4vw, 32px);
-  gap: 16px !important;
-  box-shadow: 0 10px 30px rgba(31, 92, 67, .18);
+  border-radius: 12px;
+  padding: 14px 18px;
+  gap: 12px !important;
+  box-shadow: none;
 }
-body.home-page .ui-ready > div:first-child {
-  color: #fff !important;
-  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
-  font-weight: 800 !important;
-  letter-spacing: -.015em;
-}
-body.home-page .ui-ready > div:last-child { flex-wrap: wrap; gap: 12px !important; }
-body.home-page .ui-ready a.curriculum-link { padding: 0 22px !important; }
+body.home-page .ui-ready > div:first-child { color: #fff !important; font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 800 !important; letter-spacing: -.01em; }
+body.home-page .ui-ready > div:last-child { flex-wrap: wrap; gap: 10px !important; }
+body.home-page .ui-ready a.curriculum-link { padding: 0 18px !important; }
 body.home-page .ui-ready a.curriculum-link:first-child { background: var(--ui-gold); color: #1f2937; border-color: var(--ui-gold); }
 body.home-page .ui-ready a.curriculum-link:first-child:hover { background: #fde047; color: #1f2937; border-color: #fde047; }
 body.home-page .ui-ready a.curriculum-link:last-child { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .6); }
 body.home-page .ui-ready a.curriculum-link:last-child:hover { background: rgba(255, 255, 255, .14); color: #fff; border-color: #fff; }
 
 /* ---------- pricing ---------- */
-body.home-page .pricing-grid { gap: 16px !important; }
+body.home-page .pricing-grid { gap: 10px !important; }
 body.home-page .pricing-grid > div {
   border: 1px solid var(--ui-line) !important;
-  border-radius: var(--ui-radius) !important;
-  box-shadow: var(--ui-shadow) !important;
-  padding: 22px !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 12px 16px !important;
   transition: box-shadow .2s ease, border-color .2s ease;
 }
 body.home-page .pricing-grid > div:hover { border-color: #cfe3d9 !important; box-shadow: var(--ui-lift) !important; }
-body.home-page .pricing-grid h3 { color: var(--ui-ink) !important; margin-bottom: 6px !important; }
-body.home-page .pricing-grid > div > p:first-of-type {
-  color: var(--ui-green) !important;    /* darker green: the old #49A078 was only 3:1 on white */
-  font-size: 1.9rem !important;
-  letter-spacing: -.02em;
-  line-height: 1.1;
-}
+body.home-page .pricing-grid h3 { color: var(--ui-ink) !important; font-size: 1rem !important; margin-bottom: 2px !important; }
+body.home-page .pricing-grid > div > p { font-size: .85rem !important; margin: 2px 0 !important; }
+body.home-page .pricing-grid > div > p:first-of-type { color: var(--ui-green) !important; font-size: 1.5rem !important; letter-spacing: -.02em; line-height: 1.1; }
 body.home-page #pricing-section > div:nth-of-type(3) {
   background: var(--ui-soft) !important;
   border: 1px solid var(--ui-line) !important;
-  border-radius: var(--ui-radius) !important;
-  padding: 18px 20px !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
 }
-body.home-page #pricing-section > div:nth-of-type(3) h4 { color: var(--ui-ink) !important; margin-bottom: 8px !important; }
-body.home-page #pricing-section > div:nth-of-type(3) p { color: var(--ui-mute) !important; line-height: 1.6; }
-body.home-page #pricing-section > div:nth-of-type(4) { margin-top: 20px !important; }
-body.home-page #pricing-section a.curriculum-link { padding: 0 28px !important; }
+body.home-page #pricing-section > div:nth-of-type(3) h4 { color: var(--ui-ink) !important; font-size: .95rem !important; margin-bottom: 4px !important; }
+body.home-page #pricing-section > div:nth-of-type(3) p { color: var(--ui-mute) !important; font-size: .85rem !important; line-height: 1.5; margin: 2px 0 !important; }
+body.home-page #pricing-section > div:nth-of-type(4) { margin-top: 12px !important; }
+body.home-page #pricing-section a.curriculum-link { padding: 0 24px !important; }
 
-/* ---------- desktop sidebar ---------- */
+/* ---------- desktop sidebar: compact, fits one screen, details on hover ----------
+   Every item is still here. Each link is one slim row; its description opens in a small
+   panel on hover or keyboard focus. Everything scales with the window height (em units
+   driven by the font-size below), so the whole panel fits without scrolling. */
 body.home-page .sidebar {
-  position: sticky;                     /* stays in view while the page scrolls: no blank column beside long content */
-  top: 12px;
+  position: sticky;
+  top: 10px;
+  z-index: 30;                          /* above the content layer (z-10) so hover panels are never covered; below the sticky header */
   align-self: flex-start;
-  max-height: calc(100vh - 24px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, .35) transparent;
+  flex: 0 0 268px;
+  width: 268px;
+  font-size: clamp(10.5px, 1.62vh, 13px);
+  padding: .7em;
+  gap: .45em;
+  justify-content: flex-start;
+  overflow: visible;
   background: linear-gradient(160deg, var(--ui-green), var(--ui-green-dark));
-  border-radius: var(--ui-radius);
   border: 0;
-  box-shadow: 0 10px 30px rgba(31, 92, 67, .18);
+  border-radius: var(--ui-radius);
+  box-shadow: 0 8px 24px rgba(31, 92, 67, .16);
 }
-body.home-page .sidebar { padding: 14px; }
-body.home-page .sidebar-content { gap: 10px; }
+body.home-page .sidebar-content { gap: .32em; }
 body.home-page .sidebar-item {
-  padding: 12px !important;
-  margin-top: 0 !important;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .16);
+  position: relative;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none;
+  border: 0;
+  border-radius: 0;
   backdrop-filter: none;
 }
-body.home-page .sidebar-item a:has(.discount-badge) { flex-wrap: wrap; }   /* the 50% OFF badge was clipped at the sidebar edge */
-body.home-page .sidebar-item a {
-  font-size: .95rem;
+body.home-page .sidebar-item > a {
+  min-height: 2.1em;
+  padding: .22em .6em;
+  gap: .4em;
+  font-size: .95em;
+  line-height: 1.2;
   background: #fff;
   color: var(--ui-green-dark);
-  border-radius: 10px;
+  border-radius: .6em;
   box-shadow: none;
   transition: background-color .2s ease, color .2s ease;
 }
-body.home-page .sidebar-item a:hover,
-body.home-page .sidebar-item a:focus { background: var(--ui-gold); color: #1f2937; transform: none; box-shadow: none; }
-/* small text links that carry an inline yellow colour: they were yellow on a white chip (unreadable) */
-body.home-page .sidebar-item a[style*="color:#facc15"] {
-  background: transparent !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  color: var(--ui-gold) !important;
+body.home-page .sidebar-item > a:hover,
+body.home-page .sidebar-item > a:focus { background: var(--ui-gold); color: #1f2937; transform: none; box-shadow: none; }
+body.home-page .sidebar-item > a .free-badge,
+body.home-page .sidebar-item > a .premium-badge,
+body.home-page .sidebar-item > a .discount-badge { margin-left: 0 !important; font-size: .62em; padding: .1em .45em; white-space: nowrap; }
+body.home-page .sidebar-item > a .free-badge { margin-left: auto !important; }
+body.home-page .sidebar-item > a > span[style*="margin-left:auto"] { margin-left: auto !important; font-size: .68em !important; padding: .1em .5em !important; }   /* APP / NEW tags */
+
+/* descriptions: shown in a small panel beside the sidebar on hover / focus */
+body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])) > p { display: none; }
+body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])):is(:hover, :focus-within) > p {
+  display: block;
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 0;
+  width: 230px;
+  margin: 0 !important;
+  padding: 10px 12px;
+  background: #fff;
+  color: #374151 !important;
+  border: 1px solid var(--ui-line);
+  border-radius: 10px;
+  box-shadow: var(--ui-lift);
+  font-size: .82rem;
+  line-height: 1.5;
+  z-index: 40;
 }
+body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])):is(:hover, :focus-within) > p::before {
+  content: "";                          /* invisible bridge so the panel does not close while the pointer crosses the gap */
+  position: absolute;
+  left: -14px;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+}
+
+/* Featured Training: one slim card */
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] {
+  padding: .4em .5em !important;
+  background: rgba(250, 204, 21, .14) !important;
+  border: 1px solid rgba(250, 204, 21, .35) !important;
+  border-radius: .7em;
+}
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:first-child { margin-bottom: .3em !important; font-size: .82em; }
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a { margin-bottom: .2em !important; min-height: 0; padding: .2em .5em; flex-wrap: wrap; }
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a > div { display: none !important; }            /* decorative circle icon only */
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:last-child { margin-top: 0 !important; }
+
+/* Our Purpose: heading + three short lines */
+body.home-page .sidebar-item[style*="padding:0.75rem"] { padding: .4em .55em !important; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .16); border-radius: .7em; }
+body.home-page .sidebar-item[style*="padding:0.75rem"] > div:first-child { margin-bottom: .25em !important; font-size: .9em; }
+body.home-page .sidebar-item[style*="padding:0.75rem"] > div:not(:first-child) { font-size: max(9.5px, .76em) !important; line-height: 1.2 !important; margin-top: .15em !important; }
+
+/* Pricing: the row plus its one-line summary stay visible */
+body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > p { font-size: max(9.5px, .76em); line-height: 1.25; margin: .2em .2em 0; color: rgba(255, 255, 255, .9); }
+body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > a[href*="forms.gle"] { margin-top: .25em !important; }
+
+/* small text links that carry an inline yellow colour (Try now / Register) */
+body.home-page .sidebar-item a[style*="color:#facc15"] { background: transparent !important; padding: 0 !important; min-height: 0; box-shadow: none !important; color: var(--ui-gold) !important; font-size: .82em !important; }
 body.home-page .sidebar-item a[style*="color:#facc15"]:hover { text-decoration: underline; transform: none; }
-body.home-page .sidebar a.share-link { min-height: 32px; border-radius: 8px; padding: 0 10px; }
-body.home-page .sidebar-item a .discount-badge,
-body.home-page .sidebar-item a .premium-badge { margin-left: 0 !important; }
-body.home-page .sidebar-item p { color: rgba(255, 255, 255, .88); line-height: 1.5; }
+body.home-page .sidebar a.share-link { min-height: 0; border-radius: .6em; padding: .25em .6em !important; font-size: .78em !important; }
+
+/* Why Choose Us */
+body.home-page .sidebar-footer { padding: .4em .2em 0; margin-top: 0; border-top: 1px solid rgba(255, 255, 255, .2); }
+body.home-page .sidebar-footer > div:first-child { margin-bottom: .25em !important; font-size: .88em; }
+body.home-page .sidebar-footer > div:not(:first-child) { font-size: max(9.5px, .76em) !important; line-height: 1.2 !important; margin-top: .1em !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* short laptop windows (under 700px tall): slightly tighter so the whole panel still fits at first load */
+@media (max-height: 700px) {
+  body.home-page .sidebar { font-size: 10px; padding: .55em; gap: .3em; }
+  body.home-page .sidebar-item > a { min-height: 1.95em; }
+  body.home-page .sidebar-content { gap: .22em; }
+  body.home-page .sidebar-item[style*="padding:0.75rem"] > div:not(:first-child) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* only on very short windows: let the panel scroll instead of clipping */
+@media (max-height: 560px) {
+  body.home-page .sidebar { max-height: calc(100vh - 20px); overflow-y: auto; scrollbar-width: thin; }
+}
 
 /* ---------- footer ---------- */
 body.home-page .footer-link { transition: color .2s ease; }
 
 /* ---------- small screens ---------- */
+@media (max-width: 640px) {
+  /* compact on desktop, finger-sized on phones */
+  body.home-page a.curriculum-link,
+  body.home-page a.share-link,
+  body.home-page .curriculum-actions a.curriculum-link,
+  body.home-page .curriculum-actions a.share-link,
+  body.home-page .training-card a.curriculum-link,
+  body.home-page .hero-section > div a { min-height: 44px; }
+  body.home-page button.pp-trigger { min-height: 44px; }
+  /* the training cards swipe on touch (dots stay); the round arrows only covered card text */
+  body.home-page .scroll-control { display: none !important; }
+  /* two prices side by side instead of two tall stacked cards */
+  body.home-page .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
 @media (max-width: 480px) {
   body.home-page .hero-section > div a { flex: 1 1 100%; }
   body.home-page .ui-ready a.curriculum-link,
   body.home-page .ui-quick a.curriculum-link { flex: 1 1 100%; }
-  body.home-page #discount-banner > span { display: block; margin-bottom: 6px; }
+  body.home-page #discount-banner > span { display: block; margin-bottom: 4px; }
   body.home-page #dismiss-banner { margin-left: 0; }
 }
 

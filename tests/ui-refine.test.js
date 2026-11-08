@@ -69,3 +69,11 @@ test('the head has a single theme-color and the Node version is pinned', () => {
   assert.equal((html.match(/<meta name="theme-color"/g) || []).length, 1)
   assert.equal(JSON.parse(read('package.json')).engines.node, '24.x')
 })
+
+test('the side panel still has all of its items (compacting must never remove content)', () => {
+  assert.equal((html.match(/class="sidebar-item"/g) || []).length, 12)
+  assert.ok(html.includes('class="sidebar-footer"'))
+  for (const label of ['Data Basics', 'Data literacy', 'Computer Basics', 'Computer Literacy', 'DericBI Instructor', 'Custom Trainings', 'Contact Us via WhatsApp', 'About the Author', 'Featured Training', 'Our Purpose', 'Pricing', 'Why Choose Us?']) {
+    assert.ok(html.includes(label), label)
+  }
+})
