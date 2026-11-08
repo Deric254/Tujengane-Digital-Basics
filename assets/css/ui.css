@@ -398,6 +398,7 @@ body.home-page .sidebar {
   flex: 0 0 268px;
   width: 268px;
   font-size: clamp(10.5px, 1.62vh, 13px);
+  min-height: calc(100vh - 115px);      /* reaches the bottom of the first screen: no empty strip under the panel */
   padding: .7em;
   gap: .45em;
   justify-content: flex-start;
@@ -407,7 +408,7 @@ body.home-page .sidebar {
   border-radius: var(--ui-radius);
   box-shadow: 0 8px 24px rgba(31, 92, 67, .16);
 }
-body.home-page .sidebar-content { gap: .32em; }
+body.home-page .sidebar-content { flex: 1; justify-content: space-between; gap: .32em; }   /* spare height is shared between the rows */
 body.home-page .sidebar-item {
   position: relative;
   padding: 0 !important;

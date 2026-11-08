@@ -3,7 +3,7 @@ Date: 2026-11-08 - Home page comfort pass (one calm screen, no empty panels)
 - Only assets/css/ui.css changed (still scoped to body.home-page). No markup, script, id, content or logic changes.
 - First screen: header and promo bar are slimmer, the headline sits on one line on desktop, and the hero, value strip, all four course cards and the top of the app banner now show together at 1280x720 and up. Course cards stay four across down to 1181px wide (they went two-by-two at 1280px before).
 - Content sits directly on the soft page tint instead of a second white slab, so there is no large blank white panel behind the cards.
-- Side panel: slightly wider with larger text, every row on a single line (the 50% OFF badge no longer drops to a second line), and the whole panel still fits one screen from 720px tall up.
+- Side panel: slightly wider with larger text, every row on a single line (the 50% OFF badge no longer drops to a second line), and the whole panel still fits one screen from 720px tall up, and it now stretches to the bottom of the first screen with spare height shared between the rows, so there is no empty strip under it.
 - Phones: the round training arrows (they covered card text) are hidden, swiping and the dots remain; the two prices sit side by side. On wider screens the arrows get a side gutter so nothing pokes past the content edge.
 - Checked in headless Chromium at 320, 390, 768, 1024, 1181, 1280, 1440 and 1920 px: no horizontal overflow, no script errors. npm test: 57 of 57 pass.
 
