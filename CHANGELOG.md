@@ -8,7 +8,27 @@ Date: 2026-11-09 - Paid courses match the free decks' side panel; layers readabl
 Date: 2026-11-07 - DericBI Instructor pricing and PayPal
 
 - DericBI Instructor is now stated as 1,000 USD for life or 100 USD per month (30 days, 5 days to renew, then view-only) on the product page, its FAQ, its structured data and the home banner.
-- The step "Get your licence" has a Pay with PayPal button that opens the one renewal page on the main DericBI site (renew.html?app=instructor), so licence payments are taken in one place only.
+- The existing "Pay now with PayPal" window (paypal-pay.js) now offers both plans for the Instructor licence ($100 per month, $1000 for life) on the product page and the home banner. The extra redirect link to the main site's renewal page was not added, so there is one pay window only.
+
+----------------------------------------
+
+Date: 2026-11-08 - Home page UI refinement (compact, dericBI look)
+
+- New assets/css/ui.css, loaded after chrome.css and scoped to body.home-page, so no course page changes. Compact density in the dericBI design language: one green palette, small 12px cards, one button system (solid green = go, white outline = secondary, gold = main call to action), consistent headings, calm motion and clear focus rings. The page is about 24% shorter on desktop and 21% on phones.
+- Side panel: every item is still there (13 blocks), shrunk to slim one-line rows that scale with the window height so the whole panel fits on one screen (checked from 650px tall up). Each link's description opens in a small panel on hover or keyboard focus. The panel is sticky, so there is no blank column beside long content. On very short windows (under 560px tall) it scrolls instead of clipping.
+- Main area: smaller hero, value cards, course cards four across (two on tablets, one on phones), slimmer app banner, training cards, testimonials, dashboards, pricing and call-to-action band. Buttons are finger-sized on phones.
+- Fixed on the way: the invalid body background ("to-br"), the global button:hover that zoomed every button and turned it yellow, badges clipped at card and sidebar edges, yellow-on-white sidebar links, whole-banner pulsing, mismatched dashboard cards, two conflicting theme-color tags.
+- Respects prefers-reduced-motion. Only class hooks were added to index.html (ui-values, ui-quick, ui-testi, ui-testi-actions, ui-chips, ui-ready); no ids, scripts or content were removed.
+- package.json pins Node to 24.x so Vercel stops auto-upgrading to 26.x.
+
+----------------------------------------
+
+Date: 2026-11-07 - PayPal "Pay now" with proof of payment
+
+- New shared modal (assets/js/paypal-pay.js, assets/css/paypal-pay.css). "Pay now" buttons were added to the Per Module and Full Package prices and the DericBI Instructor licence on the home page, and to the licence steps on the DericBI Instructor page. The Per Module button has a 1-13 module stepper.
+- The modal shows the total and the PayPal address (dericmarangu@gmail.com) with a Copy button, then one form: name, phone or email, optional transaction ID (and the activation code for licences) and the payment screenshot. The screenshot is shrunk in the browser and shown as a thumbnail so the learner can see it is attached. "Send proof" posts it to api/payment-proof.js, which emails it to the owner as a real attachment.
+- The email is sent through your own Gmail (nodemailer, SMTP). It needs one environment variable in Vercel: GMAIL_APP_PASSWORD (a Google app password). GMAIL_USER and PROOF_TO are optional (see .env.example). Until the password is set the button says sending is not switched on yet. package.json now lists nodemailer and pins Node to 24.x (the version Vercel is set to).
+- Payment Methods now lists PayPal. The Instructor page keeps its strict CSP (no inline script or style).
 
 ----------------------------------------
 

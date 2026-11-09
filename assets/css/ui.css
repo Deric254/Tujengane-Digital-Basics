@@ -50,19 +50,18 @@ body.home-page .layout {
   gap: 14px;
   padding: clamp(8px, 1.1vw, 14px);
 }
-body.home-page > nav { padding: 8px clamp(12px, 2vw, 24px); }
-body.home-page > nav img { height: 36px; width: 36px; }
 body.home-page .main-content {
-  background: transparent;              /* cards sit on the soft page tint, not on a second white slab */
-  border: 0;
-  box-shadow: none;
-  padding: 0;
+  background: #fff;
+  border: 1px solid var(--ui-line);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+  padding: clamp(12px, 1.8vw, 20px);
 }
 /* one even, tight vertical rhythm instead of per-section margin-tops */
 body.home-page .main-content > .relative {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.4vw, 18px);
+  gap: clamp(16px, 2vw, 24px);
 }
 body.home-page .main-content section { margin-top: 0 !important; }
 
@@ -73,7 +72,7 @@ body.home-page #discount-banner {
   color: #fff;
   box-shadow: none;
   animation: none;                      /* whole-banner pulsing was distracting and hard to read */
-  padding: 5px 14px;
+  padding: 6px 14px;
 }
 body.home-page #discount-banner > span { font-size: .88rem; font-weight: 600; line-height: 1.45; }
 body.home-page #discount-banner [data-promo-percent],
@@ -126,7 +125,7 @@ body.home-page .hero-section {
   background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 55%, #ecfccb 100%);
   border: 1px solid #d7ebe0;
   border-radius: 14px;
-  padding: clamp(12px, 1.5vw, 18px) clamp(14px, 3vw, 28px);
+  padding: clamp(18px, 2.8vw, 30px) clamp(16px, 3vw, 32px);
   box-shadow: none;
 }
 body.home-page .hero-section::before,
@@ -135,12 +134,12 @@ body.home-page .hero-section::before { width: 150px; height: 150px; left: -50px;
 body.home-page .hero-section::after { width: 130px; height: 130px; right: -40px; top: -50px; background: rgba(59, 130, 246, .11); }
 body.home-page .hero-section > * { position: relative; z-index: 1; }
 body.home-page .hero-section h1 {
-  font-size: clamp(1.4rem, 2.6vw, 1.85rem) !important;
+  font-size: clamp(1.45rem, 3vw, 2.05rem) !important;
   font-weight: 800 !important;
   line-height: 1.15 !important;
   letter-spacing: -.02em;
   color: var(--ui-ink);
-  max-width: 56ch;
+  max-width: 30ch;
   margin: 0 auto !important;
   text-wrap: balance;
 }
@@ -151,16 +150,16 @@ body.home-page .hero-section p {
   opacity: 1 !important;
   max-width: 58ch;
   color: var(--ui-mute);
-  margin: 6px auto 0 !important;
+  margin: 8px auto 0 !important;
   text-wrap: pretty;
 }
-body.home-page .hero-section > div { justify-content: center; margin-top: 10px !important; gap: 8px !important; }
+body.home-page .hero-section > div { justify-content: center; margin-top: 16px !important; gap: 10px !important; }
 body.home-page .hero-section > div a {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  min-height: 36px;
-  padding: 0 16px !important;
+  min-height: 40px;
+  padding: 0 18px !important;
   border-radius: 9px !important;
   font-size: .88rem;
   font-weight: 700 !important;
@@ -183,25 +182,25 @@ body.home-page .ui-values > div {
   border: 1px solid var(--ui-line);
   border-left: 3px solid var(--ui-green-2);
   border-radius: 10px;
-  padding: 6px 10px;
+  padding: 10px 12px;
   box-shadow: none;
   gap: 10px !important;
   align-items: center !important;
 }
 body.home-page .ui-values i { flex: none; width: 1.2rem; text-align: center; margin: 0 !important; color: var(--ui-green) !important; font-size: 1.05rem !important; }
 body.home-page .ui-values strong { display: block; color: var(--ui-ink); font-size: .92rem; line-height: 1.25; }
-body.home-page .ui-values div div { color: var(--ui-mute) !important; font-size: .78rem !important; line-height: 1.3; margin-top: 1px; }
+body.home-page .ui-values div div { color: var(--ui-mute) !important; font-size: .82rem !important; line-height: 1.4; margin-top: 1px; }
 
 /* ---------- course cards: four across on desktop ---------- */
 body.home-page .curriculum-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-@media (max-width: 1180px) { body.home-page .curriculum-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1280px) { body.home-page .curriculum-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { body.home-page .curriculum-grid { grid-template-columns: minmax(0, 1fr); } }
 body.home-page .curriculum-card {
   background: #fff;
   border: 1px solid var(--ui-line);
   border-radius: 12px;
   box-shadow: none;
-  padding: 10px 12px !important;
+  padding: 12px 14px !important;
   min-height: 0 !important;
   margin-bottom: 0;
   overflow: visible;
@@ -213,7 +212,7 @@ body.home-page .curriculum-title .free-badge,
 body.home-page .curriculum-title .premium-badge,
 body.home-page .curriculum-title .discount-badge { margin-left: 0 !important; }
 body.home-page .curriculum-title i { color: var(--ui-green); }
-body.home-page .curriculum-desc { color: var(--ui-mute); font-size: .8rem !important; line-height: 1.35; margin-bottom: 8px; }
+body.home-page .curriculum-desc { color: var(--ui-mute); font-size: .85rem !important; line-height: 1.45; margin-bottom: 10px; }
 body.home-page .curriculum-actions { gap: 8px; margin-top: auto !important; }
 
 /* badges */
@@ -267,7 +266,7 @@ body.home-page .dashboard-card a.curriculum-link:hover,
 body.home-page #custom-training-section a.curriculum-link[href^="https://wa.me"]:hover,
 body.home-page .ui-quick a.curriculum-link:first-child:hover { background: #276a4d !important; border-color: #276a4d !important; color: #fff !important; }
 body.home-page .curriculum-actions a.curriculum-link,
-body.home-page .curriculum-actions a.share-link { min-height: 30px; padding: 0 12px; font-size: .82rem; }
+body.home-page .curriculum-actions a.share-link { min-height: 34px; padding: 0 14px; }
 body.home-page .curriculum-actions a.share-link { margin-left: 0 !important; }
 
 /* ---------- quick links under the app banner ---------- */
@@ -275,18 +274,17 @@ body.home-page .ui-quick { display: flex; flex-wrap: wrap; justify-content: cent
 body.home-page .ui-quick a.curriculum-link { padding: 0 18px !important; }
 
 /* ---------- desktop app banner: same design, slimmer ---------- */
-body.home-page .app-banner { margin: 0; padding: 12px 16px; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, .62fr); border-radius: 12px; }
+body.home-page .app-banner { margin: 14px 0 0; padding: 14px 18px; gap: 16px; border-radius: 12px; }
 body.home-page .app-banner-tag { font-size: .66rem; padding: .12rem .6rem; }
-body.home-page .app-banner h3 { font-size: 1.1rem; margin: 4px 0 2px; }
-body.home-page .app-banner p { font-size: .82rem; line-height: 1.4; margin: 0 0 4px; }
+body.home-page .app-banner h3 { font-size: 1.25rem; margin: 6px 0 4px; }
+body.home-page .app-banner p { font-size: .86rem; line-height: 1.45; margin: 0 0 6px; }
 body.home-page .app-banner .app-banner-price { font-size: .86rem; margin: 0 0 6px; }
 body.home-page .app-banner-price strong { font-size: 1.05rem; }
-body.home-page .app-banner-steps { gap: 6px; margin: 0 0 8px; }
+body.home-page .app-banner-steps { gap: 6px; margin: 0 0 10px; }
 body.home-page .app-banner-steps li { padding: .18rem .6rem .18rem .3rem; font-size: .76rem; }
 body.home-page .app-banner-steps li::before { width: 1.1rem; height: 1.1rem; font-size: .68rem; }
-body.home-page .app-btn { padding: .45rem .95rem; font-size: .84rem; border-radius: 9px; border-width: 1px; min-height: 32px; }
+body.home-page .app-btn { padding: .45rem .95rem; font-size: .84rem; border-radius: 9px; border-width: 1px; min-height: 36px; }
 body.home-page .app-banner-shot { border-radius: 10px; }
-body.home-page .app-banner-shot img { height: clamp(120px, 15vh, 170px); object-fit: cover; object-position: left top; }   /* a cropped preview, not a tall picture */
 
 /* ---------- custom training scroller ---------- */
 body.home-page .training-card {
@@ -300,8 +298,6 @@ body.home-page .training-card:hover { box-shadow: 0 0 0 1px #cfe3d9, var(--ui-li
 body.home-page .training-card ul { margin: 4px 0 10px !important; font-size: .84rem !important; line-height: 1.4 !important; }
 body.home-page .training-card p { font-size: .85rem !important; line-height: 1.45 !important; }
 body.home-page .training-card a.curriculum-link { min-height: 36px; }
-/* side gutter so the round arrows sit beside the cards instead of poking past the content edge */
-@media (min-width: 641px) { body.home-page .custom-trainings-container { margin-inline: 14px; } }
 
 /* ---------- testimonials ---------- */
 body.home-page .ui-testi > div:nth-of-type(1) { gap: 10px !important; }
@@ -387,31 +383,28 @@ body.home-page #pricing-section > div:nth-of-type(3) p { color: var(--ui-mute) !
 body.home-page #pricing-section > div:nth-of-type(4) { margin-top: 12px !important; }
 body.home-page #pricing-section a.curriculum-link { padding: 0 24px !important; }
 
-/* ---------- desktop sidebar: light, airy, premium ----------
-   Every item is still here. Navigation rows get an icon tile and plenty of air; each row's
-   description opens in a small panel on hover or keyboard focus. Sizes scale with the window
-   height and spare height is shared between the blocks, so the panel fills the first screen
-   with no scrolling and no empty strip. */
+/* ---------- desktop sidebar: compact, fits one screen, details on hover ----------
+   Every item is still here. Each link is one slim row; its description opens in a small
+   panel on hover or keyboard focus. Everything scales with the window height (em units
+   driven by the font-size below), so the whole panel fits without scrolling. */
 body.home-page .sidebar {
   position: sticky;
   top: 10px;
   z-index: 30;                          /* above the content layer (z-10) so hover panels are never covered; below the sticky header */
   align-self: flex-start;
-  flex: 0 0 292px;
-  width: 292px;
-  min-height: calc(100vh - 115px);      /* reaches the bottom of the first screen */
+  flex: 0 0 250px;
+  width: 250px;
   font-size: clamp(10.5px, 1.5vh, 13px);
-  padding: .8em;
-  gap: .5em;
-  justify-content: space-between;
+  padding: .65em;
+  gap: .4em;
+  justify-content: flex-start;
   overflow: visible;
-  background: #fff;
-  color: var(--ui-ink);
-  border: 1px solid var(--ui-line);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(16, 24, 40, .08);
+  background: linear-gradient(160deg, var(--ui-green), var(--ui-green-dark));
+  border: 0;
+  border-radius: var(--ui-radius);
+  box-shadow: 0 8px 24px rgba(31, 92, 67, .16);
 }
-body.home-page .sidebar-content { flex: 1; justify-content: space-between; gap: .15em; }
+body.home-page .sidebar-content { gap: .26em; }
 body.home-page .sidebar-item {
   position: relative;
   padding: 0 !important;
@@ -422,48 +415,25 @@ body.home-page .sidebar-item {
   backdrop-filter: none;
 }
 body.home-page .sidebar-item > a {
-  min-height: 2.4em;
-  padding: .2em .55em;
-  gap: .6em !important;
-  font-size: .98em;
-  font-weight: 600;
+  min-height: 2.05em;
+  padding: .22em .6em;
+  gap: .5em;
+  font-size: .95em;
   line-height: 1.2;
-  background: transparent;
-  color: #1f2937;
-  border-radius: .8em;
+  background: #fff;
+  color: var(--ui-green-dark);
+  border-radius: .6em;
   box-shadow: none;
   transition: background-color .2s ease, color .2s ease;
 }
 body.home-page .sidebar-item > a:hover,
-body.home-page .sidebar-item > a:focus { background: var(--ui-mint); color: var(--ui-green-dark); transform: none; box-shadow: none; }
-/* icon tile */
-body.home-page .sidebar-item > a > i:first-child {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 1.9em;
-  height: 1.9em;
-  background: var(--ui-mint);
-  color: var(--ui-green) !important;
-  border-radius: .6em;
-  font-size: .86em;
-  transition: background-color .2s ease, color .2s ease;
-}
-body.home-page .sidebar-item > a:hover > i:first-child,
-body.home-page .sidebar-item > a:focus > i:first-child { background: var(--ui-green); color: #fff !important; }
-body.home-page .sidebar .dericbi-link { color: #1f2937 !important; }
-body.home-page .sidebar .deric-part { color: var(--ui-ink); }
-body.home-page .sidebar .bi-part { color: var(--ui-green); }
-/* tags */
+body.home-page .sidebar-item > a:focus { background: var(--ui-gold); color: #1f2937; transform: none; box-shadow: none; }
+body.home-page .sidebar-item > a:has(.discount-badge) { flex-wrap: wrap; }
 body.home-page .sidebar-item > a .free-badge,
 body.home-page .sidebar-item > a .premium-badge,
-body.home-page .sidebar-item > a .discount-badge { margin-left: 0 !important; font-size: .6em; padding: .15em .45em; white-space: nowrap; }
+body.home-page .sidebar-item > a .discount-badge { margin-left: 0 !important; font-size: .68em; padding: .1em .5em; }
 body.home-page .sidebar-item > a .free-badge { margin-left: auto !important; }
-body.home-page .sidebar-item > a > span[style*="margin-left:auto"] { margin-left: auto !important; font-size: .64em !important; font-weight: 700; padding: .15em .55em !important; border-radius: 999px !important; }   /* APP / NEW tags */
-/* Custom Trainings: the one warm highlight */
-body.home-page .sidebar-item > a[href="#custom-training-section"] { background: #fff8db !important; color: #8a5a00 !important; border: 1px solid #f3e0a0; }
-body.home-page .sidebar-item > a[href="#custom-training-section"]:hover { background: #fdeeb0 !important; }
-body.home-page .sidebar-item > a[href="#custom-training-section"] > i:first-child { background: #facc15; color: #7a4a00 !important; }
+body.home-page .sidebar-item > a > span[style*="margin-left:auto"] { margin-left: auto !important; font-size: .68em !important; padding: .1em .5em !important; }   /* APP / NEW tags */
 
 /* descriptions: shown in a small panel beside the sidebar on hover / focus */
 body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])) > p { display: none; }
@@ -472,15 +442,15 @@ body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])):is(:hover, 
   position: absolute;
   left: calc(100% + 12px);
   top: 0;
-  width: 240px;
+  width: 230px;
   margin: 0 !important;
-  padding: 12px 14px;
+  padding: 10px 12px;
   background: #fff;
   color: #374151 !important;
   border: 1px solid var(--ui-line);
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: var(--ui-lift);
-  font-size: .85rem;
+  font-size: .82rem;
   line-height: 1.5;
   z-index: 40;
 }
@@ -493,91 +463,48 @@ body.home-page .sidebar-item:not(:has(> a[href="#pricing-section"])):is(:hover, 
   width: 14px;
 }
 
-/* Featured Training: one soft gold card */
+/* Featured Training: one slim card */
 body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] {
-  padding: .6em .75em !important;
-  background: linear-gradient(160deg, #fffbe8, #fff4c2) !important;
-  border: 1px solid #f3e0a0 !important;
-  border-radius: 1em;
+  padding: .4em .5em !important;
+  background: rgba(250, 204, 21, .14) !important;
+  border: 1px solid rgba(250, 204, 21, .35) !important;
+  border-radius: .7em;
 }
-body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:first-child { margin-bottom: .45em !important; color: #8a5a00 !important; font-size: .78em; letter-spacing: .06em; text-transform: uppercase; }
-body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a { margin-bottom: .2em !important; min-height: 0; padding: .1em 0; flex-wrap: wrap; gap: .3em .5em !important; }
-body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a:hover { background: transparent; }
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:first-child { margin-bottom: .3em !important; font-size: .82em; }
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a { margin-bottom: .2em !important; min-height: 0; padding: .2em .5em; flex-wrap: wrap; }
 body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > a > div { display: none !important; }            /* decorative circle icon only */
-body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:last-child { margin-top: .2em !important; }
+body.home-page .sidebar-item[style*="rgba(250,204,21,0.15)"] > div:last-child { margin-top: 0 !important; }
 
-/* Our Purpose: a quiet card */
-body.home-page .sidebar-item[style*="padding:0.75rem"] { padding: .55em .75em !important; background: var(--ui-soft); border: 1px solid var(--ui-line); border-radius: 1em; }
-body.home-page .sidebar-item[style*="padding:0.75rem"] > div:first-child { margin-bottom: .35em !important; color: var(--ui-ink); font-size: .95em; }
-body.home-page .sidebar-item[style*="padding:0.75rem"] > div:first-child i { color: var(--ui-green); }
-body.home-page .sidebar-item[style*="padding:0.75rem"] > div:not(:first-child) { color: var(--ui-mute) !important; font-size: .8em !important; line-height: 1.3 !important; margin-top: .2em !important; }
+/* Our Purpose: heading + three short lines */
+body.home-page .sidebar-item[style*="padding:0.75rem"] { padding: .4em .55em !important; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .16); border-radius: .7em; }
+body.home-page .sidebar-item[style*="padding:0.75rem"] > div:first-child { margin-bottom: .25em !important; font-size: .9em; }
+body.home-page .sidebar-item[style*="padding:0.75rem"] > div:not(:first-child) { font-size: max(9.5px, .76em) !important; line-height: 1.2 !important; margin-top: .15em !important; }
 
 /* Pricing: the row plus its one-line summary stay visible */
-body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > p { font-size: .82em; line-height: 1.4; margin: .15em .6em 0; color: var(--ui-mute); }
-body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > a[href*="forms.gle"] { margin: .3em .6em 0 !important; }
+body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > p { font-size: max(9.5px, .76em); line-height: 1.25; margin: .2em .2em 0; color: rgba(255, 255, 255, .9); }
+body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > a[href*="forms.gle"] { margin-top: .25em !important; }
 
 /* small text links that carry an inline yellow colour (Try now / Register) */
-body.home-page .sidebar-item a[style*="color:#facc15"] { background: transparent !important; padding: 0 !important; min-height: 0; box-shadow: none !important; color: var(--ui-green-dark) !important; font-size: .85em !important; }
+body.home-page .sidebar-item a[style*="color:#facc15"] { background: transparent !important; padding: 0 !important; min-height: 0; box-shadow: none !important; color: var(--ui-gold) !important; font-size: .82em !important; }
 body.home-page .sidebar-item a[style*="color:#facc15"]:hover { text-decoration: underline; transform: none; }
-body.home-page .sidebar a.share-link { min-height: 0; background: #fff !important; color: var(--ui-green) !important; border: 1px solid #b9d9c9 !important; border-radius: 999px; padding: .2em .8em !important; font-size: .8em !important; }
+body.home-page .sidebar a.share-link { min-height: 0; border-radius: .6em; padding: .25em .6em !important; font-size: .78em !important; }
 
 /* Why Choose Us */
-body.home-page .sidebar-footer { padding: .6em .3em 0; margin-top: 0; border-top: 1px solid var(--ui-line); }
-body.home-page .sidebar-footer > div:first-child { margin-bottom: .4em !important; color: var(--ui-ink); font-size: .95em; }
-body.home-page .sidebar-footer > div:first-child i { color: var(--ui-green); }
-body.home-page .sidebar-footer > div:not(:first-child) { color: var(--ui-mute) !important; font-size: .82em !important; line-height: 1.3 !important; margin-top: .1em !important; }
+body.home-page .sidebar-footer { padding: .4em .2em 0; margin-top: 0; border-top: 1px solid rgba(255, 255, 255, .2); }
+body.home-page .sidebar-footer > div:first-child { margin-bottom: .25em !important; font-size: .88em; }
+body.home-page .sidebar-footer > div:not(:first-child) { font-size: max(9.5px, .76em) !important; line-height: 1.2 !important; margin-top: .1em !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* short laptop windows (under 700px tall): slightly tighter so the whole panel still fits at first load */
+@media (max-height: 700px) {
+  body.home-page .sidebar { font-size: 10px; padding: .55em; gap: .3em; }
+  body.home-page .sidebar-item > a { min-height: 1.95em; }
+  body.home-page .sidebar-content { gap: .22em; }
+  body.home-page .sidebar-item[style*="padding:0.75rem"] > div:not(:first-child) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
 
 /* only on very short windows: let the panel scroll instead of clipping */
 @media (max-height: 560px) {
   body.home-page .sidebar { max-height: calc(100vh - 20px); overflow-y: auto; scrollbar-width: thin; }
-}
-
-/* ---------- desktop: compact grid, sections side by side ----------
-   From 1181px wide the stacked sections become a 12-column grid so the page is a couple of
-   screens instead of a long scroll: course cards, the app banner and the training
-   scroller up top; training | testimonials, then dashboards | pricing. Smaller screens keep
-   the single column above. DOM order is unchanged; only placement differs. */
-@media (min-width: 1181px) {
-  body.home-page .main-content > .relative {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-auto-flow: row dense;
-    gap: 12px;
-    align-items: stretch;
-  }
-  body.home-page :where(.main-content > .relative > *) { grid-column: 1 / -1; min-width: 0; }   /* :where keeps this default weaker than the placements below */
-  body.home-page #start { display: contents; }
-  body.home-page :where(#start > *) { grid-column: 1 / -1; min-width: 0; }                       /* its heading, cards, banner and links join the grid */
-  body.home-page #custom-training-section { grid-column: 1 / 8; grid-row: span 2; display: flex; flex-direction: column; }
-  body.home-page .ui-testi { grid-column: 8 / -1; }
-  body.home-page .ui-chips { grid-column: 8 / -1; margin-top: 0; justify-content: flex-start; align-self: start; }
-
-  /* headings that now sit inside a grid cell */
-  body.home-page .main-content h2, body.home-page .ui-testi h3 { margin-bottom: 8px !important; }
-  body.home-page #start > h2 { margin: 4px 0 -4px !important; }
-
-  /* training scroller: shorter cards, no dead space under them */
-  body.home-page #custom-training-section > div:nth-of-type(1) { margin-bottom: 8px !important; }
-  body.home-page .custom-trainings-container { margin-bottom: 0 !important; }
-  body.home-page .trainings-scroll-area { padding: 2px 2px 10px !important; }
-  body.home-page .training-card { padding: 10px 12px !important; }
-  body.home-page #scroll-indicators { margin: 0 0 8px !important; }
-  body.home-page #custom-training-section > div:last-child { margin-top: auto !important; }
-
-  /* testimonials: three short cards stacked */
-  body.home-page .ui-testi > div:nth-of-type(1) { grid-template-columns: minmax(0, 1fr) !important; gap: 8px !important; }
-  body.home-page .ui-testi > div:nth-of-type(1) > div { padding: 8px 12px !important; }
-  body.home-page .ui-testi > div:nth-of-type(1) > div > div:last-child { font-size: .82rem; line-height: 1.4; }
-  body.home-page .ui-testi-actions { justify-content: flex-start; margin-top: 8px !important; }
-
-  /* dashboards: two thumbnails that fill their cell */
-  body.home-page .dashboard-card img { aspect-ratio: auto; height: clamp(120px, 16vh, 170px); object-fit: cover; object-position: top left; margin-bottom: 8px !important; }
-
-  /* pricing: full width - the two prices and the payment methods share one row */
-  body.home-page #pricing-section { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 12px; }
-  body.home-page #pricing-section > h2, body.home-page #pricing-section > div:nth-of-type(1), body.home-page #pricing-section > div:last-child { grid-column: 1 / -1; margin: 0 !important; }
-  body.home-page .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; margin: 0 !important; }
-  body.home-page #pricing-section > div:nth-of-type(3) { margin: 0 !important; }
 }
 
 /* ---------- footer ---------- */
@@ -593,10 +520,6 @@ body.home-page .footer-link { transition: color .2s ease; }
   body.home-page .training-card a.curriculum-link,
   body.home-page .hero-section > div a { min-height: 44px; }
   body.home-page button.pp-trigger { min-height: 44px; }
-  /* the training cards swipe on touch (dots stay); the round arrows only covered card text */
-  body.home-page .scroll-control { display: none !important; }
-  /* two prices side by side instead of two tall stacked cards */
-  body.home-page .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 }
 @media (max-width: 480px) {
   body.home-page .hero-section > div a { flex: 1 1 100%; }

@@ -64,6 +64,7 @@
 
     <link rel="stylesheet" href="../assets/css/tailwind.css">
     <link rel="stylesheet" href="css/instructor.css">
+    <link rel="stylesheet" href="../assets/css/paypal-pay.css">
     <link rel="stylesheet" href="../assets/css/chrome.css">
 </head>
 <body>
@@ -221,15 +222,16 @@
                                     <ol class="ix-sub-steps">
                                         <li>Open <strong>DericBI Instructor</strong>. The first screen shows your 12-character <strong>activation code</strong>.</li>
                                         <li>Click <strong>Send my code on WhatsApp</strong>, or copy the code and send it to <strong>+254 791 360 805</strong>.</li>
-                                        <li>Pay by PayPal on the renewal page (it also shows how to email your proof), or by M-Pesa (<strong>+254 791 360 805</strong>). We reply with your personal licence, which starts with <span class="ix-kbd">DBIN1.</span></li>
+                                        <li>Pay by PayPal (click <strong>Pay now with PayPal</strong> below, then upload your screenshot) or by M-Pesa (<strong>+254 791 360 805</strong>). We reply with your personal licence, which starts with <span class="ix-kbd">DBIN1.</span></li>
                                     </ol>
                                     <p class="ix-price-box"><strong>1,000 USD</strong> for life <span>or 100 USD per month</span></p>
                                     <p class="ix-tip">Your licence is made for the computer that showed the code, and runs for the plan you paid for (monthly or lifetime).</p>
                                     <div class="ix-step-actions">
-                                        <a class="ix-btn ix-btn-primary" target="_blank" rel="noopener noreferrer" href="https://dericbi.vercel.app/renew.html?app=instructor">Pay with PayPal</a>
                                         <a class="ix-btn ix-btn-green" target="_blank" rel="noopener noreferrer" href="https://wa.me/254791360805?text=Hello%20DericBI%2C%20I%20would%20like%20a%20licence%20for%20DericBI%20Instructor%20(1%2C000%20USD).%20My%20activation%20code%20is%3A%20">
                                             <svg class="i"><use href="#i-wa"/></svg> Message us on WhatsApp
                                         </a>
+                                        <button type="button" class="ix-btn ix-btn-primary" data-pay data-pay-item="DericBI Instructor licence (monthly, 30 days)" data-pay-amount="100" data-pay-kes="13000" data-pay-extra="Activation code">Pay $100 / month</button>
+                                        <button type="button" class="ix-btn ix-btn-primary" data-pay data-pay-item="DericBI Instructor licence (lifetime)" data-pay-amount="1000" data-pay-kes="130000" data-pay-extra="Activation code">Pay $1000 for life</button>
                                         <button type="button" class="ix-done" aria-pressed="false" data-done="3">Mark as done</button>
                                     </div>
                                 </div>
@@ -379,7 +381,7 @@
                 <div class="ix-faq">
                     <details open>
                         <summary>How much does it cost and how do I pay?</summary>
-                        <div class="ix-answer"><p>A licence is <strong>1,000 USD</strong> for life, or <strong>100 USD</strong> per month. Install the app, then pay by PayPal on the renewal page and email us the proof with the activation code the app shows (M-Pesa to +254 791 360 805 also works). We reply with your personal licence. A monthly licence runs for 30 days plus 5 days to renew, then the app is view-only until you renew.</p></div>
+                        <div class="ix-answer"><p>A licence is <strong>1,000 USD</strong> for life, or <strong>100 USD</strong> per month. Install the app, then send us the activation code it shows and pay by PayPal (the <strong>Pay now with PayPal</strong> button uploads your proof for you) or by M-Pesa (+254 791 360 805). We reply with your personal licence. A monthly licence runs for 30 days plus 5 days to renew, then the app is view-only until you renew.</p></div>
                     </details>
                     <details>
                         <summary>Windows says "Windows protected your PC". Is the installer safe?</summary>
@@ -466,5 +468,6 @@
     </footer>
 
     <script src="js/instructor.js" defer></script>
+    <script src="../assets/js/paypal-pay.js" defer></script>
 </body>
 </html>

@@ -88,9 +88,11 @@ test('the checklist storage key was bumped when the steps changed', () => {
   assert.match(fs.readFileSync(path.join(pageDir, 'js', 'instructor.js'), 'utf8'), /dbi-instructor-steps-v2/);
 });
 
-test('licence payment goes to the single renewal page on the main site, and both plans are stated', () => {
-  assert.match(html, /href="https:\/\/dericbi\.vercel\.app\/renew\.html\?app=instructor"/);
-  assert.equal((html.match(/renew\.html/g) || []).length, 1, 'one pay link only, no duplicates');
+test('both licence plans are stated and paid through the one pay window', () => {
+  assert.equal((html.match(/renew\.html/g) || []).length, 0, 'no second pay route: the page uses the shared pay window');
   assert.match(html, /100 USD<\/strong> per month/);
   assert.match(html, /"price": "100", "priceCurrency": "USD"/);
+  assert.match(html, /data-pay-item="DericBI Instructor licence \(monthly, 30 days\)" data-pay-amount="100"/);
+  assert.match(html, /data-pay-item="DericBI Instructor licence \(lifetime\)" data-pay-amount="1000"/);
+  assert.equal((html.match(/data-pay-amount="1000"/g) || []).length, 1, 'one lifetime pay button, no duplicates');
 });
