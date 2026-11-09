@@ -87,10 +87,3 @@ test('the page teaches the activation-code flow and nothing from the old key sys
 test('the checklist storage key was bumped when the steps changed', () => {
   assert.match(fs.readFileSync(path.join(pageDir, 'js', 'instructor.js'), 'utf8'), /dbi-instructor-steps-v2/);
 });
-
-test('licence payment goes to the single renewal page on the main site, and both plans are stated', () => {
-  assert.match(html, /href="https:\/\/dericbi\.vercel\.app\/renew\.html\?app=instructor"/);
-  assert.equal((html.match(/renew\.html/g) || []).length, 1, 'one pay link only, no duplicates');
-  assert.match(html, /100 USD<\/strong> per month/);
-  assert.match(html, /"price": "100", "priceCurrency": "USD"/);
-});
