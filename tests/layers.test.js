@@ -58,3 +58,19 @@ test('free decks load the professional deck stylesheet and keep every hook the s
   const css = fs.readFileSync(path.join(root, 'assets/css/deck.css'), 'utf8')
   assert.ok(!/position:\s*fixed|(^|[^-])height:\s*\d+px\s*!important/.test(css), 'deck.css must not touch the pinned header/footer')
 })
+
+test('every course shares the same side panel (sidebar.css), and free decks add the deck look on top', () => {
+  const pages = {
+    'Tujengane data basics/databasics.html': true, 'computer basicss/computerbasicss.html': true,
+    'Tujengane Analyst Pro/analystpro.html': false, 'Tujengane Computer Literacy/computerliteracy.html': false,
+  };
+  for (const [file, free] of Object.entries(pages)) {
+    const html = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.equal((html.match(/assets\/css\/sidebar\.css/g) || []).length, 1, file + ' loads sidebar.css once');
+    assert.equal(/assets\/css\/deck\.css/.test(html), free, file + (free ? ' has' : ' must not have') + ' deck.css');
+    if (free) assert.ok(html.indexOf('sidebar.css') < html.indexOf('deck.css'), file + ': sidebar.css comes before deck.css');
+  }
+  const side = fs.readFileSync(path.join(root, 'assets/css/sidebar.css'), 'utf8');
+  assert.ok(/\.sidebar\s*\{/.test(side) && /--dk-panel/.test(side));
+  assert.ok(!/prefers-color-scheme:\s*dark/.test(fs.readFileSync(path.join(root, 'assets/css/layers.css'), 'utf8')), 'layers stay light on the always-light lesson pages');
+});

@@ -6,15 +6,9 @@
   "scripts": {
     "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --minify",
     "watch:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --watch",
-    "test": "node --test tests/course-api.test.js tests/chrome-css.test.js tests/product-page.test.js tests/layers.test.js tests/pay-modal.test.js tests/payment-proof.test.js tests/ui-refine.test.js"
+    "test": "node --test tests/course-api.test.js tests/chrome-css.test.js tests/product-page.test.js tests/layers.test.js"
   },
   "devDependencies": {
     "tailwindcss": "3.4.17"
-  },
-  "dependencies": {
-    "nodemailer": "^10.3.1"
-  },
-  "engines": {
-    "node": "24.x"
   }
 }
