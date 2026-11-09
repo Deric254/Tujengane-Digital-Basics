@@ -24,4 +24,5 @@
 .layers .layer-body table { border-collapse: collapse; margin: .5rem 0; font-size: .9rem; display: block; overflow-x: auto; }
 .layers .layer-body th, .layers .layer-body td { border: 1px solid #d9e6df; padding: .3rem .6rem; text-align: left; }
 .layers .layer-body th { background: #eef6f1; }
+/* The lesson pages are always light, so the layers stay light too (a dark card on a light slide hid the text). */
 @media print { .layers details > * { display: block !important; } }
