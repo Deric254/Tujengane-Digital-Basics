@@ -1,3 +1,10 @@
+Date: 2026-11-09 - Paid courses match the free decks' side panel; layers readable
+
+- Analyst Pro and Computer Literacy now use the same dark-green side panel as Data Basics and Computer Basics. The panel's look moved into one shared file (assets/css/sidebar.css) that all four courses load; the free decks still add deck.css on top. The paid slides themselves, their content and scripts are unchanged.
+- The Practitioner / Expert / Check yourself layers no longer switch to dark cards when the visitor's device is in dark mode (the lesson pages are always light, so the dark cards hid the text). They stay light everywhere.
+
+----------------------------------------
+
 Date: 2026-11-07 - DericBI Instructor pricing and PayPal
 
 - DericBI Instructor is now stated as 1,000 USD for life or 100 USD per month (30 days, 5 days to renew, then view-only) on the product page, its FAQ, its structured data and the home banner.

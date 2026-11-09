@@ -24,15 +24,5 @@
 .layers .layer-body table { border-collapse: collapse; margin: .5rem 0; font-size: .9rem; display: block; overflow-x: auto; }
 .layers .layer-body th, .layers .layer-body td { border: 1px solid #d9e6df; padding: .3rem .6rem; text-align: left; }
 .layers .layer-body th { background: #eef6f1; }
-@media (prefers-color-scheme: dark) {
-  .layers .layer, .layers .layer-check { background: #14201b; border-color: #2a3d34; }
-  .layers .layer-check { background: #2a2410; }
-  .layers .layer-body { color: #e5e7eb; }
-  .layers .layer-body code { background: #1f2d27; }
-  .layers .layer-practice > summary { color: #7fd1ad; }
-  .layers .layer-mastery > summary { color: #8ab8e6; }
-  .layers .layer-check > summary { color: #f0c04a; }
-  .layers summary::before { background: #1f2d27; color: #7fd1ad; }
-  .layers .layer-body th { background: #1f2d27; }
-}
+/* The lesson pages are always light, so the layers stay light too (a dark card on a light slide hid the text). */
 @media print { .layers details > * { display: block !important; } }
