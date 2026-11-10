@@ -14,8 +14,7 @@ test('the modal files exist and use the PayPal address', () => {
 })
 
 for (const [page, css, js, min] of [
-  ['index.html', 'assets/css/paypal-pay.css', 'assets/js/paypal-pay.js', 3],
-  ['dericbi-instructor/index.html', '../assets/css/paypal-pay.css', '../assets/js/paypal-pay.js', 2]
+  ['index.html', 'assets/css/paypal-pay.css', 'assets/js/paypal-pay.js', 2]
 ]) {
   test(`${page}: loads the modal and has Pay now buttons with amounts`, () => {
     const h = read(page)

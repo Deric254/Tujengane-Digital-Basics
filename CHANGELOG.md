@@ -1,3 +1,12 @@
+Date: 2026-11-10 - PayPal "Pay now" on the pricing cards; phone menu readable
+
+- Per Module and Full Package now have a Pay now button that opens the PayPal window: pay, attach a screenshot, and it is emailed to Deric as a real attachment (assets/js/paypal-pay.js, assets/css/paypal-pay.css, api/payment-proof.js). It needs the GMAIL_APP_PASSWORD setting (see .env.example). The Instructor page keeps its link to the renewal page, which offers the monthly and lifetime plans.
+- The window now scrolls smoothly on phones: the page behind stays still, and it fits short and rotated screens.
+- The proof email is marked "[Tujengane learner]" so it is never mixed up with a website customer's or BRE subscriber's.
+- The phone menu under the hamburger is solid; the page text no longer shows through it.
+
+----------------------------------------
+
 Date: 2026-11-09 - Paid courses match the free decks' side panel; layers readable
 
 - Analyst Pro and Computer Literacy now use the same dark-green side panel as Data Basics and Computer Basics. The panel's look moved into one shared file (assets/css/sidebar.css) that all four courses load; the free decks still add deck.css on top. The paid slides themselves, their content and scripts are unchanged.

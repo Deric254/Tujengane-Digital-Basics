@@ -1163,6 +1163,7 @@
         @media (prefers-reduced-motion: reduce) { .app-btn, .app-banner-shot img { transition: none; } .app-btn:hover, .app-banner-shot:hover img { transform: none; } }
     </style>
     <link rel="stylesheet" href="assets/css/chrome.css">
+    <link rel="stylesheet" href="assets/css/paypal-pay.css">
 </head>
 <body class="home-page">
     <nav class="bg-[#49A078] text-white px-6 py-4 shadow-lg" style="position: relative;">
@@ -1672,18 +1673,21 @@
                             <p style="font-size:1.5rem;font-weight:800;color:#49A078;margin-bottom:0.3rem;">5 USD</p>
                             <p style="font-size:0.9rem;color:#4b5563;">(650 KES)</p>
                             <p style="font-size:0.9rem;color:#4b5563;margin-top:0.5rem;">Pay as you learn each module</p>
+                            <button type="button" class="pp-trigger" data-pay data-pay-item="Per Module" data-pay-amount="5" data-pay-kes="650" data-pay-qty="13">Pay now</button>
                         </div>
                         <div style="background:#ffffff;padding:1rem;border-radius:0.7rem;box-shadow:0 4px 12px rgba(0,0,0,0.05);border:1px solid rgba(73, 160, 120, 0.1);">
                             <h3 style="font-size:1.1rem;font-weight:700;color:#1f2937;margin-bottom:0.5rem;">Full Package</h3>
                             <p style="font-size:1.5rem;font-weight:800;color:#49A078;margin-bottom:0.3rem;">50 USD</p>
                             <p style="font-size:0.9rem;color:#4b5563;">(6500 KES)</p>
                             <p style="font-size:0.9rem;color:#4b5563;margin-top:0.5rem;">Complete access to all 13 modules</p>
+                            <button type="button" class="pp-trigger" data-pay data-pay-item="Full Package (all 13 modules)" data-pay-amount="50" data-pay-kes="6500">Pay now</button>
                         </div>
                     </div>
                     <div style="margin-top:1rem;background:#f0fdfa;padding:0.8rem;border-radius:0.5rem;border:1px solid rgba(73, 160, 120, 0.1);">
                         <h4 style="font-size:1rem;font-weight:700;color:#1f2937;margin-bottom:0.5rem;">Payment Methods</h4>
                         <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.3rem;"><strong>M-Pesa:</strong> +254 791 360 805</p>
-                        <p style="font-size:0.9rem;color:#4b5563;">For other payment methods (bank transfer, PayPal, etc.), please contact us via WhatsApp.</p>
+                        <p style="font-size:0.9rem;color:#4b5563;margin-bottom:0.3rem;"><strong>PayPal:</strong> dericmarangu@gmail.com (use <strong>Pay now</strong> above to pay and send your proof)</p>
+                        <p style="font-size:0.9rem;color:#4b5563;">For other payment methods (bank transfer, etc.), please contact us via WhatsApp.</p>
                     </div>
                     <div style="margin-top:1rem;text-align:center;">
                         <a href="https://forms.gle/o4wpihLVp65bLrTH7" target="_blank" rel="noopener noreferrer" class="curriculum-link" style="display:inline-flex;align-items:center;gap:0.4rem;background:#49A078;color:white;padding:0.75rem 1.5rem;font-weight:700;border-radius:0.5rem;">
@@ -1736,6 +1740,7 @@
     <div id="toast" aria-live="polite" style="position:fixed;right:1rem;bottom:1rem;background:#256d4f;color:#fff;padding:0.75rem 1rem;border-radius:0.6rem;box-shadow:0 8px 20px rgba(0,0,0,0.18);opacity:0;transform:translateY(8px);transition:all 260ms ease;z-index:1200;"></div>
     
     <script src="assets/js/promo.js"></script>
+    <script src="assets/js/paypal-pay.js" defer></script>
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
         // Hamburger menu functionality

@@ -100,3 +100,12 @@ footer.footer {
     padding-block: 1.25rem;
   }
 }
+
+/* ---------- 4. Phone menu: solid, so the page text never shows through it ---------- */
+/* The dropdown under the hamburger was 85% see-through, so headings and banners printed through the links. */
+@media (max-width: 768px) {
+  nav .nav-links,
+  .hamburger-menu {
+    background: linear-gradient(135deg, #49A078, #3e8865) !important;
+  }
+}
