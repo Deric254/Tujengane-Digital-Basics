@@ -409,10 +409,10 @@ html, body {
 }
 
 .slide-content h2 {
-    color: #0f172a; /* dark heading for strong contrast */
-    font-weight: 700;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+     /* dark heading for strong contrast */
+    
+    
+    
     transition: color 0.25s ease;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -534,20 +534,6 @@ html, body {
 
 /* Presentation-only auto-bullets for slides that lack list markup.
    We target paragraphs inside .slide-content when JS adds .auto-bullets. */
-.slide-content.auto-bullets p {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.6rem;
-}
-.slide-content.auto-bullets p::before {
-    content: "\2022"; /* bullet character */
-    position: absolute;
-    left: 0;
-    top: 0.15rem;
-    color: #256d4f;
-    font-size: 1.05rem;
-    line-height: 1;
-}
 
 /* Header */
 nav {
@@ -670,8 +656,8 @@ nav .container {
 }
 
 .footer-link {
-    color: #49A078;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    
     font-size: 1rem;
     white-space: nowrap;
 }
@@ -798,122 +784,25 @@ nav .container {
     }
 }
 
-@media (max-width: 768px) {
-    .slogan-container {
-        display: none !important;
-    }
-    .nav-links {
-        display: none !important;
-    }
-    .hamburger {
-        display: block !important;
-        font-size: 1rem !important;
-        cursor: pointer !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        color: white !important;
-        border-radius: 6px !important;
-        padding: 0.5rem 0.75rem !important;
-        transition: all 0.3s ease !important;
-        position: relative !important;
-        min-width: 40px !important;
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    .hamburger:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        transform: scale(1.05) !important;
-    }
-    .hamburger i {
-        font-size: 0.9rem !important;
-    }
-}
-
 /* MOBILE RESPONSIVE OVERRIDES (from internal style block) */
 /* small override copied from databasics to match mobile styling exactly */
 /* Mobile Layout Overrides */
 @media (max-width: 768px) {
-    .sidebar {
-        display: none !important;
-    }
-    .slogan-container { 
-        display: none !important; 
-    }
-    .main-content {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0.5rem !important;
-        box-sizing: border-box;
-    }
-    .main-content > div {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
+    
+    
+    
+    
     /* Ensure proper positioning context for hamburger menu */
-    nav .container > div:last-child {
-        position: relative !important;
-    }
-    .slide-number-display {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        font-size: 0.75rem !important;
-        padding: 0.35rem 0.6rem !important;
-        margin: 0 auto 0.5rem auto !important;
-        gap: 0.3rem !important;
-        width: 85% !important;
-        max-width: 320px !important;
-        box-sizing: border-box !important;
-        z-index: 100 !important;
-        background: linear-gradient(135deg, #49A078, #3e8865) !important;
-        color: white !important;
-        border-radius: 12px !important;
-        justify-content: center !important;
-        align-items: center !important;
-        min-height: auto !important;
-        line-height: 1.2 !important;
-    }
-    .slide-number-display .slide-text {
-        font-size: 0.8rem !important;
-        white-space: nowrap !important;
-        color: white !important;
-    }
-    .slide-number-display i {
-        font-size: 0.7rem !important;
-        color: white !important;
-        opacity: 0.9 !important;
-    }
-    .slide-navigator-content {
-        margin: 10px;
-        max-height: 90vh;
-    }
-    .slide-grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    .slide-navigator-header {
-        padding: 0.75rem 1rem;
-    }
-    .slide-navigator-body {
-        padding: 1rem;
-    }
-    .navigation {
-        position: static !important;
-        flex-direction: row !important;
-        margin-top: 0.5rem !important;
-        gap: 0.25rem !important;
-        width: 100% !important;
-        padding-right: 0 !important;
-        justify-content: center !important;
-    }
-    .nav-btn {
-        width: 80px !important;
-        padding: 0.4rem !important;
-        font-size: 0.95rem !important;
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     .hamburger {
         display: block !important;
         font-size: 1rem !important;
@@ -1035,7 +924,7 @@ nav .container {
         flex-direction: row;
         margin-top: 0;
         margin-bottom: 0;
-        height: auto;
+        
     }
     .main-content {
         padding: 1rem;
@@ -1048,7 +937,7 @@ nav .container {
         max-width: none;
         padding: 2rem;
         min-height: 350px;
-        max-height: calc(100vh - 204px);
+        
     }
     .navigation {
         position: absolute;
@@ -1453,10 +1342,9 @@ nav .container {
 
 /* AI demo modal and small animations */
 .hidden { display: none !important; }
-.fade-in { animation: fadeIn 300ms ease-out both; }
+
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .nav-btn:active { transform: translateY(1px) scale(0.998); }
-.ai-highlight { border-left: 4px solid #49A078; padding-left: 0.75rem; }
 
 /* Button styling like index */
 button {

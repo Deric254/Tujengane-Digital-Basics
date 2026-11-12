@@ -3,3 +3,6 @@ node_modules/
 .env.*
 !.env.example
 .vercel/
+
+# Python caches from tools/responsive-check
+__pycache__/

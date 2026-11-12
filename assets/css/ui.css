@@ -518,7 +518,7 @@ body.home-page .sidebar-item:has(> a[href="#pricing-section"]) > a[href*="forms.
 
 /* small text links that carry an inline yellow colour (Try now / Register) */
 body.home-page .sidebar-item a[style*="color:#facc15"] { background: transparent !important; padding: 0 !important; min-height: 0; box-shadow: none !important; color: var(--ui-green-dark) !important; font-size: .85em !important; }
-body.home-page .sidebar-item a[style*="color:#facc15"]:hover { text-decoration: underline; transform: none; }
+body.home-page .sidebar-item a[style*="color:#facc15"]:hover { text-decoration: none; transform: none; }
 body.home-page .sidebar a.share-link { min-height: 0; background: #fff !important; color: var(--ui-green) !important; border: 1px solid #b9d9c9 !important; border-radius: 999px; padding: .2em .8em !important; font-size: .8em !important; }
 
 /* Why Choose Us */

@@ -1,3 +1,14 @@
+Date: 2026-11-12 - Lessons scroll on every device; scroll bugs and dead code removed
+
+- Practice / Level-up / Check yourself (and the whole lesson) can now be reached by touch on every phone, tablet and rotated screen in all four courses. One shared file, assets/css/scroll.css (loaded last), makes small and short screens scroll as a normal page; the desktop layout is unchanged (verified element by element at 1024-1920 px).
+- Free decks: phones were blocked by scroll-stopping settings on four nested containers. Paid courses: rotated phones left a ~140 px window, and Computer Literacy squeezed the lesson to 50 px on 769-1023 px tablets with stretched Previous/Next columns (also fixed on Analyst Pro).
+- Paid courses: Space, PageUp, PageDown, Home and End scroll the page again (only the arrow keys change slide). Alt/Ctrl/Cmd + arrow keys are left to the browser. A swipe that starts on a sideways-scrolling code block or table scrolls it instead of changing slide; swipes must be clearly horizontal.
+- Data Basics / Computer Basics: Previous, Next and the sidebar links were wired twice; now once.
+- Removed dead code: styles.css.bak, styles_responsive_fix.css, scripts_backup.js, the orphan dericbi-instructor/img/license.webp (its test now passes), 78+94+20 overridden CSS declarations and 11 rules for classes that exist nowhere. Tests: tests/scroll-css.test.js.
+- New tools/responsive-check/ (see its README): `npm run check` opens all four courses in a real browser on 13 screen sizes and fails if the last layer can't be scrolled to or if navigation/keyboard/swipe behaviour breaks; snapshot.py + snapdiff.py prove a cleanup changed nothing. Needs Python + Playwright; it is not part of `npm test`.
+
+----------------------------------------
+
 Date: 2026-11-10 - PayPal "Pay now" on the pricing cards; phone menu readable
 
 - Per Module and Full Package now have a Pay now button that opens the PayPal window: pay, attach a screenshot, and it is emailed to Deric as a real attachment (assets/js/paypal-pay.js, assets/css/paypal-pay.css, api/payment-proof.js). It needs the GMAIL_APP_PASSWORD setting (see .env.example). The Instructor page keeps its link to the renewal page, which offers the monthly and lifetime plans.

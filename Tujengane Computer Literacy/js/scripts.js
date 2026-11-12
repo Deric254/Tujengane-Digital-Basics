@@ -679,9 +679,24 @@ function showDisabledFeedback(direction) {
 }
 
 // Touch event handlers for swipe navigation
+// A swipe that starts inside something that scrolls sideways (code block, wide table) must scroll it, not change the slide.
+function startsInHorizontalScroller(el) {
+    for (; el && el !== document.body; el = el.parentElement) {
+        if (el.scrollWidth > el.clientWidth + 1) {
+            const ox = getComputedStyle(el).overflowX;
+            if (ox === 'auto' || ox === 'scroll') return true;
+        }
+    }
+    return false;
+}
+
 function handleTouchStart(e) {
-    // Only handle single finger touches
-    if (e.touches.length !== 1) return;
+    // Only handle single finger touches; ignore swipes that start inside a sideways-scrolling block
+    if (e.touches.length !== 1 || startsInHorizontalScroller(e.target)) {
+        touchStartX = null;
+        touchStartY = null;
+        return;
+    }
     
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
@@ -690,7 +705,7 @@ function handleTouchStart(e) {
 function handleTouchEnd(e) {
     // Only handle single finger touches
     if (e.changedTouches.length !== 1) return;
-    if (!touchStartX || !touchStartY) return;
+    if (touchStartX === null || touchStartY === null) return;
     
     touchEndX = e.changedTouches[0].clientX;
     touchEndY = e.changedTouches[0].clientY;
@@ -700,7 +715,7 @@ function handleTouchEnd(e) {
     
     // Check if it's a horizontal swipe (not vertical scroll)
     // Require more horizontal movement than vertical to avoid interfering with scrolling
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+    if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5 && Math.abs(deltaX) > minSwipeDistance) {
         // Prevent default behavior for horizontal swipes
         e.preventDefault();
         
@@ -724,7 +739,7 @@ function handleTouchEnd(e) {
 
 // Handle touch move to prevent scrolling during horizontal swipes
 function handleTouchMove(e) {
-    if (!touchStartX || !touchStartY) return;
+    if (touchStartX === null || touchStartY === null) return;
     
     const touchMoveX = e.touches[0].clientX;
     const touchMoveY = e.touches[0].clientY;
@@ -733,7 +748,7 @@ function handleTouchMove(e) {
     const deltaY = touchMoveY - touchStartY;
     
     // If it's clearly a horizontal swipe, prevent vertical scrolling
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+    if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5 && Math.abs(deltaX) > 10) {
         e.preventDefault();
     }
 }
@@ -761,38 +776,19 @@ function initializeKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
         // Don't interfere with input fields or text areas
         const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
-        if (isInputActive) return;
+        if (isInputActive || e.altKey || e.ctrlKey || e.metaKey) return;
         
-        // Left arrow key or Page Up - previous slide
-        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        // Left arrow key - previous slide
+        if (e.key === 'ArrowLeft') {
             e.preventDefault();
             showNavigationFeedback('prev');
             handlePrev();
         }
-        // Right arrow key, Page Down, or Space - next slide
-        else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        // Right arrow key - next slide
+        else if (e.key === 'ArrowRight') {
             e.preventDefault();
             showNavigationFeedback('next');
             handleNext();
-        }
-        // Home key - go to first slide
-        else if (e.key === 'Home') {
-            e.preventDefault();
-            if (currentModule !== null && currentSlide !== 0) {
-                currentSlide = 0;
-                updateSlide(currentModule, currentSlide);
-            }
-        }
-        // End key - go to last slide of current module
-        else if (e.key === 'End') {
-            e.preventDefault();
-            if (currentModule !== null) {
-                const lastSlide = modules[currentModule].slides.length - 1;
-                if (currentSlide !== lastSlide) {
-                    currentSlide = lastSlide;
-                    updateSlide(currentModule, currentSlide);
-                }
-            }
         }
     });
 }

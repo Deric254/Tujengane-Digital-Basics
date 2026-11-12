@@ -252,13 +252,29 @@ window.closeSlideNavigator = closeSlideNavigator;
 window.prevSlide = prevSlide;
 window.nextSlide = nextSlide;
 
+// A swipe that starts inside something that scrolls sideways (code block, wide table) must scroll it, not change the slide.
+function startsInHorizontalScroller(el) {
+    for (; el && el !== document.body; el = el.parentElement) {
+        if (el.scrollWidth > el.clientWidth + 1) {
+            const ox = getComputedStyle(el).overflowX;
+            if (ox === 'auto' || ox === 'scroll') return true;
+        }
+    }
+    return false;
+}
+
 function handleTouchStart(e) {
+    if (e.touches.length !== 1 || startsInHorizontalScroller(e.target)) {
+        touchStartX = null;
+        touchStartY = null;
+        return;
+    }
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
 }
 
 function handleTouchEnd(e) {
-    if (!touchStartX || !touchStartY) return;
+    if (touchStartX === null || touchStartY === null) return;
     
     touchEndX = e.changedTouches[0].clientX;
     touchEndY = e.changedTouches[0].clientY;
@@ -266,7 +282,7 @@ function handleTouchEnd(e) {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
     
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+    if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5 && Math.abs(deltaX) > minSwipeDistance) {
         if (deltaX > 0) {
             showNavigationFeedback('prev');
             prevSlide();
@@ -302,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('keydown', (e) => {
         const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
-        if (isInputActive) return;
+        if (isInputActive || e.altKey || e.ctrlKey || e.metaKey) return;
         
         if (e.key === 'Escape') {
             const modal = document.getElementById('slide-navigator-modal');
@@ -419,14 +435,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-    }
-    
     // Slide indicator for opening navigator
     const slideIndicator = document.getElementById('slide-indicator');
     if (slideIndicator) {
@@ -438,15 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeNavigatorBtn) {
         closeNavigatorBtn.addEventListener('click', closeSlideNavigator);
     }
-    
-    // Sidebar slide links
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
-    sidebarLinks.forEach((link, index) => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToSlide(index);
-        });
-    });
     
     // Chat functionality
     const chatButton = document.getElementById('chatButton');

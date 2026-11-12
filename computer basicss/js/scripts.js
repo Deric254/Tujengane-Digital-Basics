@@ -258,13 +258,29 @@ window.prevSlide = prevSlide;
 window.nextSlide = nextSlide;
 
 // Touch event handlers for swipe navigation
+// A swipe that starts inside something that scrolls sideways (code block, wide table) must scroll it, not change the slide.
+function startsInHorizontalScroller(el) {
+    for (; el && el !== document.body; el = el.parentElement) {
+        if (el.scrollWidth > el.clientWidth + 1) {
+            const ox = getComputedStyle(el).overflowX;
+            if (ox === 'auto' || ox === 'scroll') return true;
+        }
+    }
+    return false;
+}
+
 function handleTouchStart(e) {
+    if (e.touches.length !== 1 || startsInHorizontalScroller(e.target)) {
+        touchStartX = null;
+        touchStartY = null;
+        return;
+    }
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
 }
 
 function handleTouchEnd(e) {
-    if (!touchStartX || !touchStartY) return;
+    if (touchStartX === null || touchStartY === null) return;
     
     touchEndX = e.changedTouches[0].clientX;
     touchEndY = e.changedTouches[0].clientY;
@@ -273,7 +289,7 @@ function handleTouchEnd(e) {
     const deltaY = touchEndY - touchStartY;
     
     // Check if it's a horizontal swipe (not vertical scroll)
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+    if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5 && Math.abs(deltaX) > minSwipeDistance) {
         if (deltaX > 0) {
             // Swipe right - go to previous slide
             showNavigationFeedback('prev');
@@ -319,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         // Don't interfere with input fields or text areas
         const isInputActive = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
-        if (isInputActive) return;
+        if (isInputActive || e.altKey || e.ctrlKey || e.metaKey) return;
         
         // Close slide navigator with Escape key
         if (e.key === 'Escape') {
