@@ -33,6 +33,10 @@ const ask = (q) => new Promise((r) => rl.question(q, (a) => r(a.trim())));
     '# Keep it the same here and on the live site if you want codes to work in both places.',
     '# COURSE_TEMP_EPOCH=',
     '',
+    '# AI Tutor (optional): paste at least one key, save, and restart. Free: GROQ_API_KEY, GEMINI_API_KEY, OPENROUTER_API_KEY. Paid: ANTHROPIC_API_KEY, OPENAI_API_KEY.',
+    '# GROQ_API_KEY=',
+    '# GEMINI_API_KEY=',
+    '',
   ].join('\n'));
   console.log('');
   console.log('  Saved to .env.local. Starting...');

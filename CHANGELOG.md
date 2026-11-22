@@ -1,3 +1,11 @@
+Date: 2026-11-22 (later) - AI Tutor and SQL playground
+
+- AI Tutor: "Ask AI Tutor" button on both paid courses; knows the lesson on screen; keys only on the server; free providers first with paid fallback; per-learner and daily limits; only for signed-in learners (owner password or temp code). See README for setup. Tests: tests/tutor.test.js.
+- Playground now has a SQL tab (in-browser SQLite, fresh practice database every run, 10 second stop).
+- `npm test` now also runs the temp-access, labs-content and tutor tests (they were not in the list before).
+
+----------------------------------------
+
 Date: 2026-11-22 - Temporary codes, Cybersecurity module, Python Fundamentals, Practice Playground, local launcher
 
 - Temporary access codes: your owner password is unchanged. Open temp-access.html (or run Make-Temp-Code.bat), enter your owner password, pick the course and the time (5 minutes to 24 hours, default 3 hours) and share the code. It stops working at the end of that time, even if learners still have it on screen: open pages lock themselves and the server refuses the code and any session made with it. A code only opens its own course and cannot make more codes. To cancel every code at once, set COURSE_TEMP_EPOCH to any new value in Vercel and redeploy.

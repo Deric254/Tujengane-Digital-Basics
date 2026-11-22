@@ -48,6 +48,12 @@ function serveStatic(req, res, pathname) {
     if (!err && st.isDirectory()) { file = path.join(file, 'index.html'); }
     fs.readFile(file, (e2, data) => {
       if (e2) return send(res, 404, 'Not found');
+      if (path.extname(file) === '.html') {
+        // Offline mode: use the copies of Font Awesome and confetti shipped in assets/vendor instead of the internet (the live site is unchanged).
+        data = Buffer.from(data.toString('utf8')
+          .split('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css').join('/assets/vendor/fontawesome/css/all.min.css')
+          .split('https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js').join('/assets/vendor/confetti/confetti.browser.min.js'), 'utf8');
+      }
       send(res, 200, data, MIME[path.extname(file)] || MIME[path.extname(file).toLowerCase()] || 'application/octet-stream');
     });
   });

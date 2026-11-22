@@ -60,11 +60,11 @@ test('owner login is unaffected and has no expiry', async () => {
 test('expired and tampered codes are rejected', () => {
   const s = process.env.COURSE_COOKIE_SECRET;
   const dead = _internals.makeTempCode(s, 'literacy', Date.now() - 1000);
-  assert.equal(_internals.checkTempCode(s, dead, 'literacy', Date.now()), false);
+  assert.equal(_internals.checkTempCode(s, 'literacy', dead, Date.now()), 0);
   const live = _internals.makeTempCode(s, 'literacy', Date.now() + 60000);
-  assert.equal(_internals.checkTempCode(s, live, 'literacy', Date.now()), true);
-  assert.equal(_internals.checkTempCode(s, live, 'analyst', Date.now()), false);
-  assert.equal(_internals.checkTempCode(s, live.slice(0, -1) + (live.endsWith('A') ? 'B' : 'A'), 'literacy', Date.now()), false);
+  assert.ok(_internals.checkTempCode(s, 'literacy', live, Date.now()) > Date.now());
+  assert.equal(_internals.checkTempCode(s, 'analyst', live, Date.now()), 0);
+  assert.equal(_internals.checkTempCode(s, 'literacy', live.slice(0, -1) + (live.endsWith('a') ? 'b' : 'a'), Date.now()), 0);
 });
 
 test('changing COURSE_TEMP_EPOCH voids codes and live sessions', async () => {

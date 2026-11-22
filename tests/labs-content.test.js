@@ -16,7 +16,7 @@ for (const [name, mod] of [['cyber', cyber], ['python', py]]) {
       assert.equal((s.content.match(/class="layers"|class='layers'/g) || []).length, 1, s.title);
       assert.equal((s.content.match(/<details/g) || []).length, 3, s.title);
       assert.ok(/tj-quiz/.test(s.content), 'quiz: ' + s.title);
-      assert.doesNotMatch(s.content, /<script|onerror|javascript:/i);
+      assert.doesNotMatch(s.content, /<script|\son\w+\s*=|javascript:/i);
       for (const m of s.content.matchAll(/data-correct=["'](\d+)["']/g)) {
         const q = s.content.slice(m.index - 2000, m.index + 2000);
         assert.ok(Number(m[1]) >= 0, s.title);

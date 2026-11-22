@@ -19,6 +19,7 @@
  * api/_data/ is reachable only through this handler.
  */
 const crypto = require('crypto');
+const tutor = require('./tutor');
 
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000; // server-enforced session length
 const MAX_PASSWORD_LENGTH = 200;
@@ -260,10 +261,15 @@ function createCourseHandler({ course, passwordEnv, modules }) {
       let submitted = '';
       let action = '';
       let minutes = TEMP_DEFAULT_MINUTES;
+      let askBody = null;
       try {
         const data = await readJsonBody(req);
         if (data && typeof data.password === 'string' && data.password.length <= MAX_PASSWORD_LENGTH) {
           submitted = data.password;
+        }
+        if (data && data.action === 'ask') {
+          action = 'ask';
+          askBody = data;
         }
         if (data && data.action === 'mint') {
           action = 'mint';
@@ -276,6 +282,16 @@ function createCourseHandler({ course, passwordEnv, modules }) {
           return sendJson(res, 413, { error: 'payload_too_large' });
         }
         return sendJson(res, 400, { error: 'bad_request' });
+      }
+
+      if (action === 'ask') {
+        // AI tutor: only for a learner who already holds a valid session for THIS course
+        const token = parseCookies(req.headers.cookie)[cookieName];
+        if (!(verifyToken(secret, token, course, now) && tempSessionStillAllowed(token))) {
+          return sendJson(res, 401, { error: 'unauthorized' });
+        }
+        const out = await tutor.ask({ course, modules, body: askBody, learnerId: course + ':' + String(token).slice(-24) + ':' + clientIp(req), now });
+        return sendJson(res, out.status, out.body);
       }
 
       const ownerOk = !!submitted && safeEqual(submitted, password);

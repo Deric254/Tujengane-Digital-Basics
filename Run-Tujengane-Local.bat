@@ -15,13 +15,12 @@ if errorlevel 1 (
 
 if not exist "node_modules\nodemailer" (
   echo.
-  echo  First run: installing the small helper it needs. This needs internet and takes about a minute...
+  echo  First run: installing the small helper for the PayPal proof email (needs internet, about a minute; skipped if offline)...
   call npm install --omit=dev --no-audit --no-fund
   if errorlevel 1 (
     echo.
-    echo  The install failed. Check your internet connection and run this file again.
-    pause
-    exit /b 1
+    echo  Could not install it - probably no internet. That is fine: everything works except the PayPal proof email.
+    echo  Continuing without it...
   )
 )
 
