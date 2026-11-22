@@ -34,7 +34,7 @@ test.beforeEach(() => {
 
 const jpeg = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(200, 1)]).toString('base64')
 const good = () => ({
-  item: 'Full Package (all 13 modules)', amount: 50, currency: 'USD', qty: 1,
+  item: 'Full Package (all 15 modules)', amount: 50, currency: 'USD', qty: 1,
   name: 'Jane Doe', contact: 'jane@example.com', txn: '5TY05013RG002845M',
   file: { type: 'image/jpeg', data: jpeg }
 })

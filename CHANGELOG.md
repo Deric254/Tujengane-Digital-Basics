@@ -1,3 +1,14 @@
+Date: 2026-11-22 - Temporary codes, Cybersecurity module, Python Fundamentals, Practice Playground, local launcher
+
+- Temporary access codes: your owner password is unchanged. Open temp-access.html (or run Make-Temp-Code.bat), enter your owner password, pick the course and the time (5 minutes to 24 hours, default 3 hours) and share the code. It stops working at the end of that time, even if learners still have it on screen: open pages lock themselves and the server refuses the code and any session made with it. A code only opens its own course and cannot make more codes. To cancel every code at once, set COURSE_TEMP_EPOCH to any new value in Vercel and redeploy.
+- Computer Literacy now has 15 modules: ICT Support and Troubleshooting (module 13) and the new Cybersecurity Practitioner (module 14, 15 slides, defensive only, with simulated labs and checks that repeat until answered correctly). Capstone stays last (module 15).
+- Analyst Pro now has 15 modules: Python Fundamentals: Your First Programs (module 9) sits before Python for Data Analysis; every slide has a live Run box and a repeat-until-correct check. Capstone stays last.
+- Practice Playground (playground/index.html): same password or temp code as the course. Python workspace (runs in the learner's own browser, self-hosted Pyodide, 10 second stop, nothing is sent to a server) and the Cyber Lab with all the exercises. Python basics only; pandas is not included.
+- Run-Tujengane-Local.bat starts the whole site on your computer (first run creates .env.local with test passwords).
+- Course counts updated to 15 modules on the home page and course pages. New tests: temp-access, labs-content.
+
+----------------------------------------
+
 Date: 2026-11-12 - Lessons scroll on every device; scroll bugs and dead code removed
 
 - Practice / Level-up / Check yourself (and the whole lesson) can now be reached by touch on every phone, tablet and rotated screen in all four courses. One shared file, assets/css/scroll.css (loaded last), makes small and short screens scroll as a normal page; the desktop layout is unchanged (verified element by element at 1024-1920 px).

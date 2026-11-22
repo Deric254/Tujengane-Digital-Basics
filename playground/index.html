@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Practice Playground | Tujengane</title>
+<link rel="stylesheet" href="/assets/css/labs.css">
+<style>
+  :root{--g:#256d4f;--g2:#49a078;--bg:#f3f7f5;--ink:#14231c;--mute:#52635a;--line:#d7e4dc}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  header{background:var(--g);color:#fff;padding:14px 16px}
+  header div{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  header h1{margin:0;font-size:1.2rem}
+  header a{color:#fff;font-weight:600}
+  main{max-width:900px;margin:0 auto;padding:16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+  label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 5px}
+  select,input.pw{width:100%;padding:12px;border:1px solid #c4d3ca;border-radius:10px;font-size:1rem}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .tabs button{min-height:44px;padding:10px 16px;border-radius:10px;border:1px solid var(--g2);background:#fff;color:var(--g);font-weight:700;cursor:pointer}
+  .tabs button[aria-selected=true]{background:var(--g);color:#fff}
+  .msg{font-weight:600;margin-top:10px;color:#9a3412}
+  .note{color:var(--mute);font-size:.9rem}
+  .labbox{margin-bottom:22px}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div><h1>Practice Playground</h1><a href="/index.html">Back to Tujengane</a></div></header>
+<main>
+ <section id="gate" class="card">
+  <h2 style="margin-top:0">Sign in to practise</h2>
+  <p class="note">Use the same password or temporary code you use for your course. Everything here runs in your own browser. Nothing you type is sent anywhere or saved on our servers.</p>
+  <label for="course">Your course</label>
+  <select id="course"><option value="literacy">Computer Literacy</option><option value="analyst">Analyst Pro</option></select>
+  <label for="pw">Password or access code</label>
+  <input id="pw" class="pw" type="password" autocomplete="off" autocapitalize="off">
+  <button id="go" class="tj-btn" type="button" style="margin-top:14px;width:100%">Enter the playground</button>
+  <div id="msg" class="msg" role="alert"></div>
+ </section>
+
+ <section id="app" hidden>
+  <div class="tabs" role="tablist">
+   <button role="tab" id="t-py" aria-selected="true" aria-controls="p-py">Python</button>
+   <button role="tab" id="t-cy" aria-selected="false" aria-controls="p-cy">Cyber Lab</button>
+  </div>
+  <div id="p-py" role="tabpanel" class="card">
+   <h2 style="margin-top:0">Python workspace</h2>
+   <p class="note">Write and run Python basics. Your code is kept on this device only. Programs stop after 10 seconds. Libraries such as pandas are not available here; use them in your own Python setup.</p>
+   <label for="ex">Start from an example</label>
+   <select id="ex"></select>
+   <div id="py" style="margin-top:10px"></div>
+  </div>
+  <div id="p-cy" role="tabpanel" class="card" hidden>
+   <h2 style="margin-top:0">Cyber practice lab</h2>
+   <p class="note">Safe, simulated exercises. Nothing here touches a real system. Repeat any exercise as often as you like.</p>
+   <div id="labs"></div>
+  </div>
+ </section>
+</main>
+<script src="/assets/js/labs.js" defer></script>
+<script>
+(function(){
+  var API={literacy:'/api/literacy',analyst:'/api/analyst'};
+  var $=function(i){return document.getElementById(i)};
+  var timer=null,poll=null,built=false,course='literacy';
+  var EX=[
+   ['Hello and variables','name = "Amina"\nage = 24\nprint("Hello,", name)\nprint("Next year you will be", age + 1)\n'],
+   ['Ask a question (input)','name = input("Your name? ")\nprint("Karibu,", name)\n'],
+   ['Loop and add up','total = 0\nfor n in range(1, 6):\n    total = total + n\n    print(n, total)\n'],
+   ['If and else','score = 72\nif score >= 70:\n    print("Distinction")\nelif score >= 50:\n    print("Pass")\nelse:\n    print("Retake")\n'],
+   ['Lists and totals','sales = [1200, 950, 1800, 400]\nprint("Total:", sum(sales))\nprint("Average:", sum(sales)/len(sales))\nprint("Best day:", max(sales))\n'],
+   ['Dictionary lookup','prices = {"tea": 50, "bread": 60}\nitem = "tea"\nprint(item, "costs", prices[item])\n'],
+   ['Function','def vat(amount, rate=0.16):\n    return round(amount * rate, 2)\n\nprint(vat(1000))\n'],
+   ['Password length check','pw = "correct horse battery staple"\nprint("Length:", len(pw))\nprint("Long enough:", len(pw) >= 14)\n']
+  ];
+  function msg(t){$('msg').textContent=t||''}
+  function lock(){
+    clearTimeout(timer);clearInterval(poll);
+    $('app').hidden=true;$('gate').hidden=false;$('pw').value='';msg('Your access has ended. Enter a current password or code.');
+  }
+  function unlock(data){
+    $('gate').hidden=true;$('app').hidden=false;msg('');
+    if(data&&typeof data.expiresInMs==='number'){
+      clearTimeout(timer);clearInterval(poll);
+      timer=setTimeout(lock,Math.max(0,data.expiresInMs));
+      poll=setInterval(function(){fetch(API[course],{credentials:'same-origin',cache:'no-store'}).then(function(r){if(r.status===401)lock()}).catch(function(){})},60000);
+    }
+    build();
+  }
+  function build(){
+    if(built)return;built=true;
+    var sel=$('ex'),box=$('py');
+    EX.forEach(function(e,i){var o=document.createElement('option');o.value=i;o.textContent=e[0];sel.appendChild(o)});
+    var ed;
+    function wait(){
+      if(!window.TJLabs){return setTimeout(wait,50)}
+      ed=TJLabs.mountPython(box,{code:EX[0][1],saveKey:'tj-playground-code'});
+      sel.addEventListener('change',function(){ed.setCode(EX[sel.value][1])});
+      var L=$('labs');
+      ['risk','password','phish','url','hash','caesar','logs','access','order'].forEach(function(n){
+        var d=document.createElement('div');d.className='labbox';d.setAttribute('data-lab',n);
+        var w=document.createElement('div');w.className='tj-lab';w.setAttribute('data-lab',n);w.appendChild(document.createTextNode(''));
+        d.appendChild(w);L.appendChild(w);
+      });
+      TJLabs.hydrate(document);
+    }
+    wait();
+  }
+  function login(){
+    course=$('course').value;msg('');
+    var b=$('go');b.disabled=true;
+    fetch(API[course],{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('pw').value})})
+    .then(function(r){return r.json().catch(function(){return{}}).then(function(d){return{s:r.status,d:d}})})
+    .then(function(x){
+      b.disabled=false;
+      if(x.s===200&&x.d&&Array.isArray(x.d.modules)){unlock(x.d)}
+      else if(x.s===429){msg('Too many tries. Please wait a few minutes.')}
+      else if(x.s===503){msg('Access is not available right now. Contact your trainer.')}
+      else{msg('That password or code is not valid, or it has expired.')}
+    }).catch(function(){b.disabled=false;msg('Could not reach the server. Check your connection.')});
+  }
+  $('go').addEventListener('click',login);
+  $('pw').addEventListener('keydown',function(e){if(e.key==='Enter')login()});
+  var T=[['t-py','p-py'],['t-cy','p-cy']];
+  T.forEach(function(t){$(t[0]).addEventListener('click',function(){T.forEach(function(u){$(u[0]).setAttribute('aria-selected',u[0]===t[0]);$(u[1]).hidden=u[0]!==t[0]})})});
+  // restore existing session
+  ['literacy','analyst'].reduce(function(p,c){return p.then(function(ok){
+    if(ok)return true;
+    return fetch(API[c],{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
+      if(d&&Array.isArray(d.modules)){course=c;$('course').value=c;unlock(d);return true}return false}).catch(function(){return false});
+  })},Promise.resolve(false));
+})();
+</script>
+</body>
+</html>

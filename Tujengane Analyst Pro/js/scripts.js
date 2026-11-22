@@ -34,7 +34,7 @@ const welcomeSlide = {
     content: `
     <div class="welcome-block" style="padding:1.2rem 0.5rem 1rem 0.5rem; text-align:center; max-width: 98vw; min-height: 0;">
         <div style="font-size:1rem; color:#333; margin-bottom:1rem;">
-            Welcome to our 13-week digital skills course by <strong>dericBI</strong>!<br>
+            Welcome to our 15-module digital skills course by <strong>dericBI</strong>!<br>
             <span style="color:#256d4f; font-weight:600;">Choose your next step below or use the sidebar to explore modules.</span>
         </div>
         <div class="welcome-links" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; margin-bottom:1.2rem;">
@@ -67,6 +67,39 @@ let currentSlide = 0;
 let isSidebarOpen = false;
 
 const slideContainer = document.getElementById('slide-container');
+
+// Business Intelligence & Consulting knowledge checks use delegated events because slide HTML is inserted dynamically.
+// This is additive: it does not alter the existing course navigation or authentication flow.
+if (slideContainer) {
+    slideContainer.addEventListener('click', function (event) {
+        const option = event.target.closest('.bi-answer-option');
+        if (!option || !slideContainer.contains(option)) return;
+        const check = option.closest('.bi-learning-check');
+        if (!check) return;
+        const feedback = check.querySelector('.bi-quiz-feedback');
+        const correct = Number(check.dataset.correct);
+        const selected = Number(option.dataset.answer);
+        const explanation = check.dataset.explanation || 'Review the lesson and try again.';
+        check.querySelectorAll('.bi-answer-option').forEach(function (button) {
+            button.style.borderColor = '#cbd5d0';
+            button.style.background = '#fff';
+            button.setAttribute('aria-pressed', 'false');
+        });
+        option.setAttribute('aria-pressed', 'true');
+        if (selected === correct) {
+            option.style.borderColor = '#23834f';
+            option.style.background = '#edf8f0';
+            feedback.textContent = 'Correct. ' + explanation.replace(/^Correct\.\s*/, '');
+            feedback.style.color = '#17633b';
+        } else {
+            option.style.borderColor = '#b45309';
+            option.style.background = '#fff7ed';
+            feedback.textContent = 'Not quite. The correct reasoning is: ' + explanation.replace(/^Correct\.\s*/, '') + ' Read the explanation, then choose again.';
+            feedback.style.color = '#9a3412';
+        }
+    });
+}
+
 const currentSlideDisplay = document.getElementById('current-slide');
 const totalSlidesDisplay = document.getElementById('total-slides');
 const prevBtn = document.getElementById('prevBtn');
@@ -295,6 +328,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function unlockCourse(data) {
         modules = data.modules;
         document.body.style.display = '';
+        // Temporary access code: lock the lesson again when it expires (the server also stops serving it).
+        if (typeof data.expiresInMs === 'number') {
+            var relock = function () {
+                modules = [];
+                try { var sc = document.getElementById('slide-container'); if (sc) sc.innerHTML = ''; } catch (e) {}
+                window.location.reload();
+            };
+            setTimeout(relock, Math.max(0, data.expiresInMs));
+            setInterval(function () {
+                fetch(COURSE_API, { credentials: 'same-origin', cache: 'no-store' })
+                    .then(function (r) { if (r.status === 401) relock(); })
+                    .catch(function () {});
+            }, 60000);
+        }
     }
 
     function showWhatsAppOverlay(){

@@ -8,6 +8,12 @@
  * Secrets live ONLY in environment variables (never in code):
  *   COURSE_COOKIE_SECRET        random string, >= 32 chars (signs session cookies)
  *   COURSE_PASSWORD_<COURSE>    the course password (see api/analyst.js, api/literacy.js)
+ *   COURSE_TEMP_EPOCH           optional. Change it to cancel every temporary code you have already given out
+ *
+ * Temporary access codes (for online classes): the owner password can also mint a short-lived code
+ *   POST {action:'mint', password:<owner password>, minutes:<5..1440>}  ->  {code, expiresAt, minutes}
+ * Anyone typing that code in the normal password box gets in until it expires, then is locked out. Codes are
+ * signed with COURSE_COOKIE_SECRET (nothing is stored), work for one course only, and never grant owner rights.
  *
  * Files in /api are never served as static files by Vercel, so the course data in
  * api/_data/ is reachable only through this handler.
@@ -21,6 +27,9 @@ const MAX_FAILS = 8; // failed attempts allowed per IP ...
 const FAIL_WINDOW_MS = 10 * 60 * 1000; // ... per 10 minutes (best effort, per warm instance)
 const FAIL_DELAY_MS = 500; // uniform delay on a wrong password
 const MAX_TRACKED_IPS = 5000;
+const TEMP_MIN_MINUTES = 5;
+const TEMP_MAX_MINUTES = 24 * 60;
+const TEMP_DEFAULT_MINUTES = 180;
 
 const failLog = new Map(); // ip -> { count, first }
 
@@ -61,6 +70,70 @@ function verifyToken(secret, token, course, now) {
   } catch (e) {
     return false;
   }
+}
+
+// ---- temporary access codes -------------------------------------------------------------------------
+const tempEpoch = () => String(process.env.COURSE_TEMP_EPOCH || '');
+
+function tempMac(secret, course, expirySec36) {
+  return crypto
+    .createHmac('sha256', secret)
+    .update('tmp1.' + course + '.' + tempEpoch() + '.' + expirySec36)
+    .digest('hex')
+    .slice(0, 12);
+}
+
+/** Makes a code like "k1abcd-ef0123-456789" that stops working at expiryMs. */
+function makeTempCode(secret, course, expiryMs) {
+  const exp36 = Math.floor(expiryMs / 1000).toString(36).padStart(6, '0');
+  const raw = exp36 + tempMac(secret, course, exp36);
+  return raw.slice(0, 6) + '-' + raw.slice(6, 12) + '-' + raw.slice(12);
+}
+
+/** Returns the expiry (ms) when the typed text is a valid, unexpired temporary code for this course, else 0. */
+function checkTempCode(secret, course, typed, now) {
+  if (typeof typed !== 'string') return 0;
+  const raw = typed.toLowerCase().replace(/[\s-]/g, '');
+  if (!/^[0-9a-z]{18}$/.test(raw)) return 0;
+  const exp36 = raw.slice(0, 6);
+  if (!safeEqual(raw.slice(6), tempMac(secret, course, exp36))) return 0;
+  const expiryMs = parseInt(exp36, 36) * 1000;
+  if (!Number.isFinite(expiryMs) || expiryMs <= now) return 0;
+  if (expiryMs - now > TEMP_MAX_MINUTES * 60000 + 60000) return 0; // longer than a code may ever last
+  return expiryMs;
+}
+
+/** Session token for a temporary visitor: ends at the code's expiry (never later than a normal session). */
+function makeTempToken(secret, course, now, expiryMs) {
+  const end = Math.min(expiryMs, now + SESSION_TTL_MS);
+  const payload = b64u(JSON.stringify({ c: course, e: end, t: tempEpoch(), tmp: 1 }));
+  return { token: payload + '.' + b64u(sign(secret, payload)), end };
+}
+
+/** Milliseconds a temporary session has left, or null for a normal (owner) session. Call after verifyToken. */
+function tempRemainingMs(token, now) {
+  try {
+    const claims = JSON.parse(Buffer.from(String(token).split('.')[0], 'base64url').toString('utf8'));
+    if (!claims.tmp) return null;
+    return Math.max(0, claims.e - now);
+  } catch (e) {
+    return null;
+  }
+}
+
+/** A temporary session is void once the owner changes COURSE_TEMP_EPOCH. */
+function tempSessionStillAllowed(token) {
+  try {
+    const claims = JSON.parse(Buffer.from(String(token).split('.')[0], 'base64url').toString('utf8'));
+    return !claims.tmp || claims.t === tempEpoch();
+  } catch (e) {
+    return false;
+  }
+}
+
+function withExpiry(content, ms) {
+  // content is the cached JSON string '{"modules":[...]}'; add one field without re-serialising it
+  return content.slice(0, -1) + ',"expiresInMs":' + Math.floor(ms) + '}';
 }
 
 function parseCookies(header) {
@@ -168,7 +241,10 @@ function createCourseHandler({ course, passwordEnv, modules }) {
 
     if (req.method === 'GET') {
       const token = parseCookies(req.headers.cookie)[cookieName];
-      if (verifyToken(secret, token, course, now)) return sendJson(res, 200, content);
+      if (verifyToken(secret, token, course, now) && tempSessionStillAllowed(token)) {
+        const left = tempRemainingMs(token, now);
+        return sendJson(res, 200, left === null ? content : withExpiry(content, left));
+      }
       return sendJson(res, 401, { error: 'unauthorized' });
     }
 
@@ -182,10 +258,16 @@ function createCourseHandler({ course, passwordEnv, modules }) {
       }
 
       let submitted = '';
+      let action = '';
+      let minutes = TEMP_DEFAULT_MINUTES;
       try {
         const data = await readJsonBody(req);
         if (data && typeof data.password === 'string' && data.password.length <= MAX_PASSWORD_LENGTH) {
           submitted = data.password;
+        }
+        if (data && data.action === 'mint') {
+          action = 'mint';
+          if (data.minutes !== undefined) minutes = Number(data.minutes);
         }
       } catch (e) {
         if (e && e.message === 'too_large') {
@@ -196,7 +278,27 @@ function createCourseHandler({ course, passwordEnv, modules }) {
         return sendJson(res, 400, { error: 'bad_request' });
       }
 
-      if (submitted && safeEqual(submitted, password)) {
+      const ownerOk = !!submitted && safeEqual(submitted, password);
+
+      if (action === 'mint') {
+        if (!ownerOk) {
+          recordFail(ip, now);
+          await sleep(FAIL_DELAY_MS);
+          return sendJson(res, 401, { error: 'invalid_password' });
+        }
+        failLog.delete(ip);
+        if (!Number.isInteger(minutes) || minutes < TEMP_MIN_MINUTES || minutes > TEMP_MAX_MINUTES) {
+          return sendJson(res, 400, { error: 'bad_minutes', min: TEMP_MIN_MINUTES, max: TEMP_MAX_MINUTES });
+        }
+        const expiryMs = Math.floor((now + minutes * 60000) / 1000) * 1000;
+        return sendJson(res, 200, {
+          code: makeTempCode(secret, course, expiryMs),
+          expiresAt: new Date(expiryMs).toISOString(),
+          minutes,
+        });
+      }
+
+      if (ownerOk) {
         failLog.delete(ip);
         const secure = req.headers['x-forwarded-proto'] === 'https' || !!process.env.VERCEL ? '; Secure' : '';
         // Session cookie (no Max-Age): ends with the browser session, like the old sessionStorage flag,
@@ -206,6 +308,18 @@ function createCourseHandler({ course, passwordEnv, modules }) {
           cookieName + '=' + makeToken(secret, course, now) + '; Path=' + cookiePath + '; HttpOnly; SameSite=Lax' + secure
         );
         return sendJson(res, 200, content);
+      }
+
+      const tempExpiry = submitted ? checkTempCode(secret, course, submitted, now) : 0;
+      if (tempExpiry) {
+        failLog.delete(ip);
+        const { token, end } = makeTempToken(secret, course, now, tempExpiry);
+        const secure = req.headers['x-forwarded-proto'] === 'https' || !!process.env.VERCEL ? '; Secure' : '';
+        res.setHeader(
+          'Set-Cookie',
+          cookieName + '=' + token + '; Path=' + cookiePath + '; HttpOnly; SameSite=Lax' + secure
+        );
+        return sendJson(res, 200, withExpiry(content, end - now));
       }
 
       recordFail(ip, now);
@@ -219,4 +333,4 @@ function createCourseHandler({ course, passwordEnv, modules }) {
 }
 
 module.exports = createCourseHandler;
-module.exports._internals = { makeToken, verifyToken, safeEqual, parseCookies, failLog, SESSION_TTL_MS };
+module.exports._internals = { makeToken, verifyToken, safeEqual, parseCookies, failLog, SESSION_TTL_MS, makeTempCode, checkTempCode };

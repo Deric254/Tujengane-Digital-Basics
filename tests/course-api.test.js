@@ -43,12 +43,17 @@ test('wrong password -> 401, no cookie, no content', async () => {
   assert.doesNotMatch(await res.text(), /slides/);
 });
 
-test('correct password -> 200 with 13 modules, hardened cookie, no-store', async () => {
+test('literacy login -> 200 with 15 modules, hardened cookie, no-store', async () => {
   const res = await post('/api/literacy', { password: 'test-literacy-pass' });
   assert.equal(res.status, 200);
   const data = await res.json();
-  assert.equal(data.modules.length, 13);
+  assert.equal(data.modules.length, 15);
   assert.ok(data.modules[0].slides[0].title && data.modules[0].slides[0].content);
+  assert.equal(data.modules[12].title, 'ICT Support and Troubleshooting');
+  assert.equal(data.modules[12].slides.length, 13);
+  assert.match(data.modules[13].title, /^Cybersecurity/);
+  assert.equal(data.modules[13].slides.length, 15);
+  assert.match(data.modules[14].title, /^Capstone/, 'the capstone is always the last module');
   const sc = res.headers.get('set-cookie');
   assert.match(sc, /^tj_literacy=/);
   assert.match(sc, /HttpOnly/); assert.match(sc, /SameSite=Lax/); assert.match(sc, /Path=\/api\/literacy/);
@@ -59,7 +64,11 @@ test('valid cookie restores the session on GET (page reload path)', async () => 
   const login = await post('/api/analyst', { password: 'test-analyst-pass' });
   const res = await fetch(base + '/api/analyst', { headers: { cookie: cookieOf(login) } });
   assert.equal(res.status, 200);
-  assert.equal((await res.json()).modules.length, 13);
+  const m = (await res.json()).modules;
+  assert.equal(m.length, 15);
+  assert.match(m[8].title, /^Python Fundamentals/);
+  assert.match(m[9].title, /^Python for Data Analysis/);
+  assert.match(m[14].title, /^Capstone/, 'the capstone is always the last module');
 });
 
 test('cookie for one course does NOT unlock the other', async () => {

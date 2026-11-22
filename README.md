@@ -41,3 +41,15 @@ Set these in Vercel -> Project -> Settings -> Environment Variables (see `.env.e
 * Local testing needs the Vercel CLI (`vercel dev`) because `/api` only exists on Vercel; opening the HTML directly will show the password prompt but can never unlock.
 * `npm test` runs the API security tests.
 * After first deploy, confirm `https://<site>/api/_data/literacy.json` returns **404**.
+
+
+## Temporary passwords (for live teaching)
+1. Open `temp-access.html` on the live site (or run `Make-Temp-Code.bat` locally), enter your owner password, choose the course and duration.
+2. Share the code. It works only for that course and stops at the time shown, even if learners still see it.
+3. To cancel all codes immediately: set `COURSE_TEMP_EPOCH` to a new value in Vercel and redeploy.
+
+## Run locally
+Double-click `Run-Tujengane-Local.bat` (needs Node.js). First run installs packages and creates `.env.local` with test passwords. Open http://localhost:3000. `npm test` runs the tests.
+
+## Practice Playground
+`/playground/` (not listed in search engines). Python runs in the browser through Pyodide (MPL-2.0, files in `assets/vendor/pyodide`). No pandas offline.

@@ -20,7 +20,7 @@ const welcomeSlide = {
     content: `
     <div class="welcome-block" style="padding:1.2rem 0.5rem 1rem 0.5rem; text-align:center; max-width: 98vw; min-height: 0;">
         <div style="font-size:1rem; color:#333; margin-bottom:1rem;">
-            Welcome to our 13-week digital skills course by <strong>dericBI</strong>!<br>
+            Welcome to our 15-module digital skills course by <strong>dericBI</strong>!<br>
             <span style="color:#256d4f; font-weight:600;">Choose your next step below or use the sidebar to explore modules.</span>
         </div>
         <div class="welcome-links" style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; margin-bottom:1.2rem;">
@@ -439,6 +439,20 @@ function initializePasswordProtection() {
     function unlockCourse(data) {
         modules = data.modules;
         document.body.style.display = '';
+        // Temporary access code: lock the lesson again when it expires (the server also stops serving it).
+        if (typeof data.expiresInMs === 'number') {
+            var relock = function () {
+                modules = [];
+                try { var sc = document.getElementById('slide-container'); if (sc) sc.innerHTML = ''; } catch (e) {}
+                window.location.reload();
+            };
+            setTimeout(relock, Math.max(0, data.expiresInMs));
+            setInterval(function () {
+                fetch(COURSE_API, { credentials: 'same-origin', cache: 'no-store' })
+                    .then(function (r) { if (r.status === 401) relock(); })
+                    .catch(function () {});
+            }, 60000);
+        }
     }
 
     function showWhatsAppOverlay(){
