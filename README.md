@@ -55,7 +55,7 @@ Double-click `Run-Tujengane-Local.bat` (needs Node.js). First run installs packa
 `/playground/` (not listed in search engines). Python runs in the browser through Pyodide (MPL-2.0, files in `assets/vendor/pyodide`). No pandas offline.
 
 ## AI Tutor
-A green "Ask AI Tutor" button appears on the lesson pages of both paid courses. It sends the learner's question plus the lesson they are viewing (taken from the server's own copy, so learners cannot fake it) to an AI provider. Only learners signed in to that course (owner password or valid temp code) can use it.
+The "Help" button (bottom right) on the lesson pages of both paid courses opens the AI Tutor, a My review list, and contact links. It sends the learner's question plus the lesson they are viewing (taken from the server's own copy, so learners cannot fake it) to an AI provider. Only learners signed in to that course (owner password or valid temp code) can use it.
 1. In Vercel, add at least one key: GROQ_API_KEY or GEMINI_API_KEY or OPENROUTER_API_KEY (free), and optionally ANTHROPIC_API_KEY or OPENAI_API_KEY (paid). Redeploy.
 2. Free providers are tried first; if one is busy or out of quota, the next (paid) one answers. Set TUTOR_PROVIDERS to change the order, e.g. `anthropic,groq` for paid first.
 3. Limits per learner (20 per hour) and per day (800) protect your bill: TUTOR_RATE_PER_HOUR, TUTOR_DAILY_CAP. TUTOR_ENABLED=0 switches the tutor off.
@@ -64,3 +64,5 @@ Locally: put the same keys in `.env.local` before running Run-Tujengane-Local.ba
 
 ## SQL playground
 Playground, SQL tab: a practice SQLite database (customers, products, sales) rebuilt on every Run, so DROP/DELETE can never break anything. Runs in the browser (sql.js, MIT licence, `assets/vendor/sqljs`).
+
+If the tutor says "AI service is not available": open `temp-access.html`, use "Test the AI tutor", and read which provider fails and why. With no key at all the tutor still answers from the lessons, but only AI keys give full explanations.

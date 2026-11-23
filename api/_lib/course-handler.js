@@ -267,6 +267,7 @@ function createCourseHandler({ course, passwordEnv, modules }) {
         if (data && typeof data.password === 'string' && data.password.length <= MAX_PASSWORD_LENGTH) {
           submitted = data.password;
         }
+        if (data && data.action === 'tutor_test') { action = 'tutor_test'; }
         if (data && data.action === 'ask') {
           action = 'ask';
           askBody = data;
@@ -295,6 +296,16 @@ function createCourseHandler({ course, passwordEnv, modules }) {
       }
 
       const ownerOk = !!submitted && safeEqual(submitted, password);
+
+      if (action === 'tutor_test') {
+        if (!ownerOk) {
+          recordFail(ip, now);
+          await sleep(FAIL_DELAY_MS);
+          return sendJson(res, 401, { error: 'invalid_password' });
+        }
+        failLog.delete(ip);
+        return sendJson(res, 200, { results: await tutor.diagnose(process.env) });
+      }
 
       if (action === 'mint') {
         if (!ownerOk) {

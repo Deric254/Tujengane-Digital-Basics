@@ -83,3 +83,10 @@
 @media (max-width: 560px) { .tj-lab, .tj-quiz { padding: .8rem; } .tj-two { grid-template-columns: 1fr; } .tj-btn { flex: 1 1 auto; } }
 @media (prefers-reduced-motion: reduce) { .tj-meter > span { transition: none; } }
 @media print { .tj-lab, .tj-quiz { break-inside: avoid; } .tj-btn { display: none; } }
+
+/* SQL results */
+.tj-sql textarea.tj-code { min-height: 7rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92rem; line-height: 1.5; background: #0f172a; color: #e2e8f0; border-color: #0f172a; tab-size: 4; white-space: pre; overflow: auto; resize: vertical; width: 100%; box-sizing: border-box; border-radius: .55rem; padding: .6rem; }
+.tj-tablewrap { overflow: auto; margin-top: .6rem; border: 1px solid #d7e4dc; border-radius: .6rem; max-height: 18rem; }
+.tj-table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+.tj-table th { background: #eef7f2; text-align: left; padding: .4rem .7rem; white-space: nowrap; position: sticky; top: 0; }
+.tj-table td { padding: .4rem .7rem; border-top: 1px solid #e6eee9; white-space: nowrap; }

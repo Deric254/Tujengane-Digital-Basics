@@ -3,7 +3,7 @@
    - <section class="tj-quiz" ...>               becomes a check that repeats until the learner gets it right
    Everything runs inside the learner's own browser. Nothing is sent to any server, and nothing here can
    change a lesson, an account or any course content. Lab names: python, password, hash, caesar, phish,
-   url, logs, access, risk, order. */
+   url, logs, access, risk, order, sql. */
 (function () {
   'use strict';
   var SRC = (document.currentScript && document.currentScript.src) || (location.origin + '/assets/js/labs.js');
@@ -442,6 +442,54 @@
     });
   }
 
+  /* ---------- SQL practice (in-browser SQLite, fresh practice database on every Run) ---------- */
+  var SQL_URL = SRC.replace(/labs\.js.*$/, 'sql-worker.js');
+  function sqlHint(m) {
+    if (/no such table/i.test(m)) return 'That table does not exist. The practice tables are customers, products and sales. Check the spelling.';
+    if (/no such column/i.test(m)) return 'That column does not exist in the table. Check the column names listed above the editor.';
+    if (/syntax error/i.test(m)) return 'SQL could not read the statement. Check commas between columns, quotes around text, and that FROM, WHERE and GROUP BY are in the right order.';
+    if (/ambiguous/i.test(m)) return 'Two tables have a column with that name. Write it as table.column, for example c.name.';
+    return 'Read the message: it names the problem.';
+  }
+  function mountSql(root, opts) {
+    opts = opts || {};
+    var start = opts.code || 'SELECT * FROM customers;';
+    var code = h('textarea', { class: 'tj-code', spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', 'aria-label': 'SQL editor', rows: Math.max(5, Math.min(14, start.split('\n').length + 1)) });
+    code.value = start;
+    var out = h('div', { class: 'tj-sqlout' }), status = h('div', { class: 'tj-status', role: 'status' }), fr = h('div', { class: 'tj-friendly', hidden: true });
+    var run = h('button', { type: 'button', class: 'tj-btn' }, ['Run']), stop = h('button', { type: 'button', class: 'tj-btn tj-danger', hidden: true }, ['Stop']), reset = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Reset']);
+    var w = null, t = null;
+    function end() { if (w) { w.terminate(); w = null; } clearTimeout(t); run.disabled = false; stop.hidden = true; }
+    run.addEventListener('click', function () {
+      clear(out); fr.hidden = true; end(); run.disabled = true; stop.hidden = false; status.textContent = 'Running...';
+      try { w = new Worker(SQL_URL); } catch (e) { end(); status.textContent = ''; fr.textContent = 'The SQL engine could not start in this browser.'; fr.hidden = false; return; }
+      t = setTimeout(function () { end(); status.textContent = ''; fr.textContent = 'Stopped: the query ran for more than 10 seconds. Check for a join without a condition.'; fr.hidden = false; }, 10000);
+      w.onmessage = function (ev) {
+        var m = ev.data; end(); status.textContent = '';
+        if (!m.ok) { fr.textContent = m.error + ' - ' + sqlHint(m.error); fr.hidden = false; return; }
+        if (!m.results.length) { status.textContent = 'Finished. That statement returns no table (normal for CREATE, INSERT, UPDATE, DELETE). End with a SELECT to see rows.'; return; }
+        m.results.forEach(function (r) {
+          var head = h('tr', null, r.columns.map(function (c) { return h('th', { text: c }); }));
+          var rows = r.values.map(function (row) { return h('tr', null, row.map(function (v) { return h('td', { text: v === null ? 'NULL' : String(v) }); })); });
+          out.appendChild(h('div', { class: 'tj-tablewrap' }, [h('table', { class: 'tj-table' }, [head].concat(rows))]));
+          out.appendChild(h('div', { class: 'tj-hint', text: r.total + ' row' + (r.total === 1 ? '' : 's') + (r.total > r.values.length ? ' (first ' + r.values.length + ' shown)' : '') }));
+        });
+      };
+      w.onerror = function () { end(); status.textContent = ''; fr.textContent = 'The SQL engine could not start in this browser.'; fr.hidden = false; };
+      w.postMessage({ sql: code.value });
+    });
+    stop.addEventListener('click', function () { end(); status.textContent = 'Stopped.'; });
+    reset.addEventListener('click', function () { code.value = start; clear(out); fr.hidden = true; status.textContent = ''; });
+    root.appendChild(h('div', { class: 'tj-sql' }, [
+      h('p', { class: 'tj-hint', text: 'Practice tables: customers (id, name, county), products (id, name, category, price), sales (id, sale_date, customer_id, product_id, qty). The database is rebuilt on every Run, so you cannot break anything.' }),
+      h('label', { text: opts.label || 'SQL (edit it, then press Run)' }), code, h('div', { class: 'tj-row' }, [run, stop, reset]), status, out, fr
+    ]));
+  }
+  LABS.sql = function (el) {
+    head('Try the SQL yourself', 'SQL', 'This practice version uses a small shop database. Change the query and run it again.').forEach(function (n) { if (n) el.appendChild(n); });
+    mountSql(el, { code: el.getAttribute('data-code') || '' });
+  };
+
   /* ================= hydrate ================= */
   function hydrate(root) {
     (root || document).querySelectorAll('.tj-lab[data-lab]:not([data-ready])').forEach(function (el) {
@@ -456,5 +504,5 @@
   function boot() { hydrate(document); try { new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true }); } catch (e) {} }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 
-  window.TJLabs = { hydrate: hydrate, mountPython: mountPython, labs: Object.keys(LABS), engine: Engine };
+  window.TJLabs = { hydrate: hydrate, mountPython: mountPython, mountSql: mountSql, labs: Object.keys(LABS), engine: Engine };
 })();

@@ -1,3 +1,23 @@
+Date: 2026-11-23 (learning upgrades)
+
+- Check-yourself questions now ask the learner to write an answer first, then reveal the model answer to compare (retrieval practice).
+- Progress bar and "Continue where you left off" in the Help panel (My review tab). Saved on the learner's device.
+- Spaced review: lessons marked "I can explain it" come back for a refresh after 2 days.
+
+----------------------------------------
+
+Date: 2026-11-23 - One helper button, AI fixes, recaps, embedded practice
+
+- One floating "Help" button on Analyst Pro and Computer Literacy replaces the old chat bubble, the mobile menu bubble and the separate AI button. Inside: AI Tutor, My review, and Contact & menu (Playground, navigation menu, WhatsApp, email, enroll). Nothing overlaps the footer or the Previous/Next buttons.
+- AI fix: the default Gemini model (gemini-2.0-flash) has been shut down by Google, so Gemini requests failed. Default is now gemini-flash-latest (always the current Flash); Anthropic default claude-haiku-5-5. If no key is set, or every provider fails, the tutor now answers from the course lessons instead of failing.
+- temp-access.html has a "Test the AI tutor" box: checks every key on the server and says which works and why not.
+- "Lock it in" closing step under every lesson (I can explain it / Partly / Not yet). Partly and Not yet go to a "My review" list that opens the lesson. Saved on the learner's own device.
+- A "Lock It In: Module Recap" lesson ends every module except the Capstone: key points, recall questions, teach-back steps and the answers (built from the lessons themselves).
+- Practice inside existing lessons: live SQL boxes in the SQL module (6 lessons) and Python boxes in Python for Data Analysis (2 lessons). pandas lessons still run in Jupyter on the learner's computer.
+- Removed the unused old activation screenshot (dericbi-instructor/img/license.webp), so the product-page test passes. All 79 tests pass.
+
+----------------------------------------
+
 Date: 2026-11-22 (later) - AI Tutor and SQL playground
 
 - AI Tutor: "Ask AI Tutor" button on both paid courses; knows the lesson on screen; keys only on the server; free providers first with paid fallback; per-learner and daily limits; only for signed-in learners (owner password or temp code). See README for setup. Tests: tests/tutor.test.js.

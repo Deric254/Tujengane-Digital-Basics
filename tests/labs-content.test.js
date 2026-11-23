@@ -45,3 +45,28 @@ test('Pyodide is self-hosted (no CDN)', () => {
   assert.ok(fs.existsSync(path.join(root, 'assets/vendor/pyodide/pyodide.asm.wasm')));
   assert.doesNotMatch(fs.readFileSync(path.join(root, 'assets/js/py-worker.js'), 'utf8'), /cdn\.jsdelivr|https?:\/\//);
 });
+
+test('every module except the capstone ends with a "Lock It In" recap that follows the 3-layer format', () => {
+  for (const data of [lit, ana]) {
+    data.slice(0, -1).forEach((m) => {
+      const s = m.slides[m.slides.length - 1];
+      assert.equal(s.title, 'Lock It In: Module Recap', m.title);
+      assert.equal((s.content.match(/<details/g) || []).length, 3);
+      assert.equal((s.content.match(/class="layers"/g) || []).length, 1);
+      assert.ok((s.content.match(/<li>/g) || []).length >= 10, 'has takeaways, questions and answers');
+    });
+    assert.notEqual(data[data.length - 1].slides[data[data.length - 1].slides.length - 1].title, 'Lock It In: Module Recap');
+  }
+});
+test('SQL and Python labs are embedded in the existing Analyst lessons', () => {
+  const sql = ana[5].slides.filter((s) => /data-lab="sql"/.test(s.content)).length;
+  const py = ana[9].slides.filter((s) => /data-lab="python"/.test(s.content)).length;
+  assert.ok(sql >= 5 && py >= 2);
+});
+test('one floating helper only: tutor.js hides the old bubbles and adds no second button', () => {
+  const css = fs.readFileSync(path.join(root, 'assets/css/tutor.css'), 'utf8');
+  assert.match(css, /body\.tjh #chatButton/);
+  assert.match(css, /#floatingHomeBtn/);
+  const js = fs.readFileSync(path.join(root, 'assets/js/tutor.js'), 'utf8');
+  assert.equal((js.match(/appendChild\(launcher\)/g) || []).length, 1);
+});

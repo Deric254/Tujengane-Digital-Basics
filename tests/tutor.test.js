@@ -43,11 +43,27 @@ test('needs a signed-in session', async () => {
   delete process.env.GROQ_API_KEY;
 });
 
-test('not configured -> 503 tutor_unavailable', async () => {
+test('no key set -> still answers from the lessons (never a dead end)', async () => {
   const c = await login();
   const r = await ask(c);
-  assert.equal(r.status, 503);
-  assert.equal((await r.json()).error, 'tutor_unavailable');
+  assert.equal(r.status, 200);
+  const d = await r.json();
+  assert.equal(d.provider, 'lessons'); assert.equal(d.tier, 'local');
+  assert.match(d.answer, /Encryption and Hashing|hash/i);
+});
+
+test('owner can test the providers; learners and wrong passwords cannot', async () => {
+  const post = (b) => realFetch(base + '/api/literacy', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(b) });
+  assert.equal((await post({ action: 'tutor_test', password: 'nope' })).status, 401);
+  const none = await (await post({ action: 'tutor_test', password: 'owner-lit' })).json();
+  assert.equal(none.results[0].ok, false);
+  process.env.GROQ_API_KEY = 'secret-abc';
+  stub([{ match: 'groq.com', reply: () => ({ ok: false, status: 401, json: async () => ({}) }) }]);
+  const bad = await post({ action: 'tutor_test', password: 'owner-lit' });
+  const txt = await bad.text();
+  assert.doesNotMatch(txt, /secret-abc/);
+  assert.match(txt, /refused the request/);
+  delete process.env.GROQ_API_KEY;
 });
 
 test('free provider answers first, and the lesson text is sent as context', async () => {
@@ -72,12 +88,14 @@ test('falls back to the paid provider when the free one fails', async () => {
   delete process.env.GROQ_API_KEY; delete process.env.ANTHROPIC_API_KEY;
 });
 
-test('all providers failing -> 503 tutor_busy; keys never appear in responses', async () => {
+test('all providers failing -> falls back to the lessons; keys never appear in responses', async () => {
   process.env.GROQ_API_KEY = 'secret-key-123';
   stub([{ match: 'groq.com', reply: fail }]);
   const r = await ask(await login());
-  assert.equal(r.status, 503);
-  assert.doesNotMatch(await r.text(), /secret-key-123/);
+  assert.equal(r.status, 200);
+  const txt = await r.text();
+  assert.match(txt, /"provider":"lessons"/);
+  assert.doesNotMatch(txt, /secret-key-123/);
   delete process.env.GROQ_API_KEY;
 });
 

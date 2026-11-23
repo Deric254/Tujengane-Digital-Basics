@@ -3,6 +3,15 @@ setlocal
 cd /d "%~dp0"
 title Tujengane - running on this computer
 
+if not exist "tools\local-server.js" (
+  echo.
+  echo  Cannot find the project files next to this file.
+  echo  Right-click the zip, choose Extract All, open the extracted folder and run this file from there.
+  echo.
+  pause
+  exit /b 1
+)
+
 where node >nul 2>nul
 if errorlevel 1 (
   echo.
@@ -15,7 +24,7 @@ if errorlevel 1 (
 
 if not exist "node_modules\nodemailer" (
   echo.
-  echo  First run: installing the small helper for the PayPal proof email (needs internet, about a minute; skipped if offline)...
+  echo  First run: installing the small helper for the PayPal proof email - needs internet, takes about a minute, skipped if offline...
   call npm install --omit=dev --no-audit --no-fund
   if errorlevel 1 (
     echo.

@@ -50,6 +50,15 @@
       <div class="row"><button type="button" id="copy">Copy code</button><button type="button" id="copymsg">Copy message for students</button></div>
     </div>
   </form>
+  <form class="card" id="tf" autocomplete="off">
+    <h2 style="margin:0 0 6px;font-size:1.1rem">Test the AI tutor</h2>
+    <p class="msg" style="color:inherit">Checks every AI key you added on the server and tells you which one works. Keys are never shown.</p>
+    <label for="tpw">Your own course password</label>
+    <input id="tpw" type="password" autocomplete="off" maxlength="200" required>
+    <button class="go" id="tgo" type="submit">Test AI tutor</button>
+    <div class="msg err" id="terr" role="alert"></div>
+    <div id="tres" aria-live="polite" style="margin-top:8px;font-size:.95rem"></div>
+  </form>
   <ul>
     <li>Students type the code in the normal password box of that course.</li>
     <li>It works for that one course only, and cannot be used to make more codes.</li>
@@ -81,6 +90,18 @@
       else{$('err').textContent='Something went wrong. Try again.';}
     }).catch(function(){$('err').textContent='Could not reach the server.';})
     .then(function(){$('go').disabled=false;$('pw').value='';});
+  });
+  $('tf').addEventListener('submit',function(e){
+    e.preventDefault();$('terr').textContent='';$('tres').textContent='Testing... this can take up to a minute.';$('tgo').disabled=true;
+    fetch('/api/literacy',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'tutor_test',password:$('tpw').value})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(d){return{s:r.status,d:d}})})
+    .then(function(x){
+      $('tres').textContent='';
+      if(x.s===200&&x.d.results){x.d.results.forEach(function(r){var d=document.createElement('div');d.style.cssText='padding:8px 0;border-top:1px solid #e1e8e4';d.textContent=(r.ok?'\u2705 ':'\u274c ')+r.provider+(r.model?' ('+r.model+')':'')+': '+r.detail;$('tres').appendChild(d)})}
+      else if(x.s===401){$('terr').textContent='That is not the Computer Literacy owner password. (This test uses the Computer Literacy password.)';}
+      else{$('terr').textContent='Something went wrong. Try again.';}
+    }).catch(function(){$('tres').textContent='';$('terr').textContent='Could not reach the server.';})
+    .then(function(){$('tgo').disabled=false;$('tpw').value='';});
   });
   function copy(t,btn){
     var done=function(){var o=btn.textContent;btn.textContent='Copied';setTimeout(function(){btn.textContent=o},1500)};

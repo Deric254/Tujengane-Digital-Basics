@@ -50,9 +50,9 @@ test('literacy login -> 200 with 15 modules, hardened cookie, no-store', async (
   assert.equal(data.modules.length, 15);
   assert.ok(data.modules[0].slides[0].title && data.modules[0].slides[0].content);
   assert.equal(data.modules[12].title, 'ICT Support and Troubleshooting');
-  assert.equal(data.modules[12].slides.length, 13);
+  assert.equal(data.modules[12].slides.length, 14, '13 lessons + the module recap');
   assert.match(data.modules[13].title, /^Cybersecurity/);
-  assert.equal(data.modules[13].slides.length, 15);
+  assert.equal(data.modules[13].slides.length, 16, '15 lessons + the module recap');
   assert.match(data.modules[14].title, /^Capstone/, 'the capstone is always the last module');
   const sc = res.headers.get('set-cookie');
   assert.match(sc, /^tj_literacy=/);
