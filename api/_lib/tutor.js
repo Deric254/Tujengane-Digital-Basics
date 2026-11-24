@@ -15,7 +15,7 @@
  * Other settings: TUTOR_PROVIDERS (comma list, e.g. "gemini,groq,anthropic"), TUTOR_ENABLED=0 to switch off,
  * TUTOR_RATE_PER_HOUR (per learner, default 20), TUTOR_DAILY_CAP (all learners, per server instance, default 800).
  */
-const MAX_QUESTION = 600;
+const MAX_QUESTION = 1600;
 const MAX_PREV = 300;
 const MAX_CONTEXT = 6000;
 const TIMEOUT_MS = 12000;

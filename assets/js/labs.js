@@ -128,7 +128,7 @@
       h('details', { open: /input\s*\(/.test(original) ? '' : null }, [h('summary', { text: 'Input answers (for programs that ask questions)' }), stdin]),
       h('div', { class: 'tj-row' }, [run, stop, reset]), status, con, fr
     ]));
-    return { setCode: function (c) { code.value = c; start = c; clear(con); fr.hidden = true; }, getCode: function () { return code.value; } };
+    return { setCode: function (c) { code.value = c; start = c; clear(con); fr.hidden = true; }, getCode: function () { return code.value; }, getOutput: function () { return (con.textContent || '').slice(0, 600); } };
   }
 
   /* ================= LABS ================= */
@@ -482,7 +482,7 @@
     });
     stop.addEventListener('click', function () { end(); status.textContent = 'Stopped.'; });
     reset.addEventListener('click', function () { code.value = start; clear(out); fr.hidden = true; status.textContent = ''; });
-    var api = { setCode: function (c) { start = c; code.value = c; clear(out); fr.hidden = true; status.textContent = ''; if (opts.saveKey) { try { localStorage.setItem(opts.saveKey, c); } catch (e) {} } } };
+    var api = { getCode: function () { return code.value; }, getOutput: function () { return (out.textContent + ' ' + (fr.hidden ? '' : fr.textContent) + ' ' + status.textContent).replace(/\s+/g, ' ').trim().slice(0, 600); }, setCode: function (c) { start = c; code.value = c; clear(out); fr.hidden = true; status.textContent = ''; if (opts.saveKey) { try { localStorage.setItem(opts.saveKey, c); } catch (e) {} } } };
     root.appendChild(h('div', { class: 'tj-sql' }, [
       h('p', { class: 'tj-hint', text: 'Practice tables: customers (id, name, county), products (id, name, category, price), sales (id, sale_date, customer_id, product_id, qty). The database is rebuilt on every Run, so you cannot break anything.' }),
       h('label', { text: opts.label || 'SQL (edit it, then press Run)' }), code, h('div', { class: 'tj-row' }, [run, stop, reset]), status, out, fr

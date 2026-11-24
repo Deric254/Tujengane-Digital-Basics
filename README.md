@@ -58,7 +58,7 @@ Double-click `Run-Tujengane-Local.bat` (needs Node.js). First run installs packa
 The "Help" button (bottom right) on the lesson pages of both paid courses opens the AI Tutor, a My review list, and contact links. It sends the learner's question plus the lesson they are viewing (taken from the server's own copy, so learners cannot fake it) to an AI provider. Only learners signed in to that course (owner password or valid temp code) can use it.
 1. In Vercel, add at least one key: GROQ_API_KEY or GEMINI_API_KEY or OPENROUTER_API_KEY (free), and optionally ANTHROPIC_API_KEY or OPENAI_API_KEY (paid). Redeploy.
 2. Free providers are tried first; if one is busy or out of quota, the next (paid) one answers. Set TUTOR_PROVIDERS to change the order, e.g. `anthropic,groq` for paid first.
-3. Limits per learner (20 per hour) and per day (800) protect your bill: TUTOR_RATE_PER_HOUR, TUTOR_DAILY_CAP. TUTOR_ENABLED=0 switches the tutor off.
+3. Limits per learner (20 per hour) and per day (800) protect your bill: TUTOR_RATE_PER_HOUR, TUTOR_DAILY_CAP. TUTOR_ENABLED=0 switches the tutor off. The tutor also answers visitors who are not signed in (from the page text only); TUTOR_PUBLIC=0 limits it to signed-in learners.
 4. Model names change over time. If a provider starts failing, set TUTOR_MODEL_<PROVIDER> to a current model name from that provider.
 Locally: put the same keys in `.env.local` before running Run-Tujengane-Local.bat.
 

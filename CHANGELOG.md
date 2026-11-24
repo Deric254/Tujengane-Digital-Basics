@@ -1,3 +1,24 @@
+Date: 2026-11-24 (AI for everyone)
+
+- The AI tutor now works for every visitor, signed in or not. Visitors get help from the text of the page they are on; paid lesson text still goes only to signed-in learners. Same hourly and daily limits apply. TUTOR_PUBLIC=0 switches visitor access off.
+- When the AI cannot answer (no key, busy, rate limit, offline) the panel says why in plain words, answers from the text on the page, and suggests next steps. It never ends in a dead end.
+- Both view gives the practice box more room and the chat less, so there is no empty space in the panel.
+
+----------------------------------------
+
+Date: 2026-11-24 (side-by-side learning)
+
+- The Help panel now docks beside the lesson (wide screens) or below it (phones and tablets), so the lesson stays visible.
+- New Try it tab: a Python and SQL practice box next to the lesson. Python everywhere, SQL in Analyst Pro, the playground and the free decks.
+- Both view shows the AI tutor and the practice box together. Buttons: Use this lesson's code, Explain my result, Check my attempt, Challenge me. They send your code and its output to the tutor, which gives hints instead of answers.
+- A Looking at line shows which lesson the tutor is using, and it follows you as you move between lessons.
+- Float/Dock button switches back to the old floating window; the choice is remembered on the device.
+- Resizable: drag the green handle on the panel edge (left edge on wide screens, top edge on phones), use the arrow keys, or double-click it to reset. The size is remembered on the device.
+- Page headers and footers shrink to sit beside the docked panel instead of hiding under it.
+- Tutor questions can now be up to 1600 characters so code and output fit.
+
+----------------------------------------
+
 Date: 2026-11-24 (playground, help everywhere, AI fixes)
 
 - Playground fixed: Python, SQL and Cyber labs now have roomy editors and visible Run buttons.

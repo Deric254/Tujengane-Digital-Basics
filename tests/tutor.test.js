@@ -36,11 +36,24 @@ const fail = () => ({ ok: false, status: 429, json: async () => ({}) });
 const login = async () => (await realFetch(base + '/api/literacy', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ password: 'owner-lit' }) })).headers.get('set-cookie').split(';')[0];
 const ask = (cookie, extra = {}) => realFetch(base + '/api/literacy', { method: 'POST', headers: { 'content-type': 'application/json', ...(cookie ? { cookie } : {}) }, body: JSON.stringify({ action: 'ask', question: 'What is a hash?', module: 13, slide: 7, ...extra }) });
 
-test('needs a signed-in session', async () => {
+test('visitors without a session get help from page text only, never paid lesson text', async () => {
   process.env.GROQ_API_KEY = 'k';
+  stub([{ match: 'groq.com', reply: () => ok('Hello visitor.') }]);
+  const r = await ask(null, { page: 'Free page about spreadsheets and cells.' });
+  assert.equal(r.status, 200);
+  const sent = JSON.parse(calls[0].init.body).messages[0].content;
+  assert.match(sent, /Free page about spreadsheets/);
+  assert.doesNotMatch(sent, /Module:|Outline of this module/);
+  assert.equal((await ask('tj_literacy=garbage')).status, 200);
+  process.env.TUTOR_PUBLIC = '0';
   assert.equal((await ask(null)).status, 401);
-  assert.equal((await ask('tj_literacy=garbage')).status, 401);
-  delete process.env.GROQ_API_KEY;
+  delete process.env.TUTOR_PUBLIC; delete process.env.GROQ_API_KEY;
+});
+
+test('visitor with no AI key gets a clear 503 (the page then answers from its own text)', async () => {
+  const r = await ask(null);
+  assert.equal(r.status, 503);
+  assert.equal((await r.json()).error, 'tutor_unavailable');
 });
 
 test('no key set -> still answers from the lessons (never a dead end)', async () => {

@@ -286,10 +286,15 @@ function createCourseHandler({ course, passwordEnv, modules }) {
       }
 
       if (action === 'ask') {
-        // AI tutor: only for a learner who already holds a valid session for THIS course
+        // AI tutor. A signed-in learner of THIS course gets the full lesson context.
+        // Everyone else still gets help, but only from the page text their own browser sends (no paid lesson text ever leaves the server).
+        // The owner can switch public help off with TUTOR_PUBLIC=0.
         const token = parseCookies(req.headers.cookie)[cookieName];
-        if (!(verifyToken(secret, token, course, now) && tempSessionStillAllowed(token))) {
-          return sendJson(res, 401, { error: 'unauthorized' });
+        const signedIn = verifyToken(secret, token, course, now) && tempSessionStillAllowed(token);
+        if (!signedIn) {
+          if (String(process.env.TUTOR_PUBLIC || '1') === '0') return sendJson(res, 401, { error: 'unauthorized' });
+          const pub = await tutor.ask({ course, modules: [], body: Object.assign({}, askBody, { module: -1, slide: -1 }), learnerId: 'pub:' + clientIp(req), now });
+          return sendJson(res, pub.status, pub.body);
         }
         const out = await tutor.ask({ course, modules, body: askBody, learnerId: course + ':' + String(token).slice(-24) + ':' + clientIp(req), now });
         return sendJson(res, out.status, out.body);

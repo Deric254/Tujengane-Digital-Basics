@@ -70,3 +70,19 @@ test('one floating helper only: tutor.js hides the old bubbles and adds no secon
   const js = fs.readFileSync(path.join(root, 'assets/js/tutor.js'), 'utf8');
   assert.equal((js.match(/appendChild\(launcher\)/g) || []).length, 1);
 });
+
+test('help panel docks beside the lesson with a Try it box wired to the AI', () => {
+  const js = fs.readFileSync(path.join(root, 'assets/js/tutor.js'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'assets/css/tutor.css'), 'utf8');
+  const labs = fs.readFileSync(path.join(root, 'assets/js/labs.js'), 'utf8');
+  for (const k of ['tjh-dock', "'Try it'", "'Both'", 'Explain my result', 'Check my attempt', 'Challenge me', 'mountPython', 'mountSql']) assert.ok(js.includes(k), k);
+  assert.match(css, /body\.tjh-docked-open\s*\{\s*padding-right/);
+  assert.ok((labs.match(/getOutput/g) || []).length >= 2, 'both labs expose their output');
+});
+
+test('docked help panel is resizable, remembers its size and keeps page bars clear of it', () => {
+  const js = fs.readFileSync(path.join(root, 'assets/js/tutor.js'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'assets/css/tutor.css'), 'utf8');
+  for (const k of ['tjh-grip', 'pointerdown', 'ArrowLeft', 'dblclick', "setPref('w'", 'fitBars']) assert.ok(js.includes(k), k);
+  assert.match(css, /--tjh-w/); assert.match(css, /--tjh-h/);
+});
