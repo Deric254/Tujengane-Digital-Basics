@@ -86,3 +86,12 @@ test('docked help panel is resizable, remembers its size and keeps page bars cle
   for (const k of ['tjh-grip', 'pointerdown', 'ArrowLeft', 'dblclick', "setPref('w'", 'fitBars']) assert.ok(js.includes(k), k);
   assert.match(css, /--tjh-w/); assert.match(css, /--tjh-h/);
 });
+
+test('static assets are cached (big engines never re-download), course data is not', () => {
+  const v = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  const rule = (src) => (v.headers.find((h) => h.source === src) || {}).headers;
+  assert.match(rule('/assets/vendor/(.*)')[0].value, /immutable/);
+  assert.ok(rule('/assets/(js|css)/(.*)'));
+  assert.ok(!v.headers.some((h) => /api/.test(h.source) && h.headers.some((x) => x.key === 'Cache-Control' && /immutable|max-age=[1-9]/.test(x.value))), 'API responses stay uncached');
+  assert.equal(v.functions['api/*.js'].maxDuration, 30);
+});
