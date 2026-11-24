@@ -1,0 +1,54 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'        # fired automatically by bump-version.yml
+  workflow_dispatch:    # also allows a manual trigger from GitHub UI
+
+jobs:
+  build-windows:
+    runs-on: windows-2022
+
+    permissions:
+      contents: write   # needed to create the GitHub Release and upload assets
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the app (interface + main process)
+        # The tests include a packaging check that needs the built interface (dist/, including the bundled
+        # Python engine). CI does this same step; without it the release failed with "dist/pyodide is missing".
+        run: npm run build
+
+      - name: Run the test suite
+        # A release is only published if every test passes: SQL playground and data loading, the AI
+        # tutor, Excel formulas, Python, the course content and the licence checks. Pandas/numpy are
+        # proven by their own CI job (python-packages), so they are skipped here to keep releases fast.
+        run: npm test
+        env:
+          DBI_PY_PACKAGES: skip
+
+      - name: Build and publish
+        # publish:win chains the build (Vite + TypeScript), the owner-key check
+        # and the packaging check before electron-builder, so a build without
+        # an owner key, or one that would drop a needed package, stops here
+        # instead of reaching customers.
+        run: npm run publish:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+          # Disable code signing — we don't have a certificate.
+          # The installer still works; Windows SmartScreen may show a
+          # one-time "unknown publisher" prompt that users click through.
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"

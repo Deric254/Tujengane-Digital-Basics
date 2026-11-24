@@ -1,0 +1,669 @@
+/* DericBI Instructor — Design System */
+/* Dark professional analytics platform */
+
+:root {
+  /* ── Color Palette ── */
+  --bg-base:        #0a0d14;
+  --bg-surface:     #10141f;
+  --bg-elevated:    #161b2a;
+  --bg-overlay:     #1d2438;
+  --bg-hover:       #242b3d;
+
+  --border:         #37425f;
+  --border-strong:  #4a5879;
+
+  --text-primary:   #eef1f8;
+  --text-secondary: #aab3cb;
+  --text-muted:     #8791ae;
+  --text-inverse:   #0a0d14;
+
+  /* Accent — dericBI signature teal-green (brand color from dericbi.vercel.app) */
+  --accent:         #49A078;
+  --accent-hover:   #5BB98D;
+  --accent-dim:     rgba(73, 160, 120, 0.15);
+  --accent-glow:    rgba(73, 160, 120, 0.35);
+
+  /* Secondary brand tone — deeper forest green, used for gradients/depth */
+  --accent-deep:    #2F7A57;
+
+  /* Module colors */
+  --sql-color:      #22d3ee;    /* cyan */
+  --excel-color:    #84cc16;    /* lime — distinct from brand accent green */
+  --python-color:   #facc15;    /* yellow */
+  --powerbi-color:  #f97316;    /* orange */
+  --stats-color:    #a78bfa;    /* purple */
+  --business-color: #f472b6;    /* pink */
+  --sim-color:      #3B82F6;    /* blue — distinct from accent green and Playground's indigo */
+  --playground-color: #818cf8;  /* indigo */
+  --de-color:       #fb7185;    /* rose — Data Engineering */
+  --bp-color:       #14b8a6;    /* teal — Business Problem Solver */
+  --fd-color:       #a3e635;    /* lime — Start Here */
+  --fo-color:       #fb923c;    /* orange — Founder Track */
+
+  /* Status */
+  --success:        #22c55e;
+  --success-dim:    rgba(34, 197, 94, 0.15);
+  --error:          #ef4444;
+  --error-dim:      rgba(239, 68, 68, 0.15);
+  --warning:        #f59e0b;
+  --warning-dim:    rgba(245, 158, 11, 0.15);
+  --info:           #3b82f6;
+  --info-dim:       rgba(59, 130, 246, 0.15);
+
+  /* Achievement rarities */
+  --common:         #9ca3af;
+  --rare:           #60a5fa;
+  --epic:           #a78bfa;
+  --legendary:      #fbbf24;
+
+  /* Layout */
+  --sidebar-width:       220px;
+  --sidebar-collapsed:   60px;
+  --titlebar-height:     38px;
+  --header-height:       56px;
+
+  /* Typography */
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Radius */
+  --radius-sm:  4px;
+  --radius:     8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+  --shadow:      0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+
+  /* Output consoles (Python / Statistics) */
+  --terminal-bg:    #0d1117;
+  --terminal-text:  #a5d6a7;
+
+  /* Decorative texture (dot-grid + glow) — theme-aware, purely visual */
+  --texture-dot:    rgba(232, 236, 244, 0.09);
+  --texture-glow-1: rgba(73, 160, 120, 0.24);
+  --texture-glow-2: rgba(34, 211, 238, 0.13);
+
+  /* Transitions */
+  --transition: 150ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT THEME
+   Surfaces/text are inverted. Brand accent and module
+   colors are swapped for darker, more saturated variants
+   of the same hue — the dark-mode values (e.g. bright
+   yellow) don't have enough contrast as text on a white
+   background, so this isn't a simple invert.
+───────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:        #f6f7fb;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f1f3f9;
+  --bg-overlay:     #e8eaf2;
+  --bg-hover:       #dde1ec;
+
+  --border:         #c9cfdf;
+  --border-strong:  #a9b1c7;
+
+  --text-primary:   #141826;
+  --text-secondary: #424b60;
+  --text-muted:     #5d667c;
+  --text-inverse:   #ffffff;
+
+  --accent:         #2F7A57;
+  --accent-hover:   #256647;
+  --accent-dim:     rgba(47, 122, 87, 0.12);
+  --accent-glow:    rgba(47, 122, 87, 0.28);
+  --accent-deep:    #205a40;
+
+  --sql-color:      #0e7490;
+  --excel-color:    #4d7c0f;
+  --python-color:   #92560a;
+  --powerbi-color:  #c2410c;
+  --stats-color:    #7c3aed;
+  --business-color: #be185d;
+  --sim-color:      #1d4ed8;
+  --playground-color: #4338ca;
+  --de-color:       #be123c;
+  --bp-color:       #0f766e;
+  --fd-color:       #3f6212;
+  --fo-color:       #9a3412;
+
+  --success:        #15803d;
+  --success-dim:    rgba(22, 163, 74, 0.12);
+  --error:          #c81e1e;
+  --error-dim:      rgba(220, 38, 38, 0.10);
+  --warning:        #b45309;
+  --warning-dim:    rgba(217, 119, 6, 0.12);
+  --info:           #2563eb;
+  --info-dim:       rgba(37, 99, 235, 0.12);
+
+  --common:         #6b7280;
+  --rare:           #2563eb;
+  --epic:           #7c3aed;
+  --legendary:      #b45309;
+
+  --shadow-sm:   0 1px 3px rgba(15,23,42,0.08);
+  --shadow:      0 4px 12px rgba(15,23,42,0.10);
+  --shadow-lg:   0 8px 32px rgba(15,23,42,0.16);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+
+  --terminal-bg:    #f6f8fa;
+  --terminal-text:  #166534;
+
+  /* Decorative texture — softer on light backgrounds */
+  --texture-dot:    rgba(26, 31, 46, 0.07);
+  --texture-glow-1: rgba(47, 122, 87, 0.16);
+  --texture-glow-2: rgba(14, 116, 144, 0.10);
+}
+
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 900px 600px at 15% -10%, var(--texture-glow-1), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 110%, var(--texture-glow-2), transparent 60%),
+    radial-gradient(var(--texture-dot) 1px, transparent 1px);
+  background-size: auto, auto, 24px 24px;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* Allow text selection in content areas */
+p, span, td, th, pre, code, .selectable, input, textarea {
+  user-select: text;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────── */
+h1 { font-size: 24px; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 20px; font-weight: 600; line-height: 1.3; }
+h3 { font-size: 16px; font-weight: 600; line-height: 1.4; }
+h4 { font-size: 14px; font-weight: 600; }
+h5 { font-size: 13px; font-weight: 500; }
+
+.text-xs   { font-size: 11px; }
+.text-sm   { font-size: 12px; }
+.text-base { font-size: 14px; }
+.text-lg   { font-size: 16px; }
+.text-xl   { font-size: 20px; }
+.text-2xl  { font-size: 24px; }
+.text-3xl  { font-size: 32px; }
+
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-muted); }
+.text-accent    { color: var(--accent); }
+.text-success   { color: var(--success); }
+.text-error     { color: var(--error); }
+.text-warning   { color: var(--warning); }
+
+.font-mono { font-family: var(--font-mono); }
+
+/* ─────────────────────────────────────────────
+   LAYOUT HELPERS
+───────────────────────────────────────────── */
+.flex       { display: flex; }
+.flex-col   { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+.gap-1  { gap: 4px; }
+.gap-2  { gap: 8px; }
+.gap-3  { gap: 12px; }
+.gap-4  { gap: 16px; }
+.gap-6  { gap: 24px; }
+.flex-1 { flex: 1; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.overflow-hidden { overflow: hidden; }
+.overflow-auto   { overflow: auto; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.btn-secondary {
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: var(--error-dim);
+  color: var(--error);
+  border-color: var(--error);
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--error);
+  color: white;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-lg {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btn-icon {
+  padding: 6px;
+  aspect-ratio: 1;
+}
+
+/* ─────────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────────── */
+.input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 8px 12px;
+  width: 100%;
+  transition: border-color var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   CARDS
+───────────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+.card-elevated {
+  background: var(--bg-elevated);
+}
+
+.card-hover {
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.card-hover:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────
+   BADGES
+───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-common    { background: rgba(156,163,175,0.15); color: var(--common); }
+.badge-rare      { background: rgba(96,165,250,0.15);  color: var(--rare); }
+.badge-epic      { background: rgba(167,139,250,0.15); color: var(--epic); }
+.badge-legendary { background: rgba(251,191,36,0.15);  color: var(--legendary); }
+
+.badge-sql       { background: rgba(34,211,238,0.12);  color: var(--sql-color); }
+.badge-excel     { background: rgba(132,204,22,0.14);  color: var(--excel-color); }
+.badge-python    { background: rgba(250,204,21,0.12);  color: var(--python-color); }
+.badge-powerbi   { background: rgba(249,115,22,0.12);  color: var(--powerbi-color); }
+.badge-stats     { background: rgba(167,139,250,0.12); color: var(--stats-color); }
+.badge-business  { background: rgba(244,114,182,0.12); color: var(--business-color); }
+
+.badge-success { background: var(--success-dim); color: var(--success); }
+.badge-error   { background: var(--error-dim);   color: var(--error); }
+.badge-warning { background: var(--warning-dim); color: var(--warning); }
+
+/* ─────────────────────────────────────────────
+   PROGRESS BAR
+───────────────────────────────────────────── */
+.progress-bar {
+  height: 6px;
+  background: var(--bg-overlay);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  transition: width var(--transition-slow);
+}
+
+/* ─────────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─────────────────────────────────────────────
+   CODE / MONO
+───────────────────────────────────────────── */
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-overlay);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  color: var(--accent-hover);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  overflow: auto;
+  color: var(--text-primary);
+}
+
+/* ─────────────────────────────────────────────
+   TABLE
+───────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.data-table th {
+  background: var(--bg-overlay);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.data-table tr:hover td {
+  background: var(--bg-overlay);
+}
+
+/* ─────────────────────────────────────────────
+   SKILL COLORS
+───────────────────────────────────────────── */
+[data-module="sql"]        { --module-color: var(--sql-color); }
+[data-module="excel"]      { --module-color: var(--excel-color); }
+[data-module="python"]     { --module-color: var(--python-color); }
+[data-module="powerbi"]    { --module-color: var(--powerbi-color); }
+[data-module="statistics"] { --module-color: var(--stats-color); }
+[data-module="business"]   { --module-color: var(--business-color); }
+[data-module="simulation"] { --module-color: var(--sim-color); }
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-12px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--accent-glow); }
+  50%       { box-shadow: 0 0 20px var(--accent-glow); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in  { animation: fadeIn 0.2s ease forwards; }
+.animate-slide-in { animation: slideIn 0.2s ease forwards; }
+.animate-spin     { animation: spin 1s linear infinite; }
+
+/* ─────────────────────────────────────────────
+   LOADING SPINNER
+───────────────────────────────────────────── */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   LESSON THEORY — rendered markdown content
+   Shared across all six academies. Every element below is themed via the
+   same CSS variables the rest of the app uses, so it looks identical in
+   light/dark mode and matches the app's existing visual language exactly.
+───────────────────────────────────────────── */
+.lesson-theory {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.lesson-theory h1, .lesson-theory h2, .lesson-theory h3, .lesson-theory h4 {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 20px 0 10px;
+  line-height: 1.35;
+}
+.lesson-theory h1:first-child, .lesson-theory h2:first-child, .lesson-theory h3:first-child {
+  margin-top: 0;
+}
+.lesson-theory h1 { font-size: 18px; }
+.lesson-theory h2 { font-size: 16px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.lesson-theory h3 { font-size: 14px; color: var(--accent); }
+.lesson-theory h4 { font-size: 13px; }
+.lesson-theory p { margin: 0 0 12px; }
+.lesson-theory strong { color: var(--text-primary); font-weight: 600; }
+.lesson-theory em { color: var(--text-secondary); font-style: italic; }
+.lesson-theory ul, .lesson-theory ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+.lesson-theory li { margin-bottom: 5px; }
+.lesson-theory li::marker { color: var(--accent); }
+.lesson-theory a { color: var(--accent); text-decoration: none; }
+.lesson-theory a:hover { text-decoration: underline; }
+
+/* Inline code */
+.lesson-theory :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--sql-color);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Fenced code blocks */
+.lesson-theory pre {
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: 0 0 14px;
+}
+.lesson-theory pre code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c9d1d9;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: pre;
+}
+
+/* Tables */
+.lesson-theory table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 14px;
+  font-size: 12px;
+}
+.lesson-theory th, .lesson-theory td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+}
+.lesson-theory th {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.lesson-theory tr:nth-child(even) td {
+  background: var(--bg-elevated);
+}
+
+/* Blockquotes */
+.lesson-theory blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0 0 14px;
+  padding: 4px 14px;
+  color: var(--text-muted);
+  background: var(--accent-dim);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.lesson-theory hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}

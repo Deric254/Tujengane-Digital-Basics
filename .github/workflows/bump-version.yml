@@ -1,0 +1,111 @@
+name: Version Bump
+
+# Runs on every push to main.
+# Reads the highest existing vX.Y.Z tag (the real source of truth — not
+# package.json, which can lag if a previous run partially completed),
+# increments the patch number, commits the bump, and pushes a new tag.
+# That tag push triggers release.yml automatically — no manual tagging needed.
+#
+# Push a commit -> version bumps -> tag created -> installer built -> users can download.
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      # Don't re-trigger when this workflow itself commits the version bump
+      - 'package.json'
+      - 'package-lock.json'
+
+# Only one bump can run at a time. Without this, two pushes close together
+# (or a manual re-run while a previous run is still in flight) can both read
+# the same starting version, both compute the same "next" version, and race
+# to create the same tag — the second one fails with "tag already exists".
+concurrency:
+  group: version-bump
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to push the commit and tag back to the repo
+      actions: write    # needed to start the installer build below
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set git identity
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump patch version and tag
+        id: bump
+        run: |
+          set -euo pipefail
+
+          # Always fetch the latest tags first — this is the actual source of
+          # truth for "what's already been released," not package.json.
+          git fetch origin --tags --force
+
+          # Find the highest existing vX.Y.Z tag. Fall back to package.json's
+          # version only if no tags exist yet (e.g. the very first run).
+          LATEST_TAG=$(git tag -l 'v*.*.*' | sed 's/^v//' | sort -t. -k1,1n -k2,2n -k3,3n | tail -1)
+
+          if [ -z "$LATEST_TAG" ]; then
+            CURRENT=$(node -p "require('./package.json').version")
+            echo "No existing tags found — basing off package.json: $CURRENT"
+          else
+            CURRENT="$LATEST_TAG"
+            echo "Highest existing tag: v$CURRENT"
+          fi
+
+          # Increment patch (1.4.0 -> 1.4.1, 1.4.9 -> 1.4.10, etc.), then
+          # defensively keep incrementing if that tag somehow already exists
+          # (covers any edge case the concurrency lock doesn't).
+          NEW=$(node -p "
+            const [major, minor, patch] = '$CURRENT'.split('.').map(Number);
+            \`\${major}.\${minor}.\${patch + 1}\`
+          ")
+
+          while git rev-parse "v$NEW" >/dev/null 2>&1; do
+            echo "v$NEW already exists remotely — trying the next patch."
+            NEW=$(node -p "
+              const [major, minor, patch] = '$NEW'.split('.').map(Number);
+              \`\${major}.\${minor}.\${patch + 1}\`
+            ")
+          done
+
+          echo "New version: $NEW"
+
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '$NEW';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+          git add package.json
+          git commit -m "chore: bump version to $NEW [skip ci]"
+
+          git pull --rebase origin main
+          git push origin main
+          git tag "v$NEW"
+          git push origin "v$NEW"
+
+          echo "new_version=$NEW" >> "$GITHUB_OUTPUT"
+          echo "tag=v$NEW"        >> "$GITHUB_OUTPUT"
+
+      # IMPORTANT: GitHub deliberately does NOT start other workflows for tags pushed with the
+      # built-in GITHUB_TOKEN, so release.yml's `on: push: tags` trigger never fires from this job
+      # (v1.4.1 ... v1.4.5 were all tagged, yet no installer was ever published). Starting the
+      # build explicitly with workflow_dispatch is allowed and fixes that.
+      - name: Start the installer build for the new tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run release.yml --ref "${{ steps.bump.outputs.tag }}"
