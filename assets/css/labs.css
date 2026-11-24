@@ -90,3 +90,8 @@
 .tj-table { border-collapse: collapse; width: 100%; font-size: .9rem; }
 .tj-table th { background: #eef7f2; text-align: left; padding: .4rem .7rem; white-space: nowrap; position: sticky; top: 0; }
 .tj-table td { padding: .4rem .7rem; border-top: 1px solid #e6eee9; white-space: nowrap; }
+
+/* Playground: roomy editors and a visible output area */
+#py textarea.tj-code, #sq textarea.tj-code { min-height: 14rem; }
+#py pre.tj-console { min-height: 9rem; }
+.tj-console:empty::before { content: 'Output appears here after you press Run.'; color: #94a3b8; }

@@ -18,7 +18,7 @@
 const MAX_QUESTION = 600;
 const MAX_PREV = 300;
 const MAX_CONTEXT = 6000;
-const TIMEOUT_MS = 25000;
+const TIMEOUT_MS = 12000;
 const MAX_OUT_TOKENS = 600;
 
 const COURSE_NAMES = { literacy: 'Tujengane Computer Literacy', analyst: 'Tujengane Analyst Pro' };
@@ -53,10 +53,11 @@ function activeProviders(env) {
     .map((n) => Object.assign({ name: n }, PROVIDERS[n], { model: env['TUTOR_MODEL_' + n.toUpperCase()] || PROVIDERS[n].model, url: env['TUTOR_URL_' + n.toUpperCase()] || PROVIDERS[n].url, apiKey: env[PROVIDERS[n].key] }));
 }
 
-function buildSystem(course, modules, mi, si) {
+function buildSystem(course, modules, mi, si, page) {
   const mod = modules[mi], slide = mod && mod.slides[si];
   let ctx = '';
-  if (slide) ctx = 'Module: ' + mod.title + '\nLesson: ' + slide.title + '\n\n' + stripHtml(slide.content).slice(0, MAX_CONTEXT);
+  if (slide) ctx = 'Module: ' + mod.title + '\nLesson ' + (si + 1) + ' of ' + mod.slides.length + ': ' + slide.title + '\nOutline of this module: ' + mod.slides.map((x, i) => (i + 1) + '. ' + x.title).join('; ').slice(0, 900) + '\n\n' + stripHtml(slide.content).slice(0, MAX_CONTEXT);
+  else if (page) ctx = 'The learner is on a web page of the Tujengane site. Text from that page (may be partial):\n' + String(page).slice(0, 1500);
   return [
     'You are the Tujengane AI Tutor for the course "' + (COURSE_NAMES[course] || course) + '", helping adult learners in Kenya and East Africa.',
     'Rules:',
@@ -79,7 +80,7 @@ async function callProvider(p, system, messages, signal) {
       headers: { 'content-type': 'application/json', 'x-api-key': p.apiKey, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify({ model: p.model, max_tokens: MAX_OUT_TOKENS, system, messages }),
     });
-    if (!r.ok) throw new Error(p.name + ' ' + r.status);
+    if (!r.ok) throw new Error(p.name + ' ' + r.status + ' ' + (typeof r.text === 'function' ? await r.text().catch(() => '') : '').slice(0, 160));
     const j = await r.json();
     return (j.content || []).map((b) => b.text || '').join('').trim();
   }
@@ -88,7 +89,7 @@ async function callProvider(p, system, messages, signal) {
     headers: { 'content-type': 'application/json', authorization: 'Bearer ' + p.apiKey },
     body: JSON.stringify({ model: p.model, max_tokens: MAX_OUT_TOKENS, temperature: 0.3, messages: [{ role: 'system', content: system }].concat(messages) }),
   });
-  if (!r.ok) throw new Error(p.name + ' ' + r.status);
+  if (!r.ok) throw new Error(p.name + ' ' + r.status + ' ' + (typeof r.text === 'function' ? await r.text().catch(() => '') : '').slice(0, 160));
   const j = await r.json();
   return String(j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content || '').trim();
 }
@@ -158,7 +159,7 @@ async function diagnose(env) {
       out.push({ provider: p.name, tier: p.tier, model: p.model, ok: !!text, detail: text ? 'Working.' : 'Empty answer.' });
     } catch (e) {
       const m = String(e && e.message || e);
-      out.push({ provider: p.name, tier: p.tier, model: p.model, ok: false, detail: /40[134]/.test(m) ? 'The service refused the request (' + m + '). Check that the key is correct, active and that the model name still exists (set TUTOR_MODEL_' + p.name.toUpperCase() + ').' : /429/.test(m) ? 'Quota or rate limit reached (' + m + '). It will recover; a second provider helps.' : /abort/i.test(m) ? 'Timed out.' : 'Failed: ' + m });
+      out.push({ provider: p.name, tier: p.tier, model: p.model, ok: false, detail: /\b40[0134]\b/.test(m) ? 'The service refused the request (' + m.replace(/Bearer\s+\S+/g, '') + '). Check that the key is correct, active and that the model name still exists (set TUTOR_MODEL_' + p.name.toUpperCase() + ').' : /429/.test(m) ? 'Quota or rate limit reached (' + m + '). It will recover; a second provider helps.' : /abort/i.test(m) ? 'Timed out.' : 'Failed: ' + m });
     } finally { clearTimeout(t); }
   }
   return out;
@@ -180,10 +181,10 @@ async function ask({ course, modules, body, learnerId, env, now }) {
   if (limited) return { status: 429, body: { error: limited } };
   const fallback = () => {
     const a = lessonSearch(modules, q, mi, si);
-    return a ? { status: 200, body: { answer: a, provider: 'lessons', tier: 'local' } } : { status: 503, body: { error: providers.length ? 'tutor_busy' : 'tutor_unavailable' } };
+    return a ? { status: 200, body: { answer: a, provider: 'lessons', tier: 'local', reason: providers.length ? 'providers_failed' : 'no_key' } } : { status: 503, body: { error: providers.length ? 'tutor_busy' : 'tutor_unavailable' } };
   };
   if (!providers.length) return fallback();
-  const system = buildSystem(course, modules, mi, si);
+  const system = buildSystem(course, modules, mi, si, typeof body.page === 'string' ? body.page : '');
   for (const p of providers) {
     const ctl = new AbortController();
     const t = setTimeout(() => ctl.abort(), TIMEOUT_MS);
@@ -191,7 +192,7 @@ async function ask({ course, modules, body, learnerId, env, now }) {
       const text = await callProvider(p, system, messages, ctl.signal);
       clearTimeout(t);
       if (text) return { status: 200, body: { answer: text.slice(0, 3000), provider: p.name, tier: p.tier } };
-    } catch (e) { clearTimeout(t); }
+    } catch (e) { clearTimeout(t); try { console.error('[tutor] provider failed:', p.name, String(e && e.message || e)); } catch (x) {} }
   }
   return fallback();
 }

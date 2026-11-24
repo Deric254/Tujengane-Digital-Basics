@@ -6,6 +6,8 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Practice Playground | Tujengane</title>
 <link rel="stylesheet" href="/assets/css/labs.css">
+<link rel="stylesheet" href="/assets/css/tutor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root{--g:#256d4f;--g2:#49a078;--bg:#f3f7f5;--ink:#14231c;--mute:#52635a;--line:#d7e4dc}
   *{box-sizing:border-box}
@@ -24,6 +26,8 @@
   .msg{font-weight:600;margin-top:10px;color:#9a3412}
   .note{color:var(--mute);font-size:.9rem}
   .labbox{margin-bottom:22px}
+  .card.tj-lab{border-top:4px solid #49a078;margin:0 0 16px;padding:16px}
+  #labs .tj-lab{margin:14px 0}
   [hidden]{display:none!important}
 </style>
 </head>
@@ -47,26 +51,21 @@
    <button role="tab" id="t-sq" aria-selected="false" aria-controls="p-sq">SQL</button>
    <button role="tab" id="t-cy" aria-selected="false" aria-controls="p-cy">Cyber Lab</button>
   </div>
-  <div id="p-py" role="tabpanel" class="card">
+  <div id="p-py" role="tabpanel" class="card tj-lab">
    <h2 style="margin-top:0">Python workspace</h2>
    <p class="note">Write and run Python basics. Your code is kept on this device only. Programs stop after 10 seconds. Libraries such as pandas are not available here; use them in your own Python setup.</p>
    <label for="ex">Start from an example</label>
    <select id="ex"></select>
    <div id="py" style="margin-top:10px"></div>
   </div>
-  <div id="p-sq" role="tabpanel" class="card" hidden>
+  <div id="p-sq" role="tabpanel" class="card tj-lab" hidden>
    <h2 style="margin-top:0">SQL workspace</h2>
-   <p class="note">A practice database is built fresh every time you press Run, so you can try anything (even DROP or DELETE) and nothing is ever lost. Tables: <strong>customers</strong> (id, name, county), <strong>products</strong> (id, name, category, price), <strong>sales</strong> (id, sale_date, customer_id, product_id, qty). Prices are in KES.</p>
+   <p class="note">Write and run SQL on a practice database. It is rebuilt on every Run, so you can try anything, even DROP or DELETE, and nothing is ever lost. Queries stop after 10 seconds.</p>
    <label for="sqex">Start from an example</label>
    <select id="sqex"></select>
-   <label for="sqcode">SQL (end each statement with ;)</label>
-   <textarea id="sqcode" class="tj-code" rows="7" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
-   <div class="tj-row" style="margin-top:8px"><button id="sqrun" class="tj-btn" type="button">Run</button><button id="sqstop" class="tj-btn tj-danger" type="button" hidden>Stop</button></div>
-   <div id="sqstatus" class="note" role="status"></div>
-   <div id="sqerr" class="tj-friendly" hidden></div>
-   <div id="sqout"></div>
+   <div id="sq" style="margin-top:10px"></div>
   </div>
-  <div id="p-cy" role="tabpanel" class="card" hidden>
+  <div id="p-cy" role="tabpanel" class="card tj-lab" hidden>
    <h2 style="margin-top:0">Cyber practice lab</h2>
    <p class="note">Safe, simulated exercises. Nothing here touches a real system. Repeat any exercise as often as you like.</p>
    <div id="labs"></div>
@@ -74,6 +73,7 @@
  </section>
 </main>
 <script src="/assets/js/labs.js" defer></script>
+<script src="/assets/js/tutor.js" defer></script>
 <script>
 (function(){
   var API={literacy:'/api/literacy',analyst:'/api/analyst'};
@@ -134,46 +134,17 @@
    ['Monthly sales','SELECT substr(sale_date,1,7) AS month, SUM(qty) AS units\nFROM sales\nGROUP BY month\nORDER BY month;'],
    ['Create your own table','CREATE TABLE targets (county TEXT, goal REAL);\nINSERT INTO targets VALUES (\'Meru\', 5000), (\'Nairobi\', 9000);\nSELECT * FROM targets;']
   ];
-  var sqw=null,sqt=null,sqbuilt=false;
-  function sqErrHint(m){
-    if(/no such table/i.test(m))return 'That table does not exist. Tables are customers, products and sales. Check the spelling.';
-    if(/no such column/i.test(m))return 'That column does not exist in the table. Check the column names listed above the editor.';
-    if(/syntax error/i.test(m))return 'SQL could not read the statement. Check commas between columns, quotes around text, and that keywords such as FROM, WHERE and GROUP BY are in the right order.';
-    if(/ambiguous/i.test(m))return 'Two tables have a column with that name. Write it as table.column, for example c.name.';
-    return 'Read the message above: it names the problem.';
-  }
+  var sqbuilt=false;
   function sqBuild(){
     if(sqbuilt)return;sqbuilt=true;
-    var sel=$('sqex'),ta=$('sqcode');
+    var sel=$('sqex');
     SQX.forEach(function(e,i){var o=document.createElement('option');o.value=i;o.textContent=e[0];sel.appendChild(o)});
-    var saved=null;try{saved=localStorage.getItem('tj-playground-sql')}catch(e){}
-    ta.value=saved||SQX[0][1];
-    sel.addEventListener('change',function(){ta.value=SQX[sel.value][1];try{localStorage.setItem('tj-playground-sql',ta.value)}catch(e){}});
-    ta.addEventListener('input',function(){try{localStorage.setItem('tj-playground-sql',ta.value)}catch(e){}});
-    function busy(b){$('sqrun').disabled=b;$('sqstop').hidden=!b}
-    function stopW(){if(sqw){sqw.terminate();sqw=null}clearTimeout(sqt)}
-    $('sqstop').addEventListener('click',function(){stopW();busy(false);$('sqstatus').textContent='Stopped.'});
-    $('sqrun').addEventListener('click',function(){
-      var out=$('sqout'),er=$('sqerr');out.textContent='';er.hidden=true;busy(true);$('sqstatus').textContent='Running...';
-      stopW();sqw=new Worker('/assets/js/sql-worker.js');
-      sqt=setTimeout(function(){stopW();busy(false);$('sqstatus').textContent='';er.textContent='Stopped: the query ran for more than 10 seconds. Check for a join without a condition or a recursive query that never ends.';er.hidden=false},10000);
-      sqw.onmessage=function(ev){
-        var m=ev.data;stopW();busy(false);
-        if(!m.ok){$('sqstatus').textContent='';er.textContent=m.error+'\n\n'+sqErrHint(m.error);er.style.whiteSpace='pre-wrap';er.hidden=false;return}
-        if(!m.results.length){$('sqstatus').textContent='Finished. This statement returns no table (that is normal for CREATE, INSERT, UPDATE and DELETE). Finish with a SELECT to see rows.';return}
-        $('sqstatus').textContent='Finished.';
-        m.results.forEach(function(r){
-          var wrap=document.createElement('div');wrap.style.cssText='overflow:auto;margin-top:10px;border:1px solid #d7e4dc;border-radius:10px';
-          var t=document.createElement('table');t.style.cssText='border-collapse:collapse;width:100%;font-size:.9rem';
-          var hr=document.createElement('tr');r.columns.forEach(function(c){var th=document.createElement('th');th.textContent=c;th.style.cssText='background:#eef7f2;text-align:left;padding:6px 10px;white-space:nowrap';hr.appendChild(th)});t.appendChild(hr);
-          r.values.forEach(function(row){var tr=document.createElement('tr');row.forEach(function(v){var td=document.createElement('td');td.textContent=v===null?'NULL':String(v);td.style.cssText='padding:6px 10px;border-top:1px solid #e6eee9;white-space:nowrap';tr.appendChild(td)});t.appendChild(tr)});
-          wrap.appendChild(t);out.appendChild(wrap);
-          var n=document.createElement('div');n.className='note';n.textContent=r.total+' row'+(r.total===1?'':'s')+(r.total>r.values.length?' (first '+r.values.length+' shown)':'');out.appendChild(n);
-        });
-      };
-      sqw.onerror=function(){stopW();busy(false);$('sqstatus').textContent='';er.textContent='The SQL engine could not start in this browser.';er.hidden=false};
-      sqw.postMessage({sql:$('sqcode').value});
-    });
+    function wait(){
+      if(!window.TJLabs){return setTimeout(wait,50)}
+      var ed=TJLabs.mountSql($('sq'),{code:SQX[0][1],saveKey:'tj-playground-sql'});
+      sel.addEventListener('change',function(){ed.setCode(SQX[sel.value][1])});
+    }
+    wait();
   }
   function login(){
     course=$('course').value;msg('');

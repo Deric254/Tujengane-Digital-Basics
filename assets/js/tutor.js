@@ -3,12 +3,13 @@
    It also adds a "Lock it in" closing step under every lesson. */
 (function () {
   'use strict';
-  var course = /analyst/i.test(location.pathname) ? 'analyst' : 'literacy';
-  var API = '/api/' + course, STORE = 'tjl:' + course;
+  var course = /analyst/i.test(location.pathname) ? 'analyst' : /literacy/i.test(location.pathname) ? 'literacy' : null; /* null = any other page of the site */
+  var STORE = 'tjl:' + (course || 'site');
+  function pageText() { var m = document.querySelector('main') || document.body; var t = ((document.title || '') + '. ' + (m.innerText || '')).replace(/\s+/g, ' ').trim(); return t.slice(0, 1400); }
   var prevQ = '', prevA = '', busy = false;
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function icon(c) { var i = el('i', c); i.setAttribute('aria-hidden', 'true'); return i; }
-  function where() { var m = -1, s = -1; try { if (typeof currentModule === 'number') { m = currentModule; s = currentSlide; } } catch (e) {} return { module: m, slide: s }; }
+  function where() { var m = -1, s = -1; if (!course) return { module: m, slide: s }; try { if (typeof currentModule === 'number') { m = currentModule; s = currentSlide; } } catch (e) {} return { module: m, slide: s }; }
   function load() { try { return JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (e) { return {}; } }
   function save(o) { try { localStorage.setItem(STORE, JSON.stringify(o)); } catch (e) {} }
 
@@ -20,6 +21,7 @@
   var tabs = el('div', 'tjh-tabs'); tabs.setAttribute('role', 'tablist');
   var tabNames = [['ai', 'AI Tutor'], ['rev', 'My review'], ['more', 'Contact & menu']], tabBtn = {}, pane = {};
   tabNames.forEach(function (t) { var b = el('button', '', t[1]); b.type = 'button'; b.setAttribute('role', 'tab'); b.addEventListener('click', function () { show(t[0]); }); tabs.appendChild(b); tabBtn[t[0]] = b; pane[t[0]] = el('div', 'tjh-pane'); });
+  if (!course) { tabNames.splice(1, 1); delete pane.rev; delete tabBtn.rev; tabs.removeChild(tabs.children[1]); }
   panel.appendChild(head); panel.appendChild(tabs); tabNames.forEach(function (t) { panel.appendChild(pane[t[0]]); });
 
   /* ---- AI tab ---- */
@@ -41,13 +43,23 @@
     busy = true; send.disabled = true; add('tjh-user', q, true);
     var wait = add('tjh-ai tjh-note', 'Thinking...', true), w = where();
     var body = { action: 'ask', question: q, module: w.module, slide: w.slide };
+    if (!course || w.module < 0) body.page = pageText();
     if (prevQ && prevA) { body.prevQ = prevQ; body.prevA = prevA; }
-    fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { s: r.status, d: d }; }); })
+    var tries = course ? [course] : ['literacy', 'analyst'];
+    function tryOne(i) {
+      return fetch('/api/' + tries[i], { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { s: r.status, d: d }; }); })
+        .then(function (x) { return (x.s === 401 && i + 1 < tries.length) ? tryOne(i + 1) : x; });
+    }
+    tryOne(0)
       .then(function (x) {
         wait.remove();
-        if (x.s === 200 && x.d.answer) { add('tjh-ai', x.d.answer); prevQ = q; prevA = x.d.provider === 'lessons' ? '' : x.d.answer; }
-        else if (x.s === 401) add('tjh-ai tjh-note', 'Sign in with your course password first (or reload the page if your access has ended).', true);
+        if (x.s === 200 && x.d.answer) {
+          add('tjh-ai', x.d.answer); prevQ = q; prevA = x.d.provider === 'lessons' ? '' : x.d.answer;
+          if (x.d.reason === 'no_key') add('tjh-ai tjh-note', 'Note: the AI service is not switched on yet (the owner needs to add an AI key on the server). This answer came from the course text.', true);
+          else if (x.d.reason === 'providers_failed') add('tjh-ai tjh-note', 'Note: the AI service did not respond just now, so this answer came from the course text. Try again in a moment.', true);
+        }
+        else if (x.s === 401) add('tjh-ai tjh-note', 'The AI Tutor works for signed-in learners. Open your course (Analyst Pro or Computer Literacy), sign in with your password or class code, then ask again.', true);
         else if (x.s === 429) add('tjh-ai tjh-note', x.d.error === 'daily_cap' ? 'The tutor is very busy today. Please try again tomorrow.' : 'You have asked a lot in the last hour. Take a short break and try again soon.', true);
         else add('tjh-ai tjh-note', 'The tutor could not answer just now. Please try again in a moment, or use Contact & menu to reach your trainer.', true);
       })
@@ -61,7 +73,7 @@
   ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.dispatchEvent(new Event('submit', { cancelable: true })); } });
 
   /* ---- My review tab ---- */
-  var rev = el('div', 'tjh-list'); pane.rev.appendChild(rev);
+  var rev = el('div', 'tjh-list'); if (pane.rev) pane.rev.appendChild(rev);
   function go(m, s) {
     var a = document.querySelector('.sidebar-link[data-module="' + m + '"][data-slide="' + s + '"]') || document.querySelector('.module-slides a[data-module="' + m + '"][data-slide="' + s + '"]');
     if (a) { a.click(); panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); }
@@ -71,6 +83,7 @@
   function saveProgress(o) { try { localStorage.setItem(STORE + ':p', JSON.stringify(o)); } catch (e) {} }
   function totalLessons() { return document.querySelectorAll('.module-slides a[data-module]').length; }
   function renderRev() {
+    if (!course) return;
     var st = load(), keys = Object.keys(st), now = Date.now();
     var need = keys.filter(function (k) { var it = st[k]; return it.s !== 'got' || (it.d && now - it.d > 2 * DAY); });
     var got = keys.filter(function (k) { return st[k].s === 'got'; }).length;
@@ -97,14 +110,14 @@
   function linkBtn(label, ic, href, ext) { var a = el('a', 'tjh-link'); a.href = href; if (ext) { a.target = '_blank'; a.rel = 'noopener noreferrer'; } var s = el('span'); s.appendChild(icon(ic)); s.appendChild(document.createTextNode('  ' + label)); a.appendChild(s); return a; }
   function actBtn(label, ic, fn) { var b = el('button', 'tjh-link'); b.type = 'button'; var s = el('span'); s.appendChild(icon(ic)); s.appendChild(document.createTextNode('  ' + label)); b.appendChild(s); b.addEventListener('click', fn); return b; }
   more.appendChild(el('h3', '', 'Practise'));
-  more.appendChild(linkBtn('Practice Playground (Python, SQL, Cyber Lab)', 'fas fa-flask', '/playground/', true));
+  if (!/^\/playground/.test(location.pathname)) more.appendChild(linkBtn('Practice Playground (Python, SQL, Cyber Lab)', 'fas fa-flask', '/playground/', true));
   if (document.getElementById('mobile-nav-dropdown')) {
     more.appendChild(el('h3', '', 'Menu'));
     more.appendChild(actBtn('Open the navigation menu', 'fas fa-bars', function () { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); var d = document.getElementById('mobile-nav-dropdown'); if (d) d.classList.add('active'); }));
   }
   more.appendChild(el('h3', '', 'Contact your trainer'));
-  more.appendChild(linkBtn('WhatsApp (fastest)', 'fab fa-whatsapp', 'https://wa.me/254791360805?text=' + encodeURIComponent(course === 'analyst' ? 'Hi DericBI, I need help with Analyst Pro' : 'Hi DericBI, I need help with Computer Literacy'), true));
-  more.appendChild(linkBtn('Email us', 'fas fa-envelope', 'mailto:dericmarangu@gmail.com?subject=' + encodeURIComponent(course === 'analyst' ? 'Analyst Pro help' : 'Computer Literacy help'), false));
+  more.appendChild(linkBtn('WhatsApp (fastest)', 'fab fa-whatsapp', 'https://wa.me/254791360805?text=' + encodeURIComponent(course === 'analyst' ? 'Hi DericBI, I need help with Analyst Pro' : course === 'literacy' ? 'Hi DericBI, I need help with Computer Literacy' : 'Hi DericBI, I need help with Tujengane'), true));
+  more.appendChild(linkBtn('Email us', 'fas fa-envelope', 'mailto:dericmarangu@gmail.com?subject=' + encodeURIComponent(course === 'analyst' ? 'Analyst Pro help' : course === 'literacy' ? 'Computer Literacy help' : 'Tujengane help'), false));
   if (typeof openModal === 'function' && document.getElementById('projectModal')) more.appendChild(actBtn('Enroll or request training', 'fas fa-rocket', function () { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); try { openModal('projectModal'); } catch (e) {} }));
   more.appendChild(el('p', 'tjh-note', 'Usually we reply within 1 hour.'));
 
@@ -115,7 +128,7 @@
   }
   function open() {
     panel.hidden = false; launcher.setAttribute('aria-expanded', 'true');
-    if (!log.children.length) add('tjh-ai tjh-note', 'Hi! Ask me anything about the lesson on your screen. I explain and give hints; I do not just hand over answers to checks.', true);
+    if (!log.children.length) add('tjh-ai tjh-note', course ? 'Hi! Ask me anything about the lesson on your screen. I explain and give hints; I do not just hand over answers to checks.' : 'Hi! Ask me about this page or any Tujengane topic. If you are signed in to a course, I can answer; otherwise open your course and sign in first.', true);
     show('ai');
   }
   function shut() { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); launcher.focus(); }
@@ -163,9 +176,11 @@
   }
 
   function boot() {
+    if (document.querySelector('.tjh-launcher')) return;
     document.body.classList.add('tjh');
     document.body.appendChild(launcher); document.body.appendChild(panel);
     renderRev();
+    if (!course) return;
     var sc = document.getElementById('slide-container') || document.getElementById('slideContainer');
     if (sc) { try { new MutationObserver(function () { addLock(); }).observe(sc, { childList: true }); } catch (e) {} }
     addLock();

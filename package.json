@@ -1,15 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "tujengane-digital-skills",
   "version": "1.0.0",
   "private": true,
   "description": "Tujengane Digital Skills static site (Vercel). Tailwind CSS is precompiled; paid-course access is enforced by api/ functions.",
-=======
-  "name": "dericbi-instructor",
-  "version": "1.4.26",
-  "description": "DericBI Instructor — Personal Analytics Mentor and Training Platform",
-  "main": "dist-electron/main.js",
->>>>>>> c862d4d432d322cf6b14cb76844017a7f061ed88
   "scripts": {
     "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --minify",
     "watch:css": "tailwindcss -c tailwind.config.js -i src/tailwind.input.css -o assets/css/tailwind.css --watch",

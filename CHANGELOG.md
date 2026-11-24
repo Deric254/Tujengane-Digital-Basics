@@ -1,3 +1,14 @@
+Date: 2026-11-24 (playground, help everywhere, AI fixes)
+
+- Playground fixed: Python, SQL and Cyber labs now have roomy editors and visible Run buttons.
+- One Help button (AI tutor, My review, contact and menu) now appears on every page, replacing the old floating buttons.
+- AI tutor always receives context: the open lesson, or the text of the current page on free pages and the playground.
+- AI fixes: current Gemini model, 30 s function limit, clearer on-screen reasons when no key or provider fails, owner test form on the temp-access page.
+- Local setup: .env template lists every provider key line uncommented so typed keys are actually read.
+- Instructor page asset paths made relative (permanent fix for the product-page test).
+
+----------------------------------------
+
 Date: 2026-11-23 (learning upgrades)
 
 - Check-yourself questions now ask the learner to write an answer first, then reveal the model answer to compare (retrieval practice).

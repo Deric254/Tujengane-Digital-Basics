@@ -454,8 +454,10 @@
   function mountSql(root, opts) {
     opts = opts || {};
     var start = opts.code || 'SELECT * FROM customers;';
-    var code = h('textarea', { class: 'tj-code', spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', 'aria-label': 'SQL editor', rows: Math.max(5, Math.min(14, start.split('\n').length + 1)) });
-    code.value = start;
+    var code = h('textarea', { class: 'tj-code', spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', 'aria-label': 'SQL editor', rows: Math.max(7, Math.min(14, start.split('\n').length + 2)) });
+    var saved = null; if (opts.saveKey) { try { saved = localStorage.getItem(opts.saveKey); } catch (e) {} }
+    code.value = saved || start;
+    if (opts.saveKey) code.addEventListener('input', function () { try { localStorage.setItem(opts.saveKey, code.value); } catch (e) {} });
     var out = h('div', { class: 'tj-sqlout' }), status = h('div', { class: 'tj-status', role: 'status' }), fr = h('div', { class: 'tj-friendly', hidden: true });
     var run = h('button', { type: 'button', class: 'tj-btn' }, ['Run']), stop = h('button', { type: 'button', class: 'tj-btn tj-danger', hidden: true }, ['Stop']), reset = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Reset']);
     var w = null, t = null;
@@ -480,10 +482,12 @@
     });
     stop.addEventListener('click', function () { end(); status.textContent = 'Stopped.'; });
     reset.addEventListener('click', function () { code.value = start; clear(out); fr.hidden = true; status.textContent = ''; });
+    var api = { setCode: function (c) { start = c; code.value = c; clear(out); fr.hidden = true; status.textContent = ''; if (opts.saveKey) { try { localStorage.setItem(opts.saveKey, c); } catch (e) {} } } };
     root.appendChild(h('div', { class: 'tj-sql' }, [
       h('p', { class: 'tj-hint', text: 'Practice tables: customers (id, name, county), products (id, name, category, price), sales (id, sale_date, customer_id, product_id, qty). The database is rebuilt on every Run, so you cannot break anything.' }),
       h('label', { text: opts.label || 'SQL (edit it, then press Run)' }), code, h('div', { class: 'tj-row' }, [run, stop, reset]), status, out, fr
     ]));
+    return api;
   }
   LABS.sql = function (el) {
     head('Try the SQL yourself', 'SQL', 'This practice version uses a small shop database. Change the query and run it again.').forEach(function (n) { if (n) el.appendChild(n); });
