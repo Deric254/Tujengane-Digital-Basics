@@ -1,3 +1,12 @@
+Date: 2026-11-25 (cleaner panel, full screen, button never overlaps)
+
+- The Help button now moves itself away from Next, Previous and every other button, on every screen size, and stays put while you are using it.
+- Full screen: Full screen button in the panel, an entry under More, and the F key (when you are not typing). Esc exits.
+- Cleaner panel: one header with the lesson name under the title, four tabs (Ask, Practice, Review, More), Split/Single and Float/Dock as small header buttons, shorter practice actions in one row, suggestion chips disappear after the first question.
+- AI failures now show a plain-English cause and a short code (for example groq:401 means the key was rejected). The owner test form shows the same.
+
+----------------------------------------
+
 Date: 2026-11-24 (AI for everyone)
 
 - The AI tutor now works for every visitor, signed in or not. Visitors get help from the text of the page they are on; paid lesson text still goes only to signed-in learners. Same hourly and daily limits apply. TUTOR_PUBLIC=0 switches visitor access off.

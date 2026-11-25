@@ -75,7 +75,7 @@ test('help panel docks beside the lesson with a Try it box wired to the AI', () 
   const js = fs.readFileSync(path.join(root, 'assets/js/tutor.js'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'assets/css/tutor.css'), 'utf8');
   const labs = fs.readFileSync(path.join(root, 'assets/js/labs.js'), 'utf8');
-  for (const k of ['tjh-dock', "'Try it'", "'Both'", 'Explain my result', 'Check my attempt', 'Challenge me', 'mountPython', 'mountSql']) assert.ok(js.includes(k), k);
+  for (const k of ['tjh-dock', "'Practice'", 'Explain result', 'Check attempt', 'Challenge me', 'mountPython', 'mountSql', 'placeLauncher', 'toggleFs', 'requestFullscreen']) assert.ok(js.includes(k), k);
   assert.match(css, /body\.tjh-docked-open\s*\{\s*padding-right/);
   assert.ok((labs.match(/getOutput/g) || []).length >= 2, 'both labs expose their output');
 });

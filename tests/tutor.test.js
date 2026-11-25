@@ -127,3 +127,14 @@ test('TUTOR_ENABLED=0 switches it off; stripHtml removes tags and scripts', () =
   assert.deepEqual(tutor.activeProviders({ TUTOR_ENABLED: '0', GROQ_API_KEY: 'k' }), []);
   assert.equal(tutor.stripHtml('<p>Hi <b>there</b></p><script>x()</script>'), 'Hi there');
 });
+
+test('when the AI provider fails, the answer carries a short code the panel can explain', async () => {
+  process.env.GROQ_API_KEY = 'bad';
+  stub([{ match: 'groq.com', reply: () => ({ ok: false, status: 401, text: async () => 'invalid key', json: async () => ({}) }) }]);
+  const r = await ask(null);
+  assert.equal(r.status, 503);
+  assert.match((await r.json()).code, /^groq:/);
+  delete process.env.GROQ_API_KEY;
+  const none = await ask(null);
+  assert.equal((await none.json()).code, 'no_key');
+});

@@ -179,9 +179,11 @@ async function ask({ course, modules, body, learnerId, env, now }) {
   messages.push({ role: 'user', content: q });
   const limited = allow(learnerId, now, env);
   if (limited) return { status: 429, body: { error: limited } };
+  const fails = [];
+  const code = () => (providers.length ? fails.join(',') || 'unknown' : 'no_key');
   const fallback = () => {
     const a = lessonSearch(modules, q, mi, si);
-    return a ? { status: 200, body: { answer: a, provider: 'lessons', tier: 'local', reason: providers.length ? 'providers_failed' : 'no_key' } } : { status: 503, body: { error: providers.length ? 'tutor_busy' : 'tutor_unavailable' } };
+    return a ? { status: 200, body: { answer: a, provider: 'lessons', tier: 'local', reason: providers.length ? 'providers_failed' : 'no_key', code: code() } } : { status: 503, body: { code: code(), error: providers.length ? 'tutor_busy' : 'tutor_unavailable' } };
   };
   if (!providers.length) return fallback();
   const system = buildSystem(course, modules, mi, si, typeof body.page === 'string' ? body.page : '');
@@ -192,7 +194,7 @@ async function ask({ course, modules, body, learnerId, env, now }) {
       const text = await callProvider(p, system, messages, ctl.signal);
       clearTimeout(t);
       if (text) return { status: 200, body: { answer: text.slice(0, 3000), provider: p.name, tier: p.tier } };
-    } catch (e) { clearTimeout(t); try { console.error('[tutor] provider failed:', p.name, String(e && e.message || e)); } catch (x) {} }
+    } catch (e) { clearTimeout(t); const m = String(e && e.message || e), st = (m.match(/\b([45]\d\d)\b/) || [])[1]; fails.push(p.name + ':' + (st || (/abort|timeout/i.test(m) ? 'timeout' : 'error'))); try { console.error('[tutor] provider failed:', p.name, m); } catch (x) {} }
   }
   return fallback();
 }

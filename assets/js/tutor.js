@@ -3,6 +3,7 @@
    It also adds a "Lock it in" closing step under every lesson. */
 (function () {
   'use strict';
+  var fsRoot = document.documentElement, fsOK = !!(fsRoot.requestFullscreen || fsRoot.webkitRequestFullscreen), fsAct = null;
   var SRC = (document.currentScript && document.currentScript.src) || '';
   var course = /analyst/i.test(location.pathname) ? 'analyst' : /literacy/i.test(location.pathname) ? 'literacy' : null; /* null = any other page of the site */
   var STORE = 'tjl:' + (course || 'site');
@@ -17,21 +18,22 @@
   var launcher = el('button', 'tjh-launcher'); launcher.type = 'button'; launcher.setAttribute('aria-expanded', 'false'); launcher.setAttribute('aria-label', 'Help: AI tutor, my review list, contact and menu');
   launcher.appendChild(icon('fas fa-robot')); launcher.appendChild(el('span', '', 'Help'));
   var panel = el('div', 'tjh-panel'); panel.hidden = true; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Tujengane help');
-  var head = el('div', 'tjh-head'); head.appendChild(el('span', '', 'Tujengane Help'));
-  var close = el('button', '', '×'); close.type = 'button'; close.setAttribute('aria-label', 'Close help'); var dockBtn = el('button', 'tjh-dockbtn'); dockBtn.type = 'button'; head.insertBefore(dockBtn, null); head.appendChild(close);
+  var head = el('div', 'tjh-head'); var titleBox = el('div', 'tjh-title'); titleBox.appendChild(el('strong', '', 'Tujengane Help')); var ctxLine = el('small', 'tjh-ctx'); titleBox.appendChild(ctxLine); head.appendChild(titleBox);
+  var fsBtn = el('button', 'tjh-hbtn'); fsBtn.type = 'button'; var splitBtn = el('button', 'tjh-hbtn'); splitBtn.type = 'button'; var dockBtn = el('button', 'tjh-hbtn tjh-dockbtn'); dockBtn.type = 'button';
+  var close = el('button', 'tjh-hbtn tjh-x', '\u00D7'); close.type = 'button'; close.setAttribute('aria-label', 'Close help'); head.appendChild(fsBtn); head.appendChild(splitBtn); head.appendChild(dockBtn); head.appendChild(close);
   var tabs = el('div', 'tjh-tabs'); tabs.setAttribute('role', 'tablist');
   var canTry = !!(course || window.TJLabs || !document.querySelector('meta[http-equiv="Content-Security-Policy"]'));
-  var tabNames = canTry ? [['ai', 'Ask'], ['try', 'Try it'], ['both', 'Both'], ['rev', 'Review'], ['more', 'More']] : [['ai', 'AI Tutor'], ['rev', 'My review'], ['more', 'Contact & menu']], tabBtn = {}, pane = {};
+  var tabNames = canTry ? [['ai', 'Ask'], ['try', 'Practice'], ['rev', 'Review'], ['more', 'More']] : [['ai', 'Ask'], ['rev', 'Review'], ['more', 'More']], tabBtn = {}, pane = {};
   tabNames.forEach(function (t) { var b = el('button', '', t[1]); b.type = 'button'; b.setAttribute('role', 'tab'); b.addEventListener('click', function () { show(t[0]); }); tabs.appendChild(b); tabBtn[t[0]] = b; pane[t[0]] = el('div', 'tjh-pane'); });
   if (!course) { var ri = tabNames.map(function (t) { return t[0]; }).indexOf('rev'); tabNames.splice(ri, 1); delete pane.rev; tabs.removeChild(tabBtn.rev); delete tabBtn.rev; }
-  delete pane.both; Object.keys(pane).forEach(function (k) { pane[k].classList.add('tjh-p-' + k); });
-  panel.appendChild(head); panel.appendChild(tabs); var ctxLine = el('div', 'tjh-ctx'); panel.appendChild(ctxLine); tabNames.forEach(function (t) { if (pane[t[0]]) panel.appendChild(pane[t[0]]); });
+  Object.keys(pane).forEach(function (k) { pane[k].classList.add('tjh-p-' + k); });
+  panel.appendChild(head); panel.appendChild(tabs); tabNames.forEach(function (t) { if (pane[t[0]]) panel.appendChild(pane[t[0]]); });
 
   /* ---- AI tab ---- */
   var log = el('div', 'tjh-log'); log.setAttribute('aria-live', 'polite');
   var chips = el('div', 'tjh-chips');
-  var form = el('form', 'tjh-form'); var ta = el('textarea'); ta.rows = 2; ta.maxLength = 600; ta.placeholder = 'Ask about this lesson...'; ta.setAttribute('aria-label', 'Your question');
-  var send = el('button', '', 'Send'); send.type = 'submit'; form.appendChild(ta); form.appendChild(send);
+  var form = el('form', 'tjh-form'); var ta = el('textarea'); ta.rows = 1; ta.maxLength = 600; ta.placeholder = 'Ask anything about this page...'; ta.setAttribute('aria-label', 'Your question');
+  var send = el('button', 'tjh-send', 'Send'); send.type = 'submit'; form.appendChild(ta); form.appendChild(send);
   pane.ai.appendChild(log); pane.ai.appendChild(chips); pane.ai.appendChild(form);
   function render(box, text) {
     String(text).split('\n').forEach(function (line, i) {
@@ -43,7 +45,7 @@
   function add(cls, text, plain) { var m = el('div', 'tjh-msg ' + cls); if (plain) m.textContent = text; else render(m, text); log.appendChild(m); log.scrollTop = log.scrollHeight; return m; }
   function ask(q) {
     q = (q || '').trim(); if (!q || busy) return;
-    busy = true; send.disabled = true; add('tjh-user', q, true);
+    busy = true; chips.hidden = true;  send.disabled = true; add('tjh-user', q, true);
     var wait = add('tjh-ai tjh-note', 'Thinking...', true), w = where();
     var body = { action: 'ask', question: q, module: w.module, slide: w.slide };
     body.page = pageText();
@@ -55,23 +57,30 @@
         .then(function (x) { return (x.s === 401 && i + 1 < tries.length) ? tryOne(i + 1) : x; });
     }
     /* When the AI cannot answer, never leave the learner with nothing: say what happened, answer from the text on screen, and give next steps. */
-    function help(why) {
+    function cause(code) {
+    if (!code) return '';
+    if (code === 'no_key') return ' Cause: no AI key reached the server. The owner must add GROQ_API_KEY (or GEMINI_API_KEY) in Vercel Settings, Environment Variables, for Production, then redeploy.';
+    var m = /(\w+):(\w+)/.exec(code), st = m ? m[2] : '', who = m ? m[1] : 'the AI service';
+    var why = st === '401' || st === '403' ? who + ' rejected the key (wrong, expired or restricted). Create a new key and replace it.' : st === '404' ? who + ' does not know the model name. Remove any TUTOR_MODEL setting or fix it.' : st === '429' ? who + ' free quota is used up for now. Wait, or add a second provider key.' : st === 'timeout' ? who + ' was too slow to answer. Try again.' : who + ' returned an error (' + st + ').';
+    return ' Cause: ' + why + ' [code ' + code + ']';
+  }
+  function help(why) {
       add('tjh-ai tjh-note', why, true);
       var la = localAnswer(q);
       if (la) add('tjh-ai', la);
-      add('tjh-ai tjh-note', la ? 'That came straight from the page you are on. ' + (canTry ? 'You can also test it in the Try it box. ' : '') + 'For a person, use More, then Email or WhatsApp.' : 'I could not find that on this page. Try different words, open the lesson that covers it, ' + (canTry ? 'test your idea in the Try it box, ' : '') + 'or use More to message your trainer.', true);
+      add('tjh-ai tjh-note', la ? 'That came straight from the page you are on. ' + (canTry ? 'You can also test it in the Practice tab. ' : '') + 'For a person, use More, then Email or WhatsApp.' : 'I could not find that on this page. Try different words, open the lesson that covers it, ' + (canTry ? 'test your idea in the Practice tab, ' : '') + 'or use More to message your trainer.', true);
     }
     tryOne(0)
       .then(function (x) {
         wait.remove();
         if (x.s === 200 && x.d.answer) {
           add('tjh-ai', x.d.answer); prevQ = q; prevA = x.d.provider === 'lessons' ? '' : x.d.answer;
-          if (x.d.reason === 'no_key') add('tjh-ai tjh-note', 'Note: the AI service is not switched on yet (the owner needs to add an AI key on the server). This answer came from the course text.', true);
-          else if (x.d.reason === 'providers_failed') add('tjh-ai tjh-note', 'Note: the AI service did not respond just now, so this answer came from the course text. Try again in a moment.', true);
+          if (x.d.reason === 'no_key') add('tjh-ai tjh-note', 'Note: the AI service is not switched on yet. This answer came from the course text.' + cause('no_key'), true);
+          else if (x.d.reason === 'providers_failed') add('tjh-ai tjh-note', 'Note: the AI service did not respond just now, so this answer came from the course text.' + cause(x.d.code), true);
         }
-        else if (x.s === 429) add('tjh-ai tjh-note', x.d.error === 'daily_cap' ? 'The tutor is very busy today, so it is resting until tomorrow. Everything else on the page still works, and you can email your trainer from More.' : 'You have asked a lot in the last hour, so the tutor needs a short break. Try again in a few minutes. Meanwhile, re-read the lesson and test it in the Try it box.', true);
+        else if (x.s === 429) add('tjh-ai tjh-note', x.d.error === 'daily_cap' ? 'The tutor is very busy today, so it is resting until tomorrow. Everything else on the page still works, and you can email your trainer from More.' : 'You have asked a lot in the last hour, so the tutor needs a short break. Try again in a few minutes. Meanwhile, re-read the lesson and test it in the Practice tab.', true);
         else if (x.s === 401) help('The tutor is switched off for visitors right now. Sign in to your course to use it.');
-        else if (x.s === 503 || (x.d && (x.d.error === 'tutor_unavailable' || x.d.error === 'no_match'))) help('The AI tutor is not available right now (the service has not been switched on, or it is busy).');
+        else if (x.s === 503 || (x.d && (x.d.error === 'tutor_unavailable' || x.d.error === 'no_match'))) help('The AI tutor is not available right now.' + cause((x.d && x.d.code) || 'no_key'));
         else help('The tutor could not answer just now.');
       })
       .catch(function () { wait.remove(); help('No connection to the tutor. Check your internet. Answers below come from this page, which works offline.'); })
@@ -90,7 +99,7 @@
     var top = scored.slice(0, 3).sort(function (a, b) { return a.i - b.i; });
     return 'Here is what this page says about it:\n' + top.map(function (x) { return '• ' + x.t; }).join('\n');
   }
-  [['Explain simply', 'Explain this lesson in simple words.'], ['Give an example', 'Give me one real example from a small business in Kenya.'], ['Quiz me', 'Ask me one question about this lesson and wait for my answer.'], ['I am stuck', 'I am stuck on this lesson. Help me step by step with a hint.']].forEach(function (c) {
+  [['Explain simply', 'Explain this lesson in simple words.'], ['Quiz me', 'Ask me one question about this lesson and wait for my answer.'], ['I am stuck', 'I am stuck on this lesson. Help me step by step with a hint.']].forEach(function (c) {
     var b = el('button', '', c[0]); b.type = 'button'; b.addEventListener('click', function () { ask(c[1]); }); chips.appendChild(b);
   });
   form.addEventListener('submit', function (e) { e.preventDefault(); var q = ta.value; ta.value = ''; ask(q); });
@@ -137,6 +146,7 @@
   if (!/^\/playground/.test(location.pathname)) more.appendChild(linkBtn('Practice Playground (Python, SQL, Cyber Lab)', 'fas fa-flask', '/playground/', true));
   if (document.getElementById('mobile-nav-dropdown')) {
     more.appendChild(el('h3', '', 'Menu'));
+    if (fsOK) { fsAct = actBtn('Full screen', 'fas fa-expand', toggleFs); more.appendChild(fsAct); }
     more.appendChild(actBtn('Open the navigation menu', 'fas fa-bars', function () { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); paintDock(); var d = document.getElementById('mobile-nav-dropdown'); if (d) d.classList.add('active'); }));
   }
   more.appendChild(el('h3', '', 'Contact your trainer'));
@@ -175,13 +185,13 @@
     function sendCode(lead) {
       var a = tryApi[tryKind]; if (!a) return;
       var code = (a.getCode() || '').slice(0, 700), outp = (a.getOutput ? a.getOutput() : '').slice(0, 450);
-      showTab(tabBtn.both ? 'both' : 'ai');
+      showTab('ai');
       ask(lead + '\nMy ' + (tryKind === 'py' ? 'Python' : 'SQL') + ' code:\n' + code + '\nWhat it showed: ' + (outp || '(I have not run it yet)'));
     }
-    [['Use this lesson’s code', function () { var c = lessonCode(), a = tryApi[tryKind]; if (!c) { tmsg.hidden = false; tmsg.textContent = 'This lesson has no code to copy. Type your own and press Run.'; return; } if (a && tryKind === 'py') { a.setCode(c); } }],
-     ['Explain my result', function () { sendCode('Explain what my code did and why it gave this result. Keep it short.'); }],
-     ['Check my attempt', function () { sendCode('Check my attempt for this lesson. Tell me what is right and what is wrong. Give a hint, not the full answer.'); }],
-     ['Challenge me', function () { showTab(tabBtn.both ? 'both' : 'ai'); ask('Give me one small challenge from this lesson that I can try in the practice box. Do not give the solution. When I tap Check my attempt, review it.'); }]
+    [['Lesson code', function () { var c = lessonCode(), a = tryApi[tryKind]; if (!c) { tmsg.hidden = false; tmsg.textContent = 'This lesson has no code to copy. Type your own and press Run.'; return; } if (a && tryKind === 'py') { a.setCode(c); } }],
+     ['Explain result', function () { sendCode('Explain what my code did and why it gave this result. Keep it short.'); }],
+     ['Check attempt', function () { sendCode('Check my attempt for this lesson. Tell me what is right and what is wrong. Give a hint, not the full answer.'); }],
+     ['Challenge me', function () { showTab('ai'); ask('Give me one small challenge from this lesson that I can try in the practice box. Do not give the solution. When I tap Check my attempt, review it.'); }]
     ].forEach(function (x) { var b = el('button', '', x[0]); b.type = 'button'; b.addEventListener('click', x[1]); tryActs.appendChild(b); });
     tryReady = false;
   }
@@ -196,14 +206,16 @@
   }
 
   var cur = 'ai';
+  function splitOn() { return canTry && docked && wide() && pref('split') !== '0'; }
   function showTab(name) {
     cur = name;
-    var vis = name === 'both' ? { ai: 1, try: 1 } : (function (o) { o[name] = 1; return o; })({});
-    tabNames.forEach(function (t) { var on = !!vis[t[0]] || t[0] === name; if (pane[t[0]]) pane[t[0]].hidden = !vis[t[0]]; tabBtn[t[0]].setAttribute('aria-selected', String(t[0] === name)); });
-    panel.classList.toggle('tjh-both', name === 'both');
+    var vis = {}; vis[name] = 1; if (splitOn() && (name === 'ai' || name === 'try')) { vis.ai = 1; vis.try = 1; }
+    tabNames.forEach(function (t) { if (pane[t[0]]) pane[t[0]].hidden = !vis[t[0]]; tabBtn[t[0]].setAttribute('aria-selected', String(t[0] === name)); });
+    panel.classList.toggle('tjh-both', !!(vis.ai && vis.try));
     if (name === 'rev') renderRev();
     if (vis.try) initTry();
-    if (vis.ai && name !== 'both') ta.focus();
+    if (vis.ai && !(vis.ai && vis.try)) ta.focus();
+    paintSplit();
   }
   var show = showTab;
 
@@ -250,22 +262,60 @@
     var isOpen = !panel.hidden;
     panel.classList.toggle('tjh-dock', docked);
     document.body.classList.toggle('tjh-docked-open', docked && isOpen);
-    launcher.hidden = docked && isOpen;
+    launcher.hidden = isOpen;
     applySize();
-    dockBtn.textContent = docked ? '↗ Float' : '◧ Dock';
+    dockBtn.textContent = docked ? 'Float' : 'Dock';
     dockBtn.setAttribute('aria-label', docked ? 'Float the help window over the page' : 'Dock the help window beside the lesson');
   }
-  dockBtn.addEventListener('click', function () { docked = !docked; setPref('dock', docked ? '1' : '0'); paintDock(); });
+  dockBtn.addEventListener('click', function () { docked = !docked; setPref('dock', docked ? '1' : '0'); paintDock(); showTab(cur); });
+  function paintSplit() { var can = canTry && docked && wide(); splitBtn.hidden = !can; var on = splitOn(); splitBtn.textContent = on ? 'Single' : 'Split'; splitBtn.setAttribute('aria-label', on ? 'Show one tool at a time' : 'Show the tutor and practice box together'); }
+  splitBtn.addEventListener('click', function () { setPref('split', splitOn() ? '0' : '1'); showTab(cur === 'try' ? 'try' : 'ai'); });
   function lessonTitle() { var h = document.querySelector('.slide-content h2, main h1, h1'); return h ? h.textContent.trim().slice(0, 70) : ''; }
-  function paintCtx() { var t = lessonTitle(); ctxLine.textContent = t ? 'Looking at: ' + t : ''; ctxLine.hidden = !t; }
+  function paintCtx() { var t = lessonTitle(); ctxLine.textContent = t || 'Ask, practise, review'; }
   function open() {
     panel.hidden = false; launcher.setAttribute('aria-expanded', 'true');
-    if (!log.children.length) add('tjh-ai tjh-note', course ? 'Hi! Ask me anything about the lesson on your screen. I explain and give hints; I do not just hand over answers to checks.' : 'Hi! Ask me about this page or any Tujengane topic. I can also see what is on this page.', true);
+    if (!log.children.length) add('tjh-ai tjh-note', course ? 'Ask about the lesson on your screen. I explain and give hints, not answers to checks.' : 'Ask about this page or any Tujengane topic. I can see this page.', true);
     paintDock(); paintCtx();
-    showTab(canTry && docked && window.innerWidth >= 1000 && cur === 'ai' && !pref('tab') ? 'both' : (pref('tab') && tabBtn[pref('tab')] ? pref('tab') : cur));
+    showTab(pref('tab') && tabBtn[pref('tab')] ? pref('tab') : 'ai');
   }
-  function shut() { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); paintDock(); launcher.focus(); }
+  function shut() { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); paintDock(); sched(); }
   tabs.addEventListener('click', function () { setPref('tab', cur); });
+  /* ---- full screen (whole page, so the lesson, the panel and the labs all stay together) ---- */
+  function isFs() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function toggleFs() { try { if (isFs()) (document.exitFullscreen || document.webkitExitFullscreen).call(document); else { var r = (fsRoot.requestFullscreen || fsRoot.webkitRequestFullscreen).call(fsRoot); if (r && r.catch) r.catch(function () {}); } } catch (e) {} }
+  function paintFsLabel() { fsBtn.hidden = !fsOK; fsBtn.textContent = 'Full screen'; fsBtn.setAttribute('aria-label', 'Show the page in full screen'); }
+  function paintFs() { fsBtn.hidden = !fsOK; fsBtn.textContent = isFs() ? 'Exit full' : 'Full screen'; fsBtn.setAttribute('aria-label', isFs() ? 'Exit full screen' : 'Show the page in full screen'); if (fsAct) fsAct.firstChild.lastChild.textContent = '  ' + (isFs() ? 'Exit full screen' : 'Full screen'); setTimeout(function () { applySize(); sched(); }, 150); }
+  fsBtn.addEventListener('click', toggleFs); paintFsLabel();
+  document.addEventListener('fullscreenchange', paintFs); document.addEventListener('webkitfullscreenchange', paintFs);
+  document.addEventListener('keydown', function (e) { if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && fsOK) { var t = e.target, tg = t && t.tagName; if (tg === 'INPUT' || tg === 'TEXTAREA' || tg === 'SELECT' || (t && t.isContentEditable)) return; toggleFs(); } });
+
+  /* ---- the Help button steps aside: it never sits on top of Next, Previous or any other button, on any screen ---- */
+  var dodgeT = 0;
+  function sched() { clearTimeout(dodgeT); dodgeT = setTimeout(placeLauncher, 220); }
+  function placeLauncher() {
+    if (!document.body.contains(launcher) || !panel.hidden) return;
+    if (launcher.matches(':hover') || document.activeElement === launcher) return;
+    var W = window.innerWidth, H = window.innerHeight, lw = launcher.offsetWidth || 48, lh = launcher.offsetHeight || 48, pad = 10, gap = 8;
+    var els = document.querySelectorAll('button, a[href], input, select, textarea, summary, [role="button"], [onclick]'), rects = [], i, e, r, cs;
+    for (i = 0; i < els.length; i++) {
+      e = els[i]; if (e === launcher || panel.contains(e)) continue;
+      r = e.getBoundingClientRect(); if (r.width < 6 || r.height < 6 || r.bottom < 0 || r.top > H || r.right < 0 || r.left > W) continue;
+      cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.pointerEvents === 'none') continue;
+      rects.push(r);
+    }
+    var xs = [W - lw - pad, pad], ys = [0.55, 0.4, 0.7, 0.25, 0.85, 0.12, 0.93], cand = [];
+    xs.forEach(function (x) { ys.forEach(function (f) { cand.push([x, Math.max(pad, Math.min(H - lh - pad, Math.round(H * f - lh / 2)))]); }); });
+    var best = null, bestA = Infinity;
+    for (i = 0; i < cand.length; i++) {
+      var a = 0, c = cand[i];
+      rects.forEach(function (q) { var ox = Math.min(c[0] + lw + gap, q.right) - Math.max(c[0] - gap, q.left), oy = Math.min(c[1] + lh + gap, q.bottom) - Math.max(c[1] - gap, q.top); if (ox > 0 && oy > 0) a += ox * oy; });
+      if (a < bestA) { bestA = a; best = c; } if (a === 0) break;
+    }
+    if (best) { launcher.style.right = 'auto'; launcher.style.bottom = 'auto'; launcher.style.left = best[0] + 'px'; launcher.style.top = best[1] + 'px'; }
+  }
+  window.addEventListener('resize', sched); window.addEventListener('orientationchange', sched);
+  document.addEventListener('scroll', sched, true); document.addEventListener('click', function () { setTimeout(sched, 350); }, true); document.addEventListener('keyup', sched, true);
+  setTimeout(placeLauncher, 400); setTimeout(placeLauncher, 1800); setInterval(function () { if (document.visibilityState === 'visible') placeLauncher(); }, 3000);
   launcher.addEventListener('click', function () { if (panel.hidden) open(); else shut(); });
   close.addEventListener('click', shut);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) shut(); });
