@@ -1,3 +1,11 @@
+Date: 2026-11-25 (tutor modes and trust rules)
+
+- Seven tutor modes in a Mode picker under the chat: Predict first, Quiz me, Teach-back, Examiner, Challenge me, Kenyan analogy, Review my code. Each is a fixed instruction set on the server.
+- Trust rules in every answer: never invent cases, statistics, quotes, laws or dates; say "I am not sure" when unsure; name the lesson it relied on ("Based on: ..."); Kenyan figures flagged to confirm with the authority; low temperature (0.3) on every provider for steady answers.
+- Golden test set: 22 fixed questions with known answers, traps (hacking request, prompt injection, made-up case and quote, off-topic, next-month exchange rate). Run it against your real key with: npm run tutor:golden. Automated tests check the rules and modes on every npm test.
+
+----------------------------------------
+
 Date: 2026-11-25 (cleaner panel, full screen, button never overlaps)
 
 - The Help button now moves itself away from Next, Previous and every other button, on every screen size, and stays put while you are using it.

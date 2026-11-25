@@ -66,3 +66,8 @@ Locally: put the same keys in `.env.local` before running Run-Tujengane-Local.ba
 Playground, SQL tab: a practice SQLite database (customers, products, sales) rebuilt on every Run, so DROP/DELETE can never break anything. Runs in the browser (sql.js, MIT licence, `assets/vendor/sqljs`).
 
 If the tutor says "AI service is not available": open `temp-access.html`, use "Test the AI tutor", and read which provider fails and why. With no key at all the tutor still answers from the lessons, but only AI keys give full explanations.
+
+
+## Checking the AI tutor
+
+After changing the AI key, model, prompt or lessons, run `npm run tutor:golden` (needs a key in `.env.local`). It asks 22 fixed questions with known answers, including trap questions, and prints PASS or FAIL for each.

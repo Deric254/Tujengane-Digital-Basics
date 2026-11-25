@@ -34,7 +34,12 @@
   var chips = el('div', 'tjh-chips');
   var form = el('form', 'tjh-form'); var ta = el('textarea'); ta.rows = 1; ta.maxLength = 600; ta.placeholder = 'Ask anything about this page...'; ta.setAttribute('aria-label', 'Your question');
   var send = el('button', 'tjh-send', 'Send'); send.type = 'submit'; form.appendChild(ta); form.appendChild(send);
-  pane.ai.appendChild(log); pane.ai.appendChild(chips); pane.ai.appendChild(form);
+  var MODE_LIST = [['', 'Ask (normal)', ''], ['predict', 'Predict first', 'Start: ask me to predict the key idea of this lesson before you explain it.'], ['quiz', 'Quiz me', 'Start: quiz me on this lesson, one question at a time.'], ['teachback', 'Teach-back', 'Start: play a confused beginner and let me teach you this lesson.'], ['examiner', 'Examiner', 'Start: examine my understanding of this lesson.'], ['devil', 'Challenge me', 'Start: challenge my understanding of this lesson with the strongest objection.'], ['analogy', 'Kenyan analogy', 'Start: explain this lesson with a Kenyan small-business analogy.'], ['code', 'Review my code', '']];
+  var curMode = '', modeBar = el('div', 'tjh-modebar'), modeSel = el('select'); modeSel.setAttribute('aria-label', 'Tutor mode');
+  MODE_LIST.forEach(function (m) { var o = el('option', '', m[1]); o.value = m[0]; modeSel.appendChild(o); });
+  modeBar.appendChild(el('span', '', 'Mode')); modeBar.appendChild(modeSel);
+  modeSel.addEventListener('change', function () { curMode = modeSel.value; var m = MODE_LIST.filter(function (x) { return x[0] === curMode; })[0]; ta.placeholder = curMode === 'code' ? 'Paste your code here...' : curMode ? 'Type your answer or reply...' : 'Ask anything about this page...'; if (m && m[2]) ask(m[2]); else if (curMode === 'code') ta.focus(); });
+  pane.ai.appendChild(log); pane.ai.appendChild(chips); pane.ai.appendChild(modeBar); pane.ai.appendChild(form);
   function render(box, text) {
     String(text).split('\n').forEach(function (line, i) {
       if (i) box.appendChild(document.createTextNode('\n'));
@@ -47,7 +52,7 @@
     q = (q || '').trim(); if (!q || busy) return;
     busy = true; chips.hidden = true;  send.disabled = true; add('tjh-user', q, true);
     var wait = add('tjh-ai tjh-note', 'Thinking...', true), w = where();
-    var body = { action: 'ask', question: q, module: w.module, slide: w.slide };
+    var body = { action: 'ask', question: q, module: w.module, slide: w.slide }; if (curMode) body.mode = curMode;
     body.page = pageText();
     if (prevQ && prevA) { body.prevQ = prevQ; body.prevA = prevA; }
     var tries = course ? [course] : ['literacy', 'analyst'];
