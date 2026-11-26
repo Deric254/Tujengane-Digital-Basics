@@ -95,3 +95,13 @@ test('static assets are cached (big engines never re-download), course data is n
   assert.ok(!v.headers.some((h) => /api/.test(h.source) && h.headers.some((x) => x.key === 'Cache-Control' && /immutable|max-age=[1-9]/.test(x.value))), 'API responses stay uncached');
   assert.equal(v.functions['api/*.js'].maxDuration, 30);
 });
+
+test('Excel and pivot labs exist, avoid eval, and are embedded in spreadsheet lessons', () => {
+  const fs = require('fs'), path = require('path'), assert = require('assert');
+  const js = fs.readFileSync(path.join(__dirname, '..', 'assets/js/labs.js'), 'utf8');
+  assert.ok(/LABS\.excel\s*=/.test(js) && /LABS\.pivot\s*=/.test(js));
+  assert.ok(!/\beval\s*\(|new Function\s*\(/.test(js));
+  const count = (c, n) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'api/_data', c + '.json'), 'utf8'))
+    .reduce((s, m) => s + m.slides.filter(x => x.content.includes('data-lab="' + n + '"')).length, 0);
+  assert.ok(count('analyst', 'excel') >= 1 && count('analyst', 'pivot') >= 2 && count('literacy', 'excel') >= 2);
+});

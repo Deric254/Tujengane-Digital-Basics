@@ -71,3 +71,7 @@ If the tutor says "AI service is not available": open `temp-access.html`, use "T
 ## Checking the AI tutor
 
 After changing the AI key, model, prompt or lessons, run `npm run tutor:golden` (needs a key in `.env.local`). It asks 22 fixed questions with known answers, including trap questions, and prints PASS or FAIL for each.
+
+
+## Practice labs
+Labs: python, sql, password, hash, caesar, phish, url, logs, access, risk, order, excel, pivot. Embed with `<div class="tj-lab" data-lab="excel"></div>` before the `layers` block. All run in the browser; no eval.

@@ -95,3 +95,38 @@
 #py textarea.tj-code, #sq textarea.tj-code { min-height: 14rem; }
 #py pre.tj-console { min-height: 9rem; }
 .tj-console:empty::before { content: 'Output appears here after you press Run.'; color: #94a3b8; }
+
+/* Worked examples: a clearly marked, step-by-step case before the concept check */
+.worked-example { background: #fffbea; border: 1px solid #f1dc84; border-left: 5px solid #f5c518; border-radius: 12px; padding: 14px 18px; margin: 16px 0; color: #2b3a33; line-height: 1.55; text-align: left; }
+.worked-example h3 { margin: 0 0 8px; font-size: 1.02rem; color: #256d4f; }
+.worked-example p { margin: 0 0 8px; }
+.worked-example ol, .worked-example ul { margin: 0 0 8px; padding-left: 22px; }
+.worked-example li { margin-bottom: 4px; }
+.worked-example code { background: #fff; border: 1px solid #ecdf9c; border-radius: 5px; padding: 1px 5px; font-size: .92em; overflow-wrap: anywhere; }
+.worked-example pre { background: #0f172a; color: #e2e8f0; border-radius: 8px; padding: 10px 12px; overflow-x: auto; font-size: .88em; }
+.worked-example pre code { background: none; border: 0; color: inherit; padding: 0; }
+.slide-content .worked-example h3 { font-size: 1.05rem; font-weight: 800; color: #256d4f; margin: 0 0 8px; text-align: left; }
+.slide-content .worked-example h3::before { content: "\270E  "; }
+.slide-content .worked-example ol { list-style: decimal outside; padding-left: 26px; margin: 4px 0 10px; }
+.slide-content .worked-example ul { list-style: disc outside; padding-left: 26px; margin: 4px 0 10px; }
+.slide-content .worked-example li { display: list-item; padding: 0; margin: 0 0 6px; background: none; border: 0; box-shadow: none; }
+.slide-content .worked-example li::before, .slide-content .worked-example li::marker { color: #256d4f; }
+.slide-content .worked-example p { text-align: left; }
+.slide-content .worked-example pre { background: #0f172a; color: #e2e8f0; margin: 8px 0 10px; padding: 10px 12px; border: 0; border-radius: 8px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .88rem; text-align: left; }
+.slide-content .worked-example pre code { background: none; border: 0; color: inherit; padding: 0; }
+.slide-content .worked-example code { white-space: normal; overflow-wrap: anywhere; }
+/* Excel + pivot labs */
+.tj-xltask { font-weight: 700; margin: .4rem 0; }
+.tj-xlbarrow { display: flex; align-items: center; gap: .4rem; margin: .4rem 0; }
+.tj-xlname { min-width: 2.6rem; text-align: center; font-weight: 800; border: 1px solid #c4d3ca; border-radius: .4rem; padding: .45rem .4rem; background: #f6faf8; }
+.tj-xlfx { font-style: italic; color: var(--tj-mute); font-weight: 700; }
+.tj-lab input.tj-xlbar { font-family: ui-monospace, Consolas, monospace; }
+.tj-xlwrap { max-height: none; }
+.tj-xl th { text-align: center; background: #eef7f2; position: static; }
+.tj-xl td { cursor: pointer; min-width: 4.2rem; }
+.tj-xl td.tj-sel { outline: 2px solid var(--tj-g); outline-offset: -2px; background: #f0faf4; }
+.tj-xl td.tj-xlhead { font-weight: 800; background: #f6faf8; }
+.tj-xl td.tj-xlerr { color: var(--tj-bad); font-weight: 700; }
+.tj-pvctl { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .5rem; margin: .5rem 0; }
+.tj-pvf { margin: 0 !important; }
+.tj-table tr.tj-total th, .tj-table tr.tj-total td, .tj-table td.tj-b { font-weight: 800; background: #f6faf8; }

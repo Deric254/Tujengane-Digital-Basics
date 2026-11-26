@@ -1,3 +1,8 @@
+## Practice content round
+- Quizzes on every non-capstone lesson (Analyst Pro 205, Computer Literacy 182) with hints and retry-until-correct.
+- 87 worked examples in Analyst Pro, arithmetic auto-verified; styled to match lessons.
+- New Excel formula lab (own parser, no eval, plain-English errors, fill-down, check answer) and pivot-table lab; embedded in Advanced Excel, Segmentation, Power BI filters, and the spreadsheet lessons in Computer Literacy.
+
 Date: 2026-11-25 (tutor modes and trust rules)
 
 - Seven tutor modes in a Mode picker under the chat: Predict first, Quiz me, Teach-back, Examiner, Challenge me, Kenyan analogy, Review my code. Each is a fixed instruction set on the server.

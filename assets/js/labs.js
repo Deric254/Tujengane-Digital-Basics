@@ -3,7 +3,7 @@
    - <section class="tj-quiz" ...>               becomes a check that repeats until the learner gets it right
    Everything runs inside the learner's own browser. Nothing is sent to any server, and nothing here can
    change a lesson, an account or any course content. Lab names: python, password, hash, caesar, phish,
-   url, logs, access, risk, order, sql. */
+   url, logs, access, risk, order, sql, excel, pivot. */
 (function () {
   'use strict';
   var SRC = (document.currentScript && document.currentScript.src) || (location.origin + '/assets/js/labs.js');
@@ -492,6 +492,332 @@
   LABS.sql = function (el) {
     head('Try the SQL yourself', 'SQL', 'This practice version uses a small shop database. Change the query and run it again.').forEach(function (n) { if (n) el.appendChild(n); });
     mountSql(el, { code: el.getAttribute('data-code') || '' });
+  };
+
+  /* ================= EXCEL FORMULA LAB (own parser, no eval) ================= */
+  var XL = (function () {
+    var COLS = 'ABCDEFG';
+    function colN(s) { return s.charCodeAt(0) - 64; }
+    function addr(c, r) { return COLS.charAt(c - 1) + r; }
+    function err(code, why) { var e = new Error(why); e.xl = code; return e; }
+    function tokenize(s) {
+      var t = [], i = 0, m;
+      while (i < s.length) {
+        var c = s.charAt(i);
+        if (/\s/.test(c)) { i++; continue; }
+        if (c === '"') { var j = i + 1, str = ''; while (j < s.length && s.charAt(j) !== '"') str += s.charAt(j++); if (j >= s.length) throw err('#NAME?', 'A text value is missing its closing quote mark (").'); t.push({ k: 's', v: str }); i = j + 1; continue; }
+        m = /^\$?[A-G]\$?\d{1,2}(:\$?[A-G]\$?\d{1,2})?/i.exec(s.slice(i));
+        if (m && !/^[A-Za-z]/.test(s.slice(i + m[0].length, i + m[0].length + 1))) { t.push({ k: 'r', v: m[0].toUpperCase() }); i += m[0].length; continue; }
+        m = /^\d+(\.\d+)?/.exec(s.slice(i)); if (m) { t.push({ k: 'n', v: parseFloat(m[0]) }); i += m[0].length; continue; }
+        m = /^[A-Za-z][A-Za-z.]*(?=\()/.exec(s.slice(i)); if (m) { t.push({ k: 'f', v: m[0].toUpperCase() }); i += m[0].length; continue; }
+        m = /^(TRUE|FALSE)\b/i.exec(s.slice(i)); if (m) { t.push({ k: 'b', v: m[0].toUpperCase() === 'TRUE' }); i += m[0].length; continue; }
+        m = /^(<=|>=|<>|[-+*\/^&=<>%(),])/.exec(s.slice(i)); if (m) { t.push({ k: 'o', v: m[0] }); i += m[0].length; continue; }
+        throw err('#NAME?', 'Excel does not recognise "' + s.slice(i, i + 12).split(/[\s,)]/)[0] + '". Check the spelling of the function or cell name.');
+      }
+      return t;
+    }
+    function parse(tokens) {
+      var p = 0;
+      function peek() { return tokens[p]; }
+      function isOp(v) { var x = tokens[p]; return x && x.k === 'o' && x.v === v; }
+      function expr() { return cmp(); }
+      function cmp() { var l = cat(); while (peek() && peek().k === 'o' && /^(=|<>|<=|>=|<|>)$/.test(peek().v)) { var op = tokens[p++].v; l = { t: 'b', op: op, l: l, r: cat() }; } return l; }
+      function cat() { var l = add(); while (isOp('&')) { p++; l = { t: 'b', op: '&', l: l, r: add() }; } return l; }
+      function add() { var l = mul(); while (isOp('+') || isOp('-')) { var op = tokens[p++].v; l = { t: 'b', op: op, l: l, r: mul() }; } return l; }
+      function mul() { var l = pow(); while (isOp('*') || isOp('/')) { var op = tokens[p++].v; l = { t: 'b', op: op, l: l, r: pow() }; } return l; }
+      function pow() { var l = un(); while (isOp('^')) { p++; l = { t: 'b', op: '^', l: l, r: un() }; } return l; }
+      function un() { if (isOp('-')) { p++; return { t: 'u', e: un() }; } if (isOp('+')) { p++; return un(); } return post(); }
+      function post() { var e = prim(); while (isOp('%')) { p++; e = { t: 'b', op: '/', l: e, r: { t: 'n', v: 100 } }; } return e; }
+      function prim() {
+        var x = tokens[p++];
+        if (!x) throw err('#NAME?', 'The formula ends too early. Something is missing after the last symbol.');
+        if (x.k === 'n') return { t: 'n', v: x.v };
+        if (x.k === 's') return { t: 's', v: x.v };
+        if (x.k === 'b') return { t: 'n', v: x.v };
+        if (x.k === 'r') return { t: 'r', v: x.v };
+        if (x.k === 'f') {
+          p++; var args = [];
+          if (!isOp(')')) { args.push(expr()); while (isOp(',')) { p++; args.push(expr()); } }
+          if (!isOp(')')) throw err('#NAME?', 'A closing bracket ")" is missing. Count your opening and closing brackets.');
+          p++; return { t: 'f', n: x.v, a: args };
+        }
+        if (x.k === 'o' && x.v === '(') { var e = expr(); if (!isOp(')')) throw err('#NAME?', 'A closing bracket ")" is missing. Count your opening and closing brackets.'); p++; return e; }
+        throw err('#NAME?', 'Unexpected "' + x.v + '". Check the symbols around it.');
+      }
+      var tree = expr();
+      if (p < tokens.length) throw err('#NAME?', 'Unexpected "' + tokens[p].v + '". Check for a missing comma or operator.');
+      return tree;
+    }
+    function rng(ref) {
+      var m = /^\$?([A-G])\$?(\d+)(?::\$?([A-G])\$?(\d+))?$/.exec(ref);
+      var c1 = colN(m[1]), r1 = +m[2], c2 = m[3] ? colN(m[3]) : c1, r2 = m[4] ? +m[4] : r1, out = [];
+      for (var r = Math.min(r1, r2); r <= Math.max(r1, r2); r++) for (var c = Math.min(c1, c2); c <= Math.max(c1, c2); c++) out.push(addr(c, r));
+      return { cells: out, single: !m[3] };
+    }
+    function num(v) {
+      if (v === '' || v === null || v === undefined) return 0;
+      if (typeof v === 'number') return v;
+      if (typeof v === 'boolean') return v ? 1 : 0;
+      if (typeof v === 'string' && v.trim() !== '' && isFinite(Number(v))) return Number(v);
+      throw err('#VALUE!', 'Excel tried to do maths on text ("' + String(v).slice(0, 14) + '"). Use a number or a cell that holds a number.');
+    }
+    function txt(v) { return v === null || v === undefined ? '' : (typeof v === 'boolean' ? (v ? 'TRUE' : 'FALSE') : String(v)); }
+    function crit(c) {
+      var m = /^(<=|>=|<>|<|>|=)?(.*)$/.exec(txt(c)), op = m[1] || '=', val = m[2], n = val !== '' && isFinite(Number(val)) ? Number(val) : null;
+      return function (v) {
+        if (n !== null && typeof v === 'number') { if (op === '=') return v === n; if (op === '<>') return v !== n; if (op === '<') return v < n; if (op === '>') return v > n; if (op === '<=') return v <= n; return v >= n; }
+        var a = txt(v).toLowerCase(), b = val.toLowerCase();
+        if (op === '=') return a === b; if (op === '<>') return a !== b; return false;
+      };
+    }
+    function Sheet(raw) {
+      this.raw = raw; this.cache = {}; this.busy = {};
+    }
+    Sheet.prototype.cell = function (a) {
+      var self = this;
+      if (a in this.cache) return this.cache[a];
+      var r = this.raw[a];
+      if (r === undefined || r === '') return (this.cache[a] = '');
+      if (typeof r === 'number') return (this.cache[a] = r);
+      r = String(r);
+      if (r.charAt(0) !== '=') return (this.cache[a] = (r.trim() !== '' && isFinite(Number(r)) ? Number(r) : r));
+      if (this.busy[a]) throw err('#REF!', 'This formula points back at itself (circular reference). Move the formula to a cell that is not in its own range.');
+      this.busy[a] = 1;
+      var out;
+      try { out = this.run(parse(tokenize(r.slice(1)))); }
+      catch (e) { if (!e.xl) throw e; out = { error: e.xl, why: e.message }; }
+      this.busy[a] = 0;
+      return (this.cache[a] = out);
+    };
+    Sheet.prototype.val = function (v) { if (v && v.error) { var e = new Error(v.why); e.xl = v.error; throw e; } return v; };
+    Sheet.prototype.flat = function (node) {
+      var self = this;
+      if (node.t === 'r') { return rng(node.v).cells.map(function (c) { return self.val(self.cell(c)); }); }
+      return [this.run(node)];
+    };
+    Sheet.prototype.run = function (n) {
+      var self = this;
+      switch (n.t) {
+        case 'n': case 's': return n.v;
+        case 'r': { var r = rng(n.v); if (!r.single) throw err('#VALUE!', 'A range (' + n.v + ') cannot be used on its own here. Put it inside a function such as SUM().'); return this.val(this.cell(r.cells[0])); }
+        case 'u': return -num(this.run(n.e));
+        case 'b': {
+          var a = this.run(n.l), b = this.run(n.r);
+          if (n.op === '&') return txt(a) + txt(b);
+          if (/^(=|<>|<=|>=|<|>)$/.test(n.op)) {
+            var x = a, y = b; if (typeof x === 'string' && typeof y === 'string') { x = x.toLowerCase(); y = y.toLowerCase(); }
+            return n.op === '=' ? x === y : n.op === '<>' ? x !== y : n.op === '<' ? x < y : n.op === '>' ? x > y : n.op === '<=' ? x <= y : x >= y;
+          }
+          a = num(a); b = num(b);
+          if (n.op === '+') return a + b; if (n.op === '-') return a - b; if (n.op === '*') return a * b; if (n.op === '^') return Math.pow(a, b);
+          if (b === 0) throw err('#DIV/0!', 'You divided by zero or by an empty cell. Check the cell you are dividing by.');
+          return a / b;
+        }
+        case 'f': return this.fn(n);
+      }
+    };
+    Sheet.prototype.fn = function (n) {
+      var self = this, A = n.a, name = n.n;
+      function need(min, max) { if (A.length < min || A.length > max) throw err('#VALUE!', name + ' needs ' + (min === max ? min : min + ' to ' + max) + ' inputs, but you gave ' + A.length + '. Check the commas.'); }
+      function nums(list) { var o = []; list.forEach(function (node) { self.flat(node).forEach(function (v) { if (node.t === 'r') { if (typeof v === 'number') o.push(v); } else o.push(num(v)); }); }); return o; }
+      switch (name) {
+        case 'SUM': return nums(A).reduce(function (s, v) { return s + v; }, 0);
+        case 'AVERAGE': { var l = nums(A); if (!l.length) throw err('#DIV/0!', 'AVERAGE found no numbers to average. Check that the range holds numbers.'); return l.reduce(function (s, v) { return s + v; }, 0) / l.length; }
+        case 'MIN': { var l2 = nums(A); return l2.length ? Math.min.apply(null, l2) : 0; }
+        case 'MAX': { var l3 = nums(A); return l3.length ? Math.max.apply(null, l3) : 0; }
+        case 'COUNT': return nums(A).length;
+        case 'COUNTA': { var c = 0; A.forEach(function (node) { self.flat(node).forEach(function (v) { if (v !== '') c++; }); }); return c; }
+        case 'ROUND': { need(2, 2); var f = Math.pow(10, num(this.run(A[1]))); return Math.round((num(this.run(A[0])) + 1e-12) * f) / f; }
+        case 'ABS': need(1, 1); return Math.abs(num(this.run(A[0])));
+        case 'IF': need(2, 3); return this.run(A[0]) ? this.run(A[1]) : (A.length > 2 ? this.run(A[2]) : false);
+        case 'AND': return A.every(function (x) { return !!self.run(x); });
+        case 'OR': return A.some(function (x) { return !!self.run(x); });
+        case 'NOT': need(1, 1); return !this.run(A[0]);
+        case 'IFERROR': { need(2, 2); try { return this.run(A[0]); } catch (e) { if (!e.xl) throw e; return this.run(A[1]); } }
+        case 'SUMIF': case 'COUNTIF': {
+          need(name === 'SUMIF' ? 3 : 2, name === 'SUMIF' ? 3 : 2);
+          var f2 = crit(this.run(A[1])), keys = this.flat(A[0]), sum = name === 'SUMIF' ? this.flat(A[2]) : null, t = 0;
+          keys.forEach(function (k, i) { if (f2(k)) t += sum ? (typeof sum[i] === 'number' ? sum[i] : 0) : 1; });
+          return t;
+        }
+        case 'VLOOKUP': {
+          need(3, 4); var key = this.run(A[0]); if (A[1].t !== 'r') throw err('#VALUE!', 'VLOOKUP needs a table range such as A2:D7 as its second input.');
+          var rg = rng(A[1].v), cols = 0, rows = {}, ci = num(this.run(A[2])); rg.cells.forEach(function (a) { var cc = colN(a.charAt(0)); rows[cc] = 1; });
+          var cl = Object.keys(rows).map(Number).sort(function (a, b) { return a - b; }), r0 = cl[0];
+          if (ci < 1 || ci > cl.length) throw err('#REF!', 'The column number ' + ci + ' is outside the table. The table has ' + cl.length + ' columns.');
+          var exact = A.length > 3 ? !this.run(A[3]) : false; if (!exact) throw err('#VALUE!', 'Use FALSE as the last input so VLOOKUP finds an exact match, e.g. VLOOKUP(A2, A2:D7, 3, FALSE).');
+          var lines = {}; rg.cells.forEach(function (a) { var rr = +a.slice(1); (lines[rr] = lines[rr] || {})[colN(a.charAt(0))] = a; });
+          var hit = Object.keys(lines).sort(function (a, b) { return a - b; }).filter(function (rr) { var v = self.val(self.cell(lines[rr][r0])); return txt(v).toLowerCase() === txt(key).toLowerCase(); })[0];
+          if (hit === undefined) throw err('#N/A', 'VLOOKUP could not find "' + txt(key) + '" in the first column of the table. Check spelling and spaces.');
+          return this.val(this.cell(lines[hit][cl[ci - 1]]));
+        }
+        case 'UPPER': need(1, 1); return txt(this.run(A[0])).toUpperCase();
+        case 'LOWER': need(1, 1); return txt(this.run(A[0])).toLowerCase();
+        case 'TRIM': need(1, 1); return txt(this.run(A[0])).replace(/\s+/g, ' ').trim();
+        case 'LEN': need(1, 1); return txt(this.run(A[0])).length;
+        case 'LEFT': need(1, 2); return txt(this.run(A[0])).slice(0, A.length > 1 ? num(this.run(A[1])) : 1);
+        case 'RIGHT': { need(1, 2); var s = txt(this.run(A[0])), k = A.length > 1 ? num(this.run(A[1])) : 1; return k ? s.slice(-k) : ''; }
+        case 'CONCATENATE': return A.map(function (x) { return txt(self.run(x)); }).join('');
+      }
+      throw err('#NAME?', 'Excel does not know a function called ' + name + ' (in this practice area). Check the spelling.');
+    };
+    function shift(formula, dr, dc) { // fill-down / fill-right: move relative references, keep $ ones
+      return formula.replace(/(\$?)([A-G])(\$?)(\d{1,2})/g, function (m, d1, c, d2, r) { return d1 + (d1 ? c : COLS.charAt(Math.max(0, Math.min(6, colN(c) - 1 + dc)))) + d2 + (d2 ? r : (+r + dr)); });
+    }
+    function show(v) {
+      if (v && v.error) return v.error;
+      if (typeof v === 'boolean') return v ? 'TRUE' : 'FALSE';
+      if (typeof v === 'number') return String(Math.round(v * 1e6) / 1e6);
+      return v === undefined || v === null ? '' : String(v);
+    }
+    return { Sheet: Sheet, shift: shift, show: show, addr: addr };
+  })();
+
+  var XL_DATA = { A1: 'Item', B1: 'Qty', C1: 'Price', D1: 'Total', A2: 'Maize', B2: 12, C2: 90, A3: 'Beans', B3: 8, C3: 150, A4: 'Rice', B4: 5, C4: 160, A5: 'Sugar', B5: 20, C5: 140, A6: 'Maize', B6: 4, C6: 90, A7: 'Salt', B7: 0, C7: 30 };
+  var XL_TASKS = [
+    { q: 'In D2 work out the total for Maize: Qty times Price. Then use fill-down to copy it to D7.', cell: 'D2', fill: 'D7', expect: { D2: 1080, D3: 1200, D4: 800, D5: 2800, D6: 360, D7: 0 }, tip: '=B2*C2 then press Fill down. The references move row by row because they have no $.' },
+    { q: 'In F1 add up all the Totals in column D (D2 to D7). Fill D2:D7 first.', cell: 'F1', expect: { F1: 6240 }, need: { D2: 1 }, tip: '=SUM(D2:D7). A range uses a colon.' },
+    { q: 'In F2 find the average Price in column C (C2 to C7).', cell: 'F2', expect: { F2: 110 }, tip: '=AVERAGE(C2:C7)' },
+    { q: 'In F3 add up the Qty for Maize only, using SUMIF.', cell: 'F3', expect: { F3: 16 }, tip: '=SUMIF(A2:A7,"Maize",B2:B7). Order: where to look, what to match, what to add.' },
+    { q: 'In F4 look up the price of Rice using VLOOKUP and show the price.', cell: 'F4', expect: { F4: 160 }, tip: '=VLOOKUP("Rice",A2:C7,3,FALSE). Column 3 of the table is Price.' },
+    { q: 'In E2 write IF to show "Restock" when Qty is below 6, otherwise "OK". Fill down to E7.', cell: 'E2', fill: 'E7', expect: { E2: 'OK', E4: 'Restock', E7: 'Restock' }, tip: '=IF(B2<6,"Restock","OK")' },
+    { q: 'In F5 divide the Total of Maize (D2) by Qty of Salt (B7) but show "n/a" instead of an error.', cell: 'F5', expect: { F5: 'n/a' }, need: { D2: 1 }, tip: '=IFERROR(D2/B7,"n/a"). Dividing by zero gives #DIV/0!, IFERROR catches it.' }
+  ];
+  LABS.excel = function (el) {
+    head('Practise Excel formulas', 'Excel', 'A small shop sheet. Pick a task, click a cell, type a formula starting with = and press Enter. Plain-English help appears if it errors.').forEach(function (n) { if (n) el.appendChild(n); });
+    var raw = {}, sel = 'D2', task = 0, grid = h('div', { class: 'tj-tablewrap tj-xlwrap' }), msg = h('div', { class: 'tj-friendly', role: 'status', 'aria-live': 'polite' }),
+      bar = h('input', { type: 'text', class: 'tj-xlbar', spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', 'aria-label': 'Formula bar' }),
+      nameBox = h('span', { class: 'tj-xlname', text: sel }), q = h('p', { class: 'tj-xltask' }), res = h('div', { class: 'tj-out', hidden: true }),
+      pick = h('select', { 'aria-label': 'Choose a task' }, XL_TASKS.map(function (t, i) { return h('option', { value: String(i), text: 'Task ' + (i + 1) }); }));
+    Object.keys(XL_DATA).forEach(function (k) { raw[k] = XL_DATA[k]; });
+    var cells = {};
+    function sheet() { return new XL.Sheet(raw); }
+    function paint() {
+      var s = sheet(); clear(grid);
+      var rows = [h('tr', null, [h('th', { text: '' })].concat('ABCDEF'.split('').map(function (c) { return h('th', { text: c }); })))];
+      for (var r = 1; r <= 7; r++) {
+        var tds = [h('th', { text: String(r) })];
+        'ABCDEF'.split('').forEach(function (c) {
+          var a = c + r, v; try { v = XL.show(s.cell(a)); } catch (e) { v = e.xl || '#ERR'; }
+          var d = h('td', { tabindex: '0', class: 'tj-xlcell' + (a === sel ? ' tj-sel' : '') + (/^#/.test(v) ? ' tj-xlerr' : '') + (r === 1 && /^[A-D]$/.test(c) ? ' tj-xlhead' : ''), text: v });
+          d.addEventListener('click', function () { choose(a); }); d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(a); } });
+          tds.push(d);
+        });
+        rows.push(h('tr', null, tds));
+      }
+      grid.appendChild(h('table', { class: 'tj-table tj-xl' }, rows));
+    }
+    function choose(a) { sel = a; nameBox.textContent = a; bar.value = raw[a] === undefined ? '' : String(raw[a]); paint(); bar.focus(); }
+    function explain(a) {
+      var v; try { v = sheet().cell(a); } catch (e) { return e.message; }
+      return v && v.error ? v.error + ' - ' + v.why : '';
+    }
+    function commit() {
+      var a = sel, v = bar.value;
+      if (XL_DATA[a] !== undefined && a.charAt(1) === '1' ) { msg.textContent = 'Row 1 is the header row. Choose an empty cell to practise in.'; msg.hidden = false; bar.value = String(raw[a]); return; }
+      if (XL_DATA[a] !== undefined) { msg.textContent = 'That cell holds the practice data. Choose an empty cell (columns D to F).'; msg.hidden = false; bar.value = String(raw[a]); return; }
+      if (v.trim() === '') delete raw[a]; else raw[a] = v.trim();
+      var e = explain(a); msg.hidden = !e; msg.textContent = e; paint();
+    }
+    bar.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); commit(); } });
+    bar.addEventListener('blur', commit);
+    function setTask(i) { task = i; var t = XL_TASKS[i]; q.textContent = t.q; res.hidden = true; choose(t.cell); }
+    pick.addEventListener('change', function () { setTask(+pick.value); });
+    var fill = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Fill down']), check = h('button', { type: 'button', class: 'tj-btn' }, ['Check answer']), tip = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Hint']), rst = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Reset']);
+    fill.addEventListener('click', function () {
+      var t = XL_TASKS[task], r0 = +sel.slice(1), col = sel.charAt(0), f = raw[sel];
+      if (!f || String(f).charAt(0) !== '=') { msg.textContent = 'Fill down copies a formula. Type a formula in the selected cell first.'; msg.hidden = false; return; }
+      var last = (t.fill && t.fill.charAt(0) === col) ? +t.fill.slice(1) : 7;
+      for (var r = r0 + 1; r <= last; r++) raw[col + r] = XL.shift(String(f), r - r0, 0);
+      msg.hidden = true; paint();
+    });
+    tip.addEventListener('click', function () { res.hidden = false; res.className = 'tj-out'; res.textContent = 'Hint: ' + XL_TASKS[task].tip; });
+    rst.addEventListener('click', function () { raw = {}; Object.keys(XL_DATA).forEach(function (k) { raw[k] = XL_DATA[k]; }); msg.hidden = true; res.hidden = true; setTask(task); });
+    check.addEventListener('click', function () {
+      var t = XL_TASKS[task], s = sheet(), bad = [];
+      Object.keys(t.need || {}).forEach(function (k) { if (raw[k] === undefined) bad.push('Fill ' + k + ' first.'); });
+      Object.keys(t.expect).forEach(function (k) {
+        var v; try { v = s.cell(k); } catch (e) { v = null; }
+        if (raw[k] === undefined || String(raw[k]).charAt(0) !== '=') bad.push(k + ' needs a formula (start with =), not a typed answer.');
+        else if (v && v.error) bad.push(k + ' shows ' + v.error + '.');
+        else if (v !== t.expect[k]) bad.push(k + ' shows ' + XL.show(v) + ' but should be ' + t.expect[k] + '.');
+      });
+      res.hidden = false;
+      if (!bad.length) { res.className = 'tj-out tj-good'; res.textContent = 'Correct. Your formula gives the right answer and it is a real formula, so it updates when the data changes.'; }
+      else { res.className = 'tj-out tj-bad'; res.textContent = bad[0] + ' Press Hint if you are stuck.'; }
+    });
+    el.appendChild(h('div', { class: 'tj-row' }, [h('label', { text: 'Task' }), pick]));
+    el.appendChild(q);
+    el.appendChild(h('div', { class: 'tj-xlbarrow' }, [nameBox, h('span', { class: 'tj-xlfx', text: 'fx' }), bar]));
+    el.appendChild(grid); el.appendChild(msg); msg.hidden = true;
+    el.appendChild(h('div', { class: 'tj-row' }, [fill, check, tip, rst])); el.appendChild(res);
+    setTask(0);
+  };
+
+  /* ================= PIVOT LAB ================= */
+  var PV = (function () {
+    var regions = ['Nairobi', 'Mombasa', 'Kisumu'], prods = ['Maize', 'Beans', 'Rice'], months = ['Jan', 'Feb'], rows = [], s = 3;
+    regions.forEach(function (rg, i) { prods.forEach(function (p, j) { months.forEach(function (m, k) {
+      s = (s * 9301 + 49297) % 233280; var qty = 5 + (s % 20); rows.push({ Region: rg, Product: p, Month: m, Qty: qty, Revenue: qty * (80 + j * 40 + i * 5) });
+    }); }); });
+    return rows;
+  })();
+  var PV_TASKS = [
+    { q: 'Show total Revenue for each Region.', rows: 'Region', cols: '', val: 'Revenue', agg: 'Sum', filter: '' },
+    { q: 'Show the average Qty for each Product.', rows: 'Product', cols: '', val: 'Qty', agg: 'Average', filter: '' },
+    { q: 'Show total Revenue with Region down the side and Month across the top.', rows: 'Region', cols: 'Month', val: 'Revenue', agg: 'Sum', filter: '' },
+    { q: 'Count how many sales rows each Product has, only for Nairobi.', rows: 'Product', cols: '', val: 'Qty', agg: 'Count', filter: 'Nairobi' }
+  ];
+  LABS.pivot = function (el) {
+    head('Build a pivot table', 'Pivot', 'This is the same idea as an Excel PivotTable: choose what goes down the side, across the top, what to measure and how. 18 sales rows are summarised.').forEach(function (n) { if (n) el.appendChild(n); });
+    function sel(label, opts, val) { var s = h('select', { 'aria-label': label }, opts.map(function (o) { return h('option', { value: o[0], text: o[1] }); })); s.value = val; return s; }
+    var dims = [['Region', 'Region'], ['Product', 'Product'], ['Month', 'Month']];
+    var rS = sel('Rows', dims, 'Region'), cS = sel('Columns', [['', '(none)']].concat(dims), ''), vS = sel('Values', [['Revenue', 'Revenue'], ['Qty', 'Qty']], 'Revenue'),
+      aS = sel('Summarise by', [['Sum', 'Sum'], ['Average', 'Average'], ['Count', 'Count'], ['Max', 'Max']], 'Sum'), fS = sel('Filter Region', [['', 'All regions'], ['Nairobi', 'Nairobi'], ['Mombasa', 'Mombasa'], ['Kisumu', 'Kisumu']], '');
+    var out = h('div', { class: 'tj-tablewrap' }), qp = h('p', { class: 'tj-xltask' }), res = h('div', { class: 'tj-out', hidden: true }), task = 0;
+    var pick = h('select', { 'aria-label': 'Choose a task' }, PV_TASKS.map(function (t, i) { return h('option', { value: String(i), text: 'Task ' + (i + 1) }); }));
+    function agg(list, a, v) {
+      if (!list.length) return '';
+      if (a === 'Count') return list.length;
+      var xs = list.map(function (r) { return r[v]; });
+      if (a === 'Sum') return xs.reduce(function (p, c) { return p + c; }, 0);
+      if (a === 'Max') return Math.max.apply(null, xs);
+      return Math.round(xs.reduce(function (p, c) { return p + c; }, 0) / xs.length * 10) / 10;
+    }
+    function uniq(f, data) { var o = []; data.forEach(function (r) { if (o.indexOf(r[f]) < 0) o.push(r[f]); }); return o; }
+    function paint() {
+      clear(out);
+      var data = PV.filter(function (r) { return !fS.value || r.Region === fS.value; }), rf = rS.value, cf = cS.value;
+      if (cf === rf) { out.appendChild(h('p', { class: 'tj-hint', text: 'Rows and Columns are the same field. Choose a different Columns field, or (none).' })); return; }
+      var rv = uniq(rf, data), cv = cf ? uniq(cf, data) : [];
+      var head1 = [h('th', { text: rf })].concat(cf ? cv.map(function (c) { return h('th', { text: c }); }) : [h('th', { text: aS.value + ' of ' + vS.value })]).concat(cf ? [h('th', { text: 'Grand total' })] : []);
+      var body = rv.map(function (r) {
+        var sub = data.filter(function (x) { return x[rf] === r; });
+        var cells = cf ? cv.map(function (c) { return h('td', { text: String(agg(sub.filter(function (x) { return x[cf] === c; }), aS.value, vS.value)) }); }).concat([h('td', { class: 'tj-b', text: String(agg(sub, aS.value, vS.value)) })]) : [h('td', { text: String(agg(sub, aS.value, vS.value)) })];
+        return h('tr', null, [h('th', { text: r })].concat(cells));
+      });
+      var tot = h('tr', { class: 'tj-total' }, [h('th', { text: 'Grand total' })].concat(cf ? cv.map(function (c) { return h('td', { text: String(agg(data.filter(function (x) { return x[cf] === c; }), aS.value, vS.value)) }); }).concat([h('td', { class: 'tj-b', text: String(agg(data, aS.value, vS.value)) })]) : [h('td', { class: 'tj-b', text: String(agg(data, aS.value, vS.value)) })]));
+      out.appendChild(h('table', { class: 'tj-table' }, [h('tr', null, head1)].concat(body).concat([tot])));
+    }
+    function setTask(i) { task = i; qp.textContent = PV_TASKS[i].q; res.hidden = true; }
+    [rS, cS, vS, aS, fS].forEach(function (s) { s.addEventListener('change', paint); });
+    pick.addEventListener('change', function () { setTask(+pick.value); });
+    var check = h('button', { type: 'button', class: 'tj-btn' }, ['Check answer']);
+    check.addEventListener('click', function () {
+      var t = PV_TASKS[task], miss = [];
+      if (rS.value !== t.rows) miss.push('Rows should be ' + t.rows);
+      if (cS.value !== t.cols) miss.push('Columns should be ' + (t.cols || '(none)'));
+      if (aS.value !== t.agg) miss.push('Summarise by ' + t.agg);
+      if (t.agg !== 'Count' && vS.value !== t.val) miss.push('Values should be ' + t.val);
+      if (fS.value !== t.filter) miss.push(t.filter ? 'Filter the Region to ' + t.filter : 'Set the filter to All regions');
+      res.hidden = false;
+      if (!miss.length) { res.className = 'tj-out tj-good'; res.textContent = 'Correct. That is exactly the question asked. Notice how the grand total always matches the sum of the rows.'; }
+      else { res.className = 'tj-out tj-bad'; res.textContent = 'Not yet: ' + miss[0] + '.'; }
+    });
+    var ctl = h('div', { class: 'tj-pvctl' }, [['Rows', rS], ['Columns', cS], ['Values', vS], ['Summarise by', aS], ['Filter', fS]].map(function (p) { return h('label', { class: 'tj-pvf' }, [p[0], p[1]]); }));
+    el.appendChild(h('div', { class: 'tj-row' }, [h('label', { text: 'Task' }), pick])); el.appendChild(qp); el.appendChild(ctl); el.appendChild(out);
+    el.appendChild(h('div', { class: 'tj-row' }, [check])); el.appendChild(res);
+    setTask(0); paint();
   };
 
   /* ================= hydrate ================= */
