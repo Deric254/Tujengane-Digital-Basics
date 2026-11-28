@@ -105,3 +105,33 @@ test('Excel and pivot labs exist, avoid eval, and are embedded in spreadsheet le
     .reduce((s, m) => s + m.slides.filter(x => x.content.includes('data-lab="' + n + '"')).length, 0);
   assert.ok(count('analyst', 'excel') >= 1 && count('analyst', 'pivot') >= 2 && count('literacy', 'excel') >= 2);
 });
+
+test('guided labs (linux, git, api, scrape) are registered and the API lesson embeds api + scrape', () => {
+  const fs = require('fs'), path = require('path'), assert = require('assert');
+  const js = fs.readFileSync(path.join(__dirname, '..', 'assets/js/labs.js'), 'utf8');
+  ['linux', 'git', 'api', 'scrape'].forEach(n => assert.ok(new RegExp('LABS\\.' + n + '\\s*=').test(js), n));
+  const a = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'api/_data/analyst.json'), 'utf8'));
+  const c = a[1].slides[4].content;
+  assert.ok(c.includes('data-lab="api"') && c.includes('data-lab="scrape"'));
+});
+
+test('review-debt gate exists in the tutor script and styles', () => {
+  const fs = require('fs'), path = require('path'), assert = require('assert');
+  assert.ok(/REVIEW_DEBT/.test(fs.readFileSync(path.join(__dirname, '..', 'assets/js/tutor.js'), 'utf8')));
+  assert.ok(/tjh-gate/.test(fs.readFileSync(path.join(__dirname, '..', 'assets/css/tutor.css'), 'utf8')));
+});
+
+test('sign-in screens show errors inline and offer a show-password control', () => {
+  const fs = require('fs'), path = require('path'), assert = require('assert'), r = (f) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
+  for (const f of ['Tujengane Analyst Pro/js/scripts.js', 'Tujengane Computer Literacy/js/scripts.js']) { const s = r(f); assert.ok(s.includes('id="pwErr"') && s.includes('Signing in...') && s.includes('pwToggle'), f); }
+  const pg = r('playground/index.html'); assert.ok(pg.includes('id="eye"') && pg.includes('Signing in...'));
+  assert.ok(r('temp-access.html').includes('eyebtn'));
+});
+
+test('performance guards: analytics loads async, confetti deferred, no live blur on scrolling sidebar', () => {
+  const fs = require('fs'), path = require('path'), assert = require('assert'), r = (f) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
+  for (const f of ['Tujengane Analyst Pro/analystpro.html', 'Tujengane Computer Literacy/computerliteracy.html', 'Tujengane data basics/databasics.html', 'computer basicss/computerbasicss.html']) {
+    const s = r(f); assert.ok(!/<script src="https:\/\/cdn\.amplitude\.com/.test(s), f + ' amplitude blocks parsing'); assert.ok(!/<script src="https:\/\/cdn\.jsdelivr\.net\/npm\/canvas-confetti/.test(s), f + ' confetti blocks parsing');
+  }
+  assert.ok(/module-toggle[^}]*backdrop-filter: none/.test(r('assets/css/tutor.css')));
+});

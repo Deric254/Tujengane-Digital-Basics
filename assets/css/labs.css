@@ -130,3 +130,10 @@
 .tj-pvctl { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .5rem; margin: .5rem 0; }
 .tj-pvf { margin: 0 !important; }
 .tj-table tr.tj-total th, .tj-table tr.tj-total td, .tj-table td.tj-b { font-weight: 800; background: #f6faf8; }
+/* terminal, api, scrape labs */
+.tj-term { background: #111b16; color: #d7f5e3; font: .86rem/1.5 ui-monospace, Consolas, monospace; padding: .7rem .8rem; border-radius: .55rem 0 0 .55rem; margin: .5rem 0 0; max-height: 15rem; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+.tj-termrow { display: flex; align-items: center; gap: .4rem; background: #111b16; border-radius: 0 0 .55rem .55rem; padding: .3rem .8rem; }
+.tj-termps { color: #7ee2a8; font-family: ui-monospace, Consolas, monospace; }
+.tj-lab input.tj-termin { background: transparent; color: #d7f5e3; border: 0; font-family: ui-monospace, Consolas, monospace; padding: .4rem 0; }
+.tj-lab > div > .tj-term:only-of-type { border-radius: .55rem; }
+.tj-lab pre.tj-term { border-radius: .55rem .55rem 0 0; }

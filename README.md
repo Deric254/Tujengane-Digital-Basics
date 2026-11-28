@@ -74,4 +74,4 @@ After changing the AI key, model, prompt or lessons, run `npm run tutor:golden` 
 
 
 ## Practice labs
-Labs: python, sql, password, hash, caesar, phish, url, logs, access, risk, order, excel, pivot. Embed with `<div class="tj-lab" data-lab="excel"></div>` before the `layers` block. All run in the browser; no eval.
+Labs: python, sql, password, hash, caesar, phish, url, logs, access, risk, order, excel, pivot, linux, git, api, scrape. Embed with `<div class="tj-lab" data-lab="excel"></div>` before the `layers` block. All run in the browser; no eval.

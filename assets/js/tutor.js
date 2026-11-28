@@ -34,7 +34,7 @@
   var chips = el('div', 'tjh-chips');
   var form = el('form', 'tjh-form'); var ta = el('textarea'); ta.rows = 1; ta.maxLength = 600; ta.placeholder = 'Ask anything about this page...'; ta.setAttribute('aria-label', 'Your question');
   var send = el('button', 'tjh-send', 'Send'); send.type = 'submit'; form.appendChild(ta); form.appendChild(send);
-  var MODE_LIST = [['', 'Ask (normal)', ''], ['predict', 'Predict first', 'Start: ask me to predict the key idea of this lesson before you explain it.'], ['quiz', 'Quiz me', 'Start: quiz me on this lesson, one question at a time.'], ['teachback', 'Teach-back', 'Start: play a confused beginner and let me teach you this lesson.'], ['examiner', 'Examiner', 'Start: examine my understanding of this lesson.'], ['devil', 'Challenge me', 'Start: challenge my understanding of this lesson with the strongest objection.'], ['analogy', 'Kenyan analogy', 'Start: explain this lesson with a Kenyan small-business analogy.'], ['code', 'Review my code', '']];
+  var MODE_LIST = [['', 'Ask (normal)', ''], ['predict', 'Predict first', 'Start: ask me to predict the key idea of this lesson before you explain it.'], ['case', 'Give me a case', 'Start: give me one invented practice case for this lesson, and let me work on it.'], ['quiz', 'Quiz me', 'Start: quiz me on this lesson, one question at a time.'], ['teachback', 'Teach-back', 'Start: play a confused beginner and let me teach you this lesson.'], ['examiner', 'Examiner', 'Start: examine my understanding of this lesson.'], ['devil', 'Challenge me', 'Start: challenge my understanding of this lesson with the strongest objection.'], ['analogy', 'Kenyan analogy', 'Start: explain this lesson with a Kenyan small-business analogy.'], ['code', 'Review my code', '']];
   var curMode = '', modeBar = el('div', 'tjh-modebar'), modeSel = el('select'); modeSel.setAttribute('aria-label', 'Tutor mode');
   MODE_LIST.forEach(function (m) { var o = el('option', '', m[1]); o.value = m[0]; modeSel.appendChild(o); });
   modeBar.appendChild(el('span', '', 'Mode')); modeBar.appendChild(modeSel);
@@ -116,7 +116,7 @@
     var a = document.querySelector('.sidebar-link[data-module="' + m + '"][data-slide="' + s + '"]') || document.querySelector('.module-slides a[data-module="' + m + '"][data-slide="' + s + '"]');
     if (a) { a.click(); if (!docked) { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); paintDock(); } }
   }
-  var DAY = 86400000;
+  var DAY = 86400000, REVIEW_DEBT = 3;
   function progress() { try { return JSON.parse(localStorage.getItem(STORE + ':p') || '{}') || {}; } catch (e) { return {}; } }
   function saveProgress(o) { try { localStorage.setItem(STORE + ':p', JSON.stringify(o)); } catch (e) {} }
   function totalLessons() { return document.querySelectorAll('.module-slides a[data-module]').length; }
@@ -283,6 +283,7 @@
     paintDock(); paintCtx();
     showTab(pref('tab') && tabBtn[pref('tab')] ? pref('tab') : 'ai');
   }
+  function openPanel(tab) { if (panel.hidden) open(); if (tabBtn[tab]) showTab(tab); }
   function shut() { panel.hidden = true; launcher.setAttribute('aria-expanded', 'false'); paintDock(); sched(); }
   tabs.addEventListener('click', function () { setPref('tab', cur); });
   /* ---- full screen (whole page, so the lesson, the panel and the labs all stay together) ---- */
@@ -295,18 +296,29 @@
   document.addEventListener('keydown', function (e) { if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && fsOK) { var t = e.target, tg = t && t.tagName; if (tg === 'INPUT' || tg === 'TEXTAREA' || tg === 'SELECT' || (t && t.isContentEditable)) return; toggleFs(); } });
 
   /* ---- the Help button steps aside: it never sits on top of Next, Previous or any other button, on any screen ---- */
+  var fsFloat = el('button', 'tjh-fsfloat'); fsFloat.type = 'button'; fsFloat.appendChild(icon('fas fa-expand')); fsFloat.hidden = !fsOK;
+  function paintFloat() { fsFloat.firstChild.className = isFs() ? 'fas fa-compress' : 'fas fa-expand'; var l = isFs() ? 'Exit full screen' : 'Full screen'; fsFloat.setAttribute('aria-label', l); fsFloat.title = l + ' (press F)'; }
+  fsFloat.addEventListener('click', toggleFs); paintFloat();
+  document.addEventListener('fullscreenchange', paintFloat); document.addEventListener('webkitfullscreenchange', paintFloat);
   var dodgeT = 0;
   function sched() { clearTimeout(dodgeT); dodgeT = setTimeout(placeLauncher, 220); }
   function placeLauncher() {
+    fsFloat.hidden = !fsOK || !panel.hidden;
     if (!document.body.contains(launcher) || !panel.hidden) return;
-    if (launcher.matches(':hover') || document.activeElement === launcher) return;
-    var W = window.innerWidth, H = window.innerHeight, lw = launcher.offsetWidth || 48, lh = launcher.offsetHeight || 48, pad = 10, gap = 8;
+    if (!document.body.contains(fsFloat)) document.body.appendChild(fsFloat);
+    if (launcher.matches(':hover') || document.activeElement === launcher || fsFloat.matches(':hover')) return;
+    var W = window.innerWidth, H = window.innerHeight, lw = launcher.offsetWidth || 48, lh0 = launcher.offsetHeight || 48, lh = lh0 + 48, pad = 10, gap = 8;
     var els = document.querySelectorAll('button, a[href], input, select, textarea, summary, [role="button"], [onclick]'), rects = [], i, e, r, cs;
     for (i = 0; i < els.length; i++) {
-      e = els[i]; if (e === launcher || panel.contains(e)) continue;
+      e = els[i]; if (e === launcher || e === fsFloat || panel.contains(e)) continue;
       r = e.getBoundingClientRect(); if (r.width < 6 || r.height < 6 || r.bottom < 0 || r.top > H || r.right < 0 || r.left > W) continue;
       cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.pointerEvents === 'none') continue;
       rects.push(r);
+    }
+    var cx = parseFloat(launcher.style.left), cy = parseFloat(fsFloat.style.top);
+    if (!isNaN(cx) && !isNaN(cy) && cx >= 0 && cy >= 0 && cx + lw <= W && cy + lh <= H) { // already placed: stay put unless something is now underneath
+      var hit = false; for (i = 0; i < rects.length; i++) { var q0 = rects[i]; if (Math.min(cx + lw + gap, q0.right) - Math.max(cx - gap, q0.left) > 0 && Math.min(cy + lh + gap, q0.bottom) - Math.max(cy - gap, q0.top) > 0) { hit = true; break; } }
+      if (!hit) return;
     }
     var xs = [W - lw - pad, pad], ys = [0.55, 0.4, 0.7, 0.25, 0.85, 0.12, 0.93], cand = [];
     xs.forEach(function (x) { ys.forEach(function (f) { cand.push([x, Math.max(pad, Math.min(H - lh - pad, Math.round(H * f - lh / 2)))]); }); });
@@ -316,11 +328,11 @@
       rects.forEach(function (q) { var ox = Math.min(c[0] + lw + gap, q.right) - Math.max(c[0] - gap, q.left), oy = Math.min(c[1] + lh + gap, q.bottom) - Math.max(c[1] - gap, q.top); if (ox > 0 && oy > 0) a += ox * oy; });
       if (a < bestA) { bestA = a; best = c; } if (a === 0) break;
     }
-    if (best) { launcher.style.right = 'auto'; launcher.style.bottom = 'auto'; launcher.style.left = best[0] + 'px'; launcher.style.top = best[1] + 'px'; }
+    if (best) { launcher.style.right = 'auto'; launcher.style.bottom = 'auto'; launcher.style.left = best[0] + 'px'; launcher.style.top = (best[1] + 48) + 'px'; fsFloat.style.left = (best[0] + Math.round((lw - 40) / 2)) + 'px'; fsFloat.style.top = best[1] + 'px'; }
   }
   window.addEventListener('resize', sched); window.addEventListener('orientationchange', sched);
   document.addEventListener('scroll', sched, true); document.addEventListener('click', function () { setTimeout(sched, 350); }, true); document.addEventListener('keyup', sched, true);
-  setTimeout(placeLauncher, 400); setTimeout(placeLauncher, 1800); setInterval(function () { if (document.visibilityState === 'visible') placeLauncher(); }, 3000);
+  setTimeout(placeLauncher, 400); setTimeout(placeLauncher, 1800); setInterval(function () { if (document.visibilityState === 'visible') placeLauncher(); }, 8000);
   launcher.addEventListener('click', function () { if (panel.hidden) open(); else shut(); });
   close.addEventListener('click', shut);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) shut(); });
@@ -343,6 +355,21 @@
     var c = document.querySelector('.slide-content');
     if (!c || c.querySelector('.tjh-lock')) return;
     var w = where(), titleEl = c.querySelector('h2'); if (w.module < 0 || !titleEl) return;
+    var pr0 = progress(), fresh = !(pr0.v && pr0.v[w.module + ':' + w.slide]);
+    if (fresh && !c.querySelector('.tjh-gate')) {
+      var st0 = load(), now0 = Date.now(), due = Object.keys(st0).filter(function (k) { var it = st0[k]; return it.s !== 'got' || (it.d && now0 - it.d > 2 * DAY); });
+      var skipped = 0; try { skipped = +(sessionStorage.getItem('tjh:skip') || 0); } catch (e) {}
+      if (due.length >= REVIEW_DEBT && now0 > skipped) {
+        c.classList.add('tjh-gated');
+        var g = el('div', 'tjh-gate'); g.setAttribute('role', 'region'); g.setAttribute('aria-label', 'Review first');
+        g.appendChild(el('h3', '', 'Review first, then move on'));
+        g.appendChild(el('p', '', 'You have ' + due.length + ' lessons waiting for review. Clearing them first is what makes new lessons stick. It takes a few minutes.'));
+        var gb = el('button', 'tjh-gbtn', 'Open my review list'); gb.type = 'button'; gb.addEventListener('click', function () { openPanel('rev'); });
+        var gs = el('button', 'tjh-gbtn tjh-gghost', 'Skip for 1 hour'); gs.type = 'button';
+        gs.addEventListener('click', function () { try { sessionStorage.setItem('tjh:skip', String(Date.now() + 3600000)); } catch (e) {} c.classList.remove('tjh-gated'); if (g.parentNode) g.parentNode.removeChild(g); addLock(); });
+        g.appendChild(gb); g.appendChild(gs); c.insertBefore(g, c.firstChild); return;
+      }
+    }
     var pr = progress(); pr.v = pr.v || {}; pr.v[w.module + ':' + w.slide] = 1; pr.last = { m: w.module, i: w.slide, t: titleEl.textContent.trim() }; saveProgress(pr);
     enhanceCheck(c);
     var key = w.module + ':' + w.slide, st = load(), cur = st[key] && st[key].s;

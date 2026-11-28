@@ -1,3 +1,24 @@
+## Interventions round
+- Review-debt rule: with 3 or more overdue reviews, opening a lesson you have not seen shows "Review first" (Open my review list, or Skip for 1 hour).
+- Guided labs: Linux terminal, Git, API response reading, web-scraping selectors (all simulated, safe, no network). In the Playground and the Web Data & APIs lesson.
+
+## Smoother scrolling
+- Removed live background blur from the sidebar module headers, nav bars and floating buttons (about 17 blurred layers per course page down to 2); backgrounds were already near-solid.
+- Analytics (Amplitude) now loads async after the page, and confetti is deferred, so neither blocks first render. Help-button position check runs every 8s instead of 3s.
+
+## Help button stays put
+- The Help and Full screen buttons now move only when something is actually underneath them, not on a timer, scroll or click.
+
+## Clear sign-in
+- Wrong password now shows a visible message in the box (attempt x of 3) instead of silently reopening; button shows Signing in...; empty field and no-connection messages; Show/Hide password on the Playground and temp-code pages (course pages already had the eye). Help overlay appears after 3 wrong tries or when rate-limited.
+
+## Toolkit and case mode
+- Playground Toolkit tab: short guides plus safe labs for Linux, Git, APIs, scraping, PostgreSQL differences, Excel and pivots.
+- Tutor mode "Give me a case": invented, clearly labelled practice scenarios only (no real-company claims).
+
+## Full screen button
+- Always-visible round Full screen / Exit button sits just above the Help button on every page (also in the Help panel, More tab, and the F key). It dodges other buttons together with Help.
+
 ## Practice content round
 - Quizzes on every non-capstone lesson (Analyst Pro 205, Computer Literacy 182) with hints and retry-until-correct.
 - 87 worked examples in Analyst Pro, arithmetic auto-verified; styled to match lessons.

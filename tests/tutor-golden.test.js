@@ -36,3 +36,9 @@ test('providers are called with a low temperature so the same question gets a st
   for (const b of bodies) assert.ok(b.temperature <= 0.3);
   assert.match(JSON.stringify(bodies[0]), /MODE Quiz me/);
 });
+
+test('case mode labels scenarios as invented and never as real events', () => {
+  const assert = require('assert'), tutor = require('../api/_lib/tutor.js');
+  const t = tutor.MODES.case;
+  assert.ok(t && /invented, not a real company/.test(t) && /Never present the scenario as a real/.test(t));
+});

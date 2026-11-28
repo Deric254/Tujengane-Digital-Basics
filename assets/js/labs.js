@@ -3,7 +3,7 @@
    - <section class="tj-quiz" ...>               becomes a check that repeats until the learner gets it right
    Everything runs inside the learner's own browser. Nothing is sent to any server, and nothing here can
    change a lesson, an account or any course content. Lab names: python, password, hash, caesar, phish,
-   url, logs, access, risk, order, sql, excel, pivot. */
+   url, logs, access, risk, order, sql, excel, pivot, linux, git, api, scrape. */
 (function () {
   'use strict';
   var SRC = (document.currentScript && document.currentScript.src) || (location.origin + '/assets/js/labs.js');
@@ -818,6 +818,175 @@
     el.appendChild(h('div', { class: 'tj-row' }, [h('label', { text: 'Task' }), pick])); el.appendChild(qp); el.appendChild(ctl); el.appendChild(out);
     el.appendChild(h('div', { class: 'tj-row' }, [check])); el.appendChild(res);
     setTask(0); paint();
+  };
+
+  /* ================= GUIDED LABS: terminal (Linux/Git), API response, web scraping ================= */
+  function taskLab(el, title, tag, hint, tasks, mk) {
+    head(title, tag, hint).forEach(function (n) { if (n) el.appendChild(n); });
+    var i = 0, q = h('p', { class: 'tj-xltask' }), prog = h('div', { class: 'tj-hint' }), res = h('div', { class: 'tj-out', hidden: true }), box = h('div'), api = {};
+    var hintBtn = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Hint']), chk = h('button', { type: 'button', class: 'tj-btn' }, ['Check answer']), nxt = h('button', { type: 'button', class: 'tj-btn tj-ghost', hidden: true }, ['Next task']), rst = h('button', { type: 'button', class: 'tj-btn tj-ghost' }, ['Reset']);
+    function set(n) { i = n; q.textContent = tasks[n].q; prog.textContent = 'Task ' + (n + 1) + ' of ' + tasks.length; res.hidden = true; nxt.hidden = true; if (api.onTask) api.onTask(tasks[n], n); }
+    hintBtn.addEventListener('click', function () { res.hidden = false; res.className = 'tj-out'; res.textContent = 'Hint: ' + tasks[i].tip; });
+    chk.addEventListener('click', function () {
+      var m = tasks[i].test(api.state()); res.hidden = false;
+      if (m === true) { res.className = 'tj-out tj-good'; res.textContent = tasks[i].ok || 'Correct.'; if (i < tasks.length - 1) nxt.hidden = false; else res.textContent += ' That was the last task. Well done.'; }
+      else { res.className = 'tj-out tj-bad'; res.textContent = m + ' Press Hint if you are stuck.'; }
+    });
+    nxt.addEventListener('click', function () { set(i + 1); });
+    rst.addEventListener('click', function () { api.reset && api.reset(); set(i); });
+    el.appendChild(prog); el.appendChild(q); mk(box, api); el.appendChild(box); el.appendChild(h('div', { class: 'tj-row' }, [chk, hintBtn, nxt, rst])); el.appendChild(res); set(0);
+  }
+
+  /* --- terminal --- */
+  function VFS(mode) {
+    var s = { cwd: '/home/learner', files: {}, dirs: { '/': 1, '/home': 1, '/home/learner': 1 }, git: null, branch: 'main', ok: true };
+    if (mode === 'linux') {
+      ['/home/learner/data', '/home/learner/data/logs'].forEach(function (d) { s.dirs[d] = 1; });
+      s.files['/home/learner/data/sales.csv'] = 'date,item,amount\n2026-01-02,Maize,1200\n2026-01-03,Beans,800\n2026-01-04,Maize,1500\n';
+      s.files['/home/learner/data/logs/app.log'] = 'INFO start\nERROR disk full\nINFO ok\nERROR timeout\nINFO done\n';
+    }
+    return s;
+  }
+  function pathOf(s, p) {
+    if (!p) return s.cwd; var parts = (p.charAt(0) === '/' ? p : s.cwd + '/' + p).split('/'), o = [];
+    parts.forEach(function (x) { if (!x || x === '.') return; if (x === '..') o.pop(); else o.push(x); }); return '/' + o.join('/');
+  }
+  function unq(a) { return a.map(function (x) { return x.replace(/^(["'])(.*)\1$/, '$2'); }); }
+  function split(line) { var m = line.match(/"[^"]*"|'[^']*'|\S+/g) || []; return m; }
+  function runCmd(s, line) {
+    var t = split(line); if (!t.length) return '';
+    var c = t[0], a = t.slice(1), out = [];
+    function isDir(p) { return !!s.dirs[p]; }
+    function kids(d) { var n = {}; Object.keys(s.dirs).concat(Object.keys(s.files)).forEach(function (k) { if (k !== d && k.indexOf(d === '/' ? '/' : d + '/') === 0) { var r = k.slice(d === '/' ? 1 : d.length + 1); if (r.indexOf('/') < 0) n[r] = isDir(k) ? 'd' : 'f'; } }); return n; }
+    var redir = t.indexOf('>'), redir2 = t.indexOf('>>');
+    if (c === 'echo') {
+      var ri = redir2 > 0 ? redir2 : redir; var body = unq(t.slice(1, ri > 0 ? ri : t.length)).join(' ');
+      if (ri > 0) { var f = pathOf(s, unq([t[ri + 1] || ''])[0]); if (!t[ri + 1]) return 'echo: write to which file? Add a file name after >.'; s.files[f] = (ri === redir2 && s.files[f] ? s.files[f] : '') + body + '\n'; return ''; }
+      return body;
+    }
+    if (c === 'pwd') return s.cwd;
+    if (c === 'ls') { var fl = a.filter(function (x) { return x.charAt(0) === '-'; }), tg = pathOf(s, a.filter(function (x) { return x.charAt(0) !== '-'; })[0]); if (s.files[tg]) return tg.split('/').pop(); if (!isDir(tg)) return 'ls: cannot access: No such file or directory'; var k = kids(tg); return Object.keys(k).sort().map(function (n) { return fl.length ? (k[n] === 'd' ? 'drwxr-xr-x ' : '-rw-r--r-- ') + n : n + (k[n] === 'd' ? '/' : ''); }).join(fl.length ? '\n' : '  '); }
+    if (c === 'cd') { var d = a[0] ? pathOf(s, a[0]) : '/home/learner'; if (!isDir(d)) return 'cd: ' + a[0] + ': No such directory. Use ls to see what is here.'; s.cwd = d; return ''; }
+    if (c === 'mkdir') { if (!a[0]) return 'mkdir: missing folder name'; a.filter(function (x) { return x.charAt(0) !== '-'; }).forEach(function (x) { var p = pathOf(s, x); if (!isDir(pathOf(s, p + '/..')) && a.indexOf('-p') < 0) out.push('mkdir: parent folder does not exist (use mkdir -p)'); else s.dirs[p] = 1; }); return out.join('\n'); }
+    if (c === 'touch') { a.forEach(function (x) { var p = pathOf(s, x); if (!(p in s.files)) s.files[p] = ''; }); return ''; }
+    if (c === 'cat') { var p = pathOf(s, a[0]); return p in s.files ? s.files[p].replace(/\n$/, '') : 'cat: ' + a[0] + ': No such file'; }
+    if (c === 'rm') { var p2 = pathOf(s, a.filter(function (x) { return x.charAt(0) !== '-'; })[0]); if (p2 in s.files) { delete s.files[p2]; return ''; } return 'rm: cannot remove: No such file (this practice rm only removes files).'; }
+    if (c === 'cp') { var p3 = pathOf(s, a[0]), p4 = pathOf(s, a[1]); if (!(p3 in s.files)) return 'cp: no such file: ' + a[0]; if (isDir(p4)) p4 += '/' + p3.split('/').pop(); s.files[p4] = s.files[p3]; return ''; }
+    if (c === 'head' || c === 'wc' || c === 'grep') {
+      var argv = a.slice(); var n = 10, flag = '', pat = null, file = null;
+      if (c === 'head') { var ni = argv.indexOf('-n'); if (ni >= 0) { n = +argv[ni + 1]; argv.splice(ni, 2); } file = argv[0]; }
+      else if (c === 'wc') { flag = argv.filter(function (x) { return x.charAt(0) === '-'; })[0] || ''; file = argv.filter(function (x) { return x.charAt(0) !== '-'; })[0]; }
+      else { flag = argv.filter(function (x) { return x.charAt(0) === '-'; })[0] || ''; var r = argv.filter(function (x) { return x.charAt(0) !== '-'; }); pat = unq([r[0] || ''])[0]; file = r[1]; }
+      if (!file) return c + ': which file? Add a file name.'; var fp = pathOf(s, file); if (!(fp in s.files)) return c + ': ' + file + ': No such file';
+      var lines = s.files[fp].replace(/\n$/, '').split('\n'); if (s.files[fp] === '') lines = [];
+      if (c === 'head') return lines.slice(0, n).join('\n');
+      if (c === 'wc') return flag === '-l' ? lines.length + ' ' + file : lines.length + ' lines ' + file;
+      var hit = lines.filter(function (l) { return flag.indexOf('i') > 0 ? l.toLowerCase().indexOf(pat.toLowerCase()) >= 0 : l.indexOf(pat) >= 0; });
+      return flag.indexOf('c') > 0 ? String(hit.length) : hit.join('\n');
+    }
+    if (c === 'git') {
+      var sub = a[0], g = s.git;
+      if (sub === 'init') { s.git = { commits: [], staged: {}, branches: { main: [] }, head: 'main', files: {} }; s.branch = 'main'; return 'Initialised empty Git repository in ' + s.cwd + '/.git'; }
+      if (!g) return 'fatal: not a git repository. Run git init first.';
+      var tracked = function () { return Object.keys(s.files).filter(function (f) { return f.indexOf(s.cwd + '/') === 0; }); };
+      if (sub === 'status') {
+        var st = Object.keys(g.staged), un = tracked().filter(function (f) { var rel = f.slice(s.cwd.length + 1); return !(rel in g.staged) && g.files[rel] !== s.files[f]; }).map(function (f) { return f.slice(s.cwd.length + 1); });
+        var o = ['On branch ' + g.head]; if (st.length) o.push('Changes to be committed: ' + st.join(', ')); if (un.length) o.push('Not staged / untracked: ' + un.join(', ')); if (!st.length && !un.length) o.push('Nothing to commit, working tree clean'); return o.join('\n');
+      }
+      if (sub === 'add') { var targets = a[1] === '.' ? tracked().map(function (f) { return f.slice(s.cwd.length + 1); }) : [a[1]]; if (!a[1]) return 'Nothing specified. Use git add <file> or git add .'; var bad = ''; targets.forEach(function (rel) { var f = pathOf(s, rel); if (!(f in s.files)) bad = "fatal: pathspec '" + rel + "' did not match any files"; else g.staged[rel] = s.files[f]; }); return bad; }
+      if (sub === 'commit') { var mi = a.indexOf('-m'); if (mi < 0 || !a[mi + 1]) return 'Add a message: git commit -m "what you changed"'; if (!Object.keys(g.staged).length) return 'Nothing staged. Use git add first.'; Object.keys(g.staged).forEach(function (k) { g.files[k] = g.staged[k]; }); g.branches[g.head] = g.branches[g.head].concat([unq([a[mi + 1]])[0]]); g.staged = {}; return '[' + g.head + '] ' + unq([a[mi + 1]])[0]; }
+      if (sub === 'log') { var cs = g.branches[g.head]; return cs.length ? cs.slice().reverse().join('\n') : 'No commits yet'; }
+      if (sub === 'branch') { if (!a[1]) return Object.keys(g.branches).map(function (b) { return (b === g.head ? '* ' : '  ') + b; }).join('\n'); g.branches[a[1]] = g.branches[g.head].slice(); return ''; }
+      if (sub === 'checkout' || sub === 'switch') { var nb = a.indexOf('-b') >= 0 ? a[a.indexOf('-b') + 1] : null, tg2 = nb || a[1]; if (nb) g.branches[nb] = g.branches[g.head].slice(); if (!g.branches[tg2]) return "error: no branch named '" + tg2 + "'"; g.head = tg2; return "Switched to branch '" + tg2 + "'"; }
+      return 'This practice terminal supports: init, status, add, commit -m, log, branch, checkout -b.';
+    }
+    if (c === 'help') return 'Try: pwd, ls, cd, mkdir, touch, echo, cat, cp, rm, head, wc, grep, git';
+    return c + ': command not found in this practice terminal. Type help to see what works.';
+  }
+  var SH_TASKS = {
+    linux: [
+      { q: 'Go into the data folder and list what is inside.', tip: 'cd data  then  ls', test: function (s) { return s.cwd === '/home/learner/data' ? true : 'You are in ' + s.cwd + '. Use cd to enter the data folder.'; } },
+      { q: 'Count how many lines are in sales.csv.', tip: 'wc -l sales.csv', test: function (s) { return s.hist.some(function (x) { return /^wc\s+-l\s+(\S*sales\.csv)/.test(x); }) ? true : 'Run wc -l on sales.csv.'; } },
+      { q: 'Show only the ERROR lines of logs/app.log.', tip: 'grep ERROR logs/app.log', test: function (s) { return s.hist.some(function (x) { return /^grep\s+("?ERROR"?|-i\s+"?error"?)\s+\S*app\.log/.test(x); }) ? true : 'Use grep ERROR with the log file path.'; } },
+      { q: 'Create a folder called reports inside data, then make an empty file notes.txt in it.', tip: 'mkdir reports  then  touch reports/notes.txt', test: function (s) { return '/home/learner/data/reports/notes.txt' in s.files ? true : 'The file data/reports/notes.txt does not exist yet.'; } },
+      { q: 'Write the text done into data/reports/notes.txt using echo and >.', tip: 'echo done > reports/notes.txt', test: function (s) { return (s.files['/home/learner/data/reports/notes.txt'] || '').trim() === 'done' ? true : 'notes.txt should contain exactly: done'; } }
+    ],
+    git: [
+      { q: 'Start a Git repository in this folder.', tip: 'git init', test: function (s) { return s.git ? true : 'Run git init.'; } },
+      { q: 'Create a file report.txt with some text, then stage it.', tip: 'echo draft > report.txt  then  git add report.txt', test: function (s) { return s.git && s.git.staged['report.txt'] ? true : 'report.txt is not staged. Create it, then git add it.'; } },
+      { q: 'Commit it with the message "first draft".', tip: 'git commit -m "first draft"', test: function (s) { return s.git && s.git.branches.main.indexOf('first draft') >= 0 ? true : 'No commit with the message first draft yet.'; } },
+      { q: 'Create and switch to a new branch called cleanup.', tip: 'git checkout -b cleanup', test: function (s) { return s.git && s.git.head === 'cleanup' ? true : 'You are on ' + (s.git ? s.git.head : 'no branch') + '. Use git checkout -b cleanup.'; } },
+      { q: 'Change report.txt, stage and commit it with a message, then run git log.', tip: 'echo more >> report.txt, git add report.txt, git commit -m "cleaned", git log', test: function (s) { return s.git && s.git.branches.cleanup && s.git.branches.cleanup.length >= 2 && s.hist.some(function (x) { return /^git log/.test(x); }) ? true : 'You need a second commit on cleanup and a git log.'; } }
+    ]
+  };
+  function mkShell(mode) {
+    return function (el) {
+      var st, hist, log, inp;
+      function fresh() { st = VFS(mode); st.hist = []; hist = st.hist; if (mode === 'git') st.cwd = '/home/learner'; }
+      fresh();
+      taskLab(el, mode === 'git' ? 'Practise Git in a safe terminal' : 'Practise the Linux terminal', mode === 'git' ? 'Git' : 'Linux', 'A pretend terminal that cannot touch your computer. Type a command and press Enter. Type help for the list.', SH_TASKS[mode], function (box, api) {
+        log = h('pre', { class: 'tj-term', 'aria-live': 'polite' }); inp = h('input', { type: 'text', class: 'tj-termin', spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', 'aria-label': 'Terminal command' });
+        var row = h('div', { class: 'tj-termrow' }, [h('span', { class: 'tj-termps', text: '$' }), inp]); box.appendChild(log); box.appendChild(row);
+        function ps() { return 'learner@practice:' + st.cwd.replace('/home/learner', '~') + '$ '; }
+        inp.addEventListener('keydown', function (e) {
+          if (e.key !== 'Enter') return; var line = inp.value.trim(); inp.value = ''; if (!line) return;
+          var o = runCmd(st, line); hist.push(line); log.appendChild(document.createTextNode(ps() + line + '\n' + (o ? o + '\n' : ''))); log.scrollTop = log.scrollHeight;
+        });
+        api.state = function () { return st; }; api.reset = function () { fresh(); clear(log); };
+      });
+    };
+  }
+  LABS.linux = mkShell('linux'); LABS.git = mkShell('git');
+
+  /* --- API response lab --- */
+  var API_JSON = { status: 'ok', page: 1, total: 3, data: [{ id: 101, name: 'Wanjiku', county: 'Nairobi', paid: true, amount: 4500 }, { id: 102, name: 'Otieno', county: 'Kisumu', paid: false, amount: 3200 }, { id: 103, name: 'Achieng', county: 'Kisumu', paid: true, amount: 6100 }] };
+  function jpath(obj, path) {
+    var t = path.trim().replace(/^response\.?/, '').match(/[^.\[\]]+|\[\d+\]/g) || [], cur = obj;
+    for (var i = 0; i < t.length; i++) { var k = t[i]; if (k.charAt(0) === '[') k = +k.slice(1, -1); if (cur === null || typeof cur !== 'object' || !(k in cur)) return { err: 'Nothing found at "' + t.slice(0, i + 1).join('.') + '". Check spelling, and remember lists start at [0].' }; cur = cur[k]; }
+    return { v: cur };
+  }
+  var API_TASKS = [
+    { q: 'What is the status? Type the path to it.', want: 'ok', tip: 'status' },
+    { q: 'Get the name of the first person in the list.', want: 'Wanjiku', tip: 'data[0].name' },
+    { q: 'Get the amount of the third person.', want: 6100, tip: 'data[2].amount' },
+    { q: 'Get the county of the second person.', want: 'Kisumu', tip: 'data[1].county' }
+  ];
+  LABS.api = function (el) {
+    var cur = null, inp, out, text = JSON.stringify(API_JSON, null, 2);
+    taskLab(el, 'Read an API response', 'API', 'APIs return JSON. This is a pretend response. Type a path like data[0].name to pull one value out, then check.', API_TASKS, function (box, api) {
+      inp = h('input', { type: 'text', spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', 'aria-label': 'Path to the value', placeholder: 'e.g. data[0].name' }); out = h('div', { class: 'tj-out' });
+      box.appendChild(h('pre', { class: 'tj-term', text: 'GET /api/payments?page=1\nHTTP 200 OK\n\n' + text })); box.appendChild(h('label', { text: 'Path' })); box.appendChild(inp); box.appendChild(out);
+      function show() { var r = jpath(API_JSON, inp.value); out.className = 'tj-out' + (r.err ? ' tj-bad' : ''); out.textContent = r.err ? r.err : 'Value: ' + JSON.stringify(r.v); }
+      inp.addEventListener('input', show); show();
+      api.onTask = function (t) { cur = t; inp.value = ''; show(); };
+      api.state = function () { return { path: inp.value }; }; api.reset = function () { inp.value = ''; show(); };
+    });
+    // task tests read the live input
+    var tasks = API_TASKS; tasks.forEach(function (t) { t.test = function (s) { var r = jpath(API_JSON, s.path); if (r.err) return r.err; return r.v === t.want ? true : 'That path gives ' + JSON.stringify(r.v) + ', not what was asked.'; }; });
+  };
+
+  /* --- scraping lab --- */
+  var SC_HTML = '<ul id="shop"><li class="item" data-id="1"><h3 class="name">Maize flour</h3><span class="price">KES 140</span></li><li class="item sale" data-id="2"><h3 class="name">Beans</h3><span class="price">KES 150</span></li><li class="item" data-id="3"><h3 class="name">Rice</h3><span class="price">KES 160</span></li></ul><p class="note">Prices updated daily</p>';
+  var SC_TASKS = [
+    { q: 'Select every product name.', want: ['Maize flour', 'Beans', 'Rice'], tip: '.name' },
+    { q: 'Select all the prices.', want: ['KES 140', 'KES 150', 'KES 160'], tip: '.price' },
+    { q: 'Select only the item that is on sale.', want: ['BeansKES 150'], tip: '.sale  or  li.sale' },
+    { q: 'Select the name of the sale item only.', want: ['Beans'], tip: '.sale .name' }
+  ];
+  LABS.scrape = function (el) {
+    var inp, out;
+    function run(sel) {
+      try { var doc = new DOMParser().parseFromString(SC_HTML, 'text/html'); if (!sel.trim()) return { v: [] }; return { v: Array.prototype.map.call(doc.querySelectorAll(sel), function (n) { return n.textContent.trim(); }) }; }
+      catch (e) { return { err: 'That is not a valid selector. Selectors look like .class, #id, tag, or .parent .child.' }; }
+    }
+    taskLab(el, 'Pick data out of a web page', 'Scraping', 'Scraping means reading data from HTML. A CSS selector says which elements to take. Safe practice: nothing is fetched from the internet.', SC_TASKS, function (box, api) {
+      inp = h('input', { type: 'text', spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', 'aria-label': 'CSS selector', placeholder: 'e.g. .name' }); out = h('div', { class: 'tj-out' });
+      box.appendChild(h('pre', { class: 'tj-term', text: SC_HTML.replace(/></g, '>\n<') })); box.appendChild(h('label', { text: 'CSS selector' })); box.appendChild(inp); box.appendChild(out);
+      function show() { var r = run(inp.value); out.className = 'tj-out' + (r.err ? ' tj-bad' : ''); out.textContent = r.err ? r.err : r.v.length + ' match' + (r.v.length === 1 ? '' : 'es') + ': ' + JSON.stringify(r.v); }
+      inp.addEventListener('input', show); show();
+      api.onTask = function () { inp.value = ''; show(); }; api.state = function () { return { sel: inp.value }; }; api.reset = function () { inp.value = ''; show(); };
+    });
+    SC_TASKS.forEach(function (t) { t.test = function (s) { var r = run(s.sel); if (r.err) return r.err; return JSON.stringify(r.v) === JSON.stringify(t.want) ? true : 'Your selector matched ' + JSON.stringify(r.v) + '.'; }; });
   };
 
   /* ================= hydrate ================= */

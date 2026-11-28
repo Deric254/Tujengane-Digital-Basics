@@ -24,6 +24,9 @@
   .tabs button{min-height:44px;padding:10px 16px;border-radius:10px;border:1px solid var(--g2);background:#fff;color:var(--g);font-weight:700;cursor:pointer}
   .tabs button[aria-selected=true]{background:var(--g);color:#fff}
   .msg{font-weight:600;margin-top:10px;color:#9a3412}
+  .msg:not(:empty){background:#fef3f2;border:1px solid #fecdca;color:#b42318;border-radius:8px;padding:9px 11px}
+  .pwrow{display:flex;gap:8px;align-items:stretch}.pwrow .pw{flex:1;min-width:0}
+  .eye{min-width:64px;border:1px solid #c4d3ca;background:#fff;color:var(--g);border-radius:10px;font-weight:700;cursor:pointer}
   .note{color:var(--mute);font-size:.9rem}
   .labbox{margin-bottom:22px}
   .card.tj-lab{border-top:4px solid #49a078;margin:0 0 16px;padding:16px}
@@ -40,8 +43,8 @@
   <label for="course">Your course</label>
   <select id="course"><option value="literacy">Computer Literacy</option><option value="analyst">Analyst Pro</option></select>
   <label for="pw">Password or access code</label>
-  <input id="pw" class="pw" type="password" autocomplete="off" autocapitalize="off">
-  <button id="go" class="tj-btn" type="button" style="margin-top:14px;width:100%">Enter the playground</button>
+  <div class="pwrow"><input id="pw" class="pw" type="password" autocomplete="off" autocapitalize="off" aria-describedby="msg"><button type="button" id="eye" class="eye" aria-label="Show password" aria-pressed="false">Show</button></div>
+  <button id="go" class="tj-btn" type="button" style="margin-top:14px;width:100%">Sign in</button>
   <div id="msg" class="msg" role="alert"></div>
  </section>
 
@@ -50,6 +53,7 @@
    <button role="tab" id="t-py" aria-selected="true" aria-controls="p-py">Python</button>
    <button role="tab" id="t-sq" aria-selected="false" aria-controls="p-sq">SQL</button>
    <button role="tab" id="t-cy" aria-selected="false" aria-controls="p-cy">Cyber Lab</button>
+   <button role="tab" id="t-tk" aria-selected="false" aria-controls="p-tk">Toolkit</button>
   </div>
   <div id="p-py" role="tabpanel" class="card tj-lab">
    <h2 style="margin-top:0">Python workspace</h2>
@@ -69,6 +73,11 @@
    <h2 style="margin-top:0">Cyber practice lab</h2>
    <p class="note">Safe, simulated exercises. Nothing here touches a real system. Repeat any exercise as often as you like.</p>
    <div id="labs"></div>
+  </div>
+  <div id="p-tk" role="tabpanel" class="card tj-lab" hidden>
+   <h2 style="margin-top:0">Analyst toolkit</h2>
+   <p class="note">Short guides with safe practice for the tools analysts meet on the job: terminal, Git, APIs, web pages, PostgreSQL, Excel and pivots. Everything is simulated in your browser.</p>
+   <div id="tk"></div>
   </div>
  </section>
 </main>
@@ -118,6 +127,22 @@
         var w=document.createElement('div');w.className='tj-lab';w.setAttribute('data-lab',n);w.appendChild(document.createTextNode(''));
         d.appendChild(w);L.appendChild(w);
       });
+
+      var K=$('tk');
+      [
+       ['Linux terminal','The terminal is how you move around servers and big files without a mouse. Four commands cover most days: ls (look), cd (move), cat or head (read), grep (find text). Add -l to wc to count lines. Paths starting with / are absolute; ../ goes up one folder.','linux'],
+       ['Git: save your work history','Git records versions of your files so you can go back, compare and work in parallel. The loop is: change files, git add (choose what to save), git commit -m "message" (save it), git log (see history). A branch is a safe copy to try ideas; git checkout -b name creates one.','git'],
+       ['APIs: ask a system for data','An API is a web address that answers with data, usually JSON. Status 200 means OK, 401 means you are not allowed, 404 means not found, 429 means slow down. In JSON, curly brackets hold named values and square brackets hold lists that start at 0.','api'],
+       ['Web scraping: read data from pages','A page is HTML. A CSS selector picks elements: .name for class, #id for id, tag for tag, .a .b for b inside a. Before scraping a real site, read its terms and robots.txt, ask for an API first, and never collect private data.','scrape']
+      ].forEach(function(x){
+        var h=document.createElement('h3');h.textContent=x[0];var p=document.createElement('p');p.className='note';p.textContent=x[1];K.appendChild(h);K.appendChild(p);
+        var w=document.createElement('div');w.className='tj-lab';w.setAttribute('data-lab',x[2]);K.appendChild(w);
+      });
+      var hp=document.createElement('h3');hp.textContent='PostgreSQL: what changes after SQLite';K.appendChild(hp);
+      var pl=document.createElement('ul');pl.className='note';
+      ['The SELECT, WHERE, GROUP BY, JOIN you practise here work the same in PostgreSQL.','PostgreSQL has real data types: date, timestamp, numeric(12,2), boolean. Use numeric for money, never float.','Text comparison with = is case sensitive. Use ILIKE for case-insensitive search.','Dates: use CURRENT_DATE and date_trunc(\'month\', col) to group by month.','You connect with a host, port, database, user and password (for example with psql or DBeaver). Never share the password or put it in a file you upload.','Use a read-only user for analysis so a typo cannot change the data.'].forEach(function(t){var li=document.createElement('li');li.textContent=t;pl.appendChild(li)});K.appendChild(pl);
+      var hs=document.createElement('h3');hs.textContent='Spreadsheets';K.appendChild(hs);
+      ['excel','pivot'].forEach(function(n){var w=document.createElement('div');w.className='tj-lab';w.setAttribute('data-lab',n);K.appendChild(w)});
       TJLabs.hydrate(document);
     }
     wait();
@@ -148,20 +173,21 @@
   }
   function login(){
     course=$('course').value;msg('');
-    var b=$('go');b.disabled=true;
+    var b=$('go');if(!$('pw').value){msg('Type your password or access code first.');$('pw').focus();return}b.disabled=true;b.textContent='Signing in...';
     fetch(API[course],{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('pw').value})})
     .then(function(r){return r.json().catch(function(){return{}}).then(function(d){return{s:r.status,d:d}})})
     .then(function(x){
-      b.disabled=false;
+      b.disabled=false;b.textContent='Sign in';
       if(x.s===200&&x.d&&Array.isArray(x.d.modules)){unlock(x.d)}
       else if(x.s===429){msg('Too many tries. Please wait a few minutes.')}
       else if(x.s===503){msg('Access is not available right now. Contact your trainer.')}
-      else{msg('That password or code is not valid, or it has expired.')}
-    }).catch(function(){b.disabled=false;msg('Could not reach the server. Check your connection.')});
+      else{msg('That password or code is not valid, or it has expired. Check it and try again. Tip: tap Show to see what you typed.');$('pw').focus();$('pw').select()}
+    }).catch(function(){b.disabled=false;b.textContent='Sign in';msg('Could not reach the server. Check your internet connection.')});
   }
+  $('eye').addEventListener('click',function(){var p=$('pw'),show=p.type==='password';p.type=show?'text':'password';this.textContent=show?'Hide':'Show';this.setAttribute('aria-pressed',String(show));this.setAttribute('aria-label',show?'Hide password':'Show password');p.focus()});
   $('go').addEventListener('click',login);
   $('pw').addEventListener('keydown',function(e){if(e.key==='Enter')login()});
-  var T=[['t-py','p-py'],['t-sq','p-sq'],['t-cy','p-cy']];
+  var T=[['t-py','p-py'],['t-sq','p-sq'],['t-cy','p-cy'],['t-tk','p-tk']];
   T.forEach(function(t){$(t[0]).addEventListener('click',function(){T.forEach(function(u){$(u[0]).setAttribute('aria-selected',u[0]===t[0]);$(u[1]).hidden=u[0]!==t[0]})})});
   // restore existing session
   ['literacy','analyst'].reduce(function(p,c){return p.then(function(ok){

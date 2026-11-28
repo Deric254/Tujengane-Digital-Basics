@@ -10,10 +10,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Amplitude Analytics -->
-  <script src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js"></script>
+  <script async src="https://cdn.amplitude.com/script/5a4bb01b3841a994768853dd53f10382.js" id="tj-amp"></script>
   <script>
-    if (window.amplitude && window.sessionReplay) window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-    if (window.amplitude) window.amplitude.init('5a4bb01b3841a994768853dd53f10382', {"fetchRemoteConfig":true,"autocapture":true});
+    window.addEventListener("load", function () { var n = 0; (function go() { if (window.amplitude && window.amplitude.init) { if (window.sessionReplay) window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1})); window.amplitude.init("5a4bb01b3841a994768853dd53f10382", {"fetchRemoteConfig":true,"autocapture":true}); } else if (n++ < 40) setTimeout(go, 250); })(); });
   </script>
 
   <!-- Google Analytics -->
@@ -88,7 +87,7 @@
   <!-- Styling & Effects -->
   <link rel="stylesheet" href="../assets/css/tailwind.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script data-goatcounter="https://deric-exes-analytics.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="../assets/css/layers.css">

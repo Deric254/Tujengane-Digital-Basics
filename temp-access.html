@@ -41,7 +41,7 @@
       <option value="240">4 hours</option><option value="360">6 hours</option><option value="720">12 hours</option><option value="1440">24 hours</option>
     </select>
     <label for="pw">Your own course password</label>
-    <input id="pw" type="password" autocomplete="off" maxlength="200" required>
+    <div style="display:flex;gap:8px"><input id="pw" type="password" autocomplete="off" maxlength="200" required style="flex:1;min-width:0"><button type="button" class="eyebtn" data-for="pw" aria-label="Show password" style="min-width:64px;border:1px solid #c4d3ca;background:#fff;border-radius:8px;font-weight:700;cursor:pointer">Show</button></div>
     <button class="go" id="go" type="submit">Make code</button>
     <div class="msg err" id="err" role="alert"></div>
     <div class="result" id="res" aria-live="polite">
@@ -54,7 +54,7 @@
     <h2 style="margin:0 0 6px;font-size:1.1rem">Test the AI tutor</h2>
     <p class="msg" style="color:inherit">Checks every AI key you added on the server and tells you which one works. Keys are never shown.</p>
     <label for="tpw">Your own course password</label>
-    <input id="tpw" type="password" autocomplete="off" maxlength="200" required>
+    <div style="display:flex;gap:8px"><input id="tpw" type="password" autocomplete="off" maxlength="200" required style="flex:1;min-width:0"><button type="button" class="eyebtn" data-for="tpw" aria-label="Show password" style="min-width:64px;border:1px solid #c4d3ca;background:#fff;border-radius:8px;font-weight:700;cursor:pointer">Show</button></div>
     <button class="go" id="tgo" type="submit">Test AI tutor</button>
     <div class="msg err" id="terr" role="alert"></div>
     <div id="tres" aria-live="polite" style="margin-top:8px;font-size:.95rem"></div>
@@ -67,6 +67,7 @@
 </main>
 <script>
 (function(){
+  document.querySelectorAll('.eyebtn').forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById(b.getAttribute('data-for')),sh=i.type==='password';i.type=sh?'text':'password';b.textContent=sh?'Hide':'Show';b.setAttribute('aria-label',sh?'Hide password':'Show password');i.focus()})});
   var $=function(i){return document.getElementById(i)};
   var NAMES={analyst:'Analyst Pro',literacy:'Computer Literacy'};
   var lastMsg='';

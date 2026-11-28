@@ -539,9 +539,10 @@ function initializePasswordProtection() {
                     <input id="pwInput" type="password" placeholder="Password" style="flex:1;min-width:0;padding:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.26);color:#fff;border-radius:8px;font-size:1rem;">
                     <button id="pwToggle" aria-label="Show password" style="background:transparent;border:0;font-size:1.1rem;cursor:pointer;color:#fff;opacity:0.95;margin-left:6px;flex:0 0 auto;">👁️</button>
                 </div>
+                <div id="pwErr" role="alert" aria-live="assertive" style="display:none;background:#fef3f2;color:#b42318;border:1px solid #fecdca;border-radius:8px;padding:9px 11px;font-size:.92rem;font-weight:600"></div>
                 <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:nowrap;">
                     <button id="pwCancel" style="background:transparent;border:1px solid rgba(255,255,255,0.12);padding:9px 12px;border-radius:8px;cursor:pointer;color:#fff;flex:0 0 auto;white-space:nowrap;">Cancel</button>
-                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;flex:0 0 auto;white-space:nowrap;">Submit</button>
+                    <button id="pwSubmit" style="background:#49A078;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;flex:0 0 auto;white-space:nowrap;">Sign in</button>
                 </div>
             </div>
         `;
@@ -566,7 +567,11 @@ function initializePasswordProtection() {
         var submitBtn = document.getElementById('pwSubmit');
         submitBtn.addEventListener('click', function(){
             var input = (pwInput && pwInput.value) ? pwInput.value : '';
-            submitBtn.disabled = true;
+            var errBox = document.getElementById('pwErr');
+            function fail(msg){ submitBtn.disabled = false; submitBtn.textContent = 'Sign in'; errBox.textContent = msg; errBox.style.display = 'block'; if (pwInput) { pwInput.focus(); pwInput.select(); } }
+            if (!input) { fail('Type your password or access code first.'); return; }
+            errBox.style.display = 'none';
+            submitBtn.disabled = true; submitBtn.textContent = 'Signing in...';
             fetch(COURSE_API, {
                 method: 'POST',
                 credentials: 'same-origin',
@@ -582,16 +587,13 @@ function initializePasswordProtection() {
                     unlockCourse(result.data);
                     return;
                 }
-                // wrong password, throttled (429) or server not configured (503)
                 tries++;
-                cleanup();
-                if (tries >= 2 || result.status === 429 || result.status === 503) { showWhatsAppOverlay(); return; }
-                askPassword();
+                if (result.status === 429) { showWhatsAppOverlay(); cleanup(); return; }
+                if (result.status === 503) { fail('Access is not available right now. Please contact your trainer.'); return; }
+                if (tries >= 3) { cleanup(); showWhatsAppOverlay(); return; }
+                fail('That password or code is not valid, or it has expired. Check it and try again (attempt ' + tries + ' of 3). Tip: tap the eye to see what you typed.');
             }).catch(function(){
-                tries++;
-                cleanup();
-                if (tries >= 2) { showWhatsAppOverlay(); return; }
-                askPassword();
+                fail('Could not reach the server. Check your internet connection and try again.');
             });
         });
 
